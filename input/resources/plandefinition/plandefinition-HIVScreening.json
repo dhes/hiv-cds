@@ -6,7 +6,7 @@
         "use": "official",
         "value": "nachc-HIV-Screening"
     }],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "HIVScreening",
     "title": "NACHC HIV Screening",
     "type": {
@@ -17,8 +17,8 @@
         }]
     },
     "status": "draft",
-    "date": "2021-07-31T00:00:00-08:00",
-    "publisher": "National Association of Community Health Centers, Inc. (NACHC)",
+    "date": "2024-02-14T07:23:00-10:00",
+    "publisher": "National Association of Community Health Centers, Inc. (NACHC), edited by Dan Heslinga",
     "description": "This PlanDefinition defines a Clinical Decision Support rule to determine whether HIV Screening is appropriate based on CDC Recommendations for HIV Screening",
     "useContext": [{
         "code": {
@@ -73,7 +73,7 @@
         "condition": [{
             "kind": "start",
             "expression": {
-                "language": "text/cql",
+                "language": "text/cql-identifier",
                 "expression": "'true'"
             }
         }],
@@ -81,14 +81,14 @@
                 "path": "action.description",
                 "expression": {
                     "description": "Patient Name.",
-                    "language": "text/cql.identifier",
+                    "language": "text/cql-identifier",
                     "expression": "Patient Name"
                 }
             },
             {
                 "path": "action.extension",
                 "expression": {
-                    "language": "text/cql.identifier",
+                    "language": "text/cql-identifier",
                     "expression": "Info"
                 }
             }
@@ -101,7 +101,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in msm population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "Never Tested Condition"
                     }
                 }],
@@ -118,7 +118,7 @@
                         "path": "action.title",
                         "expression": {
                             "description": "Provides Recommendation for Never Tested screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Never Tested Recommendation"
                         }
                     },
@@ -126,21 +126,21 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Provides Rationale for Never Tested screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Never Tested Rationale"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Never Tested Indicator"
                         }
                     },
                     {
                         "path": "asNeededBoolean",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Never Tested Condition"
                         }
                     }
@@ -167,7 +167,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in msm population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "MSM Condition"
                     }
                 }],
@@ -184,7 +184,7 @@
                         "path": "action.title",
                         "expression": {
                             "description": "Provides Recommendation for screening.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "MSM Recommendation"
                         }
                     },
@@ -192,21 +192,21 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Provides Rationale for screening.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "MSM Rationale"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "MSM Indicator"
                         }
                     },
                     {
                         "path": "asNeededBoolean",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "MSM Condition"
                         }
                     }
@@ -233,7 +233,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in msm population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "Pregnant Condition"
                     }
                 }],
@@ -250,7 +250,7 @@
                         "path": "action.title",
                         "expression": {
                             "description": "Provides Recommendation for Pregnancy screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Pregnant Recommendation"
                         }
                     },
@@ -258,21 +258,21 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Provides Rationale for Pregnancy screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Pregnant Rationale"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Pregnant Indicator"
                         }
                     },
                     {
                         "path": "asNeededBoolean",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Pregnant Condition"
                         }
                     }
@@ -299,7 +299,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in msm population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "Seeking STD Treatment Condition"
                     }
                 }],
@@ -316,7 +316,7 @@
                         "path": "action.title",
                         "expression": {
                             "description": "Provides Recommendation for Seeking STD Treatment screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Seeking STD Treatment Recommendation"
                         }
                     },
@@ -324,21 +324,21 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Provides Rationale for Seeking STD Treatment screenings.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Seeking STD Treatment Rationale"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Seeking STD Treatment Indicator"
                         }
                     },
                     {
                         "path": "asNeededBoolean",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Seeking STD Treatment Condition"
                         }
                     }
@@ -365,7 +365,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in screening population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "Risk Level Condition"
                     }
                 }],
@@ -382,7 +382,7 @@
                         "path": "action.title",
                         "expression": {
                             "description": "Determines what recommendation patient should be provided.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Risk Level Recommendation"
                         }
                     },
@@ -390,21 +390,21 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Rationale for recommendation type.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Risk Level Rationale"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Risk Level Indicator Status"
                         }
                     },
                     {
                         "path": "asNeededBoolean",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Risk Level Condition"
                         }
                     }
@@ -431,7 +431,7 @@
                     "kind": "applicability",
                     "expression": {
                         "description": "Determine if Patient is in hiv exclusion population.",
-                        "language": "text/cql.identifier",
+                        "language": "text/cql-identifier",
                         "expression": "Meets Exclusion Criteria"
                     }
                 }],
@@ -439,14 +439,14 @@
                         "path": "action.description",
                         "expression": {
                             "description": "Rationale for why patient was excluded from the hiv screening.",
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Exclusion Reason"
                         }
                     },
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql.identifier",
+                            "language": "text/cql-identifier",
                             "expression": "Info"
                         }
                     }

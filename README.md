@@ -27,3 +27,25 @@ but after that error the server log produces a card object.
 }
 ```
 I've run _updatePublisher.sh but I haven't run _refresh.sh yet. 
+
+Moving on to Screening. Posted bundles/plandefinition/Screening/Screening-bundle.json with one error. 
+```
+diagnostics": "HAPI-1094: Resource PractitionerRole/hiv-practitionerrole-example not found, specified in path: Patient.generalPractitioner"
+```
+Running  $apply against HighRiskPregnantPatient. It seems not all of the Screening bundle was loaded on the server. The PlanDefinition isn't there. PlanDefinition HIVScreening is. 
+
+How many PlanDefinitions have we?
+
+After fixing up the HIVScreening PlanDefinition there are multiple errors with missing libraries. There's a bundle/Screening/Screening-files/library-deps-Screening-bundle.json that I will load. 
+```
+curl -d "@bundles/plandefinition/Screening/Screening-files/library-deps-Screening-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir 
+```
+
+It appears that the CQL content in the HIVDataElements Library in the  bundles/plandefinition/Screening/Screening-files/library-deps-Screening-bundle.json file does not match the CQL at input/cql/
+HIVDataElements.cql. "Encounter Type is missing". I know because I manually decoded the file from the content attriibute of the Library. I wonder if the HIVScreening library that I already uploaded is up to date. Let's check. Those are OK. 
+
+Now to run _refresh to update the bundles? Yes. Will the new library-deps bundle contain the updated HIVDataElements? I.e. will HIVDataElements define an "Encounter Type:" and match its twin in input/cql? It does not. What about the HIVDataElements Library of the bundles/plandefinition/Screening/Screening-bundle.json? No! 
+
+It turns out (and makes sense) that the updated HIVDataElements.cql is in bundles/HIVScreening/HIVScreening-bundle.json and input/resources/library/HIVDataElements. 
+
+I need these libraries in a hand-made bundle. Or not. Whatever I said before, the bundles/HIVScreening/HIVScreening-files/library-deps-HIVScreening-bundle.json is up to date at least WRT HIVDataElements. OK That's much better but it looks like I still need FHIRCommon. 
