@@ -88,8 +88,8 @@
             {
                 "path": "action.priority",
                 "expression": {
-                    "language": "text/cql-identifier",
-                    "expression": "Info"
+                    "language": "text/cql",
+                    "expression": "'routine'"
                 }
             }
         ],
@@ -446,8 +446,8 @@
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql-identifier",
-                            "expression": "Info"
+                            "language": "text/cql",
+                            "expression": "'routine'"
                         }
                     }
                 ]

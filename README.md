@@ -96,3 +96,9 @@ etc also for
 |urgent | asap | stat
 
 Or just change the value in the Plandefinition to text/cql "'routine'"
+
+2024-02-15
+
+Look to this CDS Hooks Service [PlanDefinition](CDS Hooks Service PlanDefinition). it `Defines a PlanDefinition that implements the behavior for a CDS Hooks service`. 
+
+Replacing "Info" as a cql-expression with "'routine'" as a cql removed the OperationOutcome error. 
