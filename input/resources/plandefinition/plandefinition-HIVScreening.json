@@ -73,7 +73,7 @@
         "condition": [{
             "kind": "start",
             "expression": {
-                "language": "text/cql-identifier",
+                "language": "text/cql",
                 "expression": "'true'"
             }
         }],
