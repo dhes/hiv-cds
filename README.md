@@ -102,3 +102,40 @@ Or just change the value in the Plandefinition to text/cql "'routine'"
 Look to this CDS Hooks Service [PlanDefinition](CDS Hooks Service PlanDefinition). it `Defines a PlanDefinition that implements the behavior for a CDS Hooks service`. 
 
 Replacing "Info" as a cql-expression with "'routine'" as a cql removed the OperationOutcome error. 
+
+Execute CQL is not working on HIVScreening. Data path should be `Data path: D:\src\code\cqframework\hiv-cds\input\tests\PlanDefinition\Screening` but is `/Users/danheslinga/hiv-cds/input/tests`
+
+I made a duplicate of `input/tests/PlanDefinition/Screening` to `input/tests/PlanDefinition/HIVScreening` and now execute CQL works better.
+
+Now working with `DrugAbuseQuestionsPatient`. Apparently she had an HIV test two months before her encounter so at the time of the encounter she is not due. I had to make the status of the encounter `finished` to get a sensible result from `Execute CQL`. Maybe if I made the visit date today it would also have worked. Let's try that. Didn't work. So it seems confirmed that all of the encounter statuses have to be changed to finished. Will load her testing bundle with 
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-DrugAbuseQuestionsPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir 
+```
+OK - that's very nice. Running
+```
+http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply?subject=Patient/DrugAbuseQuestionsPatient
+```
+BTW HIVContactDataElements.cql uses `context Encounter`. That'll be new. 
+
+Produces an action element that corresponds with the `Execute CQL` procedure. Here is the RequestGrou.action.action
+```
+      "action": [ {
+        "title": "HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.",
+        "description": "In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.",
+        "condition": [ {
+          "kind": "applicability",
+          "expression": {
+            "description": "Determine if Patient is in screening population.",
+            "language": "text/cql-identifier",
+            "expression": "Risk Level Condition"
+          }
+        } ]
+```
+and here is the `Execute CQL` results
+```
+Risk Level Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
+```
+Progress. Next steps - fix up
+>      "diagnostics": "DynamicValue expression Risk Level Indicator Status encountered >exception: Please use the priority path when setting indicator values when using FHIR >R4 or higher for CDS Hooks evaluation"
+
+Then fix up the rest of the test bundle encounters like done with `DrugAbuseQuestionsPatient` and tive them a run!. 
