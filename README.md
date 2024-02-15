@@ -60,4 +60,39 @@ OK that addresses the active/inactive condition resolution error. Now a differen
 ```
 "diagnostics": "Condition expression 'true' encountered exception: Could not resolve expression reference ''true'' in library 'HIVScreening'."
 ```
-That probably refers to a line in the PlanDefinition which appears to aim to pass the value `true` as a boolean datatype in. Maybe it should be type `text/cql` and not `text/cql-identier`. Let's try that. 
+That probably refers to a line in the PlanDefinition which appears to aim to pass the value `true` as a boolean datatype in. Maybe it should be type `text/cql` and not `text/cql-identier`. Let's try that. That's solved. 
+
+This [page](https://cds-hooks.hl7.org/2.0/) discusses the fields in CHD Hooks. (
+
+>Each Card is described by the following attributes.
+
+|Field |Optionality |Type |Description|
+|---|---|---|---|
+|uuid |OPTIONAL |string |Unique identifier of the card. MAY be used for auditing and logging cards and SHALL be included in any subsequent calls to the CDS service's feedback endpoint.|
+|summary |REQUIRED |string |One-sentence, <140-character summary message for display to the user inside of this card.|
+|detail |OPTIONAL |string |Optional detailed information to display; if provided MUST be represented in (GitHub Flavored) Markdown. (For non-urgent cards, the CDS Client MAY hide these details until the user clicks a link like "view more details...").|
+|indicator |REQUIRED |string |Urgency/importance of what this card conveys. Allowed values, in order of increasing urgency, are: info, warning, critical. The CDS Client MAY use this field to help make UI display decisions such as sort order or coloring.|
+|source |REQUIRED |object |Grouping structure for the Source of the information displayed on this card. The source should be the primary source of guidance for the decision support the card represents.|
+|suggestions |OPTIONAL |array of Suggestions |Allows a service to suggest a set of changes in the context of the current activity (e.g. changing the dose of a medication currently being prescribed, for the order-sign activity). If suggestions are present, selectionBehavior MUST also be provided.|
+|selectionBehavior |CONDITIONAL |string |Describes the intended selection behavior of the suggestions in the card. Allowed values are: at-most-one, indicating that the user may choose none or at most one of the suggestions; any, indicating that the end user may choose any number of suggestions including none of them and all of them. CDS Clients that do not understand the value MUST treat the card as an error.|
+|overrideReasons |OPTIONAL |array of Coding |Override reasons can be selected by the end user when overriding a card without taking the suggested recommendations. The CDS service MAY return a list of override reasons to the CDS client. If override reasons are present, the CDS Service MUST populate a display value for each reason's Coding. The CDS Client SHOULD present these reasons to the clinician when they dismiss a card. A CDS Client MAY augment the override reasons presented to the user with its own reasons.|
+|links |OPTIONAL |array of Links |Allows a service to suggest a link to an app that the user might want to run for additional information or to help guide a decision.|
+
+`indicator` above helps make sense of this error message. 
+```
+DynamicValue expression Info encountered exception: Please use the priority path when setting indicator values when using FHIR R4 or higher for CDS Hooks evaluation
+```
+So I have to do something with the "Info" expression of the PlanDefinition. This "Info" isn't an `indicator` though 'info' is one of this indicator values. The CQL for info is
+```
+define "Info":
+'info'
+```
+i.e. it's just the string 'info'. It's not a card indicator. So it looks like I'll have to do my first edit on HIVScreening.cql to do something like:
+```
+define "Routine":
+'routine' 
+```
+etc also for 
+|urgent | asap | stat
+
+Or just change the value in the Plandefinition to text/cql "'routine'"
