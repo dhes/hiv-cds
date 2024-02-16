@@ -182,8 +182,5 @@
         "start": "2012"
       }
     }
-  ],
-  "managingOrganization": {
-    "reference": "Organization/example"
-  }
+  ]
 }

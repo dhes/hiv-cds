@@ -210,9 +210,6 @@
           ]
         },
         "subject": { "reference": "Patient/HighRiskPregnantPatient" },
-        "encounter": {
-          "reference": "Encounter/HighRiskSTDPatient-encounter-1"
-        },
         "effectiveDateTime": "2021-07-30T10:30:00-07:00",
         "valueBoolean": true
       },

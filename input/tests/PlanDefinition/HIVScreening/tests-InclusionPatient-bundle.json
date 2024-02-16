@@ -206,8 +206,7 @@
             "gender": "female",
             "period": { "start": "2012" }
           }
-        ],
-        "managingOrganization": { "reference": "Organization/example" }
+        ]
       },
       "request": { "method": "PUT", "url": "Patient/InclusionPatient" }
     }
