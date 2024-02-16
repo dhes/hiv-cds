@@ -138,4 +138,4 @@ Risk Level Recommendation=HIV Screening Not Recommended at this time. It has bee
 Progress. Next steps - fix up
 >      "diagnostics": "DynamicValue expression Risk Level Indicator Status encountered >exception: Please use the priority path when setting indicator values when using FHIR >R4 or higher for CDS Hooks evaluation"
 
-Then fix up the rest of the test bundle encounters like done with `DrugAbuseQuestionsPatient` and tive them a run!. 
+Then fix up the rest of the test bundle encounters like done with `DrugAbuseQuestionsPatient` and tive them a run!. You also have to remove all references to Resource PractitionerRole/hiv-practitionerrole-example. 

@@ -19,9 +19,6 @@
     "reference": "Encounter/HighRiskSTDPatient-encounter-1"
   },
   "effectiveDateTime": "2021-03-08T10:00:00-07:00",
-  "performer": [ {
-    "reference": "PractitionerRole/hiv-practitionerrole-example"
-  } ],
   "valueCodeableConcept": {
     "coding": [ {
       "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",

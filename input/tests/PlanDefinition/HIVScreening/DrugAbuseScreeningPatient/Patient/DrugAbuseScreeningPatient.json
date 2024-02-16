@@ -66,8 +66,5 @@
     }],
     "gender": "female",
     "birthDate": "2002-02-02",
-    "deceasedBoolean": false,
-    "generalPractitioner": [{
-        "reference": "PractitionerRole/hiv-practitionerrole-example"
-    }]
+    "deceasedBoolean": false
 }

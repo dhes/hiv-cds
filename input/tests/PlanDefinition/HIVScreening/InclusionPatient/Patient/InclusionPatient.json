@@ -183,9 +183,6 @@
       }
     }
   ],
-  "generalPractitioner": [ {
-    "reference": "PractitionerRole/hiv-practitionerrole-example"
-  } ],
   "managingOrganization": {
     "reference": "Organization/example"
   }
