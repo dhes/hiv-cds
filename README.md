@@ -139,3 +139,33 @@ Progress. Next steps - fix up
 >      "diagnostics": "DynamicValue expression Risk Level Indicator Status encountered >exception: Please use the priority path when setting indicator values when using FHIR >R4 or higher for CDS Hooks evaluation"
 
 Then fix up the rest of the test bundle encounters like done with `DrugAbuseQuestionsPatient` and tive them a run!. You also have to remove all references to Resource PractitionerRole/hiv-practitionerrole-example. 
+
+OK test files are fixed up, let's load up the rest. 
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-DrugAbuseScreeningPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-ExclusionPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-HighRiskIDUPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-HighRiskPregnantPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-HighRiskSTDPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-InclusionPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+```
+curl -d "@input/tests/PlanDefinition/HIVScreening/tests-MSMPatient-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+After removing a couple of dead references, those are in. 
+
+2024-02-16
+
+Today let's try to write a set of Thunderclient test on these newly loaded PlanDefinitions and patients. 
+
+It appears that the value[x] of the HIV test in this project are not actually values but a more detailed description of the test itself. That seems to contradict the description of value[x] in the specs as the 'actual' result. I think a ServiceRequest with `status='completed'` might be more appropriate. The most likely clinical scenario would be and Observation with an actual valueBoolean. 
