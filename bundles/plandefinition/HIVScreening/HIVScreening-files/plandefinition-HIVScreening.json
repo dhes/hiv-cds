@@ -6,7 +6,7 @@
         "use": "official",
         "value": "nachc-HIV-Screening"
     }],
-    "version": "1.0.1",
+    "version": "1.0.3",
     "name": "HIVScreening",
     "title": "NACHC HIV Screening",
     "type": {
@@ -73,7 +73,7 @@
         "condition": [{
             "kind": "start",
             "expression": {
-                "language": "text/cql-identifier",
+                "language": "text/cql",
                 "expression": "'true'"
             }
         }],
@@ -86,10 +86,10 @@
                 }
             },
             {
-                "path": "action.extension",
+                "path": "action.priority",
                 "expression": {
-                    "language": "text/cql-identifier",
-                    "expression": "Info"
+                    "language": "text/cql",
+                    "expression": "'routine'"
                 }
             }
         ],
@@ -446,8 +446,8 @@
                     {
                         "path": "action.extension",
                         "expression": {
-                            "language": "text/cql-identifier",
-                            "expression": "Info"
+                            "language": "text/cql",
+                            "expression": "'routine'"
                         }
                     }
                 ]

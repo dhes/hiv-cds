@@ -13,6 +13,24 @@ include HIVDataElements called HDE
 
 context Patient
 
+define "HDESexual Orientation code":
+  HDE."Sexual Orientation".coding.code.value
+
+define "HDESexual Orientation code single":
+  singleton from (HDE."Sexual Orientation".coding.code.value)
+
+define "HDESexual Orientation system":
+  HDE."Sexual Orientation".coding.system.value
+
+define "CxGay Or Bisexual":
+  Cx."Gay Or Bisexual"
+
+// define "Patient is Gay or Bisexual":
+//   singleton from (HDE."Sexual Orientation".coding) in Cx."Gay Or Bisexual"
+
+define "Patient is Gay or Bisexual":
+  exists (HDE."Sexual Orientation".coding)O where (O in Cx."Gay Or Bisexual")
+
 define "Info":
   'info'
 
@@ -29,6 +47,8 @@ define "Patient Name":
   First(Patient.name.given)
    + ' ' +
   First(Patient.name.family)
+
+
 
 
 /* Recommendation Criteria - HIV Screening  */
@@ -293,8 +313,8 @@ define "Patient is Female":
 define "Patient is Transgender":
     HDE."Gender Identity" in Cx."Transgender"
 
-define "Patient is Gay or Bisexual":
-      HDE."Sexual Orientation" in Cx."Gay Or Bisexual"
+// define "Patient is Gay or Bisexual":
+//       HDE."Sexual Orientation".coding.code in Cx."Gay Or Bisexual"
 
 define "Patient is Pregnant":
   exists(

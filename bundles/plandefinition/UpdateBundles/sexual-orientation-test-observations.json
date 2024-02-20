@@ -1,0 +1,415 @@
+{
+  "resourceType": "Bundle",
+  "id": "sexual-orientation-test-observations",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "DrugAbusePatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/DrugAbuseQuestionsPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "38628009",
+              "display": "Homosexual (finding)"
+            }
+          ],
+          "text": "Homosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/DrugAbusePatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "DrugAbuseScreeningPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/DrugAbuseScreeningPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "38628009",
+              "display": "Homosexual (finding)"
+            }
+          ],
+          "text": "Homosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/DrugAbuseScreeningPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ExclusionPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/ExclusionPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "38628009",
+              "display": "Homosexual (finding)"
+            }
+          ],
+          "text": "Homosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/ExclusionPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "HighRiskIDUPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/HighRiskIDUPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "38628009",
+              "display": "Homosexual (finding)"
+            }
+          ],
+          "text": "Homosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/HighRiskIDUPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "HighRiskPregnantPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/HighRiskPregnantPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "20430005",
+              "display": "Heterosexual (finding)"
+            }
+          ],
+          "text": "Heterosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/HighRiskPregnantPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "HighRiskSTDPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/HighRiskSTDPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "20430005",
+              "display": "Heterosexual (finding)"
+            }
+          ],
+          "text": "Heterosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/HighRiskSTDPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "InclusionPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/InclusionPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "20430005",
+              "display": "Heterosexual (finding)"
+            }
+          ],
+          "text": "Heterosexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/InclusionPatient-observation-sexual-orientation"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "MSMPatient-observation-sexual-orientation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "76690-7",
+              "display": "Sexual orientation"
+            }
+          ],
+          "text": "Sexual orientation"
+        },
+        "subject": {
+          "reference": "Patient/MSMPatient"
+        },
+        "effectiveDateTime": "2020-01-11",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "SNOMED-CT",
+              "code": "42035005",
+              "display": "Bisexual (finding)"
+            }
+          ],
+          "text": "Bisexual (finding)"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/MSMPatient-observation-sexual-orientation"
+      }
+    }
+  ]
+}

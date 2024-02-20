@@ -44,6 +44,21 @@ define "Sexual Orientation":
       where O.status in { 'final', 'amended', 'corrected' }
   ).value as FHIR.CodeableConcept
 
+// // expose this for troubleshooting
+// define "Sexual Orientation Code":
+//   "Sexual Orientation".coding.code.value
+
+// expose this for troubleshooting
+// define "Gay Or Bisexual List":
+//   Cx."Gay Or Bisexual"
+
+// expose this for troubleshooting
+// define "Code Test Two":
+// "Sexual Orientation" is FHIR.CodeableConcept
+
+// expose this for testing
+// define "CodeTest":
+// Cx."Gay Or Bisexual"[0] is FHIR.CodeableConcept
 
 /*
   @dataElement: NACHC.A1.DE1 HIV Diagnosis

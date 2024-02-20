@@ -66,17 +66,17 @@ This [page](https://cds-hooks.hl7.org/2.0/) discusses the fields in CHD Hooks. (
 
 >Each Card is described by the following attributes.
 
-|Field |Optionality |Type |Description|
-|---|---|---|---|
-|uuid |OPTIONAL |string |Unique identifier of the card. MAY be used for auditing and logging cards and SHALL be included in any subsequent calls to the CDS service's feedback endpoint.|
-|summary |REQUIRED |string |One-sentence, <140-character summary message for display to the user inside of this card.|
-|detail |OPTIONAL |string |Optional detailed information to display; if provided MUST be represented in (GitHub Flavored) Markdown. (For non-urgent cards, the CDS Client MAY hide these details until the user clicks a link like "view more details...").|
-|indicator |REQUIRED |string |Urgency/importance of what this card conveys. Allowed values, in order of increasing urgency, are: info, warning, critical. The CDS Client MAY use this field to help make UI display decisions such as sort order or coloring.|
-|source |REQUIRED |object |Grouping structure for the Source of the information displayed on this card. The source should be the primary source of guidance for the decision support the card represents.|
-|suggestions |OPTIONAL |array of Suggestions |Allows a service to suggest a set of changes in the context of the current activity (e.g. changing the dose of a medication currently being prescribed, for the order-sign activity). If suggestions are present, selectionBehavior MUST also be provided.|
-|selectionBehavior |CONDITIONAL |string |Describes the intended selection behavior of the suggestions in the card. Allowed values are: at-most-one, indicating that the user may choose none or at most one of the suggestions; any, indicating that the end user may choose any number of suggestions including none of them and all of them. CDS Clients that do not understand the value MUST treat the card as an error.|
-|overrideReasons |OPTIONAL |array of Coding |Override reasons can be selected by the end user when overriding a card without taking the suggested recommendations. The CDS service MAY return a list of override reasons to the CDS client. If override reasons are present, the CDS Service MUST populate a display value for each reason's Coding. The CDS Client SHOULD present these reasons to the clinician when they dismiss a card. A CDS Client MAY augment the override reasons presented to the user with its own reasons.|
-|links |OPTIONAL |array of Links |Allows a service to suggest a link to an app that the user might want to run for additional information or to help guide a decision.|
+| Field             | Optionality | Type                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------------- | ----------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| uuid              | OPTIONAL    | string               | Unique identifier of the card. MAY be used for auditing and logging cards and SHALL be included in any subsequent calls to the CDS service's feedback endpoint.                                                                                                                                                                                                                                                                                                                          |
+| summary           | REQUIRED    | string               | One-sentence, <140-character summary message for display to the user inside of this card.                                                                                                                                                                                                                                                                                                                                                                                                |
+| detail            | OPTIONAL    | string               | Optional detailed information to display; if provided MUST be represented in (GitHub Flavored) Markdown. (For non-urgent cards, the CDS Client MAY hide these details until the user clicks a link like "view more details...").                                                                                                                                                                                                                                                         |
+| indicator         | REQUIRED    | string               | Urgency/importance of what this card conveys. Allowed values, in order of increasing urgency, are: info, warning, critical. The CDS Client MAY use this field to help make UI display decisions such as sort order or coloring.                                                                                                                                                                                                                                                          |
+| source            | REQUIRED    | object               | Grouping structure for the Source of the information displayed on this card. The source should be the primary source of guidance for the decision support the card represents.                                                                                                                                                                                                                                                                                                           |
+| suggestions       | OPTIONAL    | array of Suggestions | Allows a service to suggest a set of changes in the context of the current activity (e.g. changing the dose of a medication currently being prescribed, for the order-sign activity). If suggestions are present, selectionBehavior MUST also be provided.                                                                                                                                                                                                                               |
+| selectionBehavior | CONDITIONAL | string               | Describes the intended selection behavior of the suggestions in the card. Allowed values are: at-most-one, indicating that the user may choose none or at most one of the suggestions; any, indicating that the end user may choose any number of suggestions including none of them and all of them. CDS Clients that do not understand the value MUST treat the card as an error.                                                                                                      |
+| overrideReasons   | OPTIONAL    | array of Coding      | Override reasons can be selected by the end user when overriding a card without taking the suggested recommendations. The CDS service MAY return a list of override reasons to the CDS client. If override reasons are present, the CDS Service MUST populate a display value for each reason's Coding. The CDS Client SHOULD present these reasons to the clinician when they dismiss a card. A CDS Client MAY augment the override reasons presented to the user with its own reasons. |
+| links             | OPTIONAL    | array of Links       | Allows a service to suggest a link to an app that the user might want to run for additional information or to help guide a decision.                                                                                                                                                                                                                                                                                                                                                     |
 
 `indicator` above helps make sense of this error message. 
 ```
@@ -168,4 +168,210 @@ After removing a couple of dead references, those are in.
 
 Today let's try to write a set of Thunderclient test on these newly loaded PlanDefinitions and patients. 
 
-It appears that the value[x] of the HIV test in this project are not actually values but a more detailed description of the test itself. That seems to contradict the description of value[x] in the specs as the 'actual' result. I think a ServiceRequest with `status='completed'` might be more appropriate. The most likely clinical scenario would be and Observation with an actual valueBoolean. 
+It appears that the value[x] of the HIV test in this project are not actually values but a more detailed description of the test itself. That seems to contradict the description of value[x] in the specs as the 'actual' result. I think a ServiceRequest with `status='completed'` might be more appropriate. The most likely clinical scenario would be an Observation with an actual valueBoolean. Screen if DAST >=6. All patients in this table have an expired DAST test. 
+
+Test Patient Summary
+
+| Patient ID                       | Summary                                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------- |
+| DrugAbuseQuestionsPatient-bundle | 22 y.o. gay female with a DAST score of 2                                                   |
+| DrugAbuseScreeningPatient        | 22 y.o. gay female with a DAST score of 10                                                  |
+| ExclusionPatient                 | 29 y.o. gay female with HIV                                                                 |
+| HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis                                                        |
+| HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and 'multiple partners'=true (?) |
+| HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis seeking STD treatment            |
+| InclusionPatient                 | 49 y.o. straight male                                                                       |
+| MSMPatient                       | 49 y.o. male-to-female bisexual transgender with 'number of partners'=true                  |
+
+Maybe I should bump up the dates of the visits and the questionnaires. 
+
+Is this an error in coding? 
+in HIVScreening.cql
+```
+define "Patient is Gay or Bisexual":
+      HDE."Sexual Orientation" in Cx."Gay Or Bisexual"
+```
+In HIVDataElements.cql
+```
+define "Sexual Orientation":
+  NC.MostRecent(
+    [Observation: Cx."Sexual Orientation"] O
+      where O.status in { 'final', 'amended', 'corrected' }
+  ).value as FHIR.CodeableConcept
+```
+So HDE.HDE."Sexual Orientation" requires an Observation of "Gay or Bisexual". All of the examples embed sexual preference into the Patient resource as an extension. `Gay` is a key decision element. Best fix would be to create and Observation for each patient. What would this observation look like?
+```
+{
+	"resourceType": Observation,
+	"id": "",
+	"status" : "final",
+	"subject": {
+    "reference" : "",
+    "display" : ""},
+	"effectiveDateTime" : "2013-04-02T09:30:10+01:00",
+  "issued" : "2013-04-03T15:30:10+01:00",
+	"code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "76691-5",
+      "display" : "gender identity"
+    }]
+  },	"valueCodeableConcept": {
+	"coding": [
+		{
+			"system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+			"code": "NACHC.A0.DE49",
+			"display": "Lesbian, gay or homosexual"
+		},
+		{
+			"system": "http://snomed.info/sct",
+			"code": "38628009",
+			"display": "Gay"
+		},
+	]
+}
+```
+
+2024-02-17
+
+Or you could start from the [US Core](https://build.fhir.org/ig/HL7/US-Core/StructureDefinition-us-core-observation-sexual-orientation.html) example.
+```
+{
+  "resourceType" : "Observation",
+  "id" : "sexual-orientation-example",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"]
+  },
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"sexual-orientation-example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;sexual-orientation-example&quot; </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-sexual-orientation.html\">US Core Observation Sexual Orientation Profile (version 7.0.0-ballot)</a></p></div><p><b>status</b>: final</p><p><b>category</b>: Social History <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.3.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#social-history)</span></p><p><b>code</b>: Sexual orientation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#76690-7)</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example</a> &quot; SHAW&quot;</p><p><b>effective</b>: 2020-01-11</p><p><b>value</b>: Asked But Declined <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.3.0/CodeSystem-data-absent-reason.html\">DataAbsentReason</a>#asked-declined)</span></p></div>"
+  },
+  "status" : "final",
+  "category" : [{
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code" : "social-history",
+      "display" : "Social History"
+    }]
+  }],
+  "code" : {
+    "coding" : [{
+      "system" : "http://loinc.org",
+      "code" : "76690-7",
+      "display" : "Sexual orientation"
+    }],
+    "text" : "Sexual orientation"
+  },
+  "subject" : {
+    "reference" : "Patient/example"
+  },
+  "effectiveDateTime" : "2020-01-11",
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+      "code" : "asked-declined",
+      "display" : "Asked But Declined"
+    }],
+    "text" : "Asked But Declined"
+  }
+}
+```
+See `sexual-orientation-observation` for my simplifying edit. The possible codes are in the [valueset](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1240.11/expansion). 
+
+Here are possible valueCodeableConcepts. 
+```
+20430005	Heterosexual (finding)	SNOMEDCT	2023-09	2.16.840.1.113883.6.96
+38628009	Homosexual (finding)	SNOMEDCT	2023-09	2.16.840.1.113883.6.96
+42035005	Bisexual (finding)	SNOMEDCT	2023-09	2.16.840.1.113883.6.96
+765288000	Sexually attracted to neither male nor female sex (finding)	SNOMEDCT	2023-09	2.16.840.1.113883.6.96
+OTH	other	NullFlavor	2023-02	2.16.840.1.113883.5.1008
+UNK	unknown	NullFlavor	2023-02	2.16.840.1.113883.5.1008
+asked-declined	Asked But Declined	DataAbsentReason	0.1.0	2.16.840.1.113883.4.642.4.1
+```
+You'll have to add codesystems.
+```
+"http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+"http://terminology.hl7.org/CodeSystem/data-absent-reason"
+```
+
+I've added those to HIVConcepts.cql as well as:
+```
+valueset "Sexual Orientations": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1240.11'
+```
+
+Here are the possible values in yaml
+```
+valueCodeableConcept: SNOMED-CT# 20430005 Heterosexual (finding)
+valueCodeableConcept: SNOMED-CT# 38628009 Homosexual (finding)
+valueCodeableConcept: SNOMED-CT#42035005 Bisexual (finding)
+valueCodeableConcept: SNOMED-CT#765288000 Sexually attracted to neither male nor female sex (finding)
+valueCodeableConcept: NullFlavor#OTH other
+valueCodeableConcept: NullFlavor#UNK unknown
+valueCodeableConcept: DataAbsentReason#asked-declined Asked But Declined
+```
+and json. 
+```
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "SNOMED-CT",
+      "code" : "20430005",
+      "display" : "Heterosexual (finding)"
+    }],
+    "text" : "Heterosexual (finding)"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "SNOMED-CT",
+      "code" : "38628009",
+      "display" : "Homosexual (finding)"
+    }],
+    "text" : "Homosexual (finding)"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "SNOMED-CT",
+      "code" : "42035005",
+      "display" : "Bisexual (finding)"
+    }],
+    "text" : "Bisexual (finding)"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "SNOMED-CT",
+      "code" : "765288000",
+      "display" : "Sexually attracted to neither male nor female sex (finding)"
+    }],
+    "text" : "Sexually attracted to neither male nor female sex (finding)"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "NullFlavor",
+      "code" : "OTH",
+      "display" : "other"
+    }],
+    "text" : "other"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "NullFlavor",
+      "code" : "UNK",
+      "display" : "unknown"
+    }],
+    "text" : "unknown"
+  }
+  "valueCodeableConcept" : {
+    "coding" : [{
+      "system" : "DataAbsentReason",
+      "code" : "asked-declined",
+      "display" : "Asked But Declined"
+    }],
+    "text" : "Asked But Declined"
+  }
+
+```
+OK, I've written up the new resource and created and update bundle. We'll try to upload it. 
+```
+curl -d "@bundles/plandefinition/UpdateBundles/sexual-orientation-test-observations.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+
+I think I can get away for now without the two new codesets and one new valueset because we're not using those codes in the current logic. I'm going to revert HIVConcepts.cql to its original. You just can't access `Sexually attracted to neither male nor female sex (finding)`,`other`, `unknown` or `Asked But Declined` as codeAbleConcepts. On my first try the Execute CQL is not identifying homosexual/bisexual persons. Maybe it's because the observation date is after the encounter date. Move the Observation date back and reload and retest. 
