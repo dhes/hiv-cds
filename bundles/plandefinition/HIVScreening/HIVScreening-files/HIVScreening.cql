@@ -16,8 +16,8 @@ context Patient
 define "HDESexual Orientation code":
   HDE."Sexual Orientation".coding.code.value
 
-define "HDESexual Orientation code single":
-  singleton from (HDE."Sexual Orientation".coding.code.value)
+// define "HDESexual Orientation code single":
+//   singleton from (HDE."Sexual Orientation".coding.code.value)
 
 define "HDESexual Orientation system":
   HDE."Sexual Orientation".coding.system.value
