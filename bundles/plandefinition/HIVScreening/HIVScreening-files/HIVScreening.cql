@@ -13,6 +13,10 @@ include HIVDataElements called HDE
 
 context Patient
 
+//for troubleshooging
+define "HDEDAST10Score":
+  HDE."DAST 10 Score"
+
 define "HDESexual Orientation code":
   HDE."Sexual Orientation".coding.code.value
 

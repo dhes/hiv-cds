@@ -375,3 +375,47 @@ curl -d "@bundles/plandefinition/UpdateBundles/sexual-orientation-test-observati
 ```
 
 I think I can get away for now without the two new codesets and one new valueset because we're not using those codes in the current logic. I'm going to revert HIVConcepts.cql to its original. You just can't access `Sexually attracted to neither male nor female sex (finding)`,`other`, `unknown` or `Asked But Declined` as codeAbleConcepts. On my first try the Execute CQL is not identifying homosexual/bisexual persons. Maybe it's because the observation date is after the encounter date. Move the Observation date back and reload and retest. 
+
+2024-02-20
+
+Now I have cql logic and test patients that produce the correct response to "Patient is Gay or Bisexual" when Execute CQL is triggered on HIVScreening.cql. I've wiped the HAPI server at `hapi-fhir-jpaserver-starter-fresh` and will now load the bundle from this project to the server as follows. 
+```
+curl -d "@bundles/plandefinition/HIVScreening/HIVScreening-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+
+I had to delete a few dead references from the bundle but after that it loaded without errors. Now the first run of 
+```
+http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply?subject=Patient/DrugAbuseScreeningPatient
+```
+produces three OperationOutcome errors.
+```
+ActivityDefinition http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request could not be applied and threw exception org.hl7.fhir.exceptions.FHIRException: No resource of type ActivityDefinition found for url: http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request|null
+    
+DynamicValue expression Risk Level Indicator Status encountered exception: Please use the priority path when setting indicator values when using FHIR R4 or higher for CDS Hooks evaluation
+    
+DynamicValue expression Risk Level Condition encountered exception: Unable to resolve path asNeededBoolean.
+ 
+```
+Set that aside for now. Is the logic correct? For `DrugAbuseScreeningPatient` it responds. 
+
+>"title": "HIV Screening Not Recommended at this time. It has been 122 days since last HIV Screening.",
+>"description": "In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program."
+
+Looking through the CDC guidelines there is mention of DAST=10 indicating high risk. This cql logic however does contain such a rule:
+```
+//High Risk -- Drug Abuse
+define "Patient is at High Risk Due to Drug Abuse":
+  "Patient Has High Degree Of Problems Related To Drug Abuse"
+```
+So let that be known. 
+
+The DAST total score is not registering in the Execute CQL process on `DrugAbuseScreeningPatient`. It is because the DAST total score observation uses the NACHC score but the HIVConcepts assigns it a LOINC code. 
+```
+code "DAST 10 Score": '82667-7' from "LOINC" display 'Total Score [DAST-10]'
+```
+
+Oh boy, the status of `DrugAbuseScreeningPatient` DAST score observation was `preliminary`. I add a second score that is within one year, `final` and properly coded. Go through all the Observations under input/tests/HIVScreening and correct DAST scores. I think `DrugAbuseScreeningPatient` is the only one with a DAST score =10. There are others that work through specific questions that I'll deal with later. 
+
+2024-02-21
+
+OK I've cleaned up the test files so that the bundles load without errors. 
