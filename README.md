@@ -170,18 +170,6 @@ Today let's try to write a set of Thunderclient test on these newly loaded PlanD
 
 It appears that the value[x] of the HIV test in this project are not actually values but a more detailed description of the test itself. That seems to contradict the description of value[x] in the specs as the 'actual' result. I think a ServiceRequest with `status='completed'` might be more appropriate. The most likely clinical scenario would be an Observation with an actual valueBoolean. Screen if DAST >=6. All patients in this table have an expired DAST test. 
 
-Test Patient Summary
-
-| Patient ID                       | Summary                                                                                     |
-| -------------------------------- | ------------------------------------------------------------------------------------------- |
-| DrugAbuseQuestionsPatient-bundle | 22 y.o. gay female with a DAST score of 2                                                   |
-| DrugAbuseScreeningPatient        | 22 y.o. gay female with a DAST score of 10                                                  |
-| ExclusionPatient                 | 29 y.o. gay female with HIV                                                                 |
-| HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis                                                        |
-| HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and 'multiple partners'=true (?) |
-| HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis seeking STD treatment            |
-| InclusionPatient                 | 49 y.o. straight male                                                                       |
-| MSMPatient                       | 49 y.o. male-to-female bisexual transgender with 'number of partners'=true                  |
 
 Maybe I should bump up the dates of the visits and the questionnaires. 
 
@@ -452,4 +440,44 @@ Here's a starting point for a HIV test result observation. Those present in this
 }
 
 ```
-In our application we need to use a valueset for Observation.code.coding anyway. I plan to use valueset-nachc-a2-de2. With that in place and one patient (DrugAbuseScreeningPatient) is working properly with `Execute CQL`. Now to create a proper HIV test observation for the other patients that have HIV tests. I've updated individual questions 1-3 in two patients. 
+In our application we need to use a valueset for Observation.code.coding anyway. I plan to use valueset-nachc-a2-de2. With that in place and one patient (DrugAbuseScreeningPatient) is working properly with `Execute CQL`. Now to create a proper HIV test observation for the other patients that have HIV tests. I've updated individual questions 1-3 in two patients. Time to update the patient summary table. 
+
+###Summary of Test Patients
+
+| Patient ID                       | Summary                                                                                     |Test?|
+| -------------------------------- | ------------------------------------------------------------------------------------------- |---|
+| DrugAbuseQuestionsPatientBothCodesystems | 22 y.o. gay female with a DAST score of 2                                                   |false|
+| DrugAbuseQuestionsPatientNACHCCodeOnly | 22 y.o. gay female with a DAST score of 2                                                   |false|
+| DrugAbuseScreeningPatient        | 22 y.o. gay female with a DAST score of 10                                                  |true|
+| ExclusionPatient                 | 29 y.o. gay female with HIV                                                                 |false|
+| HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis                                                        ||
+| HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and 'multiple partners'=true (?) |true|
+| HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis seeking STD treatment            |true|
+| InclusionPatient                 | 49 y.o. straight male                                                                       |false|
+| MSMPatient                       | 49 y.o. male-to-female bisexual transgender with 'number of partners'=true                  |true|
+
+DrugAbuseQuestionsPatientBothCodesystems and DrugAbuseQuestionsPatientNACHCCodeOnly are the same except in their method of coding sexual orientation. 
+
+Comment on HighRiskIDUPatient. This one is not so straightforward. The trigger is the diagnosis NACHC.F1.DE16 ICD10#A40 "streptococcal sepsis". The pathway is as follows. Running Executes CQL you get 
+```
+Patient is at High Risk Due to Injection Drug Use=true
+```
+for this patient. In HIVScreening.cql there is 
+```
+define "Patient is at High Risk Due to Injection Drug Use":
+...
+        union HC.QualifiedConditions(HDE."Injection Drug Use Diagnosis")
+```
+which in HIVDataElements.cql links to
+```
+define "Injection Drug Use Diagnosis":
+  [Condition: Cx."Injection Drug Use Diagnosis Codes"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
+```
+which in turn in HIVConcept.cql links to 
+```
+valueset "Injection Drug Use Diagnosis Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de16'
+
+```
+In input/vocabulary/valuset/generate there is valueset-nachc-f1-de16.json which contains the ICD10 diagnosis of A40 "Streptococcal Sepsis". 
