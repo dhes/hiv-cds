@@ -1,0 +1,10 @@
+Executing CQL...
+CQL path: /Users/danheslinga/hiv-cds/input/cql
+No data found at /Users/danheslinga/hiv-cds/input/tests. Evaluation may fail if data is required.
+Terminology path: /Users/danheslinga/hiv-cds/input/vocabulary/valueset
+
+
+Evaluation logs:
+14:38:18.909 [pool-2-thread-1] INFO  ca.uhn.fhir.context.FhirContext - Creating new FHIR context for FHIR version [R4]
+elapsed: 0.062 seconds
+

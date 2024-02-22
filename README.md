@@ -419,3 +419,37 @@ Oh boy, the status of `DrugAbuseScreeningPatient` DAST score observation was `pr
 2024-02-21
 
 OK I've cleaned up the test files so that the bundles load without errors. 
+
+Here's a starting point for a HIV test result observation. Those present in this repository are not representative of the real world. 
+```
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "56888-1",
+        "display": "HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay"
+      }
+    ],
+  "subject": {
+    "reference": "Patient/DrugAbuseScreeningPatient"
+  },
+    "text": "HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay"
+  },
+  "effectiveDateTime": "2021-01-08T10:00:00-07:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": " 260385009",
+        "display": "Negative (qualifier value)"
+      }
+    ],
+    "text": "Negative (qualifier value)"
+  }
+}
+
+```
+In our application we need to use a valueset for Observation.code.coding anyway. I plan to use valueset-nachc-a2-de2. With that in place and one patient (DrugAbuseScreeningPatient) is working properly with `Execute CQL`. Now to create a proper HIV test observation for the other patients that have HIV tests. I've updated individual questions 1-3 in two patients. 

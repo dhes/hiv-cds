@@ -1,0 +1,29 @@
+{
+  "resourceType": "Observation",
+  "id": "MSMPatient-observation-testing-1",
+  "status": "final",
+  "subject": {
+    "reference": "Patient/MSMPatient"
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "56888-1",
+        "display": "HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay"
+      }
+    ],
+    "text": "HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay"
+  },
+  "effectiveDateTime": "2020-06-08T10:20:00-07:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "260385009",
+        "display": "Negative (qualifier value)"
+      }
+    ],
+    "text": "Negative (qualifier value)"
+  }
+}

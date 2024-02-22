@@ -78,7 +78,8 @@ define "HIV Diagnosis":
   @description: Concepts Associated with HIV Testing
 */
 define "HIV Test":
-  [Observation: Cx."HIV Test"] O
+  [Observation: Cx."HIV-1 HIV 2 Ab Ag tests Codes"] O
+  // [Observation: Cx."HIV Test"] O // This was the original
     where O.status in { 'final', 'amended', 'corrected' }
     //return O.value as FHIR.CodeableConcept
 
@@ -454,9 +455,9 @@ define "Previous HIV Diagnosis":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has previously been screened for HIV?
 */
-define "Previous HIV Screening":
-  [Observation: Cx."Previous HIV Screening"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Previous HIV Screening":  // How does this fit in the logic? Where is its `status` attribute?
+//   [Observation: Cx."Previous HIV Screening"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*

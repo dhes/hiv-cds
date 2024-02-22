@@ -10,8 +10,8 @@
   "code": {
     "coding": [
       {
-        "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-        "code": "NACHC.H2.DE2",
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254039",
         "display": "Have you used drugs other than those required for medical reasons"
       }
     ]

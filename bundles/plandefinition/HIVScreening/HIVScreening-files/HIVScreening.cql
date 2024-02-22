@@ -270,7 +270,7 @@ define "Active Diagnosis of HIV During Patient Visit":
 define "HIV Screening Test":
   (
     HC.QualifiedObservations(HDE."HIV Test")
-    union HC.QualifiedObservations(HDE."Previous HIV Screening")
+    // union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
   ) HIVScreening
     with "Patient Encounter" PatientEncounter
       such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
@@ -455,7 +455,7 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
     (Last(
       (
         HC.QualifiedObservations(HDE."HIV Test")
-        union HC.QualifiedObservations(HDE."Previous HIV Screening")
+        // union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
       ) HIVScreening
       sort by end of FC.ToInterval(effective)
   )) HIVScreening

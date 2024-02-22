@@ -10,8 +10,8 @@
   "code": {
     "coding": [
       {
-        "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-        "code": "NACHC.H2.DE4",
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254057",
         "display": "Do you use more than one drug at a time"
       }
     ]
@@ -23,5 +23,5 @@
     "reference": "Encounter/DrugAbuseQuestionsPatientNACHCCodeOnly-encounter-1"
   },
   "effectiveDateTime": "2021-03-08T10:00:00-07:00",
-  "valueString": "Yes"
+  "valueBoolean": true
 }
