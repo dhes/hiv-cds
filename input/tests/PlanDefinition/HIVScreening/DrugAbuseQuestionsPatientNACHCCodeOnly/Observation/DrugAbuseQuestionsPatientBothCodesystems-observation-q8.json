@@ -1,0 +1,28 @@
+{
+  "resourceType": "Observation",
+  "id": "DrugAbuseQuestionsPatientBothCodesystems-observation-q8",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
+    ]
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254067",
+        "display": "Have you engaged in illegal activities in order to obtain drugs"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/DrugAbuseQuestionsPatientNACHCCodeOnly"
+  },
+  "encounter": {
+    "reference": "Encounter/DrugAbuseQuestionsPatientNACHCCodeOnly-encounter-1"
+  },
+  "effectiveDateTime": "2021-03-08T10:00:00-07:00",
+
+  "valueBoolean": true
+}

@@ -328,7 +328,7 @@ define "Patient is Pregnant":
   )
 
 
-/* Determine Patient's Risk Level (High Risk, Normal Risk, No Risk, Low Risk) */
+/* Determine Patient's Risk Level (High Risk, Moderate Risk, No Risk, Low Risk) */
 // Predominantly based off elements built from the risk-factors questionnaire
 // RISKS: STIs, Injection Drug Use, Sex partner has HIV, Sex Exchanged for Drugs/Money, More than 1 Partner since previous screening (for themselves or their partners), Drug abuse
 
@@ -503,13 +503,13 @@ define "Transgender Patient Sexually Active With Men":
   else false
 
 // Moderate Risk -- All gay or bisexual men unless documented not sexually active
-define "Male, Gay, or Bisexual Patient Not Documented Sexually Inactive":
+define "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive":
   "Patient is Male" and "Patient is Gay or Bisexual" and not "Patient is not Sexually Active"
 
 define "Patient is at Moderate Risk for HIV":
   "Sexually Active MSM Patient"
   or "Transgender Patient Sexually Active With Men"
-  or "Male, Gay, or Bisexual Patient Not Documented Sexually Inactive"
+  or "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive"
 
 
 /* No Risk */
@@ -609,7 +609,7 @@ define "Patient is a Sexually Active MSM who should be Screened Every 3 Months":
 /* Drug Abuse Screning Test (DAST-10) Questionnaire */
 // Score acquired either by tallying codes for DAST-10 questions or by the value field of DAST-10 Questionnaire or result codes
 // High Risk: >= 6
-// Normal Risk: 3 - 5
+// Moderate Risk: 3 - 5
 // Low Risk: 1 - 2
 // No Risk: 0
 
