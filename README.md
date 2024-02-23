@@ -480,4 +480,19 @@ which in turn in HIVConcept.cql links to
 valueset "Injection Drug Use Diagnosis Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de16'
 
 ```
-In input/vocabulary/valuset/generate there is valueset-nachc-f1-de16.json which contains the ICD10 diagnosis of A40 "Streptococcal Sepsis". 
+In input/vocabulary/valuset/generate there is valueset-nachc-f1-de16.json which contains the ICD10 diagnosis of A40 "Streptococcal Sepsis". *Presumtion* of IDU makes this patient 'high risk' and according to CDC guideines the patient should be tested annually. 
+
+2024-02-23
+
+Now this observation which was so long to reveal itseld: The HIVScreening Plan Definition collects six triggers. All but one end with the word Condition. The remainer ends with Criteria. So they are faily easy to sort through in an `Execute CQL` result. 
+
+>Never Tested Condition
+>MSM Condition
+>Pregnant Condition
+>Seeking STD Treatment Condition
+>Risk Level Condition
+>Meets Exclusion Criteria
+
+You might imagine these being grouped in some way. `Meets Exclusion Criteria` is in a group of its own, as is `Never Tested Condition`. `MSM Condition`and `Seeking STD Treatment Condition` are be special cases of `Risk Level Condition`. `Pregnant Condition` is a class by itself because we screen pregnant womon expecting a lower yield because the consequences of HIV in pregnancy are so great. Whenever the word 'Condition' appears in a CQL definition, it appears as a `condition` in the PlanDefinition. 'Criteria' appear in CQL twice, but only once in PlanDefinition `condition`s. 
+
+So in ExclusionPatient how does Never Had HIV Test get to be false? It's because Inclusion means a certain age and NOT excluded i.e. does not have HIV. The unspoken rule is 'If you have been diagnosed with HIV you have had an HIV test'. 

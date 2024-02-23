@@ -164,9 +164,9 @@ define "Pregnant Condition":
   )
 
 define "Pregnant Recommendation":
-  if "Patient is at First Prenatal Visit" and "Over 3 Months has Past Since Previous HIV Screening" then
+  if "Patient is at First Prenatal Visit" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
-  else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Past Since Previous HIV Screening" then
+  else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
@@ -189,7 +189,7 @@ define "Seeking STD Treatment Condition":
   and "Patient is Seeking Treatment for an STD"
 
 define "Seeking STD Treatment Recommendation":
-  if "Over 3 Months has Past Since Previous HIV Screening" then 'HIV Screening Recommended now due to patient interest.'
+  if "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended now due to patient interest.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Seeking STD Treatment Rationale":
@@ -210,8 +210,8 @@ define "Risk Level Condition":
   )
 
 define "Risk Level Recommendation":
-  if "Patient is at High Risk for HIV" and "Over 3 Months has Past Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
-  else if "Patient is at Moderate Risk for HIV" and "Over a Year has Past Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
+  if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
+  else if "Patient is at Moderate Risk for HIV" and "Over a Year has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
   else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
   else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
@@ -291,11 +291,11 @@ define "Amount of Days Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
     return duration in days between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period
 
-define "Over a Year has Past Since Previous HIV Screening":
+define "Over a Year has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
     return (duration in years between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 1
 
-define "Over 3 Months has Past Since Previous HIV Screening":
+define "Over 3 Months has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
     return (duration in months between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 3
 
@@ -598,12 +598,12 @@ define "Patient is a Sexually Active MSM with Multiple Sex Partners":
 
 define "Patient is a Sexually Active MSM who should be Screened Annually":
   "Patient is a Sexually Active MSM with Multiple Sex Partners"
-  and "Over a Year has Past Since Previous HIV Screening"
+  and "Over a Year has Passed Since Previous HIV Screening"
 
 define "Patient is a Sexually Active MSM who should be Screened Every 3 Months":
   "Patient is a Sexually Active MSM without HIV"
   and "Patient has Received Pre Exposure Prophylaxis"
-  and "Over 3 Months has Past Since Previous HIV Screening"
+  and "Over 3 Months has Passed Since Previous HIV Screening"
 
 
 /* Drug Abuse Screning Test (DAST-10) Questionnaire */
