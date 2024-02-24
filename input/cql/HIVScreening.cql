@@ -504,7 +504,7 @@ define "Transgender Patient Sexually Active With Men":
 
 // Moderate Risk -- All gay or bisexual men unless documented not sexually active
 define "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive":
-  "Patient is Male" and "Patient is Gay or Bisexual" and not "Patient is not Sexually Active"
+  "Patient is Male" and "Patient is Gay or Bisexual" and not "Patient is Documented Not Sexually Active"
 
 define "Patient is at Moderate Risk for HIV":
   "Sexually Active MSM Patient"
@@ -514,7 +514,7 @@ define "Patient is at Moderate Risk for HIV":
 
 /* No Risk */
 // Not Sexually Active
-define "Patient is not Sexually Active":
+define "Patient is Documented Not Sexually Active":
   (
     (
       Last
@@ -534,8 +534,8 @@ define "Patient is not Sexually Active":
         such that Coalesce(FC.ToInterval(SexualHistory.effective), FC.ToInterval(SexualHistory.issued)) during Encounter.period
   ) is not null
 
-define "Patient is at No Risk for HIV":
-  "Patient is not Sexually Active"
+define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. I'm just sayin'. 
+  "Patient is Documented Not Sexually Active" 
 
 
 /* LOW RISK */

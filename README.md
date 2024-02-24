@@ -498,3 +498,27 @@ You might imagine these being grouped in some way. `Meets Exclusion Criteria` is
 So in ExclusionPatient how does Never Had HIV Test get to be false? It's because Inclusion means a certain age and NOT excluded i.e. does not have HIV. The unspoken rule is 'If you have been diagnosed with HIV you have had an HIV test'. 
 
 Here's another question the fixes an existing code breaking problem: because CQL returns null if any element of a collection is null, if you only give a value it the first three questions of the dast and then ask for the latest date in the collection, it will return null. The fix is to add the last 7 questions (ugh, tedious). 
+
+New fundamental correction. The variable "Patient is not Sexually Active" which is based on the data elements
+"Sexual Activity - Past Year", "Sexual Activity - History", "Sexual Activity - Men", "Sexual Activity - Women". The current logic tests for the presence of the observation i.e. if the observation is exists the patient is sexually active; if the collection is empty the patient is not documented to be sexually active. An empty set can't possibly infer that the patient is sexually active. As is stands the logic is: 
+```
+define "Patient is not Sexually Active":
+  ( <collection of sexual history observations> ) is not null
+
+```
+If it is NOT null then there is an observation which means the patient is sexually active. I think it should read:
+```
+define "Patient is not documented as Sexually Active":
+  ( <collection of sexual history observations> ) **is** null
+```
+i.e. without the **not**. That removes the negation error and makes the language clearer. This corrects the defintion of "Patient is a No Risk for HIV", but that definition has its own problems (see code comments). That orphans "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive" because it would document the reverse; and "Patient is at Moderate Risk for HIV" with depends on "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive" and all of the Risk Level recommendations. 
+
+2024-02-24
+
+Looking again at the definition of "Patient is not Sexually Active":
+```
+...
+where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
+...
+```
+This condition statement requires that the vales is a string 'no' or a boolean 'false' to be present in the collection. So there are two ways the collection can be empty. One is the case where there are Observations present for the patient that fall in one of the four categories of "Sexual Activity -.." where the value is 'no' or `false`. The other possibility is that there is no Sexual Activity history. In fact none of the patients in the test set have a Sexual Activity history. It would not be surprising if a sexual history were not recorded in a patient's chart. In short an empty collection has no particular meaning but a non-empty collection means that the patient is documented as not sexually active (in one of four ways, which still carries ambiguity). "Sexual Activity" ~ 'false' probably means the patient is not sexually active. What does "Sexual Activity -- Men" ~ 'false' mean. For our purposes I will assume that 'is not null' means this patient is `Documented Not Sexually Active`. But I an going to change the definition from "Patient is not Sexually Active" to "Patient is Documented not Sexually Active".That fits well with its primary use in the definition of 
