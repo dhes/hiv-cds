@@ -200,7 +200,7 @@ define "Seeking STD Treatment Indicator":
 
 
 /* RISK Level Actions */
-define "Risk Level Condition":
+define "Risk Level Condition": // true if the other four Conditions are false
   "In Population"
   and (
     "Never Tested Condition" is false
@@ -469,10 +469,13 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
 define "Patient is at High Risk for HIV":
   "Patient is at High Risk Due to a STD"
   or "Patient is at High Risk Due to Injection Drug Use"
-  or "Patient is at High Risk Due to Drug Abuse"
+  or "Patient is at High Risk Due to Drug Abuse"  //score of 10 on DAST
   or "Patient is at High Risk Due to Sexual Partner having HIV"
   or "Patient is at High Risk Due to exchanging sex for money and/or drugs"
   or "Patient is at High Risk Due to Multiple Sex Partners since last screening"
+
+define "x":
+false or false or null or false or false or false
 
 
 /* MODERATE RISK */
@@ -504,7 +507,7 @@ define "Transgender Patient Sexually Active With Men":
 
 // Moderate Risk -- All gay or bisexual men unless documented not sexually active
 define "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive":
-  "Patient is Male" and "Patient is Gay or Bisexual" and not "Patient is Documented Not Sexually Active"
+  "Patient is Male" and "Patient is Gay or Bisexual" and not "Patient is Documented Sexually Inactive"
 
 define "Patient is at Moderate Risk for HIV":
   "Sexually Active MSM Patient"
@@ -514,7 +517,7 @@ define "Patient is at Moderate Risk for HIV":
 
 /* No Risk */
 // Not Sexually Active
-define "Patient is Documented Not Sexually Active":
+define "Patient is Documented Sexually Inactive":
   (
     (
       Last
@@ -535,15 +538,15 @@ define "Patient is Documented Not Sexually Active":
   ) is not null
 
 define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. I'm just sayin'. 
-  "Patient is Documented Not Sexually Active" 
+  "Patient is Documented Sexually Inactive" 
 
 
 /* LOW RISK */
 // Not sexually active
 define "Patient is at Low Risk for HIV":
-  not "Patient is at High Risk for HIV"
-  and not "Patient is at Moderate Risk for HIV"
-  and not "Patient is at No Risk for HIV"
+  not "Patient is at High Risk for HIV"  // risky behaviors
+  and not "Patient is at Moderate Risk for HIV" // genetic males sexually active with genetic males
+  and not "Patient is at No Risk for HIV"  // i.e. not "Patient is Documented Sexually Inactive"
 
 
 /* Women & Men Workflow */

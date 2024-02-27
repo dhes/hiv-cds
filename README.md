@@ -521,4 +521,31 @@ Looking again at the definition of "Patient is not Sexually Active":
 where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
 ...
 ```
-This condition statement requires that the vales is a string 'no' or a boolean 'false' to be present in the collection. So there are two ways the collection can be empty. One is the case where there are Observations present for the patient that fall in one of the four categories of "Sexual Activity -.." where the value is 'no' or `false`. The other possibility is that there is no Sexual Activity history. In fact none of the patients in the test set have a Sexual Activity history. It would not be surprising if a sexual history were not recorded in a patient's chart. In short an empty collection has no particular meaning but a non-empty collection means that the patient is documented as not sexually active (in one of four ways, which still carries ambiguity). "Sexual Activity" ~ 'false' probably means the patient is not sexually active. What does "Sexual Activity -- Men" ~ 'false' mean. For our purposes I will assume that 'is not null' means this patient is `Documented Not Sexually Active`. But I an going to change the definition from "Patient is not Sexually Active" to "Patient is Documented not Sexually Active".That fits well with its primary use in the definition of 
+This condition statement requires that the vales is a string 'no' or a boolean 'false' to be present in the collection. So there are two ways the collection can be empty. One is the case where there are Observations present for the patient that fall in one of the four categories of "Sexual Activity -.." where the value is 'no' or `false`. The other possibility is that there is no Sexual Activity history. In fact none of the patients in the test set have a Sexual Activity history. It would not be surprising if a sexual history were not recorded in a patient's chart. In short an empty collection has no particular meaning but a non-empty collection means that the patient is documented as not sexually active (in one of four ways, which still carries ambiguity). "Sexual Activity" ~ 'false' probably means the patient is not sexually active. What does "Sexual Activity -- Men" ~ 'false' mean. For our purposes I will assume that 'is not null' means this patient is `Documented Not Sexually Active`. But I an going to change the definition from "Patient is not Sexually Active" to "Patient is Documented not Sexually Active".That fits well with its primary use. 
+
+2024-02-25
+
+Now load up the new bundle and run some $apply operations. 
+
+2024-02-27
+
+It seems that ActivityDefinition is not part of the bundling process. I created a bundle at bundles/UpdateBundles/activity-definition.json to address this. It resolved two operationoutcome errors. Now I see the Recommendation and a ServiceRequest in the response. Still seeing the 'Please use the priority path' error. Does it matter? 
+
+So the logic for DrugAbuseQuestionsPatientBothCodesystems goes like this. She doesn't fit the four basic risk categories, which places her in `Risk LevelnCondition`. She actually does not fit High, Moderate, Low or None so falls into the `else` default of `Risk Level Recommendation` because of this: For this patient DrugAbuseQuestionsPatientBothCodesystems, here are the varriable that feed into the Risk Level Recommencation.
+```
+Patient is at High Risk for HIV=null
+Patient is at Moderate Risk for HIV=false
+Patient is at No Risk for HIV=false
+Patient is at Low Risk for HIV=null
+```
+feeds into 
+```
+define "Risk Level Recommendation":
+  if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then ...[test q3mo]
+  else if "Patient is at Moderate Risk for HIV" and "Over a Year has Passed Since Previous HIV Screening" then ...[test q12mo]
+  else if "Patient is at No Risk for HIV" then ...[no test]
+  else if "Patient is at Low Risk for HIV" then ...[no test]
+  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+
+```
+While it is true that according to protocol she does not require repeat HIV testing. Null is the same as false in CQL conditionals so I guess it doesn't matter. 
