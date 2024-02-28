@@ -131,7 +131,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql-identifier",
                             "expression": "Never Tested Indicator"
@@ -197,7 +197,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql-identifier",
                             "expression": "MSM Indicator"
@@ -263,7 +263,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql-identifier",
                             "expression": "Pregnant Indicator"
@@ -329,7 +329,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql-identifier",
                             "expression": "Seeking STD Treatment Indicator"
@@ -395,7 +395,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql-identifier",
                             "expression": "Risk Level Indicator Status"
@@ -444,7 +444,7 @@
                         }
                     },
                     {
-                        "path": "action.extension",
+                        "path": "action.priority",
                         "expression": {
                             "language": "text/cql",
                             "expression": "'routine'"

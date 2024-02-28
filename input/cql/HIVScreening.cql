@@ -35,14 +35,26 @@ define "CxGay Or Bisexual":
 define "Patient is Gay or Bisexual":
   exists (HDE."Sexual Orientation".coding)O where (O in Cx."Gay Or Bisexual")
 
-define "Info":
-  'info'
+// define "Info":
+//   'info'
 
-define "Warning":
-  'warning'
+// define "Warning":
+//   'warning'
 
-define "Critical":
-  'critical'
+// define "Critical":
+//   'critical'
+
+define "Routine":
+  'routine'
+
+define "Asap":
+  'asap'
+
+define "Urgent":
+  'urgent'
+
+define "Stat":
+  'stat'
 
 define "Errors":
   null
@@ -51,9 +63,6 @@ define "Patient Name":
   First(Patient.name.given)
    + ' ' +
   First(Patient.name.family)
-
-
-
 
 /* Recommendation Criteria - HIV Screening  */
 define "Meets Inclusion Criteria":
@@ -128,7 +137,7 @@ define "Never Tested Rationale":
   'CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
 
 define "Never Tested Indicator":
-  "Info"
+  "Routine"
 
 
 /* CDC EDGE CASES */
@@ -151,8 +160,8 @@ define "MSM Rationale":
   'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
 
 define "MSM Indicator":
-  if "Patient is a Sexually Active MSM who should be Screened Every 3 Months" then "Warning"
-  else "Warning"
+  if "Patient is a Sexually Active MSM who should be Screened Every 3 Months" then "Asap"
+  else "Asap"
 
 
 // PREGNANCY
@@ -178,9 +187,9 @@ define "Pregnant Rationale":
   else ''
 
 define "Pregnant Indicator":
-  if "Patient is at First Prenatal Visit" then "Info"
-  else if "Patient is High Risk in Third Trimester of Pregnancy" then "Critical"
-  else "Info"
+  if "Patient is at First Prenatal Visit" then "Routine"
+  else if "Patient is High Risk in Third Trimester of Pregnancy" then "Stat"
+  else "Routine"
 
 
 // SEEKING TREATMENT
@@ -196,7 +205,7 @@ define "Seeking STD Treatment Rationale":
   'All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
 
 define "Seeking STD Treatment Indicator":
-  "Info"
+  "Routine"
 
 
 /* RISK Level Actions */
@@ -224,10 +233,10 @@ define "Risk Level Rationale":
   else 'In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
 
 define "Risk Level Indicator Status":
-  if "Patient is at High Risk for HIV" then "Critical"
-  else if "Patient is at Moderate Risk for HIV" then "Warning"
-  else if "Patient is at No Risk for HIV" then "Info"
-  else "Info"
+  if "Patient is at High Risk for HIV" then "Stat"
+  else if "Patient is at Moderate Risk for HIV" then "Asap"
+  else if "Patient is at No Risk for HIV" then "Routine"
+  else "Routine"
 
 define "Exclusion Reason":
   if "Meets Exclusion Criteria" then
@@ -617,7 +626,7 @@ define "Patient is a Sexually Active MSM who should be Screened Every 3 Months":
 // No Risk: 0
 
 define "DAST 10 Result Score":
-  NC.MostRecent(HDE."DAST 10 Score").value as integer
+  NC.MostRecent(HDE."DAST 10 Score").value.value
 
 define "All DAST 10 Questions":
   {
