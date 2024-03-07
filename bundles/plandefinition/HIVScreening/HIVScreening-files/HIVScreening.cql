@@ -13,21 +13,21 @@ include HIVDataElements called HDE
 
 context Patient
 
-//for troubleshooging
-define "HDEDAST10Score":
-  HDE."DAST 10 Score"
+// //for troubleshooging
+// define "HDEDAST10Score":
+//   HDE."DAST 10 Score"
 
-define "HDESexual Orientation code":
-  HDE."Sexual Orientation".coding.code.value
+// define "HDESexual Orientation code":
+//   HDE."Sexual Orientation".coding.code.value
 
 // define "HDESexual Orientation code single":
 //   singleton from (HDE."Sexual Orientation".coding.code.value)
 
-define "HDESexual Orientation system":
-  HDE."Sexual Orientation".coding.system.value
+// define "HDESexual Orientation system":
+//   HDE."Sexual Orientation".coding.system.value
 
-define "CxGay Or Bisexual":
-  Cx."Gay Or Bisexual"
+// define "CxGay Or Bisexual":
+//   Cx."Gay Or Bisexual"
 
 // define "Patient is Gay or Bisexual":
 //   singleton from (HDE."Sexual Orientation".coding) in Cx."Gay Or Bisexual"
@@ -44,6 +44,9 @@ define "Patient is Gay or Bisexual":
 // define "Critical":
 //   'critical'
 
+define "True":
+  true
+
 define "Routine":
   'routine'
 
@@ -59,10 +62,22 @@ define "Stat":
 define "Errors":
   null
 
+// define "PatientNameGiven":
+// Patient.name.given
+
+// define "PatientNameFamily":
+// Patient.name.family
+
+// define "Patient Name":
+//   First(Patient.name.given.value)
+//    + ' ' +
+//   First(Patient.name.family.value)
+
 define "Patient Name":
-  First(Patient.name.given)
-   + ' ' +
-  First(Patient.name.family)
+  First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
+
+// define "Patient Name Is String":
+//   "Patient Name" is String
 
 /* Recommendation Criteria - HIV Screening  */
 define "Meets Inclusion Criteria":
@@ -483,8 +498,8 @@ define "Patient is at High Risk for HIV":
   or "Patient is at High Risk Due to exchanging sex for money and/or drugs"
   or "Patient is at High Risk Due to Multiple Sex Partners since last screening"
 
-define "x":
-false or false or null or false or false or false
+// define "x":
+// false or false or null or false or false or false
 
 
 /* MODERATE RISK */

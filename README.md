@@ -549,3 +549,52 @@ define "Risk Level Recommendation":
 
 ```
 While it is true that according to protocol she does not require repeat HIV testing. Null is the same as false in CQL conditionals so I guess it doesn't matter. 
+
+2024-02-29
+
+I'm getting a similar error for these PlanDefinition Elements. The common theme is `Expected a list with at most one element, but found a list with multiple elements`.
+```
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:825] Condition expression *Never Tested Condition* encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:825] Condition expression *MSM Condition* encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:825] Condition expression *Pregnant Condition* encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:825] Condition expression *Seeking STD Treatment* Condition encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:825] Condition expression *Risk Level Condition* encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+
+PlanDefinitionProcessor [PlanDefinitionProcessor.java:796] DynamicValue expression *Patient Name* encountered exception: Expected a list with at most one element, but found a list with multiple elements.
+```
+
+2024-03-06
+
+As it stands now, here is what you do to install these CDS tools on the HAPI FHIR JPA server. 
+
+First, on the server's `application.yaml file` enable clinical reasoning and cds hooks.  
+```yaml
+hapi:
+  fhir:
+    ### This flag when enabled to true, will avail evaluate measure operations from CR Module.
+    ### Flag is false by default, can be passed as command line argument to override.
+    cr:
+      enabled: true
+
+    cdshooks:
+      enabled: true
+      clientIdHeaderName: client_id
+
+```
+Next from this reposistory post the `hiv-cds` bundle and `activity-definition.json`.
+```
+curl -d "@bundles/plandefinition/HIVScreening/HIVScreening-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+
+curl -d "@bundles/UpdateBundles/activity-definition.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
+```
+You can test your implementation by entering this url in a browser. 
+```
+http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply?subject=Patient/DrugAbuseScreeningPatient
+```
+
+With luck you will get a CarePlan. 
+
