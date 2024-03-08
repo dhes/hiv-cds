@@ -585,7 +585,7 @@ hapi:
       clientIdHeaderName: client_id
 
 ```
-Next from this reposistory post the `hiv-cds` bundle and `activity-definition.json`.
+Next from this repository post the `hiv-cds` bundle and `activity-definition.json`.
 ```
 curl -d "@bundles/plandefinition/HIVScreening/HIVScreening-bundle.json" -H "Content-Type: application/json" -X POST http://localhost:8080/fhir
 
