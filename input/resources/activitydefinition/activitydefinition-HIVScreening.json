@@ -1,6 +1,6 @@
 {
     "resourceType": "ActivityDefinition",
-    "id": "activitydefinition-hiv-screening-request",
+    "id": "activitydefinition-HIVScreening",
     "url": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
     "version": "1.0.0",
     "name": "ActivityDefinition_HIV_Screening_ServiceRequest",
