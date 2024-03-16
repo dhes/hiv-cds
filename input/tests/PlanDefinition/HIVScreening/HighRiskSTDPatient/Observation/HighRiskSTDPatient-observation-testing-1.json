@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskSTDPatient-observation-testing-1",
+  "id": "hiv-HighRiskSTDPatient-observation-testing-1",
   "status": "final",
   "subject": {
-    "reference": "Patient/HighRiskSTDPatient"
+    "reference": "Patient/hiv-HighRiskSTDPatient"
   },
   "code": {
     "coding": [

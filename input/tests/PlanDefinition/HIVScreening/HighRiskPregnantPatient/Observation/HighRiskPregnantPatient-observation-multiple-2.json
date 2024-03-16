@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskPregnantPatient-observation-multiple-2",
+  "id": "hiv-HighRiskPregnantPatient-observation-multiple-2",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexual-activity-number-of-partners"
@@ -23,7 +23,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskPregnantPatient"
+    "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
   "effectiveDateTime": "2021-07-30T10:30:00-07:00",
   "valueBoolean": true

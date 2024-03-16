@@ -1,6 +1,6 @@
 {
   "resourceType": "Encounter",
-  "id": "HighRiskPregnantPatient-encounter-1",
+  "id": "hiv-HighRiskPregnantPatient-encounter-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/third-trimester-encounters"
@@ -24,7 +24,7 @@
     } ]
   } ],
   "subject": {
-    "reference": "Patient/HighRiskPregnantPatient"
+    "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
   "period": {
     "start": "2021-07-30T10:00:00-07:00",

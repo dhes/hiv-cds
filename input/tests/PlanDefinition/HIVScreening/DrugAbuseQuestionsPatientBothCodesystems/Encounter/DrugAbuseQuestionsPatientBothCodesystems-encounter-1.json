@@ -1,6 +1,6 @@
 {
     "resourceType": "Encounter",
-    "id": "DrugAbuseQuestionsPatientBothCodesystems-encounter-1",
+    "id": "hiv-DrugAbuseQuestionsPatientBothCodesystems-encounter-1",
     "meta": {
         "profile": [
             "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/patient-encounter"
@@ -24,7 +24,7 @@
         }]
     }],
     "subject": {
-        "reference": "Patient/DrugAbuseQuestionsPatientBothCodesystems"
+        "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems"
     },
     "period": {
         "start": "2021-05-10T14:00:00-07:00",

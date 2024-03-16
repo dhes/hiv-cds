@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "MSMPatient-observation-multiple-3",
+  "id": "hiv-MSMPatient-observation-multiple-3",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexual-activity-partners-number-of-partners"
@@ -23,10 +23,10 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/MSMPatient"
+    "reference": "Patient/hiv-MSMPatient"
   },
   "encounter": {
-    "reference": "Encounter/MSMPatient-encounter-1"
+    "reference": "Encounter/hiv-MSMPatient-encounter-1"
   },
   "effectiveDateTime": "2021-07-31T10:30:00-07:00",
   "valueBoolean": true

@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "HighRiskPregnantPatient",
+  "id": "hiv-HighRiskPregnantPatient",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"

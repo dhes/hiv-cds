@@ -1,6 +1,12 @@
 {
   "resourceType": "PlanDefinition",
   "id": "HIVScreening",
+  "name": "HIVScreening",
+  "title": "NACHC HIV Screening",
+  "description": "This PlanDefinition defines a Clinical Decision Support rule to determine whether HIV Screening is appropriate based on CDC Recommendations for HIV Screening",
+  "status": "draft",
+  "date": "2024-02-14T07:23:00-10:00",
+  "experimental": true,
   "url": "http://fhir.org/guides/nachc/hiv-cds/PlanDefinition/HIVScreening",
   "identifier": [
     {
@@ -9,8 +15,6 @@
     }
   ],
   "version": "1.0.3",
-  "name": "HIVScreening",
-  "title": "NACHC HIV Screening",
   "type": {
     "coding": [
       {
@@ -20,10 +24,8 @@
       }
     ]
   },
-  "status": "draft",
-  "date": "2024-02-14T07:23:00-10:00",
+  "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/HIVScreening"],
   "publisher": "National Association of Community Health Centers, Inc. (NACHC), edited by Dan Heslinga",
-  "description": "This PlanDefinition defines a Clinical Decision Support rule to determine whether HIV Screening is appropriate based on CDC Recommendations for HIV Screening",
   "useContext": [
     {
       "code": {
@@ -72,7 +74,6 @@
     }
   ],
   "copyright": "© Copyright National Association of Community Health Centers, Inc. (NACHC) 2021+.",
-  "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/HIVScreening"],
   "action": [
     {
       "prefix": "Recommend HIV Screening Test",
@@ -94,7 +95,6 @@
           "type": "named-event"
         }
       ],
-
       "type": {
         "coding": [
           {
@@ -105,7 +105,7 @@
         ]
       },
       "selectionBehavior": "exactly-one",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -177,7 +177,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -249,7 +249,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -321,7 +321,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -393,7 +393,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",

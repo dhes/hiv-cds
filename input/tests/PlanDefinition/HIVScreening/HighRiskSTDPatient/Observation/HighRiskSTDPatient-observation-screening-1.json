@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskSTDPatient-observation-screening-1",
+  "id": "hiv-HighRiskSTDPatient-observation-screening-1",
   "meta": {
     "profile": [ "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test" ]
   },
@@ -13,10 +13,10 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskSTDPatient"
+    "reference": "Patient/hiv-HighRiskSTDPatient"
   },
   "encounter": {
-    "reference": "Encounter/HighRiskSTDPatient-encounter-1"
+    "reference": "Encounter/hiv-HighRiskSTDPatient-encounter-1"
   },
   "effectiveDateTime": "2021-03-08T10:00:00-07:00",
   "valueCodeableConcept": {

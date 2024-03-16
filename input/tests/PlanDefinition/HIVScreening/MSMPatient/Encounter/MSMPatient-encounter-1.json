@@ -1,6 +1,6 @@
 {
   "resourceType": "Encounter",
-  "id": "MSMPatient-encounter-1",
+  "id": "hiv-MSMPatient-encounter-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/patient-encounter"
@@ -24,7 +24,7 @@
     } ]
   } ],
   "subject": {
-    "reference": "Patient/MSMPatient"
+    "reference": "Patient/hiv-MSMPatient"
   },
   "period": {
     "start": "2021-07-31T10:00:00-07:00",

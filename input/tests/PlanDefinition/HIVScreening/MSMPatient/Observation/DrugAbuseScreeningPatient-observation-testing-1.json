@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "MSMPatient-observation-testing-1",
+  "id": "hiv-MSMPatient-observation-testing-1",
   "status": "final",
   "subject": {
-    "reference": "Patient/MSMPatient"
+    "reference": "Patient/hiv-MSMPatient"
   },
   "code": {
     "coding": [

@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "DrugAbuseQuestionsPatientBothCodesystems",
+  "id": "hiv-DrugAbuseQuestionsPatientBothCodesystems",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"

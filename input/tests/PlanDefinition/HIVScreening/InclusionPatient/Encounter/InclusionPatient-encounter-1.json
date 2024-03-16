@@ -1,6 +1,6 @@
 {
   "resourceType": "Encounter",
-  "id": "InclusionPatient-encounter-1",
+  "id": "hiv-InclusionPatient-encounter-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/patient-encounter"
@@ -24,7 +24,7 @@
     } ]
   } ],
   "subject": {
-    "reference": "Patient/InclusionPatient"
+    "reference": "Patient/hiv-InclusionPatient"
   },
   "period": {
     "start": "2021-05-10T12:00:00-07:00",

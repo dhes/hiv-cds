@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskPregnantPatient-observation-screening-1",
+  "id": "hiv-HighRiskPregnantPatient-observation-screening-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
@@ -23,7 +23,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskPregnantPatient"
+    "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
   "effectiveDateTime": "2021-02-08T10:20:00-07:00",
   "valueCodeableConcept": {

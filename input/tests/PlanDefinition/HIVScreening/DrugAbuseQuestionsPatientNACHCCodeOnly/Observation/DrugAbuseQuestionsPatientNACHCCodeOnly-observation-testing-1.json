@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "DrugAbuseQuestionsPatientNACHCCodeOnly-observation-testing-1",
+  "id": "hiv-DrugAbuseQuestionsPatientNACHCCodeOnly-observation-testing-1",
   "status": "final",
   "subject": {
-    "reference": "Patient/DrugAbuseQuestionsPatientNACHCCodeOnly"
+    "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly"
   },
   "code": {
     "coding": [

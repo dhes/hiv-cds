@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "DrugAbuseScreeningPatient-observation-drug-screening-1",
+  "id": "hiv-DrugAbuseScreeningPatient-observation-drug-screening-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
@@ -26,10 +26,10 @@
   },
   "valueInteger": 10,
   "subject": {
-    "reference": "Patient/DrugAbuseScreeningPatient"
+    "reference": "Patient/hiv-DrugAbuseScreeningPatient"
   },
   "encounter": {
-    "reference": "Encounter/DrugAbuseScreeningPatient-encounter-1"
+    "reference": "Encounter/hiv-DrugAbuseScreeningPatient-encounter-1"
   },
   "effectiveDateTime": "2021-03-08T10:20:00-07:00"
 }

@@ -29,10 +29,10 @@
     "text": "Sexual orientation"
   },
   "subject": {
-    "reference": "Patient/DrugAbuseQuestionsPatientBothCodesystems"
+    "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems"
   },
   "encounter": {
-    "reference": "Encounter/DrugAbuseQuestionsPatientBothCodesystems-encounter-1"
+    "reference": "Encounter/hiv-DrugAbuseQuestionsPatientBothCodesystems-encounter-1"
   },
   "effectiveDateTime": "2020-01-11",
   "valueCodeableConcept": {

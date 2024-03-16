@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "ExclusionPatient",
+  "id": "hiv-ExclusionPatient",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"

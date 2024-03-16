@@ -1,6 +1,6 @@
 {
   "resourceType": "Condition",
-  "id" : "HighRiskPregnantPatient-condition-pregnant-1",
+  "id" : "hiv-HighRiskPregnantPatient-condition-pregnant-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/pregnancy-conditions"
@@ -54,7 +54,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskPregnantPatient"
+    "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
   "onsetDateTime": "2021-01-10T12:00:00-07:00"
 }

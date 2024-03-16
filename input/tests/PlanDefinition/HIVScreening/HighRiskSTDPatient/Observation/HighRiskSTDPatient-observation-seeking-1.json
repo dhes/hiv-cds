@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskSTDPatient-observation-seeking-1",
+  "id": "hiv-HighRiskSTDPatient-observation-seeking-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/seeking-std-treatment"
@@ -23,10 +23,10 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskSTDPatient"
+    "reference": "Patient/hiv-HighRiskSTDPatient"
   },
   "encounter": {
-    "reference": "Encounter/HighRiskSTDPatient-encounter-1"
+    "reference": "Encounter/hiv-HighRiskSTDPatient-encounter-1"
   },
   "effectiveDateTime": "2021-07-08T10:20:00-07:00",
   "valueBoolean": true

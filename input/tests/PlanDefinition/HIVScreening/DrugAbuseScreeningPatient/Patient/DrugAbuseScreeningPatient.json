@@ -1,6 +1,6 @@
 {
     "resourceType": "Patient",
-    "id": "DrugAbuseScreeningPatient",
+    "id": "hiv-DrugAbuseScreeningPatient",
     "meta": {
         "profile": [
             "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"

@@ -1,7 +1,7 @@
 {
     "resourceType": "ActivityDefinition",
     "id": "activitydefinition-HIVScreening",
-    "url": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+    "url": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
     "version": "1.0.0",
     "name": "ActivityDefinition_HIV_Screening_ServiceRequest",
     "title": "ActivityDefinition - ServiceRequest: HIV Screening",
@@ -40,7 +40,7 @@
         }],
         "text": "HIV testing"
     }],
-    "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/Screening"],
+    "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/HIVScreening"],
     "kind": "ServiceRequest",
     "code": {
         "coding": [{

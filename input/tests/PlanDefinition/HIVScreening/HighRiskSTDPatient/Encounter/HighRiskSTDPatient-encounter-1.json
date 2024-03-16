@@ -1,6 +1,6 @@
 {
   "resourceType": "Encounter",
-  "id": "HighRiskSTDPatient-encounter-1",
+  "id": "hiv-HighRiskSTDPatient-encounter-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/patient-encounter"
@@ -24,7 +24,7 @@
     } ]
   } ],
   "subject": {
-    "reference": "Patient/HighRiskSTDPatient"
+    "reference": "Patient/hiv-HighRiskSTDPatient"
   },
   "period": {
     "start": "2021-07-08T10:00:00-07:00",

@@ -1,6 +1,6 @@
 {
   "resourceType": "Condition",
-  "id" : "HighRiskIDUPatient-condition-hcv-1",
+  "id" : "hiv-HighRiskIDUPatient-condition-hcv-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hepatitis-c-diagnosis"
@@ -54,7 +54,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskIDUPatient"
+    "reference": "Patient/hiv-HighRiskIDUPatient"
   },
   "onsetDateTime": "2018-07-10T14:00:00-07:00"
 }

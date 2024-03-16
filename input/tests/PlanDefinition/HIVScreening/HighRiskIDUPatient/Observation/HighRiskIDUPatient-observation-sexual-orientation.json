@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "HighRiskIDUPatient-observation-sexual-orientation",
+  "id": "hiv-HighRiskIDUPatient-observation-sexual-orientation",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
@@ -29,7 +29,7 @@
     "text": "Sexual orientation"
   },
   "subject": {
-    "reference": "Patient/HighRiskIDUPatient"
+    "reference": "Patient/hiv-HighRiskIDUPatient"
   },
   "effectiveDateTime": "2020-01-11",
   "valueCodeableConcept": {

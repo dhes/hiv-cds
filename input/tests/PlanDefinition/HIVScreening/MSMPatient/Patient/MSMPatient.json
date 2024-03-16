@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "MSMPatient",
+  "id": "hiv-MSMPatient",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"

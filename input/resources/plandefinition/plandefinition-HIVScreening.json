@@ -105,7 +105,7 @@
         ]
       },
       "selectionBehavior": "exactly-one",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -177,7 +177,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -249,7 +249,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -321,7 +321,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -393,7 +393,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-hiv-screening-request",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
           "path": "action.title",

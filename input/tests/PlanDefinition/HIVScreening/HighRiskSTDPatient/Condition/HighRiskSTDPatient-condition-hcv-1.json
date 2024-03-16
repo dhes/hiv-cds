@@ -1,6 +1,6 @@
 {
   "resourceType": "Condition",
-  "id" : "HighRiskSTDPatient-condition-hcv-1",
+  "id" : "hiv-HighRiskSTDPatient-condition-hcv-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hepatitis-c-diagnosis"
@@ -54,7 +54,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/HighRiskSTDPatient"
+    "reference": "Patient/hiv-HighRiskSTDPatient"
   },
   "onsetDateTime": "2020-07-10T14:00:00-07:00",
   "abatementDateTime": "2021-07-10T14:00:00-07:00"

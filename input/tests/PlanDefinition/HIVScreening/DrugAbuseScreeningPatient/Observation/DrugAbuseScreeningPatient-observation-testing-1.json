@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "DrugAbuseScreeningPatient-observation-testing-1",
+  "id": "hiv-DrugAbuseScreeningPatient-observation-testing-1",
   "status": "final",
   "subject": {
-    "reference": "Patient/DrugAbuseScreeningPatient"
+    "reference": "Patient/hiv-DrugAbuseScreeningPatient"
   },
   "code": {
     "coding": [

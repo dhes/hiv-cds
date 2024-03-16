@@ -1,6 +1,6 @@
 {
   "resourceType": "Condition",
-  "id" : "ExclusionPatient-condition-hiv-1",
+  "id" : "hiv-ExclusionPatient-condition-hiv-1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-diagnosis"
@@ -54,7 +54,7 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/ExclusionPatient"
+    "reference": "Patient/hiv-ExclusionPatient"
   },
   "onsetDateTime": "2014-01-10T14:00:00-07:00",
   "abatementDateTime": "2021-07-10T14:00:00-07:00"
