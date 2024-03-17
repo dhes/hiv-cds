@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-DrugAbuseQuestionsPatientBothCodesystems-observation-q1",
+  "id": "DrugAbuseQuestionsPatientBothCodesystems-observation-q1",
   "meta": {
     "profile": [
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
@@ -20,7 +20,7 @@
     "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems"
   },
   "encounter": {
-    "reference": "Encounter/hiv-DrugAbuseQuestionsPatientBothCodesystems-encounter-1"
+    "reference": "Encounter/DrugAbuseQuestionsPatientBothCodesystems-encounter-1"
   },
   "effectiveDateTime": "2021-03-08T10:00:00-07:00",
   "valueBoolean": true

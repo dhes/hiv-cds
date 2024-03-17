@@ -1,8 +1,8 @@
 {
   "resourceType": "PlanDefinition",
   "id": "HIVScreening",
-  "name": "HIVScreening",
-  "title": "NACHC HIV Screening",
+  "name": "NACHC HIVScreening",
+  "title": "HIV Screening",
   "description": "This PlanDefinition defines a Clinical Decision Support rule to determine whether HIV Screening is appropriate based on CDC Recommendations for HIV Screening",
   "status": "draft",
   "date": "2024-02-14T07:23:00-10:00",

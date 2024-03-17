@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-DrugAbuseQuestionsPatientBothCodesystems-observation-testing-1",
+  "id": "DrugAbuseQuestionsPatientBothCodesystems-observation-testing-1",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems"

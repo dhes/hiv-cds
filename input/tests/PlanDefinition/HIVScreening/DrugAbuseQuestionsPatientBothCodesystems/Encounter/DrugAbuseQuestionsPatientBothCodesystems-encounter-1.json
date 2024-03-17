@@ -1,6 +1,6 @@
 {
     "resourceType": "Encounter",
-    "id": "hiv-DrugAbuseQuestionsPatientBothCodesystems-encounter-1",
+    "id": "DrugAbuseQuestionsPatientBothCodesystems-encounter-1",
     "meta": {
         "profile": [
             "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/patient-encounter"
