@@ -57,6 +57,7 @@
         }
     }],
     "active": true,
+		"deceasedBoolean": false,
     "name": [{
         "use": "official",
         "family": "Madelyn",
