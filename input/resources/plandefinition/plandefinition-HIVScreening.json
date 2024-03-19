@@ -3,7 +3,7 @@
   "id": "HIVScreening",
   "name": "NACHC HIVScreening",
   "title": "HIV screening",
-  "description": "This PlanDefinition defines a Clinical Decision Support rule to determine whether HIV Screening is appropriate based on CDC Recommendations for HIV Screening",
+  "description": "The USPSTF recommends that clinicians screen for HIV infection in all pregnant persons, including those who present in labor or at delivery whose HIV status is unknown; in adolescents and adults aged 15 to 65 years; and adolescents and older adults who are at increased risk of infection.",
   "status": "draft",
   "date": "2024-02-14T07:23:00-10:00",
   "experimental": true,
