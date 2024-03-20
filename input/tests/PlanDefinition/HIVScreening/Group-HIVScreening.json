@@ -10,13 +10,13 @@
   "actual": true,
   "member": [ {
     "entity": {
-      "reference": "Patient/hiv-ExclusionPatient",
-      "display": "Sally Merryweather"
+      "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
+      "display": "Ashley Madelyn"
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-HighRiskIDUPatient",
-      "display": "Ashley Madelyn"
+      "reference": "Patient/hiv-ExclusionPatient",
+      "display": "Sally Merryweather"
     }
   }, {
     "entity": {
@@ -25,17 +25,7 @@
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-HighRiskPregnantPatient",
-      "display": "Beatrix Coraline"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-      "display": "Ashley Madelyn"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-DrugAbuseScreeningPatient",
+      "reference": "Patient/hiv-HighRiskIDUPatient",
       "display": "Ashley Madelyn"
     }
   }, {
@@ -45,13 +35,23 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-MSMPatient",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-DrugAbuseScreeningPatient",
+      "display": "Ashley Madelyn"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-HighRiskSTDPatient",
       "display": "John Jones"
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-MSMPatient",
-      "display": "Joe Kotic"
+      "reference": "Patient/hiv-HighRiskPregnantPatient",
+      "display": "Beatrix Coraline"
     }
   } ]
 }

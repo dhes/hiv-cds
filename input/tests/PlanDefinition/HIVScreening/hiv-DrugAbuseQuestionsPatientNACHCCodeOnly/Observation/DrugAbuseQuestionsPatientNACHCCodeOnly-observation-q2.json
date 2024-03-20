@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-DrugAbuseQuestionsPatientNACHCCodeOnly-observation-q2",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
+    ]
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254057",
+        "display": "Do you use more than one drug at a time"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly"
+  },
+  "encounter": {
+    "reference": "Encounter/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly-encounter-1"
+  },
+  "effectiveDateTime": "2021-03-08T10:00:00-07:00",
+  "valueBoolean": true
+}

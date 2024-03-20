@@ -1,0 +1,33 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-MSMPatient-observation-msm-2",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexual-activity-men"
+    ]
+  },
+  "status": "preliminary",
+  "category": [
+    {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "version": "4.0.1",
+      "code": "survey",
+      "display": "Survey"
+    }
+  ],
+  "code": {
+    "coding": [ {
+      "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+      "code": "NACHC.H1.DE13",
+      "display": "Sexual Activity - Men"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-MSMPatient"
+  },
+  "encounter": {
+    "reference": "Encounter/hiv-MSMPatient-encounter-1"
+  },
+  "effectiveDateTime": "2021-07-31T10:30:00-07:00",
+  "valueBoolean": true
+}

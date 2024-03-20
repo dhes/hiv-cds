@@ -11,7 +11,9 @@ include HIVConcepts called Cx
 
 include HIVDataElements called HDE
 
-context Patient\
+// parameter AgeAdjustment default 100
+
+context Patient
 define "Alive": 
   case 
     // when Patient.deceased = true then false //redundant

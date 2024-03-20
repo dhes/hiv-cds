@@ -1,0 +1,28 @@
+{
+  "resourceType": "Observation",
+  "id": "DrugAbuseQuestionsPatientBothCodesystems-observation-q4",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
+    ]
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254061",
+        "display": "Have you had blackouts or flashbacks as a result of drug use"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly"
+  },
+  "encounter": {
+    "reference": "Encounter/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly-encounter-1"
+  },
+  "effectiveDateTime": "2021-03-08T10:00:00-07:00",
+
+  "valueBoolean": false
+}

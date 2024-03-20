@@ -1,0 +1,28 @@
+{
+  "resourceType": "Observation",
+  "id": "DrugAbuseQuestionsPatientBothCodesystems-observation-q10",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-test"
+    ]
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cde.drugabuse.gov",
+        "code": "3254072",
+        "display": "Have you had medical problems as a result of your drug use (e.g., memory loss, hepatitis, convulsions, bleeding, etc.)"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems"
+  },
+  "encounter": {
+    "reference": "Encounter/DrugAbuseQuestionsPatientBothCodesystems-encounter-1"
+  },
+  "effectiveDateTime": "2021-03-08T10:00:00-07:00",
+
+  "valueBoolean": false
+}
