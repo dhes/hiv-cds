@@ -11,9 +11,12 @@ include HIVConcepts called Cx
 
 include HIVDataElements called HDE
 
-// parameter AgeAdjustment default 100
+parameter "Reference Date" DateTime 
+  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  default Now() // for testing within a CQL Testing Framework project
 
 context Patient
+
 define "Alive": 
   case 
     // when Patient.deceased = true then false //redundant
