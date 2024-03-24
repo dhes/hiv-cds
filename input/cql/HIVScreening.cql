@@ -293,11 +293,20 @@ define "Patient Encounter":
     )) PatientEncounter
     sort by end of period)
 
+/* before...
+/* Determine Patient Characteristics and Testing Criteria */
+// define "Patient is between 13 and 64 years old":
+//   AgeInYearsAt(end of "Patient Encounter".period) >= 13
+//   and AgeInYearsAt(end of "Patient Encounter".period) <= 64
 
+define "Age":
+  AgeInYearsAt("Reference Date")
+
+/* after
 /* Determine Patient Characteristics and Testing Criteria */
 define "Patient is between 13 and 64 years old":
-  AgeInYearsAt(end of "Patient Encounter".period) >= 13
-  and AgeInYearsAt(end of "Patient Encounter".period) <= 64
+  AgeInYearsAt("Reference Date") >= 13
+  and AgeInYearsAt("Reference Date") <= 64
 
 define "Active Diagnosis of HIV During Patient Visit":
   (Last(

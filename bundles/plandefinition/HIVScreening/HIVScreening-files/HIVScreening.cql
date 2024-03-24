@@ -11,9 +11,12 @@ include HIVConcepts called Cx
 
 include HIVDataElements called HDE
 
-// parameter AgeAdjustment default 100
+parameter "Reference Date" DateTime 
+  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  default Now() // for testing within a CQL Testing Framework project
 
 context Patient
+
 define "Alive": 
   case 
     // when Patient.deceased = true then false //redundant
@@ -290,11 +293,20 @@ define "Patient Encounter":
     )) PatientEncounter
     sort by end of period)
 
+/* before...
+/* Determine Patient Characteristics and Testing Criteria */
+// define "Patient is between 13 and 64 years old":
+//   AgeInYearsAt(end of "Patient Encounter".period) >= 13
+//   and AgeInYearsAt(end of "Patient Encounter".period) <= 64
 
+define "Age":
+  AgeInYearsAt("Reference Date")
+
+/* after
 /* Determine Patient Characteristics and Testing Criteria */
 define "Patient is between 13 and 64 years old":
-  AgeInYearsAt(end of "Patient Encounter".period) >= 13
-  and AgeInYearsAt(end of "Patient Encounter".period) <= 64
+  AgeInYearsAt("Reference Date") >= 13
+  and AgeInYearsAt("Reference Date") <= 64
 
 define "Active Diagnosis of HIV During Patient Visit":
   (Last(
