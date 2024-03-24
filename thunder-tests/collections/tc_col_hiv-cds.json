@@ -1,0 +1,362 @@
+{
+    "_id": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+    "colName": "hiv-cds",
+    "created": "2024-03-24T20:06:55.513Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "84251ea4-f3f6-4386-8ac6-1021958005cb",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "Post Main Bundle",
+            "url": "localhost:8080/fhir",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-03-24T20:06:55.516Z",
+            "modified": "2024-03-24T20:06:55.516Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "/Users/danheslinga/hiv-cds/bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8e729994-390b-4fb9-a3db-2524f1ebc30e",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "Post ActivityDefinition",
+            "url": "localhost:8080/fhir",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-03-24T20:06:55.517Z",
+            "modified": "2024-03-24T20:06:55.517Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "/Users/danheslinga/hiv-cds/activityDefinitionBundle.json"
+            },
+            "tests": []
+        },
+        {
+            "_id": "bd64a55a-a161-47d1-83ca-abb10cfb894a",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test InclusionPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-03-24T20:06:55.518Z",
+            "modified": "2024-03-24T20:06:55.518Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-InclusionPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "\"action\""
+                }
+            ]
+        },
+        {
+            "_id": "54fc4b91-9ca1-4046-9ada-9e14bc2b3701",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test ExclusionPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-03-24T20:06:55.519Z",
+            "modified": "2024-03-24T20:06:55.519Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-ExclusionPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "6736991c-167a-4d79-82ee-9d422c846ddf",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-MSMPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 65000,
+            "created": "2024-03-24T20:06:55.520Z",
+            "modified": "2024-03-24T20:06:55.520Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-MSMPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "5623d7b8-8600-417f-b0f8-34db6ab24e20",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-HighRiskSTDPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 62500,
+            "created": "2024-03-24T20:06:55.521Z",
+            "modified": "2024-03-24T20:06:55.521Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskSTDPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "c5a788d8-c68a-4967-bc45-c69c7fad79cb",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-HighRiskPregnantPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 61250,
+            "created": "2024-03-24T20:06:55.522Z",
+            "modified": "2024-03-24T20:06:55.522Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskPregnantPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "78e72daa-62db-4ad7-931d-f138bf2996b4",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-HighRiskIDUPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 60625,
+            "created": "2024-03-24T20:06:55.523Z",
+            "modified": "2024-03-24T20:06:55.523Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskIDUPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "631d95aa-f030-4b91-b386-7e82febb7b36",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-DrugAbuseScreeningPatient",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 60312.5,
+            "created": "2024-03-24T20:06:55.524Z",
+            "modified": "2024-03-24T20:06:55.524Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseScreeningPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "66ac76d1-aceb-4125-87b0-7319a292cdf6",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 60156.3,
+            "created": "2024-03-24T20:06:55.525Z",
+            "modified": "2024-03-24T20:06:55.525Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
+        },
+        {
+            "_id": "38520d70-99b4-442a-a9fc-faf5120dbd39",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-DrugAbuseQuestionsPatientBothCodesystems",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 60078.2,
+            "created": "2024-03-24T20:06:55.526Z",
+            "modified": "2024-03-24T20:06:55.526Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "\"action\""
+                }
+            ]
+        }
+    ]
+}
