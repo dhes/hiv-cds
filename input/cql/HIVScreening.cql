@@ -247,14 +247,23 @@ define "Risk Level Condition": // true if the other four Conditions are false
     and "MSM Condition" is false
     and "Pregnant Condition" is false
     and "Seeking STD Treatment Condition" is false
+    // now the actual risk level conditions
+    and (
+      ("Patient is at High Risk for HIV" 
+        and "Over 3 Months has Passed Since Previous HIV Screening")
+     or 
+      ("Patient is at High Risk for HIV" 
+        and "Over 3 Months has Passed Since Previous HIV Screening")
+    )
   )
 
 define "Risk Level Recommendation":
   if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
-  else if "Patient is at Moderate Risk for HIV" and "Over a Year has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
-  else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
-  else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
+  // else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
+  // else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
+  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else null
 
 /* Risk Level Rational based on Recommendation Option (References to CDC Recommendations) */
 define "Risk Level Rationale":

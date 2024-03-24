@@ -31,8 +31,8 @@ Sexually Active MSM Patient=false
 Patient is a Sexually Active MSM without HIV=false
 Patient has Received Pre Exposure Prophylaxis=false
 Previous HIV Screening Test=Tuple {
-	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@5ec5b941
-	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@59c5c052
+	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@6869c796
+	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@c7326cf
 }
 Over 3 Months has Passed Since Previous HIV Screening=false
 Patient is a Sexually Active MSM who should be Screened Every 3 Months=false
@@ -71,21 +71,21 @@ Seeking STD Treatment Condition=false
 Seeking STD Treatment Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
 Seeking STD Treatment Rationale=All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.
 Seeking STD Treatment Indicator=routine
-Risk Level Condition=true
+Risk Level Condition=false
+Risk Level Recommendation=null
 Patient is Transgender=null
 Transgender Patient Sexually Active With Men=false
 Patient is Documented Sexually Inactive=false
 Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive=false
 Patient is at Moderate Risk for HIV=false
 Patient is at No Risk for HIV=false
-Patient is at Low Risk for HIV=null
-Risk Level Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
 Risk Level Rationale=In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.
 Risk Level Indicator Status=routine
 Exclusion Reason=
 Age=22
 Patient is Female=true
 Patient is Pregnant=false
+Patient is at Low Risk for HIV=null
 Latest DAST 10 Questions Date=2021-03-08
 Latest DAST 10 Screening Date=2021-03-08
 DAST 10 Moderate Risk Score=Interval[3, 5]
