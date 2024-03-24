@@ -64,7 +64,7 @@
             "method": "POST",
             "sortNum": 60000,
             "created": "2024-03-24T20:06:55.518Z",
-            "modified": "2024-03-24T20:06:55.518Z",
+            "modified": "2024-03-24T20:37:29.213Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -94,9 +94,19 @@
                     "type": "res-body",
                     "custom": "",
                     "action": "contains",
-                    "value": "\"action\""
+                    "value": "never having been tested"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "tc.test(\"Action Element is not null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "54fc4b91-9ca1-4046-9ada-9e14bc2b3701",
@@ -324,7 +334,7 @@
             "method": "POST",
             "sortNum": 60078.2,
             "created": "2024-03-24T20:06:55.526Z",
-            "modified": "2024-03-24T20:06:55.526Z",
+            "modified": "2024-03-24T21:35:07.352Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -356,7 +366,17 @@
                     "action": "contains",
                     "value": "\"action\""
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "tc.test(\"Action Element is null\", success);"
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }

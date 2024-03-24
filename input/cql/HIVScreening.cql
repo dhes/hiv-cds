@@ -518,7 +518,7 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
 define "Patient is at High Risk for HIV":
   "Patient is at High Risk Due to a STD"
   or "Patient is at High Risk Due to Injection Drug Use"
-  or "Patient is at High Risk Due to Drug Abuse"  //score of 10 on DAST
+  or "Patient is at High Risk Due to Drug Abuse"  //score of 6 through 10 on DAST
   or "Patient is at High Risk Due to Sexual Partner having HIV"
   or "Patient is at High Risk Due to exchanging sex for money and/or drugs"
   or "Patient is at High Risk Due to Multiple Sex Partners since last screening"
@@ -703,6 +703,7 @@ define "Patient Has High Degree Of Problems Related To Drug Abuse":
   or
   ("DAST 10 Questions Score" in "DAST 10 High Risk Score")
 
+// this has no apparent application
 define "Patient Has Moderate Degree Of Problems Related To Drug Abuse":
   ("DAST 10 Result Score" in "DAST 10 Moderate Risk Score")
   or
@@ -713,16 +714,19 @@ define "Patient Has Low Degree Of Problems Related To Drug Abuse":
   or
   ("DAST 10 Questions Score" in "DAST 10 Low Risk Score")
 
+// this has no apparent application
 define "Patient Has Low To Moderate Degree Of Problems Related To Drug Abuse":
   "Patient Has Low Degree Of Problems Related To Drug Abuse"
   or
   "Patient Has Moderate Degree Of Problems Related To Drug Abuse"
 
+// this has no apparent application
 define "Patient Has No Problems Related To Drug Abuse":
   ("DAST 10 Result Score" in "DAST 10 No Risk Score")
   or
   ("DAST 10 Questions Score" is null)
 
+// this has no apparent application
 define "Patient Not Screened For Drug Abuse Or Screening Expired":
   ("Latest DAST 10 Screening Date" is null)
   or

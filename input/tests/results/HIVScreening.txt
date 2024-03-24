@@ -1,0 +1,98 @@
+Executing CQL...
+CQL path: /Users/danheslinga/hiv-cds/input/cql
+Data path: /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening
+Terminology path: /Users/danheslinga/hiv-cds/input/vocabulary/valueset
+Patient=Patient(id=hiv-DrugAbuseQuestionsPatientBothCodesystems)
+Alive=true
+Active=true
+Patient is Gay or Bisexual=true
+True=true
+Routine=routine
+Asap=asap
+Urgent=urgent
+Stat=stat
+Errors=null
+Patient Name=Ashley Madelyn
+Patient is between 13 and 64 years old=true
+Patient Encounter=Encounter(id=DrugAbuseQuestionsPatientBothCodesystems-encounter-1)
+Patient is Seeking Treatment for an STD=false
+Meets Inclusion Criteria=true
+Active Diagnosis of HIV During Patient Visit=null
+Meets Exclusion Criteria=false
+In Population=true
+HIV Screening Test=[Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-testing-1)]
+Patient has had an HIV Screening=true
+Never Tested Condition=false
+Never Tested Recommendation=HIV Screening Recommended due to patient never having been tested.
+Never Tested Rationale=CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.
+Never Tested Indicator=routine
+Patient is Male=false
+Sexually Active MSM Patient=false
+Patient is a Sexually Active MSM without HIV=false
+Patient has Received Pre Exposure Prophylaxis=false
+Previous HIV Screening Test=Tuple {
+	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@5ec5b941
+	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@59c5c052
+}
+Over 3 Months has Passed Since Previous HIV Screening=false
+Patient is a Sexually Active MSM who should be Screened Every 3 Months=false
+Patient is at High Risk Due to Multiple Sex Partners since last screening=false
+Patient is a Sexually Active MSM with Multiple Sex Partners=false
+Over a Year has Passed Since Previous HIV Screening=false
+Patient is a Sexually Active MSM who should be Screened Annually=false
+MSM Condition=false
+Amount of Days Since Previous HIV Screening=63
+MSM Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
+MSM Rationale=Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.
+MSM Indicator=asap
+Patient is at First Prenatal Visit=false
+Active Diagnosis of HCV During Patient Visit=false
+Active Diagnosis of Syphilis During Patient Visit=false
+Active Diagnosis of Gonorrhea During Patient Visit=false
+Active Diagnosis of Chlamydia During Patient Visit=false
+Patient is at High Risk Due to a STD=false
+Patient is at High Risk Due to Injection Drug Use=false
+DAST 10 Result Score=null
+DAST 10 High Risk Score=Interval[6, 10]
+All DAST 10 Questions=[Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q1), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q2), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q3), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q4), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q5), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q6), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q7), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q8), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q9), Observation(id=DrugAbuseQuestionsPatientBothCodesystems-observation-q10)]
+DAST 10 Questions Score=3
+Patient Has High Degree Of Problems Related To Drug Abuse=null
+Patient is at High Risk Due to Drug Abuse=null
+Patient is at High Risk Due to Sexual Partner having HIV=false
+Patient is at High Risk Due to exchanging sex for money and/or drugs=false
+Patient is at High Risk for HIV=null
+Patient is in Third Trimester of Pregnancy=false
+Patient is High Risk in Third Trimester of Pregnancy=false
+Pregnant Condition=false
+Pregnant Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
+Pregnant Rationale=
+Pregnant Indicator=routine
+Seeking STD Treatment Condition=false
+Seeking STD Treatment Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
+Seeking STD Treatment Rationale=All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.
+Seeking STD Treatment Indicator=routine
+Risk Level Condition=true
+Patient is Transgender=null
+Transgender Patient Sexually Active With Men=false
+Patient is Documented Sexually Inactive=false
+Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive=false
+Patient is at Moderate Risk for HIV=false
+Patient is at No Risk for HIV=false
+Patient is at Low Risk for HIV=null
+Risk Level Recommendation=HIV Screening Not Recommended at this time. It has been 63 days since last HIV Screening.
+Risk Level Rationale=In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.
+Risk Level Indicator Status=routine
+Exclusion Reason=
+Age=22
+Patient is Female=true
+Patient is Pregnant=false
+Latest DAST 10 Questions Date=2021-03-08
+Latest DAST 10 Screening Date=2021-03-08
+DAST 10 Moderate Risk Score=Interval[3, 5]
+Patient Has Moderate Degree Of Problems Related To Drug Abuse=true
+DAST 10 Low Risk Score=Interval[1, 2]
+Patient Has Low Degree Of Problems Related To Drug Abuse=null
+Patient Has Low To Moderate Degree Of Problems Related To Drug Abuse=true
+DAST 10 No Risk Score=Interval[0, 0]
+Patient Has No Problems Related To Drug Abuse=null
+Patient Not Screened For Drug Abuse Or Screening Expired=true
