@@ -14,7 +14,7 @@
             "method": "POST",
             "sortNum": 40000,
             "created": "2024-03-24T20:06:55.516Z",
-            "modified": "2024-03-24T20:06:55.516Z",
+            "modified": "2024-03-24T23:49:16.129Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -26,7 +26,7 @@
                 "type": "binary",
                 "raw": "",
                 "form": [],
-                "binary": "/Users/danheslinga/hiv-cds/bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
+                "binary": "../bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
             },
             "tests": []
         },
@@ -272,7 +272,7 @@
             "method": "POST",
             "sortNum": 60312.5,
             "created": "2024-03-24T20:06:55.524Z",
-            "modified": "2024-03-24T20:06:55.524Z",
+            "modified": "2024-03-25T00:01:26.404Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -291,8 +291,24 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "at High Risk for HIV"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "tc.test(\"Action Element is not null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "66ac76d1-aceb-4125-87b0-7319a292cdf6",
@@ -303,7 +319,7 @@
             "method": "POST",
             "sortNum": 60156.3,
             "created": "2024-03-24T20:06:55.525Z",
-            "modified": "2024-03-24T20:06:55.525Z",
+            "modified": "2024-03-24T23:51:27.673Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -323,7 +339,17 @@
                     "action": "equal",
                     "value": "200"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "tc.test(\"Action Element is null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "38520d70-99b4-442a-a9fc-faf5120dbd39",
@@ -334,7 +360,7 @@
             "method": "POST",
             "sortNum": 60078.2,
             "created": "2024-03-24T20:06:55.526Z",
-            "modified": "2024-03-24T21:35:07.352Z",
+            "modified": "2024-03-24T23:50:35.943Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -359,12 +385,6 @@
                     "custom": "",
                     "action": "isjson",
                     "value": ""
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "contains",
-                    "value": "\"action\""
                 }
             ],
             "postReq": {

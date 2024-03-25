@@ -252,14 +252,14 @@ define "Risk Level Condition": // true if the other four Conditions are false
       ("Patient is at High Risk for HIV" 
         and "Over 3 Months has Passed Since Previous HIV Screening")
      or 
-      ("Patient is at High Risk for HIV" 
-        and "Over 3 Months has Passed Since Previous HIV Screening")
+      ("Patient is at Moderate Risk for HIV" 
+        and "Over a Year has Passed Since Previous HIV Screening")
     )
   )
 
 define "Risk Level Recommendation":
   if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
-  else if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
+  else if "Patient is at Moderate Risk for HIV" and "Over a Year has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
   // else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
   // else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
   // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
