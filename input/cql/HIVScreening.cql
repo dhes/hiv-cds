@@ -12,8 +12,8 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime 
-  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
-  default Now() // for testing within a CQL Testing Framework project
+  default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  // default Now() // for testing within a CQL Testing Framework project
 
 context Patient
 
@@ -336,26 +336,30 @@ define "HIV Screening Test": // DH: as of last encounter
 define "Patient has had an HIV Screening": //DH: as of last encounter
   exists("HIV Screening Test")
 
-define "Previous HIV Screening Test":
-  from
+define "Previous HIV Screening Test": // DH: originally meaning `previous to most recent encouter`. Now; `previous to Reference Date
+  // from
   (
     Last("HIV Screening Test" HIVTest
-      sort by end of FC.ToInterval(effective))
-  ) MostRecentHIVTest,
-  "Patient Encounter" PatientEncounter
-    where FC.ToInterval(MostRecentHIVTest.effective) before PatientEncounter.period
+      sort by effective)
+  ) MostRecentHIVTest
+  // "Patient Encounter" PatientEncounter
+  //   where FC.ToInterval(MostRecentHIVTest.effective) before PatientEncounter.period
 
 define "Amount of Days Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return duration in days between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period
+    // return duration in days between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period
+  return duration in days between HIVTest.effective and "Reference Date"
 
 define "Over a Year has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return (duration in years between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 1
+    // return (duration in years between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 1
+    // DH: don't need no stinking encounters.
+    return (duration in years between HIVTest.effective and "Reference Date" >= 1)
 
 define "Over 3 Months has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return (duration in months between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 3
+    // return (duration in months between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 3
+    return (duration in months between end of HIVTest.effective and "Reference Date" >= 3)
 
 define "Patient has Received Pre Exposure Prophylaxis":
   exists(
@@ -508,21 +512,21 @@ define "Patient is at High Risk Due to exchanging sex for money and/or drugs":
   )
 
 // DH: For testing 
-define HIVScreeningInterval:
-	FC.ToInterval(((Last(
-				(
-					HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
-					union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
-				) HIVScreening
-				sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
-		)) HIVScreening).effective)
+// define HIVScreeningInterval:
+// 	FC.ToInterval(((Last(
+// 				(
+// 					HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+// 					union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+// 				) HIVScreening
+// 				sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
+// 		)) HIVScreening).effective)
 
 // DH: for testing
-define NumberOfPartnersInterval:
-	(
-				HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
-				union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
-			) NumberOfPartners
+// define NumberOfPartnersInterval:
+// 	(
+// 				HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
+// 				union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
+// 			) NumberOfPartners
 
 // High Risk -- Multiple Sex Partners since previous HIV Screening for Patient or their partner
 // DH: note that relies on timestamps of HIV Test observation and Multiple Partners observation. For example if 
