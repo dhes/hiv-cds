@@ -507,12 +507,31 @@ define "Patient is at High Risk Due to exchanging sex for money and/or drugs":
         such that FC.ToInterval(SexExchanged.effective) overlaps PatientEncounter.period
   )
 
+// DH: For testing 
+define HIVScreeningInterval:
+	FC.ToInterval(((Last(
+				(
+					HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+					union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+				) HIVScreening
+				sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
+		)) HIVScreening).effective)
+
+// DH: for testing
+define NumberOfPartnersInterval:
+	(
+				HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
+				union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
+			) NumberOfPartners
+
 // High Risk -- Multiple Sex Partners since previous HIV Screening for Patient or their partner
 // DH: note that relies on timestamps of HIV Test observation and Multiple Partners observation. For example if 
 // your test case has a negative HIV test and then a fresh observation of Multiple Partners, then they are 
 // once again marked high risk. 
 // You might think for practical puposes once a person has multiple partners that that designation might not
 // be changed i.e. the patient might be considered forever high risk. 
+// DH: there's some redundany here. HC.QualifiedObservations limits status = 'preliminary' 'final' 'amended' or 'corrected'
+// but in "Sexual Activity - Number of Partners" it is already limited to 'final', 'amended', 'corrected'
 define "Patient is at High Risk Due to Multiple Sex Partners since last screening":
   (
     (Last(
@@ -520,7 +539,7 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
         HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
         union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
       ) HIVScreening
-      sort by end of FC.ToInterval(effective)
+      sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
   )) HIVScreening
     with (
       HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners

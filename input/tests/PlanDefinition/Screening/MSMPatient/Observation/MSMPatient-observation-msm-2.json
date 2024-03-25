@@ -6,7 +6,7 @@
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexual-activity-men"
     ]
   },
-  "status": "preliminary",
+  "status": "final",
   "category": [
     {
       "system": "http://terminology.hl7.org/CodeSystem/observation-category",

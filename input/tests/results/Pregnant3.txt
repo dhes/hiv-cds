@@ -1,3 +1,4 @@
+
 Patient=Patient(id=hiv-HighRiskPregnantPatient)
 Alive=true
 Active=true
@@ -27,8 +28,8 @@ Sexually Active MSM Patient=false
 Patient is a Sexually Active MSM without HIV=false
 Patient has Received Pre Exposure Prophylaxis=false
 Previous HIV Screening Test=Tuple {
-	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@1e93980b
-	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@6e016922
+	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@41faccde
+	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@2a9b5b65
 }
 Over 3 Months has Passed Since Previous HIV Screening=true
 Patient is a Sexually Active MSM who should be Screened Every 3 Months=false
