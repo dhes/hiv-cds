@@ -446,12 +446,12 @@ In our application we need to use a valueset for Observation.code.coding anyway.
 
 | Patient ID                       | Summary                                                                                     |Test?|
 | -------------------------------- | ------------------------------------------------------------------------------------------- |---|
-| DrugAbuseQuestionsPatientBothCodesystems | 22 y.o. gay female with a DAST score of 3                                           |false|
-| DrugAbuseQuestionsPatientNACHCCodeOnly | 22 y.o. gay female with a DAST score of 3                                             |false|
-| DrugAbuseScreeningPatient        | 22 y.o. gay female with a DAST score of 10                                                  |true|
+| DrugAbuseQuestionsPatientBothCodesystems | 22 y.o. gay female with a DAST score of 3 last tested 2021                                          |false|
+| DrugAbuseQuestionsPatientNACHCCodeOnly | 22 y.o. gay female with a DAST score of 3 last tested 2021                                             |false|
+| DrugAbuseScreeningPatient        | 22 y.o. gay female with a DAST score of 10 laste tested 2021                                                  |true|
 | ExclusionPatient                 | 29 y.o. gay female with HIV                                                                 |false|
-| HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis                                                        |true|
-| HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and 'multiple partners'=true (?) |true|
+| HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis last tested 2021 |true|
+| HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and multiple partners last tested in 2021|true|
 | HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis seeking STD treatment            |true|
 | InclusionPatient                 | 49 y.o. straight male never tested                                                                       |true|
 | MSMPatient                       | 49 y.o. male-to-female bisexual transgender with 'number of partners'=true                  |true|

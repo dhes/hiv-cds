@@ -220,7 +220,7 @@
             "method": "POST",
             "sortNum": 61250,
             "created": "2024-03-24T20:06:55.522Z",
-            "modified": "2024-03-24T20:06:55.522Z",
+            "modified": "2024-03-25T16:57:47.803Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -239,8 +239,30 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "prenatal"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "tc.test(\"Action Element is not null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "78e72daa-62db-4ad7-931d-f138bf2996b4",

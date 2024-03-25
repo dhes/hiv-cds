@@ -1,0 +1,23 @@
+Patient=Patient(id=hiv-HighRiskPregnantPatient)
+Patient Encounter=Encounter(id=hiv-HighRiskPregnantPatient-encounter-1)
+HIV Screening Test=[Observation(id=hiv-HighRiskPregnantPatient-observation-testing-1)]
+Previous HIV Screening Test=Tuple {
+	"MostRecentHIVTest": org.hl7.fhir.r4.model.Observation@2229c5aa
+	"PatientEncounter": org.hl7.fhir.r4.model.Encounter@2a0acf07
+}
+Over 3 Months has Passed Since Previous HIV Screening=true
+>Patient is at High Risk Due to Multiple Sex Partners since last screening=false
+>Over a Year has Passed Since Previous HIV Screening=false
+>Amount of Days Since Previous HIV Screening=172
+Patient is at First Prenatal Visit=true
+Patient is in Third Trimester of Pregnancy=true
+Patient is High Risk in Third Trimester of Pregnancy=null
+Pregnant Condition=true
+Pregnant Recommendation=HIV Screening Recommended now due to patient being at first prenatal visit.
+Pregnant Rationale=To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.
+Pregnant Indicator=routine
+Patient is at Moderate Risk for HIV=false
+Age=35
+Patient is Female=true
+Patient is Pregnant=true
+Patient Not Screened For Drug Abuse Or Screening Expired=true
