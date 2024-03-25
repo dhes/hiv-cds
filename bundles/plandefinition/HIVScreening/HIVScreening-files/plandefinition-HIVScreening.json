@@ -440,37 +440,6 @@
           "description": "Will not perform HIV screening at this time - patient declined."
         }
       ]
-    },
-    {
-      "title": "Exclusion from HIV Screening",
-      "description": "Determines if patient was excluded from HIV Screening Recommendation.",
-      "condition": [
-        {
-          "kind": "applicability",
-          "expression": {
-            "description": "Determine if Patient is in hiv exclusion population.",
-            "language": "text/cql-identifier",
-            "expression": "Meets Exclusion Criteria"
-          }
-        }
-      ],
-      "dynamicValue": [
-        {
-          "path": "action.description",
-          "expression": {
-            "description": "Rationale for why patient was excluded from the hiv screening.",
-            "language": "text/cql-identifier",
-            "expression": "Exclusion Reason"
-          }
-        },
-        {
-          "path": "action.priority",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Routine"
-          }
-        }
-      ]
     }
   ]
 }

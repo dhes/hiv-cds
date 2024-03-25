@@ -112,12 +112,12 @@
             "_id": "54fc4b91-9ca1-4046-9ada-9e14bc2b3701",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
-            "name": "test ExclusionPatient",
+            "name": "test hiv-ExclusionPatient",
             "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
             "method": "POST",
-            "sortNum": 70000,
+            "sortNum": 60468.8,
             "created": "2024-03-24T20:06:55.519Z",
-            "modified": "2024-03-24T20:06:55.519Z",
+            "modified": "2024-03-25T00:56:46.876Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -137,7 +137,17 @@
                     "action": "equal",
                     "value": "200"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "tc.test(\"Action Element is null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "6736991c-167a-4d79-82ee-9d422c846ddf",
