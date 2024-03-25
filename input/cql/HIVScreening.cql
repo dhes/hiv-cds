@@ -325,15 +325,15 @@ define "Active Diagnosis of HIV During Patient Visit":
     with "Patient Encounter" PatientEncounter
       such that FC.ToPrevalenceInterval(HIVDiagnosis) overlaps PatientEncounter.period
 
-define "HIV Screening Test":
+define "HIV Screening Test": // DH: as of last encounter
   (
     HC.QualifiedObservations(HDE."HIV Test")
-    // union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+    union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
   ) HIVScreening
     with "Patient Encounter" PatientEncounter
       such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
 
-define "Patient has had an HIV Screening":
+define "Patient has had an HIV Screening": //DH: as of last encounter
   exists("HIV Screening Test")
 
 define "Previous HIV Screening Test":
@@ -508,17 +508,22 @@ define "Patient is at High Risk Due to exchanging sex for money and/or drugs":
   )
 
 // High Risk -- Multiple Sex Partners since previous HIV Screening for Patient or their partner
+// DH: note that relies on timestamps of HIV Test observation and Multiple Partners observation. For example if 
+// your test case has a negative HIV test and then a fresh observation of Multiple Partners, then they are 
+// once again marked high risk. 
+// You might think for practical puposes once a person has multiple partners that that designation might not
+// be changed i.e. the patient might be considered forever high risk. 
 define "Patient is at High Risk Due to Multiple Sex Partners since last screening":
   (
     (Last(
       (
-        HC.QualifiedObservations(HDE."HIV Test")
-        // union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+        HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+        union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
       ) HIVScreening
       sort by end of FC.ToInterval(effective)
   )) HIVScreening
     with (
-      HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners")
+      HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
       union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
     ) NumberOfPartners
       such that FC.ToInterval(HIVScreening.effective) before FC.ToInterval(NumberOfPartners.effective)
