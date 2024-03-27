@@ -290,9 +290,6 @@ define "Exclusion Reason":
     )
   else ''
 
-define Encounters:
-  HC.QualifiedEncounters(HDE."Pregnancy Encounters")
-
 /* HIV Screening Workflow */
 // Patient Visit Occurred
 define "Patient Encounter":
@@ -637,6 +634,13 @@ define "Patient is at Low Risk for HIV":
   and not "Patient is at Moderate Risk for HIV" // genetic males sexually active with genetic males
   and not "Patient is at No Risk for HIV"  // i.e. not "Patient is Documented Sexually Inactive"
 
+// DH: Testing testing....
+define PatientEncounterPeriodStart:
+  start of ("Patient Encounter".period)
+define PatientEncounterPeriodEnd:
+  end of ("Patient Encounter".period)
+define SeekingTreatmentDate:
+  (HC.QualifiedObservations(HDE."Seeking STD Treatment")).effective.value
 
 /* Women & Men Workflow */
 // All Women and Men between the ages 13-64 and/or those who are seeking treatment for an STD

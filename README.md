@@ -452,7 +452,7 @@ In our application we need to use a valueset for Observation.code.coding anyway.
 | ExclusionPatient                 | 29 y.o. gay female with HIV                                                                 |false|
 | HighRiskIDUPatient               | 22 y.o. gay female with strep sepsis last tested 2021 |true|
 | HighRiskPregnantPatient          | 45 y.o. straight pregnant patient with Obstetrical tetanus and multiple partners last tested in 2021|true|
-| HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis seeking STD treatment            |true|
+| HighRiskSTDPatient               | 40 y.o. straight male with Chronic lymphocytic cholangitis secondary to Hep C seeking STD treatment            |true|
 | InclusionPatient                 | 49 y.o. straight male never tested                                                                       |true|
 | MSMPatient                       | 49 y.o. male-to-female bisexual transgender with 'number of partners'=true                  |true|
 
@@ -598,3 +598,6 @@ http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply?subject=Patient/Dr
 
 With luck you will get a CarePlan. 
 
+2024-03-28
+
+Note that having an STD (a condition) makes you high ris HIV but Seeking Treatment for STD is a separate entry pathway to getting tested because it puts you in population regardless of age. 
