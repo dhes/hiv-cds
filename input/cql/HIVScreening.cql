@@ -668,8 +668,8 @@ define "Patient is in Third Trimester of Pregnancy":
       (HC.QualifiedEncounters(HDE."Third Trimester Encounters")) ThirdTrimesterEncounter
     sort by end of period
     )) ThirdTrimesterEncounter
-      with "Patient Encounter" PatientEncounter
-        such that ThirdTrimesterEncounter.id = PatientEncounter.id
+      // with "Patient Encounter" PatientEncounter
+      //   such that ThirdTrimesterEncounter.id = PatientEncounter.id
   ) is not null
 
 define "Patient is High Risk in Third Trimester of Pregnancy":
