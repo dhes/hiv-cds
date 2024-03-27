@@ -31,7 +31,7 @@
   "subject": {
     "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
-  "effectiveDateTime": "2020-01-11",
+  "effectiveDateTime": "2023-05-11",
   "valueCodeableConcept": {
     "coding": [
       {

@@ -290,6 +290,8 @@ define "Exclusion Reason":
     )
   else ''
 
+define Encounters:
+  HC.QualifiedEncounters(HDE."Pregnancy Encounters")
 
 /* HIV Screening Workflow */
 // Patient Visit Occurred
@@ -359,7 +361,7 @@ define "Over a Year has Passed Since Previous HIV Screening":
 define "Over 3 Months has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
     // return (duration in months between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period) >= 3
-    return (duration in months between end of HIVTest.effective and "Reference Date" >= 3)
+    return (duration in months between HIVTest.effective and "Reference Date" >= 3)
 
 define "Patient has Received Pre Exposure Prophylaxis":
   exists(
@@ -382,12 +384,13 @@ define "Patient is Transgender":
 // define "Patient is Gay or Bisexual":
 //       HDE."Sexual Orientation".coding.code in Cx."Gay Or Bisexual"
 
-define "Patient is Pregnant":
-  exists(
-    (HC.QualifiedConditions(HDE."Pregnancy Conditions")) Pregnancy
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToPrevalenceInterval(Pregnancy) overlaps PatientEncounter.period
-  )
+// DH: This one is never used
+// define "Patient is Pregnant":
+//   exists(
+//     (HC.QualifiedConditions(HDE."Pregnancy Conditions")) Pregnancy
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToPrevalenceInterval(Pregnancy) overlaps PatientEncounter.period
+//   )
 
 
 /* Determine Patient's Risk Level (High Risk, Moderate Risk, No Risk, Low Risk) */

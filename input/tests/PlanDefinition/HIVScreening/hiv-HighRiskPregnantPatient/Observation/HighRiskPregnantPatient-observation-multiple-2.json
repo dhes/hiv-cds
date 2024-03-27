@@ -25,6 +25,6 @@
   "subject": {
     "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
-  "effectiveDateTime": "2021-07-30T10:30:00-07:00",
+  "effectiveDateTime": "2023-12-31T10:30:00-07:00",
   "valueBoolean": true
 }

@@ -25,7 +25,7 @@
   "subject": {
     "reference": "Patient/hiv-HighRiskPregnantPatient"
   },
-  "effectiveDateTime": "2021-02-08T10:20:00-07:00",
+  "effectiveDateTime": "2023-06-08T10:20:00-07:00",
   "valueCodeableConcept": {
     "coding": [ {
       "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
