@@ -15,6 +15,8 @@ parameter "Reference Date" DateTime
   // default  @2024-01-01T00:00:00-10:00 // for testing within this project
   default Now() // for testing within a CQL Testing Framework project
 
+// parameter "Routine" default 'routine'
+
 context Patient
 
 define "Alive": 
@@ -176,14 +178,14 @@ define "Never Tested Indicator":
 define "MSM Condition":
   "In Population"
   and (
-    "Patient is a Sexually Active MSM who should be Screened Every 3 Months"
-    or "Patient is a Sexually Active MSM who should be Screened Annually"
+    "Patient is a sexually active MSM who should be Screened Every 3 Months"
+    or "Patient is a sexually active MSM who should be Screened Annually"
   )
 
 define "MSM Recommendation":
-  if "Patient is a Sexually Active MSM who should be Screened Every 3 Months" then
+  if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
     'Three Month HIV Screening Recommended due to patient being a sexually active MSM who has been prescribed PrEP in the past.'
-  else if "Patient is a Sexually Active MSM who should be Screened Annually" then
+  else if "Patient is a sexually active MSM who should be Screened Annually" then
     'Annual HIV Screening Recommended due to patient being a sexually active MSM without HIV and has had multiple sex partners.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
@@ -191,7 +193,7 @@ define "MSM Rationale":
   'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
 
 define "MSM Indicator":
-  if "Patient is a Sexually Active MSM who should be Screened Every 3 Months" then "Asap"
+  if "Patient is a sexually active MSM who should be Screened Every 3 Months" then "Asap"
   else "Asap"
 
 
@@ -684,20 +686,20 @@ define "Patient is High Risk in Third Trimester of Pregnancy":
 /* MSM (Men who have sex with men) */
 // At Least Annually for sexually active MSM if HIV status isn't positive and if patient/partner has had more than 1 partner since previous screening
 // For sexually active MSM Tests should occur every 3 months if the patient has experienced prep
-define "Patient is a Sexually Active MSM without HIV":
+define "Patient is a sexually active MSM without HIV":
   "Sexually Active MSM Patient"
   and "Active Diagnosis of HIV During Patient Visit" is null
 
-define "Patient is a Sexually Active MSM with Multiple Sex Partners":
-  "Patient is a Sexually Active MSM without HIV"
+define "Patient is a sexually active MSM with Multiple Sex Partners":
+  "Patient is a sexually active MSM without HIV"
   and "Patient is at High Risk Due to Multiple Sex Partners since last screening"
 
-define "Patient is a Sexually Active MSM who should be Screened Annually":
-  "Patient is a Sexually Active MSM with Multiple Sex Partners"
+define "Patient is a sexually active MSM who should be Screened Annually":
+  "Patient is a sexually active MSM with Multiple Sex Partners"
   and "Over a Year has Passed Since Previous HIV Screening"
 
-define "Patient is a Sexually Active MSM who should be Screened Every 3 Months":
-  "Patient is a Sexually Active MSM without HIV"
+define "Patient is a sexually active MSM who should be Screened Every 3 Months":
+  "Patient is a sexually active MSM without HIV"
   and "Patient has Received Pre Exposure Prophylaxis"
   and "Over 3 Months has Passed Since Previous HIV Screening"
 

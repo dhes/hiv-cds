@@ -158,7 +158,7 @@
             "method": "POST",
             "sortNum": 65000,
             "created": "2024-03-24T20:06:55.520Z",
-            "modified": "2024-03-24T20:06:55.520Z",
+            "modified": "2024-04-02T17:14:34.525Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -177,8 +177,24 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "sexually active MSM"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "tc.test(\"Action Element is not null\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "5623d7b8-8600-417f-b0f8-34db6ab24e20",
