@@ -231,7 +231,7 @@ define "Seeking STD Treatment Condition":
   and "Patient is Seeking Treatment for an STD"
 
 define "Seeking STD Treatment Recommendation":
-  if "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended now due to patient interest.'
+  if "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended now because patient is seeking treatment for an STD and more than three months have passed.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Seeking STD Treatment Rationale":
