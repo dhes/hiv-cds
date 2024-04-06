@@ -1,0 +1,1 @@
+{"resourceType":"Bundle","id":"tests-hiv-too-young-bundle","type":"transaction","entry":[{"resource":{"resourceType":"Patient","id":"hiv-too-young","active":true,"name":[{"family":"Nobody","given":["Absolutely"]}],"gender":"female","birthDate":"2010-12-31","deceasedBoolean":false},"request":{"method":"PUT","url":"Patient/hiv-too-young"}}]}

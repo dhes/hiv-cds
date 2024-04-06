@@ -25,6 +25,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-just-old-enough",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-HighRiskIDUPatient",
       "display": "Ashley Madelyn"
     }
@@ -32,6 +37,11 @@
     "entity": {
       "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems",
       "display": "Ashley Madelyn"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-too-young",
+      "display": "Absolutely Nobody"
     }
   }, {
     "entity": {
