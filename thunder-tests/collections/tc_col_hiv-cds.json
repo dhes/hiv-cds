@@ -461,6 +461,94 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "70ee0354-2045-466d-9129-3410c73e2825",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-too-young",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 75000,
+            "created": "2024-04-06T17:22:47.249Z",
+            "modified": "2024-04-06T17:37:38.227Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-too-young\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "tc.test(\"Action Element is null\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0ce2c8a1-08f6-495f-930f-fe9ef2fe85e7",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-just-old-enough",
+            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 85000,
+            "created": "2024-04-06T17:23:16.883Z",
+            "modified": "2024-04-06T17:39:39.092Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-just-old-enough\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "never having been tested"
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "tc.test(\"Action Element is not null\", success);"
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }
