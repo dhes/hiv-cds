@@ -1,70 +1,20 @@
 {
     "_id": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-    "colName": "hiv-cds",
+    "colName": "hiv-apply tests",
     "created": "2024-03-24T20:06:55.513Z",
     "sortNum": 10000,
     "folders": [],
     "requests": [
         {
-            "_id": "84251ea4-f3f6-4386-8ac6-1021958005cb",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "Post Main Bundle",
-            "url": "localhost:8080/fhir",
-            "method": "POST",
-            "sortNum": 40000,
-            "created": "2024-03-24T20:06:55.516Z",
-            "modified": "2024-03-24T23:49:16.129Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "params": [],
-            "body": {
-                "type": "binary",
-                "raw": "",
-                "form": [],
-                "binary": "../bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
-            },
-            "tests": []
-        },
-        {
-            "_id": "8e729994-390b-4fb9-a3db-2524f1ebc30e",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "Post ActivityDefinition",
-            "url": "localhost:8080/fhir",
-            "method": "POST",
-            "sortNum": 50000,
-            "created": "2024-03-24T20:06:55.517Z",
-            "modified": "2024-03-24T20:06:55.517Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                }
-            ],
-            "params": [],
-            "body": {
-                "type": "binary",
-                "raw": "",
-                "form": [],
-                "binary": "/Users/danheslinga/hiv-cds/activityDefinitionBundle.json"
-            },
-            "tests": []
-        },
-        {
             "_id": "bd64a55a-a161-47d1-83ca-abb10cfb894a",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test InclusionPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60000,
             "created": "2024-03-24T20:06:55.518Z",
-            "modified": "2024-04-08T16:05:30.502Z",
+            "modified": "2024-04-08T16:44:38.501Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -101,8 +51,10 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -113,11 +65,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-ExclusionPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60468.8,
             "created": "2024-03-24T20:06:55.519Z",
-            "modified": "2024-04-08T05:41:33.346Z",
+            "modified": "2024-04-08T17:02:27.889Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -136,14 +88,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "tc.test(\"Action Element is null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "// tc.test(\"Action Element is null\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
@@ -154,11 +114,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-MSMPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 65000,
             "created": "2024-03-24T20:06:55.520Z",
-            "modified": "2024-04-02T17:14:34.525Z",
+            "modified": "2024-04-08T17:03:44.675Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -183,14 +143,22 @@
                     "custom": "",
                     "action": "contains",
                     "value": "sexually active MSM"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -201,11 +169,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskSTDPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 62500,
             "created": "2024-03-24T20:06:55.521Z",
-            "modified": "2024-03-24T20:06:55.521Z",
+            "modified": "2024-04-08T17:06:06.779Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -224,19 +192,41 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "seeking treatment for an STD"
                 }
-            ]
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "c5a788d8-c68a-4967-bc45-c69c7fad79cb",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskPregnantPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 61250,
             "created": "2024-03-24T20:06:55.522Z",
-            "modified": "2024-03-25T16:57:47.803Z",
+            "modified": "2024-04-08T16:43:33.576Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -273,8 +263,10 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -285,11 +277,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskIDUPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60625,
             "created": "2024-03-24T20:06:55.523Z",
-            "modified": "2024-03-25T01:26:22.386Z",
+            "modified": "2024-04-08T17:03:03.233Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -314,14 +306,22 @@
                     "custom": "",
                     "action": "contains",
                     "value": "High Risk for HIV and over three months"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -332,11 +332,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseScreeningPatient",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60312.5,
             "created": "2024-03-24T20:06:55.524Z",
-            "modified": "2024-03-25T00:01:26.404Z",
+            "modified": "2024-04-08T17:01:15.758Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -361,14 +361,22 @@
                     "custom": "",
                     "action": "contains",
                     "value": "at High Risk for HIV"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -379,11 +387,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60156.3,
             "created": "2024-03-24T20:06:55.525Z",
-            "modified": "2024-03-24T23:51:27.673Z",
+            "modified": "2024-04-08T16:59:28.774Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -402,14 +410,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "tc.test(\"Action Element is null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "// tc.test(\"Action Element is null\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
@@ -420,11 +436,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseQuestionsPatientBothCodesystems",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 60078.2,
             "created": "2024-03-24T20:06:55.526Z",
-            "modified": "2024-03-24T23:50:35.943Z",
+            "modified": "2024-04-08T16:58:54.455Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -455,8 +471,10 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "tc.test(\"Action Element is null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "// tc.test(\"Action Element is null\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
@@ -467,11 +485,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-too-young",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 75000,
             "created": "2024-04-06T17:22:47.249Z",
-            "modified": "2024-04-06T17:37:38.227Z",
+            "modified": "2024-04-08T17:04:05.104Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -490,14 +508,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "tc.test(\"Action Element is null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
+                            "// tc.test(\"Action Element is null\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
@@ -508,11 +534,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-just-old-enough",
-            "url": "PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 85000,
             "created": "2024-04-06T17:23:16.883Z",
-            "modified": "2024-04-08T16:09:01.631Z",
+            "modified": "2024-04-08T17:04:31.005Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -537,14 +563,22 @@
                     "custom": "",
                     "action": "contains",
                     "value": "never having been tested"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "tc.test(\"Action Element is not null\", success);"
+                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
+                            "// tc.test(\"Action Element is not null\", success);",
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
@@ -555,11 +589,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-just-young-enough",
-            "url": "PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-04-06T21:07:03.766Z",
-            "modified": "2024-04-08T16:09:15.321Z",
+            "modified": "2024-04-08T17:04:43.364Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -584,6 +618,12 @@
                     "custom": "",
                     "action": "contains",
                     "value": "never having been tested"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
@@ -602,11 +642,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-too-old",
-            "url": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply",
+            "url": "",
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-06T21:07:28.373Z",
-            "modified": "2024-04-06T22:48:15.058Z",
+            "modified": "2024-04-08T17:04:13.484Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -625,275 +665,29 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "  let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "   tc.test(\"Action element does not exist\", success);"
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
             }
-        },
-        {
-            "_id": "92727334-3dff-4157-bc3a-40b731921861",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-just-young-enough-exists",
-            "url": "Patient/hiv-just-young-enough",
-            "method": "GET",
-            "sortNum": 105000,
-            "created": "2024-04-06T23:06:00.400Z",
-            "modified": "2024-04-08T15:50:22.973Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "f6a49b45-52e0-4032-99f9-658783399ab7",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-just-old-enough exists",
-            "url": "Patient/hiv-just-old-enough",
-            "method": "GET",
-            "sortNum": 115000,
-            "created": "2024-04-08T15:48:43.679Z",
-            "modified": "2024-04-08T15:50:28.013Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "2552681b-ebc7-4e8f-ac5a-e8c4ec4cfed2",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-too-old exists",
-            "url": "Patient/hiv-too-old",
-            "method": "GET",
-            "sortNum": 125000,
-            "created": "2024-04-08T15:51:03.162Z",
-            "modified": "2024-04-08T15:51:17.131Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "14ac52d1-12b9-4cb0-9131-8c75a2e714d7",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-MSMPatient exists",
-            "url": "Patient/hiv-MSMPatient",
-            "method": "GET",
-            "sortNum": 135000,
-            "created": "2024-04-08T15:53:11.099Z",
-            "modified": "2024-04-08T16:03:51.999Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "3584d5a7-a0f2-4446-adb1-844907061ba6",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-too-young exists",
-            "url": "Patient/hiv-too-young",
-            "method": "GET",
-            "sortNum": 130000,
-            "created": "2024-04-08T15:53:17.732Z",
-            "modified": "2024-04-08T15:54:40.924Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "e1cbc8b0-3e4e-4021-b6cf-8f4cfdb27061",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-HighRiskPregnantPatient exists",
-            "url": "Patient/hiv-HighRiskSTDPatient",
-            "method": "GET",
-            "sortNum": 145000,
-            "created": "2024-04-08T15:53:21.574Z",
-            "modified": "2024-04-08T15:55:58.328Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "6acbbf9b-5752-459c-8836-6decb14ab275",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-HighRiskIDUPatient exists",
-            "url": "Patient/hiv-HighRiskIDUPatient",
-            "method": "GET",
-            "sortNum": 155000,
-            "created": "2024-04-08T15:53:24.307Z",
-            "modified": "2024-04-08T15:56:43.629Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "f323276e-f390-40bb-a170-1d0a552bb8da",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-ExclusionPatient exists",
-            "url": "Patient/hiv-ExclusionPatient",
-            "method": "GET",
-            "sortNum": 165000,
-            "created": "2024-04-08T15:57:41.381Z",
-            "modified": "2024-04-08T15:58:10.983Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "6dcc3eb6-2826-49b3-8f55-98b3398ae900",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-DrugAbuseScreeningPatient exists",
-            "url": "Patient/hiv-DrugAbuseScreeningPatient",
-            "method": "GET",
-            "sortNum": 160000,
-            "created": "2024-04-08T15:57:44.960Z",
-            "modified": "2024-04-08T15:58:37.427Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "0200975d-0334-49d2-94ce-d21e243cb202",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-DrugAbuseQuestionsPatientNACHCCodeOnly exists",
-            "url": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-            "method": "GET",
-            "sortNum": 157500,
-            "created": "2024-04-08T15:57:46.810Z",
-            "modified": "2024-04-08T16:04:25.447Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "28effacb-ecc3-40e3-b5b5-753dedf122b2",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-DrugAbuseQuestionsPatientBothCodesystems exists",
-            "url": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems",
-            "method": "GET",
-            "sortNum": 156250,
-            "created": "2024-04-08T15:57:48.822Z",
-            "modified": "2024-04-08T15:59:37.950Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
-            "_id": "eb59acdc-f0d5-417f-9f4f-c5a4fbac5212",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "hiv-HighRiskIDUPatient exists Copy",
-            "url": "Patient/hiv-InclusionPatient",
-            "method": "GET",
-            "sortNum": 155625,
-            "created": "2024-04-08T15:57:51.722Z",
-            "modified": "2024-04-08T16:01:49.171Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
         }
     ],
     "settings": {
         "options": {
-            "baseUrl": "http://localhost:8080/fhir/"
+            "baseUrl": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply"
         }
     }
 }

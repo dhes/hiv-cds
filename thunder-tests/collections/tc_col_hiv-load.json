@@ -1,0 +1,59 @@
+{
+    "_id": "21cce7fa-a084-49f6-a6da-5c8c2005ea7d",
+    "colName": "hiv-load",
+    "created": "2024-04-08T16:12:27.972Z",
+    "sortNum": 5000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "84251ea4-f3f6-4386-8ac6-1021958005cb",
+            "colId": "21cce7fa-a084-49f6-a6da-5c8c2005ea7d",
+            "containerId": "",
+            "name": "Post Main Bundle",
+            "url": "localhost:8080/fhir",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-08T16:15:45.712Z",
+            "modified": "2024-04-08T16:15:45.713Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "../bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8e729994-390b-4fb9-a3db-2524f1ebc30e",
+            "colId": "21cce7fa-a084-49f6-a6da-5c8c2005ea7d",
+            "containerId": "",
+            "name": "Post ActivityDefinition",
+            "url": "localhost:8080/fhir",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-04-08T16:15:58.225Z",
+            "modified": "2024-04-08T16:15:58.225Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "/Users/danheslinga/hiv-cds/activityDefinitionBundle.json"
+            },
+            "tests": []
+        }
+    ]
+}
