@@ -1,0 +1,24 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-pregnant-pregnancy-observation",
+  "subject": {
+    "reference": "Patient/hiv-pregnant"
+  },
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "SNOMED",
+        "code": "77386006",
+        "display": "Pregnancy (finding)"
+      },
+      {
+        "system": "LOINC",
+        "code": "82810-3",
+        "display": "Pregnancy status"
+      }
+    ]
+  },
+  "valueBoolean": true,
+  "effectiveDateTime": "2024-04-09T00:00:00.000Z"
+}
