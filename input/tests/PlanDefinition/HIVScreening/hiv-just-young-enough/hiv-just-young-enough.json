@@ -1,16 +1,14 @@
 {
-  "resource": {
-    "resourceType": "Patient",
-    "id": "hiv-just-young-enough",
-    "name": [
-      {
-        "given": ["Absolutely"],
-        "family": "Nobody"
-      }
-    ],
-    "birthDate": "1959-01-02",
-    "gender": "female",
-    "active": true,
-    "deceasedBoolean": false
-  }
+  "resourceType": "Patient",
+  "id": "hiv-just-young-enough",
+  "name": [
+    {
+      "given": ["Absolutely"],
+      "family": "Nobody"
+    }
+  ],
+  "birthDate": "1959-01-02",
+  "gender": "female",
+  "active": true,
+  "deceasedBoolean": false
 }
