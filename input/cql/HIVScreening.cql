@@ -11,9 +11,9 @@ include HIVConcepts called Cx
 
 include HIVDataElements called HDE
 
-parameter "Reference Date" DateTime 
-  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
-  default Now() // for testing within a CQL Testing Framework project
+parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
+  default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
 // parameter "Routine" default 'routine'
 
@@ -203,6 +203,14 @@ define "Pregnant Condition":
   and (
     "Patient is at First Prenatal Visit"
     or "Patient is High Risk in Third Trimester of Pregnancy"
+    or exists(HDE."Pregnancy Conditions" PregnancyConditions
+      where PregnancyConditions.onset after ("Reference Date" - 9 months))
+    or exists(HDE."Pregnancy Observations" PregnancyObservations 
+      where PregnancyObservations.effective after ("Reference Date" - 9 months))
+    or exists(HDE."Pregnancy Supervision" PregnancySupervision
+      where PregnancySupervision.performed after ("Reference Date" - 9 months))
+    or exists(HDE."Pregnancy Procedures" PregnancyProcedures
+      where PregnancyProcedures.performed after ("Reference Date" - 9 months))
   )
 
 define "Pregnant Recommendation":
@@ -327,12 +335,12 @@ define "Active Diagnosis of HIV During Patient Visit":
       such that FC.ToPrevalenceInterval(HIVDiagnosis) overlaps PatientEncounter.period
 
 define "HIV Screening Test": // DH: as of last encounter
-  (
+  // (
     HC.QualifiedObservations(HDE."HIV Test")
     union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
-  ) HIVScreening
-    with "Patient Encounter" PatientEncounter
-      such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
+  // ) HIVScreening
+  //   with "Patient Encounter" PatientEncounter
+  //     such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
 
 define "Patient has had an HIV Screening": //DH: as of last encounter
   exists("HIV Screening Test")
