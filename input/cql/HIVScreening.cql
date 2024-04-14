@@ -198,6 +198,16 @@ define "MSM Indicator":
 
 
 // PREGNANCY
+// DH - open the collection wide to four categories as defined by the health centers
+// DH - filter out anything older than 9 months
+
+// for testing
+define pregnancyObservations:
+  HDE."Pregnancy Observations"
+define nineMonthsAgo:
+  "Reference Date" - 9 months
+// end of for testing
+
 define "Pregnant Condition":
   "In Population"
   and (
