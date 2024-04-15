@@ -40,6 +40,9 @@ context Patient
 //   else if "Risk Level Condition" then 'At risk'
 //   else 'HIV screening test not needed.'
 
+define "Most recent HIV test was before pregnancy event":
+  Last(HDE."HIV Tests").effective < Last(HDE."Pregnancy Observations").effective
+
 define "Alive": 
   case 
     // when Patient.deceased = true then false //redundant
@@ -249,8 +252,8 @@ define "Pregnant Recommendation":
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  // else if "Most recent HIV test was before pregnancy event" and "Over 3 Months has Passed Since Previous HIV Screening" then
-  //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
+  else if "Most recent HIV test was before pregnancy event" then
+    'HIV Screening Recommended due to patient not having been tested since pregnancy event.'
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Pregnant Rationale":
@@ -369,7 +372,7 @@ define "Active Diagnosis of HIV During Patient Visit":
 
 define "HIV Screening Test": // DH: as of last encounter
   // (
-    HC.QualifiedObservations(HDE."HIV Test")
+    HC.QualifiedObservations(HDE."HIV Tests")
     union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
   // ) HIVScreening
   //   with "Patient Encounter" PatientEncounter
@@ -558,7 +561,7 @@ define "Patient is at High Risk Due to exchanging sex for money and/or drugs":
 // define HIVScreeningInterval:
 //   FC.ToInterval(((Last(
 //         (
-//           HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+//           HC.QualifiedObservations(HDE."HIV Tests") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
 //           union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
 //         ) HIVScreening
 //         sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
@@ -583,7 +586,7 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
   (
     (Last(
       (
-        HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+        HC.QualifiedObservations(HDE."HIV Tests") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
         union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
       ) HIVScreening
       sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
