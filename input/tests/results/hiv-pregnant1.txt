@@ -1,0 +1,23 @@
+Patient=Patient(id=hiv-pregnant)
+Meets Inclusion Criteria=true
+In Population=true
+HIV Screening Test=[Observation(id=hiv-pregnant-hiv-test)]
+Patient has had an HIV Screening=true
+Never Tested Condition=false
+Patient is at First Prenatal Visit=false
+Patient is in Third Trimester of Pregnancy=false
+Patient is High Risk in Third Trimester of Pregnancy=false
+Pregnant Condition=true
+Previous HIV Screening Test=Observation(id=hiv-pregnant-hiv-test)
+Over 3 Months has Passed Since Previous HIV Screening=true
+Over a Year has Passed Since Previous HIV Screening=false
+Risk Level Condition=false
+Condition Organizer=true
+Days Since Previous HIV Screening=206
+Pregnant Recommendation=HIV Screening Not Recommended at this time. It has been 206 days since last HIV Screening.
+Pregnant Rationale=
+Pregnant Indicator=routine
+Exclusion Reason=
+Age=39
+Patient is Female=true
+	Patient Not Screened For Drug Abuse Or Screening Expired=true

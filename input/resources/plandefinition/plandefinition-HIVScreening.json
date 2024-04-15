@@ -83,7 +83,7 @@
         {
           "kind": "applicability",
           "expression": {
-            "description": "Determine if Patient is in msm population.",
+            "description": "Determine if Patient has never been tested.",
             "language": "text/cql-identifier",
             "expression": "Never Tested Condition"
           }

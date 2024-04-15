@@ -15,21 +15,42 @@ parameter "Reference Date" DateTime  // can use values such as Now() or a date l
   default  @2024-01-01T00:00:00-10:00 // for testing within this project
   // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
+parameter "True" default true
+parameter "Routine" default 'routine'
+parameter "Asap" default 'asap'
+parameter "Urgent" default 'urgent'
+parameter "Stat" default 'stat'
+parameter "Errors" default null
+
 // parameter "Routine" default 'routine'
+// parameter "Never tested" default false
+// parameter "Pregnant" default false
+// parameter "Has STD" default false
+// parameter "MSM" default false
+// parameter "At risk" default false
 
 context Patient
+
+// DH - an organizing principle -- which seems to not be usefule ;()
+// define "Condition Organizer":
+//   if "Never Tested Condition" then 'Never tested'
+//   else if "Pregnant Condition" then 'Pregnant'
+//   else if "Seeking STD Treatment Condition" then 'Has STD'
+//   else if "MSM Condition" then 'MSM'
+//   else if "Risk Level Condition" then 'At risk'
+//   else 'HIV screening test not needed.'
 
 define "Alive": 
   case 
     // when Patient.deceased = true then false //redundant
     when Patient.deceased = false then true
-    // when "Null Patient.deceased assumed to mean alive" = true and Patient.deceased is null then true // default is false. Your dead unless you the records says you are not. 
+    // when "Null Patient.deceased assumed to mean alive" = true and Patient.deceased is null then true // default is false. You're dead unless you're expressly not. 
     else false
   end
 
 define Active: 
   if Patient.active = true then true
-	else false
+  else false
 
 // //for troubleshooging
 // define "HDEDAST10Score":
@@ -48,7 +69,7 @@ define Active:
 //   Cx."Gay Or Bisexual"
 
 // define "Patient is Gay or Bisexual":
-//   singleton from (HDE."Sexual Orientation".coding) in Cx."Gay Or Bisexual"
+  // singleton from (HDE."Sexual Orientation".coding) in Cx."Gay Or Bisexual"
 
 define "Patient is Gay or Bisexual":
   exists (HDE."Sexual Orientation".coding)O where (O in Cx."Gay Or Bisexual")
@@ -62,23 +83,23 @@ define "Patient is Gay or Bisexual":
 // define "Critical":
 //   'critical'
 
-define "True":
-  true
+// define "True":
+//   true
 
-define "Routine":
-  'routine'
+// define "Routine":
+//   'routine'
 
-define "Asap":
-  'asap'
+// define "Asap":
+//   'asap'
 
-define "Urgent":
-  'urgent'
+// define "Urgent":
+//   'urgent'
 
-define "Stat":
-  'stat'
+// define "Stat":
+//   'stat'
 
-define "Errors":
-  null
+// define "Errors":
+//   null
 
 // define "PatientNameGiven":
 // Patient.name.given
@@ -187,7 +208,7 @@ define "MSM Recommendation":
     'Three Month HIV Screening Recommended due to patient being a sexually active MSM who has been prescribed PrEP in the past.'
   else if "Patient is a sexually active MSM who should be Screened Annually" then
     'Annual HIV Screening Recommended due to patient being a sexually active MSM without HIV and has had multiple sex partners.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "MSM Rationale":
   'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
@@ -202,10 +223,10 @@ define "MSM Indicator":
 // DH - filter out anything older than 9 months
 
 // for testing
-define pregnancyObservations:
-  HDE."Pregnancy Observations"
-define nineMonthsAgo:
-  "Reference Date" - 9 months
+// define pregnancyObservations:
+//   HDE."Pregnancy Observations"
+// define nineMonthsAgo:
+//   "Reference Date" - 9 months
 // end of for testing
 
 define "Pregnant Condition":
@@ -228,7 +249,9 @@ define "Pregnant Recommendation":
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  // else if "Most recent HIV test was before pregnancy event" and "Over 3 Months has Passed Since Previous HIV Screening" then
+  //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
+  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Pregnant Rationale":
   if "Patient is at First Prenatal Visit" then
@@ -250,7 +273,7 @@ define "Seeking STD Treatment Condition":
 
 define "Seeking STD Treatment Recommendation":
   if "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended now because patient is seeking treatment for an STD and more than three months have passed.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Seeking STD Treatment Rationale":
   'All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
@@ -282,7 +305,7 @@ define "Risk Level Recommendation":
   else if "Patient is at Moderate Risk for HIV" and "Over a Year has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at Moderate Risk for HIV and over a Year has passed since previous screening.'
   // else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
   // else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
-  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Amount of Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
   else null
 
 /* Risk Level Rational based on Recommendation Option (References to CDC Recommendations) */
@@ -321,7 +344,7 @@ define "Patient Encounter":
     )) PatientEncounter
     sort by end of period)
 
-/* before...
+/* before  .
 /* Determine Patient Characteristics and Testing Criteria */
 // define "Patient is between 13 and 64 years old":
 //   AgeInYearsAt(end of "Patient Encounter".period) >= 13
@@ -364,7 +387,7 @@ define "Previous HIV Screening Test": // DH: originally meaning `previous to mos
   // "Patient Encounter" PatientEncounter
   //   where FC.ToInterval(MostRecentHIVTest.effective) before PatientEncounter.period
 
-define "Amount of Days Since Previous HIV Screening":
+define "Days Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
     // return duration in days between end of FC.ToInterval(HIVTest.MostRecentHIVTest.effective) and end of HIVTest.PatientEncounter.period
   return duration in days between HIVTest.effective and "Reference Date"
@@ -533,20 +556,20 @@ define "Patient is at High Risk Due to exchanging sex for money and/or drugs":
 
 // DH: For testing 
 // define HIVScreeningInterval:
-// 	FC.ToInterval(((Last(
-// 				(
-// 					HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
-// 					union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
-// 				) HIVScreening
-// 				sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
-// 		)) HIVScreening).effective)
+//   FC.ToInterval(((Last(
+//         (
+//           HC.QualifiedObservations(HDE."HIV Test") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+//           union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+//         ) HIVScreening
+//         sort by end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
+//     )) HIVScreening).effective)
 
 // DH: for testing
 // define NumberOfPartnersInterval:
-// 	(
-// 				HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
-// 				union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
-// 			) NumberOfPartners
+//   (
+//         HC.QualifiedObservations(HDE."Sexual Activity - Number of Partners") // DH: Number of Partners seems to equate to Multiple Partners
+//         union HC.QualifiedObservations(HDE."Sexual Activity - Partners Number of Partners")
+//       ) NumberOfPartners
 
 // High Risk -- Multiple Sex Partners since previous HIV Screening for Patient or their partner
 // DH: note that relies on timestamps of HIV Test observation and Multiple Partners observation. For example if 
@@ -654,7 +677,7 @@ define "Patient is at Low Risk for HIV":
   and not "Patient is at Moderate Risk for HIV" // genetic males sexually active with genetic males
   and not "Patient is at No Risk for HIV"  // i.e. not "Patient is Documented Sexually Inactive"
 
-// DH: Testing testing....
+// DH: Testing testing
 define PatientEncounterPeriodStart:
   start of ("Patient Encounter".period)
 define PatientEncounterPeriodEnd:
