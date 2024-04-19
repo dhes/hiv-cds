@@ -35,6 +35,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-pregnant-old-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-just-young-enough",
       "display": "Absolutely Nobody"
     }
@@ -67,11 +72,6 @@
     "entity": {
       "reference": "Patient/hiv-HighRiskSTDPatient",
       "display": "John Jones"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-pregnant",
-      "display": "Absolutely Nobody"
     }
   }, {
     "entity": {

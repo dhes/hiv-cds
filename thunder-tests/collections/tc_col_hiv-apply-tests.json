@@ -588,22 +588,21 @@
             "_id": "19f5fd9c-43ec-4b32-b67f-2354a791cb81",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
-            "name": "test hiv-pregnant",
+            "name": "test hiv-pregnant-old-test",
             "url": "",
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-04-06T21:07:03.766Z",
-            "modified": "2024-04-12T17:32:57.184Z",
+            "modified": "2024-04-19T14:45:24.790Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant-old-test\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
                 "form": []
             },
             "tests": [
@@ -780,6 +779,59 @@
                             "// tc.test(\"Action Element is not null\", success);",
                             "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
                             "tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3df2d2a0-60fd-40d4-92f6-e0f26a9e3182",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-pregnant Copy",
+            "url": "",
+            "method": "POST",
+            "sortNum": 105000,
+            "created": "2024-04-19T14:39:57.355Z",
+            "modified": "2024-04-19T14:39:57.355Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "newly pregnant"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "   tc.test(\"Action element exists\", success);"
                         ]
                     }
                 ]
