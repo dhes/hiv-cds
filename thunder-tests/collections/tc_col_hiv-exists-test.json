@@ -298,6 +298,26 @@
                     "value": "200"
                 }
             ]
+        },
+        {
+            "_id": "679c5c88-06e6-46cc-a861-e58aaa8d3458",
+            "colId": "835d71fe-6299-4c44-897f-0fd36fb1a8e4",
+            "containerId": "",
+            "name": "hiv-middle-age-tested exists",
+            "url": "hiv-middle-age-tested",
+            "method": "GET",
+            "sortNum": 125000,
+            "created": "2024-04-19T14:05:21.961Z",
+            "modified": "2024-04-19T14:05:56.186Z",
+            "headers": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
         }
     ],
     "settings": {

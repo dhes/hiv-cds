@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "hiv-middle-age-tested-patient",
+  "id": "hiv-middle-age-tested",
   "name": [
     {
       "given": ["Absolutely"],
