@@ -688,12 +688,58 @@
             "_id": "3d5ad79b-bd1b-4db0-8b12-b53323536448",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
-            "name": "test hiv-just-old-enough Copy",
+            "name": "test hiv-middle-age-tested",
             "url": "",
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-04-12T17:32:06.289Z",
-            "modified": "2024-04-12T17:32:06.289Z",
+            "modified": "2024-04-19T14:12:20.613Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-middle-age-tested\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c222a45a-04a6-4e0c-b4ed-a1110156ef3a",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-just-old-enough",
+            "url": "",
+            "method": "POST",
+            "sortNum": 87500,
+            "created": "2024-04-19T14:09:40.175Z",
+            "modified": "2024-04-19T14:09:40.175Z",
             "headers": [
                 {
                     "name": "Content-Type",
