@@ -10,6 +10,11 @@
   "actual": true,
   "member": [ {
     "entity": {
+      "reference": "Patient/hiv-middle-age-tested-patient",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
       "display": "Ashley Madelyn"
     }
