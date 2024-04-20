@@ -233,7 +233,7 @@ define "MSM Indicator":
 // end of for testing
 
 define "Pregnant Condition":
-  "In Population"
+  "In Population" // not really
   and (
     "Patient is at First Prenatal Visit"
     or "Patient is High Risk in Third Trimester of Pregnancy"
