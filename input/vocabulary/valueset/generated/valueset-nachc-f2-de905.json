@@ -62,16 +62,16 @@
             "display": "Choriogonadotropin [Interpretation] in Serum or Plasma"
           },
           {
-            "code": "75301",
+            "code": "2106-3",
             "display": "Choriogonadotropin (pregnancy test) [Presence] in Urine"
           },
           {
-            "code": "75607",
+            "code": "2107-1",
             "display": "Choriogonadotropin [Moles/volume] in Urine"
           },
           {
-            "code": "76823",
-            "display": "Choriogonadotropin.beta subunit (pregnancy test) [Presence] in Serum or Plasma"
+            "code": "2112-1",
+            "display": "CChoriogonadotropin.beta subunit (pregnancy test) [Presence] in Urine"
           },
           {
             "code": "77127",

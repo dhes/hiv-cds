@@ -45,3 +45,5 @@ In the valueset one should include all three of these LOINCS:
 |2106-3|Choriogonadotropin (pregnancy test) [Presence] in Urine|
 |2112-1|Choriogonadotropin.beta subunit (pregnancy test) [Presence] in Urine|
 |80384-1|Choriogonadotropin (pregnancy test) [Presence] in Urine by Rapid immunoassay|
+
+Oh boy. The "Pregnancy Observations Codes" has the wrong codes for urine pregnancy. There are three. I'm correcting them. 
