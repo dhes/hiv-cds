@@ -83,5 +83,10 @@
       "reference": "Patient/hiv-HighRiskPregnantPatient",
       "display": "Beatrix Coraline"
     }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-pregnant-no-test",
+      "display": "Absolutely Nobody"
+    }
   } ]
 }
