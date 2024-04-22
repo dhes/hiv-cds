@@ -14,6 +14,8 @@ codesystem "ICF": 'http://hl7.org/fhir/sid/icf-nl'
 codesystem "NDC": 'http://hl7.org/fhir/sid/ndc'
 codesystem "NIDA": 'https://cde.drugabuse.gov'
 codesystem "Extended Codes CodeSystem": 'http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom'
+// DH
+codesystem "Observation Interpretation": 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation'
 
 // Value Sets
 valueset "Encounter Type Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a0-de2'
@@ -147,3 +149,6 @@ code "DAST 10 Question 8": '3254067' from "NIDA" display 'Have you engaged in il
 code "DAST 10 Question 9": '3254070' from "NIDA" display 'Have you ever experienced withdrawal symptoms (felt sick) when you stopped taking drugs'
 code "DAST 10 Question 10": '3254072' from "NIDA" display 'Have you had medical problems as a result of your drug use (e.g., memory loss, hepatitis, convulsions, bleeding, etc.)'
 code "DAST 10 Score": '82667-7' from "LOINC" display 'Total Score [DAST-10]'
+// DH follows
+code "Positive Test Value": '10828004' from "SNOMED-CT" display 'Positive Test Value'
+code "Positive Test Interpretation": 'POS' from "Observation Interpretation" display 'Positive Test Interpretation'

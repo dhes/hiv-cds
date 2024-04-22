@@ -285,6 +285,13 @@ define "Pregnancy Observations":
     where O.status in { 'final', 'amended', 'corrected' }
     //return O.value as FHIR.CodeableConcept
 
+// DH
+define "Positive Pregnancy Observation":
+  "Pregnancy Observations" PO
+    where 
+      PO.value ~ Cx."Positive Test Value" 
+      or exists PO.interpretation POI 
+        where POI ~ Cx."Positive Test Interpretation"
 
 /*
   @dataElement: NACHC.F2.DE672 Pregnancy Procedures
