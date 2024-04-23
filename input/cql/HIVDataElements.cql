@@ -286,7 +286,7 @@ define "Pregnancy Observations":
     //return O.value as FHIR.CodeableConcept
 
 // DH
-define "Positive Pregnancy Observation":
+define "Positive Pregnancy Observations":
   "Pregnancy Observations" PO
     where 
       PO.value ~ Cx."Positive Test Value" 

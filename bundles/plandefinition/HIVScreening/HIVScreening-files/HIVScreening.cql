@@ -40,8 +40,8 @@ context Patient
 //   else if "Risk Level Condition" then 'At risk'
 //   else 'HIV screening test not needed.'
 
-define "Most recent HIV test was before pregnancy event":
-  Last(HDE."HIV Tests").effective < Last(HDE."Pregnancy Observations").effective
+define "There is an HIV test after the most recent pregnancy test":
+  Last(HDE."HIV Tests").effective > Last(HDE."Pregnancy Observations").effective
 
 define "Alive": 
   case 
@@ -239,8 +239,8 @@ define "Pregnant Condition":
     or "Patient is High Risk in Third Trimester of Pregnancy"
     or exists(HDE."Pregnancy Conditions" PregnancyConditions
       where PregnancyConditions.onset after ("Reference Date" - 9 months))
-    or exists(HDE."Pregnancy Observations" PregnancyObservations 
-      where PregnancyObservations.effective after ("Reference Date" - 9 months))
+    or exists(HDE."Positive Pregnancy Observations" PPO 
+      where PPO.effective after ("Reference Date" - 9 months))
     or exists(HDE."Pregnancy Supervision" PregnancySupervision
       where PregnancySupervision.performed after ("Reference Date" - 9 months))
     or exists(HDE."Pregnancy Procedures" PregnancyProcedures
@@ -252,9 +252,9 @@ define "Pregnant Recommendation":
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  else if "Most recent HIV test was before pregnancy event" then
-    'HIV Screening Recommended due to patient not having been tested since pregnancy event.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else if not("There is an HIV test after the most recent pregnancy test") then
+    'HIV Screening Recommended due to patient not having been tested since pregnancy diagnosis.'
+  else null
 
 define "Pregnant Rationale":
   if "Patient is at First Prenatal Visit" then

@@ -239,8 +239,8 @@ define "Pregnant Condition":
     or "Patient is High Risk in Third Trimester of Pregnancy"
     or exists(HDE."Pregnancy Conditions" PregnancyConditions
       where PregnancyConditions.onset after ("Reference Date" - 9 months))
-    or exists(HDE."Pregnancy Observations" PregnancyObservations 
-      where PregnancyObservations.effective after ("Reference Date" - 9 months))
+    or exists(HDE."Positive Pregnancy Observations" PPO 
+      where PPO.effective after ("Reference Date" - 9 months))
     or exists(HDE."Pregnancy Supervision" PregnancySupervision
       where PregnancySupervision.performed after ("Reference Date" - 9 months))
     or exists(HDE."Pregnancy Procedures" PregnancyProcedures
