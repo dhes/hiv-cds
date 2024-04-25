@@ -40,8 +40,9 @@ context Patient
 //   else if "Risk Level Condition" then 'At risk'
 //   else 'HIV screening test not needed.'
 
-define "There is an HIV test after the most recent pregnancy test":
-  Last(HDE."HIV Tests").effective > Last(HDE."Pregnancy Observations").effective
+define "There is an HIV test after the most recent positive pregnancy test":
+  Exists(HDE."HIV Tests") and
+  Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
 
 define "Alive": 
   case 
@@ -233,7 +234,8 @@ define "MSM Indicator":
 // end of for testing
 
 define "Pregnant Condition":
-  "In Population" // not really
+  // "In Population" // not really
+  not "Meets Exclusion Criteria"
   and (
     "Patient is at First Prenatal Visit"
     or "Patient is High Risk in Third Trimester of Pregnancy"
@@ -252,15 +254,16 @@ define "Pregnant Recommendation":
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  else if not("There is an HIV test after the most recent pregnancy test") then
-    'HIV Screening Recommended due to patient not having been tested since pregnancy diagnosis.'
-  else null
+  else if not("There is an HIV test after the most recent positive pregnancy test") then
+    'HIV Screening Recommended due to patient not having been tested since positive pregnancy test.'
+  else ''
 
 define "Pregnant Rationale":
   if "Patient is at First Prenatal Visit" then
     'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" then
     'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
+  else if not("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
   else ''
 
 define "Pregnant Indicator":

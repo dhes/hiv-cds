@@ -20,6 +20,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-pregnant-timely-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-ExclusionPatient",
       "display": "Sally Merryweather"
     }

@@ -20,7 +20,7 @@
       {
         "system": "http://snomed.info/sct",
         "code": "10828004",
-        "display": "Positive"
+        "display": "Positive (qualifier value)"
       }
     ]
   },
