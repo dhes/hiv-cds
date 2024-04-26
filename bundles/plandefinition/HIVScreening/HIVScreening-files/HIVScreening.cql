@@ -12,8 +12,8 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
-  default  @2024-01-01T00:00:00-10:00 // for testing within this project
-  // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
+  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
 parameter "True" default true
 parameter "Routine" default 'routine'

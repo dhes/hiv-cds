@@ -593,7 +593,7 @@
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-04-06T21:07:03.766Z",
-            "modified": "2024-04-19T15:06:37.727Z",
+            "modified": "2024-04-26T16:58:06.211Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -616,7 +616,7 @@
                     "type": "res-body",
                     "custom": "",
                     "action": "contains",
-                    "value": "pregnancy event"
+                    "value": "not having been tested since positive pregnancy test"
                 },
                 {
                     "type": "res-body",
@@ -788,22 +788,21 @@
             "_id": "3df2d2a0-60fd-40d4-92f6-e0f26a9e3182",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
-            "name": "test hiv-pregnant",
+            "name": "test hiv-pregnant-no-test",
             "url": "",
             "method": "POST",
             "sortNum": 105000,
             "created": "2024-04-19T14:39:57.355Z",
-            "modified": "2024-04-19T14:39:57.355Z",
+            "modified": "2024-04-26T16:58:26.455Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant-no-test\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
                 "form": []
             },
             "tests": [
@@ -816,8 +815,54 @@
                 {
                     "type": "res-body",
                     "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
                     "action": "contains",
-                    "value": "newly pregnant"
+                    "value": "not having been tested since positive pregnancy test"
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "   tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b07dd796-5447-4681-98e3-e16d4148b876",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-pregnant-timely-test",
+            "url": "",
+            "method": "POST",
+            "sortNum": 115000,
+            "created": "2024-04-26T16:46:52.602Z",
+            "modified": "2024-04-26T16:51:37.491Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-pregnant-timely-test\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
                 },
                 {
                     "type": "res-body",
@@ -830,8 +875,8 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "   tc.test(\"Action element exists\", success);"
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
                         ]
                     }
                 ]
