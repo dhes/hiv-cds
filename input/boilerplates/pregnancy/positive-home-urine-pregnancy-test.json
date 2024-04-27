@@ -40,5 +40,6 @@
       "reference": "Patient/123",
       "display": "Self"
     }
-  ]
+  ],
+  "note": [{ "text": "Result reported by the patient" }]
 }
