@@ -65,6 +65,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/tb-not-tested",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-MSMPatient",
       "display": "Joe Kotic"
     }

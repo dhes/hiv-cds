@@ -71,6 +71,10 @@ define "HIV Diagnosis":
       and C.verificationStatus ~ FC."confirmed"
     //return C.code
 
+define "Tuberculosis diagnosis":
+  [Condition: Cx."Tuberculosis (Disorders) (ICD10CM)"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
 
 /*
   @dataElement: NACHC.A2.DE1 HIV Test

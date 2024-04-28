@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "9be0642f-a398-4724-ade0-7e9546b7f74d",
+        "colId": "history",
+        "containerId": "",
+        "name": "get TB valueset",
+        "url": "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1146.451/$expand",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2024-04-28T15:01:49.808Z",
+        "modified": "2024-04-28T15:20:09.261Z",
+        "headers": [
+            {
+                "name": "Accept",
+                "value": "application/fhir+json"
+            }
+        ],
+        "auth": {
+            "type": "basic",
+            "basic": {
+                "username": "apikey",
+                "password": "2f4b6638-ee67-4ad2-9090-5fe8137a9b8d"
+            }
+        }
+    }
+]

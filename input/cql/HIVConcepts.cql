@@ -97,10 +97,13 @@ valueset "TDF 300mg / FTC 200mg Supplied Codes": 'http://fhir.org/guides/nachc/h
 valueset "Tenofovir Alafenamide (TAF) 25 mg Supplied Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-g2-de78'
 valueset "Tenofovir Disoproxil Fumarate (TDF) 300mg Supplied Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-g2-de79'
 valueset "Prep Dispensed Medications Codes Grouper": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-g2-de26-codes-grouper'
+// DH
+valueset "Tuberculosis (Disorders) (ICD10CM)": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1146.451'
 
 /* MANUAL VALUESETS -- *DO NOT OVERWRITE* */
 valueset "Gay Or Bisexual": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/GayOrBisexual'
 valueset "Transgender": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/Transgender'
+// valueset "TB": 'http://example.org/fhir/ValueSet/tuberculosis-comprehensive-value-set'
 
 // Codes
 code "Sexual Orientation": '76690-7' from "LOINC" display 'Sexual orientation'

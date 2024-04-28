@@ -426,7 +426,14 @@ define "Patient is Female":
   if Patient.gender = 'female' then true else false
 
 define "Patient is Transgender":
-    HDE."Gender Identity" in Cx."Transgender"
+  HDE."Gender Identity" in Cx."Transgender"
+
+define "Active diagnosis of Tuberculosis":
+  HDE."Tuberculosis diagnosis"
+//   exists [Condition] c where c in Cx."TB"
+
+// define "anyConditionValue":
+//   [Condition] C return C.code.coding.code.value
 
 // define "Patient is Gay or Bisexual":
 //       HDE."Sexual Orientation".coding.code in Cx."Gay Or Bisexual"
