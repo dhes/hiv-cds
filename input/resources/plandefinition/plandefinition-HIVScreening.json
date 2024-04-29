@@ -440,6 +440,71 @@
           "description": "Will not perform HIV screening at this time - patient declined."
         }
       ]
+    },
+    {
+      "prefix": "Recommend HIV Screening Test.",
+      "title": "Tuberculosis Recommendation",
+      "description": "Perform HIV testing before starting tuberculosis treatment.",
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "description": "Determine if Patient needs testing due to diagnosis of tuberculosis.",
+            "language": "text/cql-identifier",
+            "expression": "Tuberculosis Condition"
+          }
+        }
+      ],
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+            "code": "create",
+            "display": "Create"
+          }
+        ]
+      },
+      "selectionBehavior": "any",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
+      "dynamicValue": [
+        {
+          "path": "action.title",
+          "expression": {
+            "description": "Determines what recommendation patient should be provided.",
+            "language": "text/cql-identifier",
+            "expression": "Tuberculosis Recommendation"
+          }
+        },
+        {
+          "path": "action.description",
+          "expression": {
+            "description": "Rationale for recommendation type.",
+            "language": "text/cql-identifier",
+            "expression": "Tuberculosis Rationale"
+          }
+        },
+        {
+          "path": "action.priority",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Tuberculosis Indicator Status"
+          }
+        }
+      ],
+      "action": [
+        {
+          "description": "Will perform HIV screening"
+        },
+        {
+          "description": "Will not perform HIV screening at this time - Snooze 1 month."
+        },
+        {
+          "description": "Will not perform HIV screening at this time - Snooze 12 months."
+        },
+        {
+          "description": "Will not perform HIV screening at this time - patient declined."
+        }
+      ]
     }
   ]
 }
