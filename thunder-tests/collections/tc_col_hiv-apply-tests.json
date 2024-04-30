@@ -881,6 +881,58 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "a8f5823b-595d-4f04-8e95-e17a8b38d3a9",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test tb-not-tested",
+            "url": "",
+            "method": "POST",
+            "sortNum": 125000,
+            "created": "2024-04-30T06:04:27.187Z",
+            "modified": "2024-04-30T06:09:29.940Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/tb-not-tested\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "This patient has not been tested for HIV since diagnosis of tuberculosis."
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "   tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
         }
     ],
     "settings": {
