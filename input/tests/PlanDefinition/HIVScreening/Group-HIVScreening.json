@@ -55,17 +55,17 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-tb-not-tested",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems",
       "display": "Ashley Madelyn"
     }
   }, {
     "entity": {
       "reference": "Patient/hiv-too-young",
-      "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/tb-not-tested",
       "display": "Absolutely Nobody"
     }
   }, {

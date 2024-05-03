@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "tb-not-tested",
+  "id": "hiv-tb-not-tested",
   "name": [
     {
       "given": ["Absolutely"],

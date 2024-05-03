@@ -1,6 +1,6 @@
 {
   "resourceType": "Condition",
-  "id" : "tb-not-tested-condition",
+  "id" : "hiv-tb-not-tested-condition",
   "clinicalStatus": [
     {
       "coding": [
@@ -33,7 +33,7 @@
     }]
   },
   "subject": {
-    "reference": "Patient/tb-not-tested"
+    "reference": "Patient/hiv-tb-not-tested"
   },
   "onsetDateTime": "2014-01-10T14:00:00-07:00"
 }
