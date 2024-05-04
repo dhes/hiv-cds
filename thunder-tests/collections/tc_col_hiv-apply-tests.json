@@ -886,7 +886,7 @@
             "_id": "a8f5823b-595d-4f04-8e95-e17a8b38d3a9",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
-            "name": "test tb-not-tested",
+            "name": "test hiv-tb-not-tested",
             "url": "",
             "method": "POST",
             "sortNum": 125000,
@@ -901,6 +901,110 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-tb-not-tested\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "This patient has not been tested for HIV since diagnosis of tuberculosis."
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "   tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "88ec9cc5-18ac-4289-9906-6418265c9f62",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-tb-old-test",
+            "url": "",
+            "method": "POST",
+            "sortNum": 135000,
+            "created": "2024-05-03T14:19:27.835Z",
+            "modified": "2024-05-03T14:20:13.098Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-tb-old-test\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "This patient has not been tested for HIV since diagnosis of tuberculosis."
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "   tc.test(\"Action element exists\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c515e7cf-c18b-494d-8633-8e23b23c5f7d",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "test hiv-tb-timely-test",
+            "url": "",
+            "method": "POST",
+            "sortNum": 145000,
+            "created": "2024-05-03T14:19:31.189Z",
+            "modified": "2024-05-03T14:21:03.406Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-tb-timely-test\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
                 "form": []
             },
             "tests": [

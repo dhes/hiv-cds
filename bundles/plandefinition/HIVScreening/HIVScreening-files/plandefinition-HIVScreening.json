@@ -455,6 +455,12 @@
           }
         }
       ],
+      "trigger": [
+        {
+          "name": "patient-view",
+          "type": "named-event"
+        }
+      ],
       "type": {
         "coding": [
           {
@@ -487,7 +493,14 @@
           "path": "action.priority",
           "expression": {
             "language": "text/cql-identifier",
-            "expression": "Tuberculosis Indicator Status"
+            "expression": "Tuberculosis Indicator Status"	
+          }
+        },
+        {
+          "path": "asNeededBoolean",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Tuberculosis Condition"
           }
         }
       ],

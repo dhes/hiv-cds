@@ -44,9 +44,9 @@ define "There is an HIV test after the most recent positive pregnancy test":
   Exists(HDE."HIV Tests") and
   Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
 
-define "There is an HIV test after the onset of the tuberculosis condition":
+define "There is an HIV test performed after the diagnosis of tuberculosis":
   Exists(HDE."HIV Tests") and
-  Last(HDE."HIV Tests").effective > First(HDE."Tuberculosis diagnosis").onset
+  Last(HDE."HIV Tests").effective > Last(HDE."Tuberculosis diagnosis").onset // Even if there is only one "Tuberculosis diagnosis" you still need a First or Last before it
 
 define "Alive": 
   case 
@@ -333,8 +333,9 @@ define "Risk Level Indicator Status":
   else "Routine"
 
 define "Tuberculosis Condition":
-  not "Meets Exclusion Criteria"
-  and not "There is an HIV test after the onset of the tuberculosis condition"
+  Exists(HDE."Tuberculosis diagnosis")
+  and not "Meets Exclusion Criteria"
+  and not "There is an HIV test performed after the diagnosis of tuberculosis"
 
 define "Tuberculosis Recommendation":
   'This patient has not been tested for HIV since diagnosis of tuberculosis.'

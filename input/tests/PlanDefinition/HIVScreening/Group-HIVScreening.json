@@ -80,6 +80,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-tb-old-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-HighRiskSTDPatient",
       "display": "John Jones"
     }
@@ -92,6 +97,11 @@
     "entity": {
       "reference": "Patient/hiv-HighRiskPregnantPatient",
       "display": "Beatrix Coraline"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-tb-timely-test",
+      "display": "Absolutely Nobody"
     }
   }, {
     "entity": {
