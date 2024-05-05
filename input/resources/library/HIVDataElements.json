@@ -180,7 +180,7 @@
   }, {
     "type": "depends-on",
     "display": "Value set Pregnancy Conditions Codes",
-    "resource": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de1132"
+    "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1235.497"
   }, {
     "type": "depends-on",
     "display": "Value set Pregnancy Encounters Codes",
@@ -862,7 +862,7 @@
     "mustSupport": [ "code", "clinicalStatus", "verificationStatus" ],
     "codeFilter": [ {
       "path": "code",
-      "valueSet": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de1132"
+      "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1235.497"
     } ]
   }, {
     "type": "Encounter",
