@@ -105,7 +105,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
+      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening|1.0.0",
       "dynamicValue": [
         {
           "path": "action.title",
@@ -194,13 +194,6 @@
             "language": "text/cql-identifier",
             "expression": "MSM Indicator"
           }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "MSM Condition"
-          }
         }
       ],
       "action": [
@@ -265,13 +258,6 @@
           "expression": {
             "language": "text/cql-identifier",
             "expression": "Pregnant Indicator"
-          }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Pregnant Condition"
           }
         }
       ],
@@ -338,13 +324,6 @@
             "language": "text/cql-identifier",
             "expression": "Seeking STD Treatment Indicator"
           }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Seeking STD Treatment Condition"
-          }
         }
       ],
       "action": [
@@ -409,13 +388,6 @@
           "expression": {
             "language": "text/cql-identifier",
             "expression": "Risk Level Indicator Status"
-          }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Risk Level Condition"
           }
         }
       ],

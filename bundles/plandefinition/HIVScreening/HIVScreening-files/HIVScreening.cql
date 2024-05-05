@@ -293,23 +293,23 @@ define "Seeking STD Treatment Indicator":
   "Routine"
 
 
-/* RISK Level Actions */
-define "Risk Level Condition": // true if the other four Conditions are false
-  "In Population"
-  and (
-    "Never Tested Condition" is false
-    and "MSM Condition" is false
-    and "Pregnant Condition" is false
-    and "Seeking STD Treatment Condition" is false
-    // now the actual risk level conditions
-    and (
-      ("Patient is at High Risk for HIV" 
-        and "Over 3 Months has Passed Since Previous HIV Screening")
-     or 
-      ("Patient is at Moderate Risk for HIV" 
-        and "Over a Year has Passed Since Previous HIV Screening")
-    )
-  )
+/* RISK Level Actions */ // DH temporarily take this out
+define "Risk Level Condition": false // true if the other four Conditions are false
+  // "In Population"
+  // and (
+  //   "Never Tested Condition" is false
+  //   and "MSM Condition" is false
+  //   and "Pregnant Condition" is false
+  //   and "Seeking STD Treatment Condition" is false
+  //   // now the actual risk level conditions
+  //   and (
+  //     ("Patient is at High Risk for HIV" 
+  //       and "Over 3 Months has Passed Since Previous HIV Screening")
+  //    or 
+  //     ("Patient is at Moderate Risk for HIV" 
+  //       and "Over a Year has Passed Since Previous HIV Screening")
+  //   )
+  // )
 
 define "Risk Level Recommendation":
   if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
