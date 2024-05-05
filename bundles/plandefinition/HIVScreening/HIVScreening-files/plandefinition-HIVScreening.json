@@ -5,7 +5,7 @@
   "title": "HIV screening",
   "description": "The USPSTF recommends that clinicians screen for HIV infection in all pregnant persons, including those who present in labor or at delivery whose HIV status is unknown; in adolescents and adults aged 15 to 65 years; and adolescents and older adults who are at increased risk of infection.",
   "status": "draft",
-  "date": "2024-02-14T07:23:00-10:00",
+  "date": "2023-12-14T07:23:00-10:00",
   "experimental": true,
   "url": "http://fhir.org/guides/nachc/hiv-cds/PlanDefinition/HIVScreening",
   "identifier": [
@@ -104,7 +104,7 @@
           }
         ]
       },
-      "selectionBehavior": "exactly-one",
+      "selectionBehavior": "any",
       "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
       "dynamicValue": [
         {
@@ -128,13 +128,6 @@
           "expression": {
             "language": "text/cql-identifier",
             "expression": "Never Tested Indicator"
-          }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Never Tested Condition"
           }
         }
       ],
@@ -442,7 +435,7 @@
       ]
     },
     {
-      "prefix": "Recommend HIV Screening Test.",
+      "prefix": "Recommend HIV Screening Test",
       "title": "Tuberculosis Recommendation",
       "description": "Perform HIV testing before starting tuberculosis treatment.",
       "condition": [
@@ -493,14 +486,7 @@
           "path": "action.priority",
           "expression": {
             "language": "text/cql-identifier",
-            "expression": "Tuberculosis Indicator Status"	
-          }
-        },
-        {
-          "path": "asNeededBoolean",
-          "expression": {
-            "language": "text/cql-identifier",
-            "expression": "Tuberculosis Condition"
+            "expression": "Tuberculosis Indicator"
           }
         }
       ],

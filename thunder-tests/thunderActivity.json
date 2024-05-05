@@ -22,5 +22,36 @@
                 "password": "2f4b6638-ee67-4ad2-9090-5fe8137a9b8d"
             }
         }
+    },
+    {
+        "_id": "cdc0a175-81a7-4d6c-844e-401e4ad7637c",
+        "colId": "history",
+        "containerId": "",
+        "name": "get active pregnancy icd10 valueset",
+        "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1235.497/$expand?offset=1000",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2024-04-28T15:01:49.808Z",
+        "modified": "2024-05-04T09:30:02.489Z",
+        "headers": [
+            {
+                "name": "Accept",
+                "value": "application/fhir+json"
+            }
+        ],
+        "params": [
+            {
+                "name": "offset",
+                "value": "1000",
+                "isPath": false
+            }
+        ],
+        "auth": {
+            "type": "basic",
+            "basic": {
+                "username": "apikey",
+                "password": "2f4b6638-ee67-4ad2-9090-5fe8137a9b8d"
+            }
+        }
     }
 ]
