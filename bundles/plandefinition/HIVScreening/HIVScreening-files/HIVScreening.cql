@@ -41,11 +41,11 @@ context Patient
 //   else 'HIV screening test not needed.'
 
 define "There is an HIV test after the most recent positive pregnancy test":
-  Exists(HDE."HIV Tests") and
+  exists(HDE."HIV Tests") and
   Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
 
 define "There is an HIV test performed after the diagnosis of tuberculosis":
-  Exists(HDE."HIV Tests") and
+  exists(HDE."HIV Tests") and
   Last(HDE."HIV Tests").effective > First(HDE."Tuberculosis diagnosis").onset // Even if there is only one "Tuberculosis diagnosis" you still need a First or Last before it
 
 define "Alive": 
@@ -247,7 +247,7 @@ define "Pregnant Condition":
       where PregnancyConditions.onset after ("Reference Date" - 9 months))
     or (exists(HDE."Positive Pregnancy Observations" PPO 
       where PPO.effective after ("Reference Date" - 9 months))
-      and not("There is an HIV test after the most recent positive pregnancy test"))
+      and not ("There is an HIV test after the most recent positive pregnancy test"))
     or exists(HDE."Pregnancy Supervision" PregnancySupervision
       where PregnancySupervision.performed after ("Reference Date" - 9 months))
     or exists(HDE."Pregnancy Procedures" PregnancyProcedures
@@ -259,7 +259,7 @@ define "Pregnant Recommendation":
     'HIV Screening Recommended now due to patient being at first prenatal visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
     'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  else if not("There is an HIV test after the most recent positive pregnancy test") then
+  else if not ("There is an HIV test after the most recent positive pregnancy test") then
     'HIV Screening Recommended due to patient not having been tested since positive pregnancy test.'
   else ''
 
@@ -268,7 +268,7 @@ define "Pregnant Rationale":
     'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
   else if "Patient is High Risk in Third Trimester of Pregnancy" then
     'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
-  else if not("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
+  else if not ("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
   else ''
 
 define "Pregnant Indicator":
@@ -333,9 +333,9 @@ define "Risk Level Indicator Status":
   else "Routine"
 
 define "Tuberculosis Condition":
-  Exists(HDE."Tuberculosis diagnosis")
-  and not("Meets Exclusion Criteria")
-  and not("There is an HIV test performed after the diagnosis of tuberculosis")
+  exists(HDE."Tuberculosis diagnosis")
+  and not ("Meets Exclusion Criteria")
+  and not ("There is an HIV test performed after the diagnosis of tuberculosis")
 
 define "Tuberculosis Recommendation":
   'This patient has not been tested for HIV since diagnosis of tuberculosis.'
