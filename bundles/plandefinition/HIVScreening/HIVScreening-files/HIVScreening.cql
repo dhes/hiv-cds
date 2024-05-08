@@ -332,12 +332,18 @@ define "Risk Level Indicator Status":
   else if "Patient is at No Risk for HIV" then "Routine"
   else "Routine"
 
+//troubleshooting
+// define lastHdeHivTestsEffective:
+//   Last(HDE."HIV Tests").effective.value
+// define lastHdeTuberculosisDiagnosisOnset:
+//   Last(HDE."Tuberculosis diagnosis").onset.value
+
 define "Tuberculosis Condition":
   not ("Meets Exclusion Criteria")
   and exists HDE."Tuberculosis diagnosis"
   and (
        not exists HDE."HIV Tests" or
-       (exists (HDE."HIV Tests") and Last(HDE."HIV Tests").effective < Last(HDE."Tuberculosis diagnosis").onset)
+       (exists (HDE."HIV Tests") and Last(HDE."HIV Tests").effective.value < Last(HDE."Tuberculosis diagnosis").onset.value)
       )
   // and not ("There is an HIV test performed after the diagnosis of tuberculosis")
   // and not exists (HDE."HIV Tests") H
