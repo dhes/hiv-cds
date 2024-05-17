@@ -342,17 +342,19 @@ define "Risk Level Indicator Status":
 define "Tuberculosis Condition":
   not "Meets Exclusion Criteria"
   and exists HDE."Tuberculosis diagnosis"
-  and (
-       not exists HDE."HIV Tests" or
-       (exists (HDE."HIV Tests") and Last(HDE."HIV Tests").effective.value < Last(HDE."Tuberculosis diagnosis").onset.value)
-      )
-  // and not ("There is an HIV test performed after the diagnosis of tuberculosis")
-  // and not exists (HDE."HIV Tests") H
-  //   where H.effective > T.onset
+  and not exists HDE."HIV Tests" //or
+  //      (exists (HDE."HIV Tests") and (Coalesce(Last(HDE."HIV Tests").effective on or before  Last(HDE."Tuberculosis diagnosis").onset, true)))
+  //     //  exists (from TB in HDE."Tuberculosis diagnosis", HIVTest inHDE."HIV Tests" 
+  //     //     where HIVTest.effective.value > TB.onset.value)
+  //     )
+  // // and not ("There is an HIV test performed after the diagnosis of tuberculosis")
+  // // and not exists (HDE."HIV Tests") H
+  // //   where H.effective > T.onset
 
 
 define "Tuberculosis Recommendation":
-  'This patient has not been tested for HIV since diagnosis of tuberculosis.'
+  'This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
+  // ToString(exists(HDE."Tuberculosis diagnosis")) // This line was to expressly pass a cql-expression to a CardPlan
 
 define "Tuberculosis Rationale":
   'All patients who are about to start tuberculosis treatment should be tested for HIV.'

@@ -1,0 +1,109 @@
+{
+  "resourceType": "MeasureReport",
+  "language": "en",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.population.description",
+      "valueString": "Percentage of women 50-74 years of age who had a mammogram to screen for breast cancer in the 27 months prior to the end of the Measurement Period"
+    }
+  ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "http://ecqi.healthit.gov/ecqms/Measure/BreastCancerScreeningFHIR|2.0.003",
+  "subject": {
+    "reference": "Patient/numer-EXM125"
+  },
+  "date": "2024-05-13T23:13:26+00:00",
+  "period": {
+    "start": "2019-01-01T00:00:00+00:00",
+    "end": "2019-12-31T23:59:59+00:00"
+  },
+  "improvementNotation": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
+        "code": "increase"
+      }
+    ]
+  },
+  "group": [
+    {
+      "id": "group-1",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/us/davinci-deqm/StructureDefinition/extension-cqfm-denominator-membership",
+          "valueString": "0"
+        },
+        {
+          "url": "http://hl7.org/fhir/us/davinci-deqm/StructureDefinition/extension-cqfm-numerator-membership",
+          "valueString": "0"
+        }
+      ],
+      "population": [
+        {
+          "id": "3D2DD734-0712-484A-BE23-B1D2FF96D83A",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "count": 0
+        },
+        {
+          "id": "C4B18753-73BC-4D48-801E-82AB55A70139",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "count": 0
+        },
+        {
+          "id": "7C770CA2-5177-4C5F-A976-7F57EC9BC311",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exclusion",
+                "display": "Denominator Exclusion"
+              }
+            ]
+          },
+          "count": 0
+        },
+        {
+          "id": "57BC5171-93A7-4D9B-AA42-18A344C8623B",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "count": 0
+        }
+      ]
+    }
+  ],
+  "evaluatedResource": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/us/davinci-deqm/StructureDefinition/extension-criteriaReference",
+          "valueString": "3D2DD734-0712-484A-BE23-B1D2FF96D83A"
+        }
+      ],
+      "reference": "Patient/numer-EXM125"
+    }
+  ]
+}

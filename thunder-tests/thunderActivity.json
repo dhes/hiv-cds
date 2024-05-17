@@ -53,5 +53,39 @@
                 "password": "2f4b6638-ee67-4ad2-9090-5fe8137a9b8d"
             }
         }
+    },
+    {
+        "_id": "72a19195-d6e1-4c8d-bc5e-ed29c8ff23d4",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:8080/fhir/Measure/BreastCancerScreeningFHIR/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31&subject=numer-EXM125&reportType=subject",
+        "url": "http://localhost:8080/fhir/Measure/BreastCancerScreeningFHIR/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31&subject=numer-EXM125&reportType=subject",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2024-05-13T22:47:25.600Z",
+        "modified": "2024-05-13T22:47:25.600Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "periodStart",
+                "value": "2019-01-01",
+                "isPath": false
+            },
+            {
+                "name": "periodEnd",
+                "value": "2019-12-31",
+                "isPath": false
+            },
+            {
+                "name": "subject",
+                "value": "numer-EXM125",
+                "isPath": false
+            },
+            {
+                "name": "reportType",
+                "value": "subject",
+                "isPath": false
+            }
+        ]
     }
 ]

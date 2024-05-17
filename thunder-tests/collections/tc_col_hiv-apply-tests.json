@@ -1040,7 +1040,7 @@
     ],
     "settings": {
         "options": {
-            "baseUrl": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply"
+            "baseUrl": "http://45.61.62.28:8080/fhir/PlanDefinition/HIVScreening/$apply"
         }
     }
 }
