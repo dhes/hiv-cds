@@ -59,11 +59,11 @@
         "colId": "history",
         "containerId": "",
         "name": "http://localhost:8080/fhir/Measure/BreastCancerScreeningFHIR/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31&subject=numer-EXM125&reportType=subject",
-        "url": "http://localhost:8080/fhir/Measure/BreastCancerScreeningFHIR/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31&subject=numer-EXM125&reportType=subject",
+        "url": "http://45.61.62.28:8080/fhir/Measure/BreastCancerScreeningFHIR/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31&subject=numer-EXM125&reportType=subject",
         "method": "GET",
         "sortNum": 0,
         "created": "2024-05-13T22:47:25.600Z",
-        "modified": "2024-05-13T22:47:25.600Z",
+        "modified": "2024-05-17T01:20:22.776Z",
         "headers": [],
         "params": [
             {

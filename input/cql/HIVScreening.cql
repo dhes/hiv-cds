@@ -196,7 +196,9 @@ define "Never Tested Recommendation":
   'HIV Screening Recommended due to patient never having been tested.'
 
 define "Never Tested Rationale":
-  'CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
+  if "Never Tested Condition" then 
+    'CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
+  else ''
 
 define "Never Tested Indicator":
   "Routine"
@@ -219,7 +221,9 @@ define "MSM Recommendation":
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "MSM Rationale":
-  'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
+  if "MSM Condition" then 
+    'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
+  else ''
 
 define "MSM Indicator":
   if "Patient is a sexually active MSM who should be Screened Every 3 Months" then "Asap"
@@ -264,11 +268,12 @@ define "Pregnant Recommendation":
   else ''
 
 define "Pregnant Rationale":
-  if "Patient is at First Prenatal Visit" then
-    'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
-  else if "Patient is High Risk in Third Trimester of Pregnancy" then
-    'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
-  else if not ("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
+  // if "Patient is at First Prenatal Visit" then
+  //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
+  // else if "Patient is High Risk in Third Trimester of Pregnancy" then
+  //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
+  // else if not ("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
+  if "Pregnant Condition" then 'All pregnant women should be screened for HIV.'
   else ''
 
 define "Pregnant Indicator":
@@ -287,7 +292,9 @@ define "Seeking STD Treatment Recommendation":
   else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
 
 define "Seeking STD Treatment Rationale":
-  'All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
+  if "Seeking STD Treatment Condition" then 
+    'All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
+  else ''
 
 define "Seeking STD Treatment Indicator":
   "Routine"
@@ -296,21 +303,21 @@ define "Seeking STD Treatment Indicator":
 /* RISK Level Actions */ // DH temporarily take this out
 define "Risk Level Condition": // true if the other four Conditions are false
   "In Population"
+  // and (
+  //   "Never Tested Condition" is false
+  //   and "MSM Condition" is false
+  //   and "Pregnant Condition" is false
+  //   and "Seeking STD Treatment Condition" is false
+  //   and "Tuberculosis Condition" is false
+  //   // now the actual risk level conditions
   and (
-    "Never Tested Condition" is false
-    and "MSM Condition" is false
-    and "Pregnant Condition" is false
-    and "Seeking STD Treatment Condition" is false
-    and "Tuberculosis Condition" is false
-    // now the actual risk level conditions
-    and (
-      ("Patient is at High Risk for HIV" 
-        and "Over 3 Months has Passed Since Previous HIV Screening")
-     or 
-      ("Patient is at Moderate Risk for HIV" 
-        and "Over a Year has Passed Since Previous HIV Screening")
-    )
+    ("Patient is at High Risk for HIV" 
+      and "Over 3 Months has Passed Since Previous HIV Screening")
+   or 
+    ("Patient is at Moderate Risk for HIV" 
+      and "Over a Year has Passed Since Previous HIV Screening")
   )
+  // )
 
 define "Risk Level Recommendation":
   if "Patient is at High Risk for HIV" and "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended due to patient being at High Risk for HIV and over three months have passed since previous screening.'
@@ -339,27 +346,50 @@ define "Risk Level Indicator Status":
 // define lastHdeTuberculosisDiagnosisOnset:
 //   Last(HDE."Tuberculosis diagnosis").onset.value
 
+// troubleshooting
+define HivTestOnOrBeforeTbDiagnosis:
+  Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
+
 define "Tuberculosis Condition":
   not "Meets Exclusion Criteria"
   and exists HDE."Tuberculosis diagnosis"
-  and not exists HDE."HIV Tests" //or
-  //      (exists (HDE."HIV Tests") and (Coalesce(Last(HDE."HIV Tests").effective on or before  Last(HDE."Tuberculosis diagnosis").onset, true)))
-  //     //  exists (from TB in HDE."Tuberculosis diagnosis", HIVTest inHDE."HIV Tests" 
-  //     //     where HIVTest.effective.value > TB.onset.value)
-  //     )
-  // // and not ("There is an HIV test performed after the diagnosis of tuberculosis")
-  // // and not exists (HDE."HIV Tests") H
-  // //   where H.effective > T.onset
-
+  and (
+    not exists HDE."HIV Tests" 
+    or
+      ( exists HDE."HIV Tests" 
+        and Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
+      )
+  )
 
 define "Tuberculosis Recommendation":
   'This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
   // ToString(exists(HDE."Tuberculosis diagnosis")) // This line was to expressly pass a cql-expression to a CardPlan
 
 define "Tuberculosis Rationale":
-  'All patients who are about to start tuberculosis treatment should be tested for HIV.'
+  if "Tuberculosis Condition" then 
+    'All patients who are about to start tuberculosis treatment should be tested for HIV.'
+  else ''
 
 define "Tuberculosis Indicator":
+  "Routine"
+
+define "HIV Test Condition":
+  "Never Tested Condition" or 
+  "MSM Condition" or 
+  "Pregnant Condition" or 
+  "Seeking STD Treatment Condition" or
+  // "Risk Level Condition" or  // sometimes evaluates to null
+  "Tuberculosis Condition"
+
+define "HIV Test Rationale":
+  "Never Tested Rationale" + 
+  "MSM Rationale" + 
+  "Pregnant Rationale" + 
+  "Seeking STD Treatment Rationale" +
+  // "Risk Level Rationale" or  // sometimes evaluates to null
+  "Tuberculosis Rationale"
+
+define "HIV Test Indicator":
   "Routine"
 
 define "Exclusion Reason":
