@@ -197,7 +197,7 @@ define "Never Tested Recommendation":
 
 define "Never Tested Rationale":
   if "Never Tested Condition" then 
-    'CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
+    '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
   else ''
 
 define "Never Tested Indicator":
@@ -222,7 +222,7 @@ define "MSM Recommendation":
 
 define "MSM Rationale":
   if "MSM Condition" then 
-    'Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
+    '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
   else ''
 
 define "MSM Indicator":
@@ -273,7 +273,7 @@ define "Pregnant Rationale":
   // else if "Patient is High Risk in Third Trimester of Pregnancy" then
   //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
   // else if not ("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
-  if "Pregnant Condition" then 'All pregnant women should be screened for HIV.'
+  if "Pregnant Condition" then '\r\n - All pregnant women should be screened for HIV.'
   else ''
 
 define "Pregnant Indicator":
@@ -293,7 +293,7 @@ define "Seeking STD Treatment Recommendation":
 
 define "Seeking STD Treatment Rationale":
   if "Seeking STD Treatment Condition" then 
-    'All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
+    '\r\n - All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
   else ''
 
 define "Seeking STD Treatment Indicator":
@@ -332,7 +332,7 @@ define "Risk Level Rationale":
   if "Patient is at High Risk for HIV" then 'Health-care providers should subsequently test all persons likely to be at high risk for HIV at least every 3 months. Persons likely to be at high risk include persons with problems related to drug abuse, injection-drug users and their sex partners, persons who exchange sex for money or drugs, sex partners of HIV-infected persons, and MSM or heterosexual persons who themselves or whose sex partners have had more than one sex partner since their most recent HIV test.'
   else if "Patient is at Moderate Risk for HIV" then 'Health-care providers should subsequently test all persons likely to be at moderate risk for HIV at least annually. Persons likely to be at moderate risk include MSM, Transgender Persons, and Gay or Bisexual Men who are sexually active and have sex with other men.'
   else if "Patient is at No Risk for HIV" then 'The Task Force made no recommendation for or against routinely screening asymptomatic adults and adolescents with no identifiable risk factors for HIV. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
-  else 'In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
+  else '\r\n - In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
 
 define "Risk Level Indicator Status":
   if "Patient is at High Risk for HIV" then "Stat"
@@ -367,7 +367,7 @@ define "Tuberculosis Recommendation":
 
 define "Tuberculosis Rationale":
   if "Tuberculosis Condition" then 
-    'All patients who are about to start tuberculosis treatment should be tested for HIV.'
+    '\r\n - All patients who are about to start tuberculosis treatment should be tested for HIV.'
   else ''
 
 define "Tuberculosis Indicator":
@@ -383,10 +383,10 @@ define "HIV Test Condition":
 
 define "HIV Test Rationale":
   "Never Tested Rationale" + 
-  "MSM Rationale" + 
+  "MSM Rationale" +
   "Pregnant Rationale" + 
   "Seeking STD Treatment Rationale" +
-  // "Risk Level Rationale" or  // sometimes evaluates to null
+  // '\r\n- ' + "Risk Level Rationale" or  // sometimes evaluates to null
   "Tuberculosis Rationale"
 
 define "HIV Test Indicator":
