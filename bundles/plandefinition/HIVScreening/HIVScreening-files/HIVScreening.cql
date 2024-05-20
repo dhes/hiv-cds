@@ -192,16 +192,17 @@ define "Never Tested Condition":
   "In Population"
   and not "Patient has had an HIV Screening"
 
-define "Never Tested Recommendation":
-  'HIV Screening Recommended due to patient never having been tested.'
+define "Never Tested Recommendation": // i.e. recommended because...
+  'The patient has never having been tested.'
 
 define "Never Tested Rationale":
   if "Never Tested Condition" then 
-    '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
+    // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
+   '\r\n - Screening for HIV infection should be performed routinely for all patients aged 13--64 years.'
   else ''
 
-define "Never Tested Indicator":
-  "Routine"
+// define "Never Tested Indicator":
+//   "Routine"
 
 
 /* CDC EDGE CASES */
@@ -215,19 +216,21 @@ define "MSM Condition":
 
 define "MSM Recommendation":
   if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
-    'Three Month HIV Screening Recommended due to patient being a sexually active MSM who has been prescribed PrEP in the past.'
+    'Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
   else if "Patient is a sexually active MSM who should be Screened Annually" then
-    'Annual HIV Screening Recommended due to patient being a sexually active MSM without HIV and has had multiple sex partners.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+    'Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
+  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else ''
 
 define "MSM Rationale":
   if "MSM Condition" then 
     '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
   else ''
 
-define "MSM Indicator":
-  if "Patient is a sexually active MSM who should be Screened Every 3 Months" then "Asap"
-  else "Asap"
+// define "MSM Indicator":
+//   // if "Patient is a sexually active MSM who should be Screened Every 3 Months" then "Routine"
+//   // else "Routine"
+//   "Routine"
 
 
 // PREGNANCY
@@ -259,12 +262,12 @@ define "Pregnant Condition":
   )
 
 define "Pregnant Recommendation":
-  if "Patient is at First Prenatal Visit" and "Over 3 Months has Passed Since Previous HIV Screening" then
-    'HIV Screening Recommended now due to patient being at first prenatal visit.'
-  else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
-    'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  else if not ("There is an HIV test after the most recent positive pregnancy test") then
-    'HIV Screening Recommended due to patient not having been tested since positive pregnancy test.'
+  // if "Patient is at First Prenatal Visit" and "Over 3 Months has Passed Since Previous HIV Screening" then
+  //   'HIV Screening Recommended now due to patient being at first prenatal visit.'
+  // else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
+  //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
+  if not ("There is an HIV test after the most recent positive pregnancy test") then
+    'Patient has not been tested since positive pregnancy test.'
   else ''
 
 define "Pregnant Rationale":
@@ -272,14 +275,14 @@ define "Pregnant Rationale":
   //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
   // else if "Patient is High Risk in Third Trimester of Pregnancy" then
   //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
-  // else if not ("There is an HIV test after the most recent positive pregnancy test") then 'All pregnant women should be screened for HIV.'
   if "Pregnant Condition" then '\r\n - All pregnant women should be screened for HIV.'
   else ''
 
-define "Pregnant Indicator":
-  if "Patient is at First Prenatal Visit" then "Routine"
-  else if "Patient is High Risk in Third Trimester of Pregnancy" then "Stat"
-  else "Routine"
+// define "Pregnant Indicator":
+//   // if "Patient is at First Prenatal Visit" then "Routine"
+//   // else if "Patient is High Risk in Third Trimester of Pregnancy" then "Stat"
+//   // else "Routine"
+//   "Routine"
 
 
 // SEEKING TREATMENT
@@ -288,16 +291,17 @@ define "Seeking STD Treatment Condition":
   and "Patient is Seeking Treatment for an STD"
 
 define "Seeking STD Treatment Recommendation":
-  if "Over 3 Months has Passed Since Previous HIV Screening" then 'HIV Screening Recommended now because patient is seeking treatment for an STD and more than three months have passed.'
-  else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  if "Over 3 Months has Passed Since Previous HIV Screening" then 'Patient is seeking treatment for an STD and more than three months have passed.'
+  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  else ''
 
 define "Seeking STD Treatment Rationale":
   if "Seeking STD Treatment Condition" then 
-    '\r\n - All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint, regardless of whether the patient is known or suspected to have specific behavior risks for HIV infection.'
+    '\r\n - All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint.'
   else ''
 
-define "Seeking STD Treatment Indicator":
-  "Routine"
+// define "Seeking STD Treatment Indicator":
+//   "Routine"
 
 
 /* RISK Level Actions */ // DH temporarily take this out
@@ -325,20 +329,21 @@ define "Risk Level Recommendation":
   // else if "Patient is at No Risk for HIV" then 'HIV Screening Not Recommended due to patient being at No Risk for HIV.'
   // else if "Patient is at Low Risk for HIV" then 'HIV Screening Not Recommended due to patient being at Low Risk for HIV.'
   // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
-  else null
+  else ''
 
 /* Risk Level Rational based on Recommendation Option (References to CDC Recommendations) */
 define "Risk Level Rationale":
   if "Patient is at High Risk for HIV" then 'Health-care providers should subsequently test all persons likely to be at high risk for HIV at least every 3 months. Persons likely to be at high risk include persons with problems related to drug abuse, injection-drug users and their sex partners, persons who exchange sex for money or drugs, sex partners of HIV-infected persons, and MSM or heterosexual persons who themselves or whose sex partners have had more than one sex partner since their most recent HIV test.'
   else if "Patient is at Moderate Risk for HIV" then 'Health-care providers should subsequently test all persons likely to be at moderate risk for HIV at least annually. Persons likely to be at moderate risk include MSM, Transgender Persons, and Gay or Bisexual Men who are sexually active and have sex with other men.'
-  else if "Patient is at No Risk for HIV" then 'The Task Force made no recommendation for or against routinely screening asymptomatic adults and adolescents with no identifiable risk factors for HIV. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
-  else '\r\n - In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
+  // else if "Patient is at No Risk for HIV" then 'The Task Force made no recommendation for or against routinely screening asymptomatic adults and adolescents with no identifiable risk factors for HIV. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
+  // else '\r\n - In low prevalence settings, in which the majority of clients are at minimal risk, targeted HIV testing on the basis of risk screening was considered more feasible for identifying limited numbers of HIV-infected persons. The Task Force concluded that such screening would detect additional patients with HIV, but the overall number would be limited, and the potential benefits did not clearly outweigh the burden on primary care practices or the potential harms of a general HIV screening program.'
+  else ''
 
-define "Risk Level Indicator Status":
-  if "Patient is at High Risk for HIV" then "Stat"
-  else if "Patient is at Moderate Risk for HIV" then "Asap"
-  else if "Patient is at No Risk for HIV" then "Routine"
-  else "Routine"
+// define "Risk Level Indicator Status":
+//   if "Patient is at High Risk for HIV" then "Stat"
+//   else if "Patient is at Moderate Risk for HIV" then "Asap"
+//   else if "Patient is at No Risk for HIV" then "Routine"
+//   else "Routine"
 
 //troubleshooting
 // define lastHdeHivTestsEffective:
@@ -362,7 +367,8 @@ define "Tuberculosis Condition":
   )
 
 define "Tuberculosis Recommendation":
-  'This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
+  if "Tuberculosis Condition" then 'This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
+  else ''
   // ToString(exists(HDE."Tuberculosis diagnosis")) // This line was to expressly pass a cql-expression to a CardPlan
 
 define "Tuberculosis Rationale":
@@ -370,8 +376,8 @@ define "Tuberculosis Rationale":
     '\r\n - All patients who are about to start tuberculosis treatment should be tested for HIV.'
   else ''
 
-define "Tuberculosis Indicator":
-  "Routine"
+// define "Tuberculosis Indicator":
+//   "Routine"
 
 define "HIV Test Condition":
   "Never Tested Condition" or 
