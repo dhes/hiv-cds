@@ -381,6 +381,8 @@ define "HIV Test Condition":
   // "Risk Level Condition" or  // sometimes evaluates to null
   "Tuberculosis Condition"
 
+define "HIV Test Recommendation": 'Recommend HIV Test'
+
 define "HIV Test Rationale":
   "Never Tested Rationale" + 
   "MSM Rationale" +
