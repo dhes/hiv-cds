@@ -193,12 +193,12 @@ define "Never Tested Condition":
   and not "Patient has had an HIV Screening"
 
 define "Never Tested Recommendation": // i.e. recommended because...
-  'The patient has never having been tested.'
+  '\r\n - The patient has never having been tested.'
 
 define "Never Tested Rationale":
   if "Never Tested Condition" then 
     // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
-   '\r\n - Screening for HIV infection should be performed routinely for all patients aged 13--64 years.'
+   '\r\n - All patients age 13 to 64 years (inclusive) should be tested for HIV infection if testing has never been done.'
   else ''
 
 // define "Never Tested Indicator":
@@ -216,15 +216,16 @@ define "MSM Condition":
 
 define "MSM Recommendation":
   if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
-    'Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
+    '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
   else if "Patient is a sexually active MSM who should be Screened Annually" then
-    'Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
+    '\r\n - Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
   // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
   else ''
 
 define "MSM Rationale":
   if "MSM Condition" then 
-    '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
+    // '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
+    '\r\n - Men who have sex with men should be tested at least annually if sexually active and the patient or their sex partner(s) have had more than one sex partner since most recent HIV test.'
   else ''
 
 // define "MSM Indicator":
@@ -267,7 +268,7 @@ define "Pregnant Recommendation":
   // else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
   //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
   if not ("There is an HIV test after the most recent positive pregnancy test") then
-    'Patient has not been tested since positive pregnancy test.'
+    '\r\n - Patient has not been tested since positive pregnancy test.'
   else ''
 
 define "Pregnant Rationale":
@@ -291,13 +292,13 @@ define "Seeking STD Treatment Condition":
   and "Patient is Seeking Treatment for an STD"
 
 define "Seeking STD Treatment Recommendation":
-  if "Over 3 Months has Passed Since Previous HIV Screening" then 'Patient is seeking treatment for an STD and more than three months have passed.'
+  if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.'
   // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
   else ''
 
 define "Seeking STD Treatment Rationale":
   if "Seeking STD Treatment Condition" then 
-    '\r\n - All patients seeking treatment for STDs, including all patients attending STD clinics, should be screened routinely for HIV during each visit for a new complaint.'
+    '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.'
   else ''
 
 // define "Seeking STD Treatment Indicator":
@@ -367,7 +368,7 @@ define "Tuberculosis Condition":
   )
 
 define "Tuberculosis Recommendation":
-  if "Tuberculosis Condition" then 'This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
+  if "Tuberculosis Condition" then '\r\n - This patient has not been tested for HIV since they were diagnosed with tuburculosis.'
   else ''
   // ToString(exists(HDE."Tuberculosis diagnosis")) // This line was to expressly pass a cql-expression to a CardPlan
 
@@ -387,7 +388,13 @@ define "HIV Test Condition":
   // "Risk Level Condition" or  // sometimes evaluates to null
   "Tuberculosis Condition"
 
-define "HIV Test Recommendation": 'Recommend HIV Test'
+define "HIV Test Recommendation": // 'Recommend HIV Test'
+  "Never Tested Recommendation" + 
+  "MSM Recommendation" +
+  "Pregnant Recommendation" + 
+  "Seeking STD Treatment Recommendation" +
+  // '\r\n- ' + "Risk Level Rationale" or  // sometimes evaluates to null
+  "Tuberculosis Recommendation"
 
 define "HIV Test Rationale":
   "Never Tested Rationale" + 
