@@ -1,17 +1,17 @@
 {
   "resourceType": "PlanDefinition",
   "id": "HIVScreening",
-  "name": "NACHC HIVScreening",
+  "name": "CDC HIVScreening",
   "title": "HIV screening",
-  "description": "The USPSTF recommends that clinicians screen for HIV infection in all pregnant persons, including those who present in labor or at delivery whose HIV status is unknown; in adolescents and adults aged 15 to 65 years; and adolescents and older adults who are at increased risk of infection.",
+  "description": "Intended to represent CDC screening guidelines including from general population population and specific at-risk populations",
   "status": "draft",
   "date": "2023-12-14T07:23:00-10:00",
   "experimental": true,
-  "url": "http://fhir.org/guides/nachc/hiv-cds/PlanDefinition/HIVScreening",
+  "url": "http://fhir.org/guides/hopena/hiv-cds/PlanDefinition/HIVScreening",
   "identifier": [
     {
       "use": "official",
-      "value": "nachc-HIV-Screening"
+      "value": "hopena-HIV-Screening"
     }
   ],
   "version": "1.0.3",
@@ -24,8 +24,8 @@
       }
     ]
   },
-  "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/HIVScreening"],
-  "publisher": "National Association of Community Health Centers, Inc. (NACHC), edited by Dan Heslinga",
+  "library": ["http://fhir.org/guides/hopena/hiv-cds/Library/HIVScreening"],
+  "publisher": "hopena.info",
   "useContext": [
     {
       "code": {
@@ -73,12 +73,13 @@
       "text": "HIV Management"
     }
   ],
-  "copyright": "© Copyright National Association of Community Health Centers, Inc. (NACHC) 2021+.",
+  "copyright": "© hopena.info 2024+.",
   "action": [
     {
       "prefix": "Recommend HIV Screening Test",
       "title": "HIV Test Recommendation",
       "description": "Perform an HIV Test.",
+      "textEquivalent": "HIV Testing is due according to screening guidelines. ",
       "condition": [
         {
           "kind": "applicability",
@@ -105,7 +106,7 @@
         ]
       },
       "selectionBehavior": "any",
-      "definitionCanonical": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening|1.0.0",
+      "definitionCanonical": "http://fhir.org/guides/hopena/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening|1.0.0",
       "dynamicValue": [
         {
           "path": "action.title",

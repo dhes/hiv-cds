@@ -1,13 +1,13 @@
 {
     "resourceType": "ActivityDefinition",
     "id": "activitydefinition-HIVScreening",
-    "url": "http://fhir.org/guides/nachc/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
+    "url": "http://fhir.org/guides/hopena/hiv-cds/ActivityDefinition/activitydefinition-HIVScreening",
     "version": "1.0.0",
     "name": "ActivityDefinition_HIV_Screening_ServiceRequest",
     "title": "ActivityDefinition - ServiceRequest: HIV Screening",
     "status": "draft",
     "date": "2021-12-10",
-    "publisher": "National Association of Community Health Centers (NACHC)",
+    "publisher": "hopena.info",
     "description": "A ServiceRequest for HIV screening.",
     "purpose": "Provides HIV screening suggestion as part of HIV testing clinical decision support.",
     "usage": "Used to create an HIV screening ServiceRequest.",
@@ -40,7 +40,7 @@
         }],
         "text": "HIV testing"
     }],
-    "library": ["http://fhir.org/guides/nachc/hiv-cds/Library/HIVScreening"],
+    "library": ["http://fhir.org/guides/hopena/hiv-cds/Library/HIVScreening"],
     "kind": "ServiceRequest",
     "code": {
         "coding": [{

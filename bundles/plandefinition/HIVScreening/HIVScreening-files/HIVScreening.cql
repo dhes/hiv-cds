@@ -193,7 +193,10 @@ define "Never Tested Condition":
   and not "Patient has had an HIV Screening"
 
 define "Never Tested Recommendation": // i.e. recommended because...
+  if "Never Tested Condition" then 
+    // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
   '\r\n - The patient has never having been tested.'
+  else ''
 
 define "Never Tested Rationale":
   if "Never Tested Condition" then 
@@ -215,11 +218,13 @@ define "MSM Condition":
   )
 
 define "MSM Recommendation":
-  if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
-    '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
-  else if "Patient is a sexually active MSM who should be Screened Annually" then
-    '\r\n - Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
-  // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
+  if "MSM Condition" then (
+      if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
+        '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
+      else if "Patient is a sexually active MSM who should be Screened Annually" then
+        '\r\n - Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
+      else ''
+     )
   else ''
 
 define "MSM Rationale":
@@ -267,7 +272,7 @@ define "Pregnant Recommendation":
   //   'HIV Screening Recommended now due to patient being at first prenatal visit.'
   // else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
   //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  if not ("There is an HIV test after the most recent positive pregnancy test") then
+  if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then
     '\r\n - Patient has not been tested since positive pregnancy test.'
   else ''
 
@@ -292,7 +297,9 @@ define "Seeking STD Treatment Condition":
   and "Patient is Seeking Treatment for an STD"
 
 define "Seeking STD Treatment Recommendation":
-  if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.'
+  if "Seeking STD Treatment Condition" then (
+    if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.'
+    else '')
   // else 'HIV Screening Not Recommended at this time. It has been ' + ToString("Days Since Previous HIV Screening") + ' days since last HIV Screening.'
   else ''
 
