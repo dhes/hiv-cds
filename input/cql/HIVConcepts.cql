@@ -156,3 +156,4 @@ code "DAST 10 Score": '82667-7' from "LOINC" display 'Total Score [DAST-10]'
 // DH follows
 code "Positive Test Value": '10828004' from "SNOMED-CT" display 'Positive Test Value'
 code "Positive Test Interpretation": 'POS' from "Observation Interpretation" display 'Positive Test Interpretation'
+code "Estimated Date of Delivery": '161714006' from "SNOMED-CT" display 'Estimated date of delivery (observable entity)'

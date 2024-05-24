@@ -87,6 +87,8 @@ define "HIV Tests":
     where O.status in { 'final', 'amended', 'corrected' }
     //return O.value as FHIR.CodeableConcept
 
+define "Estimated Date of Delivery":
+  [Observation: Cx."Estimated Date of Delivery"]
 
 /*
   @dataElement: NACHC.A2.DE216 HIV Test Ordered
