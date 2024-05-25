@@ -12,8 +12,8 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
-  // default  @2024-01-01T00:00:00-10:00 // for testing within this project
-  default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
+  default  @2024-01-01T00:00:00-10:00 // for testing within this project
+  // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
 parameter "True" default true
 parameter "Routine" default 'routine'
@@ -195,13 +195,13 @@ define "Never Tested Condition":
 define "Never Tested Recommendation": // i.e. recommended because...
   if "Never Tested Condition" then 
     // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
-  '\r\n - The patient has never having been tested.'
+  '\r\n - This patient has never been tested for HIV.'
   else ''
 
 define "Never Tested Rationale":
   if "Never Tested Condition" then 
     // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
-   '\r\n - All patients age 13 to 64 years (inclusive) should be tested for HIV infection if testing has never been done.'
+   '\r\n - All patients age 13 to 64 years (inclusive) should be tested for HIV at least once.'
   else ''
 
 // define "Never Tested Indicator":
@@ -222,7 +222,7 @@ define "MSM Recommendation":
       if "Patient is a sexually active MSM who should be Screened Every 3 Months" then
         '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.'
       else if "Patient is a sexually active MSM who should be Screened Annually" then
-        '\r\n - Annual HIV Screening Recommended due for patients who are sexually active MSM without HIV and has had multiple sex partners.'
+        '\r\n - Annual HIV testing is recommended for patients who are sexually active MSM who have had multiple sex partners.'
       else ''
      )
   else ''
@@ -250,21 +250,50 @@ define "MSM Rationale":
 //   "Reference Date" - 9 months
 // end of for testing
 
+// define "Estimated Date of Delivery":
+//   // Replace this with the actual logic to determine the EDD
+//   DateTime(2025, 3, 8)
+
+define "Estimated Date of Delivery":
+  date from Last(HDE."Estimated Date of Delivery").value
+
+define "First Eay of Third Trimester":
+  "Estimated Date of Delivery" - 13 weeks
+
+// troubleshooting
+// define ThereLastHDEHIVTestseffective:
+//   date from Last(HDE."HIV Tests").effective.value
+// define ThereLastHDEEstimatedDateofDelivery:
+//   date from Last(HDE."Estimated Date of Delivery").value.value
+
+define "There is an HIV test since the onset of the third trimester":
+  exists(HDE."Estimated Date of Delivery") and
+  exists(HDE."HIV Tests") and
+  date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
+
 define "Pregnant Condition":
   // "In Population" // not really
   not "Meets Exclusion Criteria"
   and (
-    "Patient is at First Prenatal Visit"
-    or "Patient is High Risk in Third Trimester of Pregnancy"
-    or exists(HDE."Pregnancy Conditions" PregnancyConditions
-      where PregnancyConditions.onset after ("Reference Date" - 9 months))
-    or (exists(HDE."Positive Pregnancy Observations" PPO 
+    // commented stuff was from NASH encounter based guidelines
+    // "Patient is at First Prenatal Visit"
+    // or "Patient is High Risk in Third Trimester of Pregnancy"
+    // or exists(HDE."Pregnancy Conditions" PregnancyConditions
+    //   where PregnancyConditions.onset after ("Reference Date" - 9 months))
+    (exists(HDE."Positive Pregnancy Observations" PPO 
       where PPO.effective after ("Reference Date" - 9 months))
       and not ("There is an HIV test after the most recent positive pregnancy test"))
-    or exists(HDE."Pregnancy Supervision" PregnancySupervision
-      where PregnancySupervision.performed after ("Reference Date" - 9 months))
-    or exists(HDE."Pregnancy Procedures" PregnancyProcedures
-      where PregnancyProcedures.performed after ("Reference Date" - 9 months))
+    or (exists(HDE."Positive Pregnancy Observations" PPO 
+      where PPO.effective after ("Reference Date" - 9 months))
+      and not ("There is an HIV test since the onset of the third trimester"))
+    // or exists(HDE."Pregnancy Supervision" PregnancySupervision
+    //   where PregnancySupervision.performed after ("Reference Date" - 9 months))
+    // or exists(HDE."Pregnancy Procedures" PregnancyProcedures
+    //   where PregnancyProcedures.performed after ("Reference Date" - 9 months))
+    // new stuff follows
+    // or exists("Estimated Date of Delivery") 
+    //   and "Estimated Date of Delivery" is after "Reference Date"
+    //   and exists "HIVTest" where "HIVTest".effective on or after "Estimated Date of Delivery".value - 13 weeks
   )
 
 define "Pregnant Recommendation":
@@ -281,7 +310,7 @@ define "Pregnant Rationale":
   //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
   // else if "Patient is High Risk in Third Trimester of Pregnancy" then
   //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
-  if "Pregnant Condition" then '\r\n - All pregnant women should be screened for HIV.'
+  if "Pregnant Condition" then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.'
   else ''
 
 // define "Pregnant Indicator":
@@ -381,7 +410,7 @@ define "Tuberculosis Recommendation":
 
 define "Tuberculosis Rationale":
   if "Tuberculosis Condition" then 
-    '\r\n - All patients who are about to start tuberculosis treatment should be tested for HIV.'
+    '\r\n - All patients who are about to start tuberculosis treatment should first have an HIV Test.'
   else ''
 
 // define "Tuberculosis Indicator":

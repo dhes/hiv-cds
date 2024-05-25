@@ -260,6 +260,17 @@ define "Estimated Date of Delivery":
 define "First Eay of Third Trimester":
   "Estimated Date of Delivery" - 13 weeks
 
+// troubleshooting
+// define ThereLastHDEHIVTestseffective:
+//   date from Last(HDE."HIV Tests").effective.value
+// define ThereLastHDEEstimatedDateofDelivery:
+//   date from Last(HDE."Estimated Date of Delivery").value.value
+
+define "There is an HIV test since the onset of the third trimester":
+  exists(HDE."Estimated Date of Delivery") and
+  exists(HDE."HIV Tests") and
+  date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
+
 define "Pregnant Condition":
   // "In Population" // not really
   not "Meets Exclusion Criteria"
@@ -272,6 +283,9 @@ define "Pregnant Condition":
     (exists(HDE."Positive Pregnancy Observations" PPO 
       where PPO.effective after ("Reference Date" - 9 months))
       and not ("There is an HIV test after the most recent positive pregnancy test"))
+    or (exists(HDE."Positive Pregnancy Observations" PPO 
+      where PPO.effective after ("Reference Date" - 9 months))
+      and not ("There is an HIV test since the onset of the third trimester"))
     // or exists(HDE."Pregnancy Supervision" PregnancySupervision
     //   where PregnancySupervision.performed after ("Reference Date" - 9 months))
     // or exists(HDE."Pregnancy Procedures" PregnancyProcedures

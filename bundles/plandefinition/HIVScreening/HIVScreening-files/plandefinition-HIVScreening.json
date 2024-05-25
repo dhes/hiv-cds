@@ -79,7 +79,7 @@
       "prefix": "Recommend HIV Screening Test",
       "title": "HIV Test Recommendation",
       "description": "Perform an HIV Test.",
-      "textEquivalent": "HIV Testing is due according to screening guidelines. ",
+      "textEquivalent": "HIV Testing is due according to CDC HIV screening guidelines. ",
       "condition": [
         {
           "kind": "applicability",
@@ -134,16 +134,10 @@
       ],
       "action": [
         {
-          "description": "Will perform HIV screening"
+          "description": "Will order HIV testing"
         },
         {
-          "description": "Will not perform HIV screening at this time - Snooze 1 month."
-        },
-        {
-          "description": "Will not perform HIV screening at this time - Snooze 12 months."
-        },
-        {
-          "description": "Will not perform HIV screening at this time - patient declined."
+          "description": "Will not order HIV testing"
         }
       ]
     }
