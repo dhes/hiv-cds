@@ -261,8 +261,8 @@ define "Estimated Date of Delivery":
 define "First Eay of Third Trimester":
   "Estimated Date of Delivery" - 13 weeks
 
-define IsHigherRiskState:
-  'HI' in "HIV Higher Risk States and Territories"
+// define IsHigherRiskState:
+//   'HI' in "HIV Higher Risk States and Territories"
 
 define "Lives In State with Higher HIV Risk":
 // next line will cause problems if there is more than one home state
