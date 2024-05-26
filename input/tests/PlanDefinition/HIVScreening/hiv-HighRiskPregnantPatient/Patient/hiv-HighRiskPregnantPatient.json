@@ -6,39 +6,52 @@
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"
     ]
   },
-  "extension": [ {
-    "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexualorientation",
-    "extension": [ {
-      "url": "Sexual Orientation",
-      "valueCodeableConcept": {
-        "coding": [ {
-          "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-          "code": "NACHC.A0.DE50",
-          "display": "Straight or heterosexual"
-        }, {
-          "system": "http://snomed.info/sct",
-          "code": "20430005",
-          "display": "Straight or heterosexual"
-        } ]
-      }
-    } ]
-  }, {
-    "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/genderidentity",
-    "extension": [ {
-      "url": "Gender Identity",
-      "valueCodeableConcept": {
-        "coding": [ {
-          "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-          "code": "NACHC.A0.DE57",
-          "display": "Female"
-        }, {
-          "system": "http://snomed.info/sct",
-          "code": "446141000124107",
-          "display": "Female"
-        } ]
-      }
-    } ]
-  } ],
+  "extension": [
+    {
+      "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexualorientation",
+      "extension": [
+        {
+          "url": "Sexual Orientation",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+                "code": "NACHC.A0.DE50",
+                "display": "Straight or heterosexual"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "20430005",
+                "display": "Straight or heterosexual"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/genderidentity",
+      "extension": [
+        {
+          "url": "Gender Identity",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+                "code": "NACHC.A0.DE57",
+                "display": "Female"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "446141000124107",
+                "display": "Female"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "identifier": [
     {
       "use": "usual",
@@ -66,12 +79,16 @@
     {
       "use": "official",
       "family": "Coraline",
-      "given": [
-        "Beatrix"
-      ]
+      "given": ["Beatrix"]
     }
   ],
   "gender": "female",
   "birthDate": "1989-01-12",
-  "deceasedBoolean": false
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home",
+      "state": "HI"
+    }
+  ]
 }

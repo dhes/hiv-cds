@@ -6,39 +6,52 @@
       "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/hiv-patient"
     ]
   },
-  "extension": [ {
-    "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexualorientation",
-    "extension": [ {
-      "url": "Sexual Orientation",
-      "valueCodeableConcept": {
-        "coding": [ {
-          "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-          "code": "NACHC.A0.DE50",
-          "display": "Straight or heterosexual"
-        }, {
-          "system": "http://snomed.info/sct",
-          "code": "20430005",
-          "display": "Straight or heterosexual"
-        } ]
-      }
-    } ]
-  }, {
-    "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/genderidentity",
-    "extension": [ {
-      "url": "Gender Identity",
-      "valueCodeableConcept": {
-        "coding": [ {
-          "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-          "code": "NACHC.A0.DE56",
-          "display": "Male"
-        }, {
-          "system": "http://snomed.info/sct",
-          "code": "446151000124109",
-          "display": "Male"
-        } ]
-      }
-    } ]
-  } ],
+  "extension": [
+    {
+      "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/sexualorientation",
+      "extension": [
+        {
+          "url": "Sexual Orientation",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+                "code": "NACHC.A0.DE50",
+                "display": "Straight or heterosexual"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "20430005",
+                "display": "Straight or heterosexual"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/genderidentity",
+      "extension": [
+        {
+          "url": "Gender Identity",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
+                "code": "NACHC.A0.DE56",
+                "display": "Male"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "446151000124109",
+                "display": "Male"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "identifier": [
     {
       "use": "usual",
@@ -66,25 +79,17 @@
     {
       "use": "official",
       "family": "Chalmers",
-      "given": [
-        "Peter",
-        "James"
-      ]
+      "given": ["Peter", "James"]
     },
     {
       "use": "usual",
       "family": "Chalmers",
-      "given": [
-        "Jim"
-      ]
+      "given": ["Jim"]
     },
     {
       "use": "maiden",
       "family": "Windsor",
-      "given" : [
-        "Peter",
-        "James"
-      ],
+      "given": ["Peter", "James"],
       "period": {
         "end": "2002"
       }
@@ -118,18 +123,7 @@
   "address": [
     {
       "use": "home",
-      "type": "both",
-      "text": "534 Erewhon St PeasantVille, Utah 84414",
-      "line": [
-        "534 Erewhon St"
-      ],
-      "city": "PleasantVille",
-      "district": "Rainbow",
-      "state": "UT",
-      "postalCode": "84414",
-      "period": {
-        "start": "1974-12-25"
-      }
+      "state": "HI"
     }
   ],
   "contact": [
@@ -147,16 +141,14 @@
       "name": {
         "family": "du Marché",
         "_family": {
-          "extension" : [
+          "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
               "valueString": "VV"
             }
           ]
         },
-        "given": [
-          "Bénédicte"
-        ]
+        "given": ["Bénédicte"]
       },
       "telecom": [
         {
@@ -167,9 +159,7 @@
       "address": {
         "use": "home",
         "type": "both",
-        "line": [
-          "534 Erewhon St"
-        ],
+        "line": ["534 Erewhon St"],
         "city": "PleasantVille",
         "district": "Rainbow",
         "state": "VT",

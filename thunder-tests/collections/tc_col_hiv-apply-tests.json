@@ -1038,6 +1038,54 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "093763a1-d70e-4ab6-8a39-af5d85386efe",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-third-trimester-high-risk-state ",
+            "url": "",
+            "method": "POST",
+            "sortNum": 155000,
+            "created": "2024-05-25T21:56:30.011Z",
+            "modified": "2024-05-25T21:56:59.118Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-third-trimester-high-risk-state\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "// tc.test(\"Action element exists\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
         }
     ],
     "settings": {

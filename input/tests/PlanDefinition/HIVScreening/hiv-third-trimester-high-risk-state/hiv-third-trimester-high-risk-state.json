@@ -1,16 +1,20 @@
 {
-	"resourceType": "Patient",
-	"id": "hiv-third-trimester-high-risk-state",
-	"name": [
-		{
-			"given": [
-				"Absolutely"
-			],
-			"family": "Nobody"
-		}
-	],
-	"birthDate": "1985-01-01",
-	"gender": "female",
-	"active": true,
-	"deceasedBoolean": false
+  "resourceType": "Patient",
+  "id": "hiv-third-trimester-high-risk-state",
+  "name": [
+    {
+      "given": ["Absolutely"],
+      "family": "Nobody"
+    }
+  ],
+  "birthDate": "1985-01-01",
+  "gender": "female",
+  "active": true,
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home", 
+      "state": "TX"
+    }
+  ]
 }

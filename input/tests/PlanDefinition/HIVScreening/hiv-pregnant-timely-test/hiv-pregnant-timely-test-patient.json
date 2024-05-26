@@ -12,5 +12,11 @@
 	"birthDate": "1985-01-01",
 	"gender": "female",
 	"active": true,
-	"deceasedBoolean": false
+	"deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home", 
+      "state": "HI"
+    }
+  ]
 }
