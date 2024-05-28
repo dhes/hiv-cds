@@ -60,6 +60,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-third-trimester-no-state-recorded",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems",
       "display": "Ashley Madelyn"
     }

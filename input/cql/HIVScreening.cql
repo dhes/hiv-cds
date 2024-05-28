@@ -264,9 +264,10 @@ define "First Eay of Third Trimester":
 // define IsHigherRiskState:
 //   'HI' in "HIV Higher Risk States and Territories"
 
-define "Lives In State with Higher HIV Risk":
-// next line will cause problems if there is more than one home state
-  singleton from Patient.address.state.value in "HIV Higher Risk States and Territories"
+define "Lives In State with Higher HIV Prevalence":
+  if Count(Patient.address.state)>0 
+    then First(Patient.address.state.value) in "HIV Higher Risk States and Territories" //Patient.address PS where PS.use='home'
+    else true  // i.e. assume a higher prevalence state or residence if none is recorded
 
 // troubleshooting
 // define ThereLastHDEHIVTestseffective:

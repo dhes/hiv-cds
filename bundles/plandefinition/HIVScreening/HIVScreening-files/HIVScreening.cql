@@ -13,7 +13,7 @@ include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
   default  @2024-01-01T00:00:00-10:00 // for testing within this project
-  // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
+//   // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
 parameter "True" default true
 parameter "Routine" default 'routine'
@@ -21,6 +21,7 @@ parameter "Asap" default 'asap'
 parameter "Urgent" default 'urgent'
 parameter "Stat" default 'stat'
 parameter "Errors" default null
+parameter "HIV Higher Risk States and Territories" default {'VI','MS','NV','TX','FL','LA','GA','DC'}
 
 // parameter "Routine" default 'routine'
 // parameter "Never tested" default false
@@ -260,6 +261,14 @@ define "Estimated Date of Delivery":
 define "First Eay of Third Trimester":
   "Estimated Date of Delivery" - 13 weeks
 
+// define IsHigherRiskState:
+//   'HI' in "HIV Higher Risk States and Territories"
+
+define "Lives In State with Higher HIV Prevalence":
+  if Count(Patient.address.state)>0 
+    then First(Patient.address.state.value) in "HIV Higher Risk States and Territories" //Patient.address PS where PS.use='home'
+    else true  // i.e. assume a higher prevalence state or residence if none is recorded
+
 // troubleshooting
 // define ThereLastHDEHIVTestseffective:
 //   date from Last(HDE."HIV Tests").effective.value
@@ -303,6 +312,8 @@ define "Pregnant Recommendation":
   //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
   if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then
     '\r\n - Patient has not been tested since positive pregnancy test.'
+  else if "Pregnant Condition" and not ("There is an HIV test since the onset of the third trimester") then
+    '\r\n - Patient has not been tested in the third trimester.'
   else ''
 
 define "Pregnant Rationale":
@@ -310,7 +321,10 @@ define "Pregnant Rationale":
   //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
   // else if "Patient is High Risk in Third Trimester of Pregnancy" then
   //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
-  if "Pregnant Condition" then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.'
+  if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then 
+    '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.'
+  else if "Pregnant Condition" and not ("There is an HIV test since the onset of the third trimester") then
+  '\r\n - All pregnant patients in higher-prevalence states should be HIV tested in the third trimester.'
   else ''
 
 // define "Pregnant Indicator":

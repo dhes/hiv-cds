@@ -1,0 +1,31 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-third-trimester-no-state-recorded-edd",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "survey",
+          "display": "Survey"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "161714006",
+        "display": "Estimated date of delivery"
+      }
+    ],
+    "text": "Estimated date of delivery"
+  },
+  "subject": {
+    "reference": "Patient/hiv-third-trimester-no-state-recorded"
+  },
+  "effectiveDateTime": "2023-09-22",
+  "valueDateTime": "2024-04-27"
+}
