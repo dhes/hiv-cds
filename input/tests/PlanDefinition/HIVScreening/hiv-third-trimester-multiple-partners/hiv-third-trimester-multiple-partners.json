@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "hiv-third-trimester-high-risk-state",
+  "id": "hiv-third-trimester-multiple-partners",
   "name": [
     {
       "given": ["Absolutely"],
@@ -14,7 +14,7 @@
   "address": [
     {
       "use": "home", 
-      "state": "TX"
+      "state": "IA"
     }
   ]
 }

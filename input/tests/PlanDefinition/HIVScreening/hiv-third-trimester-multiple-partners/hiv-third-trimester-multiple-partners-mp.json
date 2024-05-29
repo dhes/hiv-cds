@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-money-for-sex-nsc",
+  "id": "hiv-third-trimester-multiple-partners-mp",
   "status": "final",
   "category": [
     {
@@ -17,14 +17,14 @@
     "coding": [
       {
         "system": "http://snomed.info/sct",
-        "code": "159798008",
-        "display": "Exachanges sex for money or drugs (occupation)"
+        "code": "225516002",
+        "display": "Multiple sexual contacts (finding)"
       }
     ],
-    "text": "Exchanges sex for money or drugs"
+    "text": "Multiple sexual contacts (finding)"
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-money-for-sex"
+    "reference": "Patient/hiv-third-trimester-multiple-partners"
   },
   "effectiveDateTime": "2023-10-01",
   "valueBoolean": true

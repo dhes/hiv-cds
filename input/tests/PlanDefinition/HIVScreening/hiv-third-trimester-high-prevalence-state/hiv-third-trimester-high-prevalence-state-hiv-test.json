@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-high-risk-state-hiv-test",
+  "id": "hiv-third-trimester-high-prevalence-state-hiv-test",
   "status": "final",
   "subject": {
-    "reference": "Patient/hiv-third-trimester-high-risk-state"
+    "reference": "Patient/hiv-third-trimester-high-prevalence-state"
   },
   "code": {
     "coding": [

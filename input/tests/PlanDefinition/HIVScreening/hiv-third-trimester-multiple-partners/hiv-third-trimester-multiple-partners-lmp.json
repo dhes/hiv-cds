@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-high-risk-state-edd",
+  "id": "hiv-third-trimester-multiple-partners-lmp",
   "status": "final",
   "category": [
     {
@@ -16,16 +16,16 @@
   "code": {
     "coding": [
       {
-        "system": "http://snomed.info/sct",
-        "code": "161714006",
-        "display": "Estimated date of delivery"
+        "system": "http://loinc.org",
+        "code": "8665-2",
+        "display": "Date of Last Menstrual Period"
       }
     ],
-    "text": "Estimated date of delivery"
+    "text": "Date of Last Menstrual Period"
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-high-risk-state"
+    "reference": "Patient/hiv-third-trimester-multiple-partners"
   },
-  "effectiveDateTime": "2023-09-22",
-  "valueDateTime": "2024-04-27"
+  "effectiveDateTime": "2024-06-01",
+  "valueDateTime": "2023-07-20"
 }

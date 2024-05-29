@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-partner-of-idu-hiv-test",
+  "id": "hiv-third-trimester-low-prevalence-state-hiv-test",
   "status": "final",
   "subject": {
-    "reference": "Patient/hiv-third-trimester-partner-of-idu"
+    "reference": "Patient/hiv-third-trimester-low-prevalence-state"
   },
   "code": {
     "coding": [

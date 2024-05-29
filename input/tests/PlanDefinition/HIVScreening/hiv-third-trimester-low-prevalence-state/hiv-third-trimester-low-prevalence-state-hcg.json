@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-partner-of-idu-hcg",
+  "id": "hiv-third-trimester-low-prevalence-state-hcg",
   "status": "final",
   "code": {
     "coding": [
@@ -12,7 +12,7 @@
     ]
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-partner-of-idu"
+    "reference": "Patient/hiv-third-trimester-low-prevalence-state"
   },
   "effectiveDateTime": "2023-09-20T07:34:56-10:00",
   "valueCodeableConcept": {

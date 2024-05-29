@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-low-risk-state-lmp",
+  "id": "hiv-third-trimester-high-prevalence-state-lmp",
   "status": "final",
   "category": [
     {
@@ -24,7 +24,7 @@
     "text": "Date of Last Menstrual Period"
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-low-risk-state"
+    "reference": "Patient/hiv-third-trimester-high-prevalence-state"
   },
   "effectiveDateTime": "2024-06-01",
   "valueDateTime": "2023-07-20"

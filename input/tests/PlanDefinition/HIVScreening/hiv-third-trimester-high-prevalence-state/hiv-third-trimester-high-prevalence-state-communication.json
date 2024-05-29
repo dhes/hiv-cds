@@ -1,6 +1,6 @@
 {
   "resourceType": "Communication",
-  "id": "hiv-third-trimester-partner-of-idu-communication",
+  "id": "hiv-third-trimester-high-prevalence-state-communication",
   "subject": {
     "reference": "Patient/hiv-third-trimester-no-state-recorded"
   },
@@ -17,7 +17,7 @@
   ],
   "note": [
     {
-      "text": "Unfortunately I am not certain if the hiv-third-trimester-partner-of-idu-poi-observation will process correctly. So this is a placeholder."
+      "text": "pending."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-low-risk-state-hcg",
+  "id": "hiv-third-trimester-multiple-partners-hcg",
   "status": "final",
   "code": {
     "coding": [
@@ -12,7 +12,7 @@
     ]
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-low-risk-state"
+    "reference": "Patient/hiv-third-trimester-multiple-partners"
   },
   "effectiveDateTime": "2023-09-20T07:34:56-10:00",
   "valueCodeableConcept": {

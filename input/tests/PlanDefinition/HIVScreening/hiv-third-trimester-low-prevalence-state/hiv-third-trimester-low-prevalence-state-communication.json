@@ -1,6 +1,6 @@
 {
   "resourceType": "Communication",
-  "id": "hiv-third-trimester-high-risk-state-communication",
+  "id": "hiv-third-trimester-low-prevalence-state-communication",
   "subject": {
     "reference": "Patient/hiv-third-trimester-no-state-recorded"
   },

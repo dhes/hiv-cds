@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-low-risk-state-hiv-test",
+  "id": "hiv-third-trimester-multiple-partners-hiv-test",
   "status": "final",
   "subject": {
-    "reference": "Patient/hiv-third-trimester-low-risk-state"
+    "reference": "Patient/hiv-third-trimester-multiple-partners"
   },
   "code": {
     "coding": [

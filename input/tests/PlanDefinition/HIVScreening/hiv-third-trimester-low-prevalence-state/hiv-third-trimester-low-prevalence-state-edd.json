@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-low-risk-state-edd",
+  "id": "hiv-third-trimester-low-prevalence-state-edd",
   "status": "final",
   "category": [
     {
@@ -24,7 +24,7 @@
     "text": "Estimated date of delivery"
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-low-risk-state"
+    "reference": "Patient/hiv-third-trimester-low-prevalence-state"
   },
   "effectiveDateTime": "2023-09-22",
   "valueDateTime": "2024-04-27"
