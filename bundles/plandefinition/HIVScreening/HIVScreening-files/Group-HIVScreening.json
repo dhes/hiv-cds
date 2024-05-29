@@ -20,6 +20,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-third-trimester-money-for-sex",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
       "display": "Ashley Madelyn"
     }
@@ -85,6 +90,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-third-trimester-hiv-risk-lifestyle",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-third-trimester-partner-of-idu",
       "display": "Absolutely Nobody"
     }
@@ -121,6 +131,11 @@
   }, {
     "entity": {
       "reference": "Patient/hiv-tb-timely-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-new-sexual-contact",
       "display": "Absolutely Nobody"
     }
   }, {
