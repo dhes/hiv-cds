@@ -1,0 +1,20 @@
+{
+  "resourceType": "Patient",
+  "id": "hiv-third-trimester-new-sexual-contact",
+  "name": [
+    {
+      "given": ["Absolutely"],
+      "family": "Nobody"
+    }
+  ],
+  "birthDate": "1985-01-01",
+  "gender": "female",
+  "active": true,
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home", 
+      "state": "IA"
+    }
+  ]
+}

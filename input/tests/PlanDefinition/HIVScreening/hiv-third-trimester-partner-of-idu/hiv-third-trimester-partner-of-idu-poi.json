@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-	"id": "hiv-third-trimester-partner-of-idu-poi-observation",
+	"id": "hiv-third-trimester-partner-of-idu-poi",
   "code": {
     "coding": [
       {
@@ -23,5 +23,10 @@
         ]
       }
     ]
-  }
+  },
+  "subject": {
+    "reference": "Patient/hiv-third-trimester-partner-of-idu"
+  },
+  "effectiveDateTime": "2023-10-01",
+  "valueBoolean": true
 }

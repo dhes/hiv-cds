@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-idu-idu",
+  "id": "hiv-third-trimester-new-sexual-contact-nsc",
   "status": "final",
   "category": [
     {
@@ -17,14 +17,14 @@
     "coding": [
       {
         "system": "http://snomed.info/sct",
-        "code": "228388006",
-        "display": "Intravenous drug user (finding)"
+        "code": "771458000",
+        "display": "New sexual contact (finding)"
       }
     ],
-    "text": "Intravenous drug user (finding)"
+    "text": "New sexual contact (finding))"
   },
   "subject": {
-    "reference": "Patient/hiv-third-trimester-idu"
+    "reference": "Patient/hiv-third-trimester-new-sexual-contact"
   },
   "effectiveDateTime": "2023-10-01",
   "valueBoolean": true
