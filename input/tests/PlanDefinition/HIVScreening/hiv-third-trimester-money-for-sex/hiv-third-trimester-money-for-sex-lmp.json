@@ -1,0 +1,31 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-third-trimester-money-for-sex-lmp",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "survey",
+          "display": "Survey"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "8665-2",
+        "display": "Date of Last Menstrual Period"
+      }
+    ],
+    "text": "Date of Last Menstrual Period"
+  },
+  "subject": {
+    "reference": "Patient/hiv-third-trimester-money-for-sex"
+  },
+  "effectiveDateTime": "2024-06-01",
+  "valueDateTime": "2023-07-20"
+}
