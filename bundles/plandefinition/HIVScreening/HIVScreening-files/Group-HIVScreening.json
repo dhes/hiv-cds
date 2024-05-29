@@ -10,6 +10,11 @@
   "actual": true,
   "member": [ {
     "entity": {
+      "reference": "Patient/hiv-third-trimester-low-risk-state",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-middle-age-tested",
       "display": "Absolutely Nobody"
     }
@@ -27,6 +32,11 @@
     "entity": {
       "reference": "Patient/hiv-ExclusionPatient",
       "display": "Sally Merryweather"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-idu",
+      "display": "Absolutely Nobody"
     }
   }, {
     "entity": {
@@ -71,6 +81,11 @@
   }, {
     "entity": {
       "reference": "Patient/hiv-too-young",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-partner-of-idu",
       "display": "Absolutely Nobody"
     }
   }, {
