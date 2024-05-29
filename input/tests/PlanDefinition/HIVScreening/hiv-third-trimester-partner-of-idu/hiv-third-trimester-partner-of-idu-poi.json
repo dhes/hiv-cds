@@ -1,0 +1,27 @@
+{
+  "resourceType": "Observation",
+	"id": "hiv-third-trimester-partner-of-idu-poi-observation",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "225517006",
+        "display": "Sexual partners",
+        "extension": [
+          {
+            "url": "http://snomed.info/sct#246090004",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "226034001",
+                  "display": "Injecting drug user"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
