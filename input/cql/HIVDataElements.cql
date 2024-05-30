@@ -742,12 +742,32 @@ define "DAST 10 Question 9":
   [Observation: Cx."DAST 10 Question 9"] O
     where O.status in { 'final', 'amended', 'corrected' }
 
-
 /*
   @dataElement: NACHC.H2.DE11 DAST 10 Score
   @activity: NACHC.H2 DAST 10
   @description: Substance Abuse Prescription Illicit Substance Over the Counter Product Screening Test Score
 */
+
 define "DAST 10 Score":
   [Observation: Cx."DAST 10 Score"] O
     where O.status in { 'final', 'amended', 'corrected' }
+
+define "HIV Risky Lifestyle":
+  [Observation: Cx."HIV Risky Lifestyle"] RL
+    where RL.status in { 'final', 'amended', 'corrected' }
+
+define "Intravenous Drug User":
+  [Observation: Cx."Intravenous Drug User"] IDU
+    where IDU.status in { 'final', 'amended', 'corrected' }
+
+define "Exchanges Sex for Drugs or Money":
+  [Observation: Cx."Exchanges Sex for Drugs or Money"] ESM
+    where ESM.status in { 'final', 'amended', 'corrected' }
+
+define "Multiple Sex Partners":
+  [Observation: Cx."Multiple Sex Partners"] MSP
+    where MSP.status in { 'final', 'amended', 'corrected' }
+
+define "New Sex Partner":
+  [Observation: Cx."New Sex Partner"] NSP
+    where NSP.status in { 'final', 'amended', 'corrected' }
