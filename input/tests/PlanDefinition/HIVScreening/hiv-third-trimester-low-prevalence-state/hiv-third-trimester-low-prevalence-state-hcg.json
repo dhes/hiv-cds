@@ -14,7 +14,7 @@
   "subject": {
     "reference": "Patient/hiv-third-trimester-low-prevalence-state"
   },
-  "effectiveDateTime": "2023-09-20T07:34:56-10:00",
+  "effectiveDateTime": "2023-08-20T07:34:56-10:00",
   "valueCodeableConcept": {
     "coding": [
       {
