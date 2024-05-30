@@ -343,14 +343,10 @@ define "Pregnant Condition":
   )
 
 define "Pregnant Recommendation":
-  // if "Patient is at First Prenatal Visit" and "Over 3 Months has Passed Since Previous HIV Screening" then
-  //   'HIV Screening Recommended now due to patient being at first prenatal visit.'
-  // else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
-  //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then
+  if "Pregnant Condition" and not ("HIV test done since pregnancy test") then
     '\r\n - Patient has not been tested since positive pregnancy test.'
-  else if "Pregnant Condition" and not ("There is an HIV test during the third trimester") then
-    '\r\n - Patient has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not (not "HIV test done in third trimester in patient from high prevalance state") then
+    '\r\n - Patient has not been tested in the third trimester and resides in a high prevalance state.'
   else ''
 
 define "Pregnant Rationale":
