@@ -21,7 +21,7 @@ parameter "Asap" default 'asap'
 parameter "Urgent" default 'urgent'
 parameter "Stat" default 'stat'
 parameter "Errors" default null
-parameter "HIV Higher Risk States and Territories" default {'VI','MS','NV','TX','FL','LA','GA','DC'}
+parameter "HIV Higher Prevalence States and Territories" default {'VI','MS','NV','TX','FL','LA','GA','DC'}
 
 // parameter "Routine" default 'routine'
 // parameter "Never tested" default false
@@ -270,10 +270,10 @@ define "First Eay of Third Trimester":
   "Estimated Date of Delivery" - 13 weeks
 
 // define IsHigherRiskState:
-//   'HI' in "HIV Higher Risk States and Territories"
+//   'HI' in "HIV Higher Prevalence States and Territories"
 
 define "State of Residence Present in Patient Record":
-  Count(Patient.address.state)=0
+  Count(Patient.address.state)>0
 
 // troubleshooting
 // define ThereLastHDEHIVTestseffective:
@@ -283,7 +283,7 @@ define "State of Residence Present in Patient Record":
 
 define "Lives In State with Higher HIV Prevalence":
   if "State of Residence Present in Patient Record" 
-    and First(Patient.address.state.value) in "HIV Higher Risk States and Territories" 
+    and First(Patient.address.state.value) in "HIV Higher Prevalence States and Territories"
   then true
   else false
 
@@ -292,72 +292,72 @@ define "There is an HIV test during the third trimester":
   exists(HDE."HIV Tests") and
   date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
 
-define "HIV test done in third trimester in patient from high prevalance state":
+define "Resides a high prevalence state and has not had an HIV test in the third trimester":
   "Lives In State with Higher HIV Prevalence"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
 // define "HIV Risky Lifestyle":
 //   HDE."HIV Risky Lifestyle"
 
-define "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs":
+define "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester":
   exists HDE."HIV Risky Lifestyle" 
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
 // define "Intravenous Drug User":
 //    HDE."Intravenous Drug User"
 
-define "HIV test done in third trimester in intravenous drug user":
+define "Intravenous drug user and no HIV test done in third trimester":
   exists HDE."Intravenous Drug User"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
-define "HIV test done in third trimester in patient who exchanges sex for money or drugs":
+define "Patient who exchanges sex for money or drugs and no HIV test done in third trimester":
   exists HDE."Exchanges Sex for Drugs or Money"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
 define "Multiple Sex Partners":
   HDE."Multiple Sex Partners"
 
-define "HIV test done in third trimester in patient with multiple partners":
+define "Patient with multiple partners and no HIV test done in third trimester":
   exists HDE."Multiple Sex Partners"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
-define "HIV test done in third trimester in patient with a new sex partner during pregnancy":
+define "Patient with a new sex partner during pregnancy and no HIV test done in third trimester":
   exists HDE."New Sex Partner"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
-define "HIV test done in third trimester in patient with no state of residence on record":
+define "No state of residence on record and no HIV test done in third trimester":
   not "State of Residence Present in Patient Record"
-  and "There is an HIV test during the third trimester"
+  and not "There is an HIV test during the third trimester"
 
 define "Pregnant Condition":
   "Active Diagnosis of HIV During Patient Visit" is null
   and (
     not "HIV test done since pregnancy test"
-    or not "HIV test done in third trimester in patient from high prevalance state"
-    or not "HIV test done in third trimester in patient with no state of residence on record"
-    or not "HIV test done in third trimester in intravenous drug user"
-    or not "HIV test done in third trimester in patient who exchanges sex for money or drugs"
-    or not "HIV test done in third trimester in patient with multiple partners"
-    or not "HIV test done in third trimester in patient with a new sex partner during pregnancy"
-    or not "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs"
+    or "Resides a high prevalence state and has not had an HIV test in the third trimester"
+    or "No state of residence on record and no HIV test done in third trimester"
+    or "Intravenous drug user and no HIV test done in third trimester"
+    or "Patient who exchanges sex for money or drugs and no HIV test done in third trimester"
+    or "Patient with multiple partners and no HIV test done in third trimester"
+    or "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester"
+    or "Patient with a new sex partner during pregnancy and no HIV test done in third trimester"
   )
 
 define "Pregnant Recommendation":
   if "Pregnant Condition" and not ("HIV test done since pregnancy test") then
-    '\r\n - She has not been tested during pregnancy. '
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient from high prevalance state") then
-    '\r\n - She resides in a high prevalance state and has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with no state of residence on record") then
+    '\r\n - She has not been tested during pregnancy.'
+  else if "Pregnant Condition" and "Resides a high prevalence state and has not had an HIV test in the third trimester" then
+    '\r\n - She resides in a high prevalence state and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not "No state of residence on record and no HIV test done in third trimester" then
     '\r\n - Her state of residence is unknown and she has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in intravenous drug user") then
+  else if "Pregnant Condition" and "Intravenous drug user and no HIV test done in third trimester" then
     '\r\n - She uses intravenous drugs and has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient who exchanges sex for money or drugs") then
+  else if "Pregnant Condition" and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then
     '\r\n - She exchanges sex for money or drugs and has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with multiple partners") then
+  else if "Pregnant Condition" and "Patient with multiple partners and no HIV test done in third trimester" then
     '\r\n - She has multiple partners and has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs") then
+  else if "Pregnant Condition" and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then
     '\r\n - Her sex partner has HIV or uses intravenous drugs and she has not been tested in the third trimester.'
-  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with a new sex partner during pregnancy") then
+  else if "Pregnant Condition" and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then
     '\r\n - She has a new sex partner since becoming pregnant and not been tested in the third trimester.'
   else ''
 
