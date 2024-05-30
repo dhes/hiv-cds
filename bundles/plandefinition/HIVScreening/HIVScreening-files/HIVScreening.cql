@@ -132,12 +132,12 @@ define "Meets Inclusion Criteria":
  "Patient is between 13 and 64 years old"
  or "Patient is Seeking Treatment for an STD"
 
-define "Meets Exclusion Criteria":
-  "Active Diagnosis of HIV During Patient Visit" is not null
+// define "Meets Exclusion Criteria":
+//   "Active Diagnosis of HIV During Patient Visit" is not null
 
 define "In Population":
   "Meets Inclusion Criteria"
-  and not "Meets Exclusion Criteria"
+  and not "Active Diagnosis of HIV During Patient Visit" is not null
 
 /* OPTIONS:
 
@@ -255,6 +255,14 @@ define "MSM Rationale":
 //   // Replace this with the actual logic to determine the EDD
 //   DateTime(2025, 3, 8)
 
+define "There is a positive pregnancy test in the last 40 weeks":
+  exists(HDE."Positive Pregnancy Observations" PPO 
+    where PPO.effective after ("Reference Date" - 40 weeks))
+
+define "HIV test done since pregnancy test":
+  "There is a positive pregnancy test in the last 40 weeks"
+    and ("There is an HIV test after the most recent positive pregnancy test")
+
 define "Estimated Date of Delivery":
   date from Last(HDE."Estimated Date of Delivery").value
 
@@ -264,10 +272,8 @@ define "First Eay of Third Trimester":
 // define IsHigherRiskState:
 //   'HI' in "HIV Higher Risk States and Territories"
 
-define "Lives In State with Higher HIV Prevalence":
-  if Count(Patient.address.state)>0 
-    then First(Patient.address.state.value) in "HIV Higher Risk States and Territories" //Patient.address PS where PS.use='home'
-    else true  // i.e. assume a higher prevalence state or residence if none is recorded
+define "State of Residence Present in Patient Record":
+  Count(Patient.address.state)=0
 
 // troubleshooting
 // define ThereLastHDEHIVTestseffective:
@@ -275,55 +281,90 @@ define "Lives In State with Higher HIV Prevalence":
 // define ThereLastHDEEstimatedDateofDelivery:
 //   date from Last(HDE."Estimated Date of Delivery").value.value
 
-define "There is an HIV test since the onset of the third trimester":
+define "Lives In State with Higher HIV Prevalence":
+  if "State of Residence Present in Patient Record" 
+    and First(Patient.address.state.value) in "HIV Higher Risk States and Territories" 
+  then true
+  else false
+
+define "There is an HIV test during the third trimester":
   exists(HDE."Estimated Date of Delivery") and
   exists(HDE."HIV Tests") and
   date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
 
+define "HIV test done in third trimester in patient from high prevalance state":
+  "Lives In State with Higher HIV Prevalence"
+  and "There is an HIV test during the third trimester"
+
+// define "HIV Risky Lifestyle":
+//   HDE."HIV Risky Lifestyle"
+
+define "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs":
+  exists HDE."HIV Risky Lifestyle" 
+  and "There is an HIV test during the third trimester"
+
+// define "Intravenous Drug User":
+//    HDE."Intravenous Drug User"
+
+define "HIV test done in third trimester in intravenous drug user":
+  exists HDE."Intravenous Drug User"
+  and "There is an HIV test during the third trimester"
+
+define "HIV test done in third trimester in patient who exchanges sex for money or drugs":
+  exists HDE."Exchanges Sex for Drugs or Money"
+  and "There is an HIV test during the third trimester"
+
+define "Multiple Sex Partners":
+  HDE."Multiple Sex Partners"
+
+define "HIV test done in third trimester in patient with multiple partners":
+  exists HDE."Multiple Sex Partners"
+  and "There is an HIV test during the third trimester"
+
+define "HIV test done in third trimester in patient with a new sex partner during pregnancy":
+  exists HDE."New Sex Partner"
+  and "There is an HIV test during the third trimester"
+
+define "HIV test done in third trimester in patient with no state of residence on record":
+  not "State of Residence Present in Patient Record"
+  and "There is an HIV test during the third trimester"
+
 define "Pregnant Condition":
-  // "In Population" // not really
-  not "Meets Exclusion Criteria"
+  "Active Diagnosis of HIV During Patient Visit" is null
   and (
-    // commented stuff was from NASH encounter based guidelines
-    // "Patient is at First Prenatal Visit"
-    // or "Patient is High Risk in Third Trimester of Pregnancy"
-    // or exists(HDE."Pregnancy Conditions" PregnancyConditions
-    //   where PregnancyConditions.onset after ("Reference Date" - 9 months))
-    (exists(HDE."Positive Pregnancy Observations" PPO 
-      where PPO.effective after ("Reference Date" - 9 months))
-      and not ("There is an HIV test after the most recent positive pregnancy test"))
-    or (exists(HDE."Positive Pregnancy Observations" PPO 
-      where PPO.effective after ("Reference Date" - 9 months))
-      and not ("There is an HIV test since the onset of the third trimester"))
-    // or exists(HDE."Pregnancy Supervision" PregnancySupervision
-    //   where PregnancySupervision.performed after ("Reference Date" - 9 months))
-    // or exists(HDE."Pregnancy Procedures" PregnancyProcedures
-    //   where PregnancyProcedures.performed after ("Reference Date" - 9 months))
-    // new stuff follows
-    // or exists("Estimated Date of Delivery") 
-    //   and "Estimated Date of Delivery" is after "Reference Date"
-    //   and exists "HIVTest" where "HIVTest".effective on or after "Estimated Date of Delivery".value - 13 weeks
+    not "HIV test done since pregnancy test"
+    or not "HIV test done in third trimester in patient from high prevalance state"
+    or not "HIV test done in third trimester in patient with no state of residence on record"
+    or not "HIV test done in third trimester in intravenous drug user"
+    or not "HIV test done in third trimester in patient who exchanges sex for money or drugs"
+    or not "HIV test done in third trimester in patient with multiple partners"
+    or not "HIV test done in third trimester in patient with a new sex partner during pregnancy"
+    or not "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs"
   )
 
 define "Pregnant Recommendation":
-  // if "Patient is at First Prenatal Visit" and "Over 3 Months has Passed Since Previous HIV Screening" then
-  //   'HIV Screening Recommended now due to patient being at first prenatal visit.'
-  // else if "Patient is High Risk in Third Trimester of Pregnancy" and "Over 3 Months has Passed Since Previous HIV Screening" then
-  //   'HIV Screening Recommended due to patient being at high risk of HIV during third trimester of pregnancy.'
-  if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then
-    '\r\n - Patient has not been tested since positive pregnancy test.'
-  else if "Pregnant Condition" and not ("There is an HIV test since the onset of the third trimester") then
-    '\r\n - Patient has not been tested in the third trimester.'
+  if "Pregnant Condition" and not ("HIV test done since pregnancy test") then
+    '\r\n - She has not been tested during pregnancy. '
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient from high prevalance state") then
+    '\r\n - She resides in a high prevalance state and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with no state of residence on record") then
+    '\r\n - Her state of residence is unknown and she has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in intravenous drug user") then
+    '\r\n - She uses intravenous drugs and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient who exchanges sex for money or drugs") then
+    '\r\n - She exchanges sex for money or drugs and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with multiple partners") then
+    '\r\n - She has multiple partners and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs") then
+    '\r\n - Her sex partner has HIV or uses intravenous drugs and she has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with a new sex partner during pregnancy") then
+    '\r\n - She has a new sex partner since becoming pregnant and not been tested in the third trimester.'
   else ''
 
 define "Pregnant Rationale":
-  // if "Patient is at First Prenatal Visit" then
-  //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
-  // else if "Patient is High Risk in Third Trimester of Pregnancy" then
-  //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
   if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then 
     '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.'
-  else if "Pregnant Condition" and not ("There is an HIV test since the onset of the third trimester") then
+  else if "Pregnant Condition" and not ("There is an HIV test during the third trimester") then
   '\r\n - All pregnant patients in higher-prevalence states should be HIV tested in the third trimester.'
   else ''
 
@@ -407,7 +448,7 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  not "Meets Exclusion Criteria"
+  not "Active Diagnosis of HIV During Patient Visit" is not null
   and exists HDE."Tuberculosis diagnosis"
   and (
     not exists HDE."HIV Tests" 
@@ -458,7 +499,7 @@ define "HIV Test Indicator":
   "Routine"
 
 define "Exclusion Reason":
-  if "Meets Exclusion Criteria" then
+  if "Active Diagnosis of HIV During Patient Visit" is not null then
     (
       'Patient was excluded from HIV Screening '
       + (
@@ -852,19 +893,19 @@ define "Patient is at First Prenatal Visit":
         such that PregnancyEncounter.id = PatientEncounter.id
   ) is not null
 
-define "Patient is in Third Trimester of Pregnancy":
-  (
-    (Last(
-      (HC.QualifiedEncounters(HDE."Third Trimester Encounters")) ThirdTrimesterEncounter
-    sort by end of period
-    )) ThirdTrimesterEncounter
-      // with "Patient Encounter" PatientEncounter
-      //   such that ThirdTrimesterEncounter.id = PatientEncounter.id
-  ) is not null
+// define "Patient is in Third Trimester of Pregnancy":
+//   (
+//     (Last(
+//       (HC.QualifiedEncounters(HDE."Third Trimester Encounters")) ThirdTrimesterEncounter
+//     sort by end of period
+//     )) ThirdTrimesterEncounter
+//       // with "Patient Encounter" PatientEncounter
+//       //   such that ThirdTrimesterEncounter.id = PatientEncounter.id
+//   ) is not null
 
-define "Patient is High Risk in Third Trimester of Pregnancy":
-  "Patient is at High Risk for HIV"
-  and "Patient is in Third Trimester of Pregnancy"
+// define "Patient is High Risk in Third Trimester of Pregnancy":
+//   "Patient is at High Risk for HIV"
+//   and "Patient is in Third Trimester of Pregnancy"
 
 
 /* MSM (Men who have sex with men) */

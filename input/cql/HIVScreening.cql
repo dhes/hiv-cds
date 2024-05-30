@@ -299,7 +299,7 @@ define "HIV test done in third trimester in patient from high prevalance state":
 // define "HIV Risky Lifestyle":
 //   HDE."HIV Risky Lifestyle"
 
-define "HIV test done in third trimester in patient with risky lifestyle":
+define "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs":
   exists HDE."HIV Risky Lifestyle" 
   and "There is an HIV test during the third trimester"
 
@@ -334,26 +334,34 @@ define "Pregnant Condition":
   and (
     not "HIV test done since pregnancy test"
     or not "HIV test done in third trimester in patient from high prevalance state"
-    or not "HIV test done in third trimester in patient with risky lifestyle"
+    or not "HIV test done in third trimester in patient with no state of residence on record"
     or not "HIV test done in third trimester in intravenous drug user"
     or not "HIV test done in third trimester in patient who exchanges sex for money or drugs"
     or not "HIV test done in third trimester in patient with multiple partners"
     or not "HIV test done in third trimester in patient with a new sex partner during pregnancy"
-    or not "HIV test done in third trimester in patient with no state of residence on record"
+    or not "HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs"
   )
 
 define "Pregnant Recommendation":
   if "Pregnant Condition" and not ("HIV test done since pregnancy test") then
-    '\r\n - Patient has not been tested since positive pregnancy test.'
-  else if "Pregnant Condition" and not (not "HIV test done in third trimester in patient from high prevalance state") then
-    '\r\n - Patient has not been tested in the third trimester and resides in a high prevalance state.'
+    '\r\n - She has not been tested during pregnancy. '
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient from high prevalance state") then
+    '\r\n - She resides in a high prevalance state and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with no state of residence on record") then
+    '\r\n - Her state of residence is unknown and she has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in intravenous drug user") then
+    '\r\n - She uses intravenous drugs and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient who exchanges sex for money or drugs") then
+    '\r\n - She exchanges sex for money or drugs and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with multiple partners") then
+    '\r\n - She has multiple partners and has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient whose sex partner has HIV or uses intravenous drugs") then
+    '\r\n - Her sex partner has HIV or uses intravenous drugs and she has not been tested in the third trimester.'
+  else if "Pregnant Condition" and not ("HIV test done in third trimester in patient with a new sex partner during pregnancy") then
+    '\r\n - She has a new sex partner since becoming pregnant and not been tested in the third trimester.'
   else ''
 
 define "Pregnant Rationale":
-  // if "Patient is at First Prenatal Visit" then
-  //   'To promote informed and timely therapeutic decisions, health-care providers should test women for HIV as early as possible during each pregnancy. Women who decline the test early in prenatal care should be encouraged to be tested at a subsequent visit.'
-  // else if "Patient is High Risk in Third Trimester of Pregnancy" then
-  //   'A second HIV test during the third trimester for women in settings with elevated HIV incidence (>17 cases per 100,000 person-years) is cost-effective and might result in substantial reductions in mother-to-child HIV transmission.'
   if "Pregnant Condition" and not ("There is an HIV test after the most recent positive pregnancy test") then 
     '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.'
   else if "Pregnant Condition" and not ("There is an HIV test during the third trimester") then
