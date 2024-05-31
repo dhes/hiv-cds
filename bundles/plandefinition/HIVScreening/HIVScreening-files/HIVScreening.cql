@@ -14,13 +14,13 @@ parameter "Reference Date" DateTime  // can use values such as Now() or a date l
   default Now() 
 
 
-parameter "True" default true
+// parameter "True" default true
 // parameter "Routine" default 'routine'
 
-parameter "Asap" default 'asap'
-parameter "Urgent" default 'urgent'
-parameter "Stat" default 'stat'
-parameter "Errors" default null
+// parameter "Asap" default 'asap'
+// parameter "Urgent" default 'urgent'
+// parameter "Stat" default 'stat'
+// parameter "Errors" default null
 parameter "HIV Higher Prevalence States and Territories" default { 'VI', 'MS', 'NV', 'TX', 'FL', 'LA', 'GA', 'DC' }
 
 // parameter "Routine" default 'routine'
@@ -153,32 +153,6 @@ define "Patient is Gay or Bisexual":
 //    + ' ' +
 //   First(Patient.name.family.value)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 define "Patient Name":
   First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
 
@@ -187,21 +161,18 @@ define "Patient Name":
 
 /* Recommendation Criteria - HIV Screening  */
 
-
-
-
 define "Meets Inclusion Criteria":
   "Patient is between 13 and 64 years old"
     or "Patient is Seeking Treatment for an STD"
 
-// define "Meets Exclusion Criteria":
-//   "Active Diagnosis of HIV During Patient Visit" is not null
 
+// define "Meets Exclusion Criteria":
+//   "Active diagnosis of HIV" is not null
 
 
 define "In Population":
   "Meets Inclusion Criteria"
-    and not "Active Diagnosis of HIV During Patient Visit" is not null
+    and not "Active diagnosis of HIV" is not null
 
 /* OPTIONS:
 
@@ -282,8 +253,6 @@ define "Never Tested Indicator":
 
 /* CDC EDGE CASES */
 // MSM
-
-
 
 define "MSM Condition":
   if ( "In Population"
@@ -424,7 +393,7 @@ define "No state of residence on record and no HIV test done in third trimester"
     and not "There is an HIV test during the third trimester"
 
 define "Pregnant Condition":
-  if ( "Active Diagnosis of HIV During Patient Visit" is null
+  if ( "Active diagnosis of HIV" is null
       and ( "Pregnant but no HIV test during pregnancy"
           or "Resides a high prevalence state and has not had an HIV test in the third trimester"
           or "No state of residence on record and no HIV test done in third trimester"
@@ -590,7 +559,7 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  if ( not "Active Diagnosis of HIV During Patient Visit" is not null
+  if ( not "Active diagnosis of HIV" is not null
       and exists HDE."Tuberculosis diagnosis"
       and ( not exists HDE."HIV Tests"
           or ( exists HDE."HIV Tests"
@@ -641,8 +610,8 @@ define "HIV Test Indicator":
     else ''
 
 define "Exclusion Reason":
-  if "Active Diagnosis of HIV During Patient Visit" is not null then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
-        else if "Active Diagnosis of HIV During Patient Visit" is not null then 'due to the patient already having been diagnosed with HIV.' 
+  if "Active diagnosis of HIV" is not null then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
+        else if "Active diagnosis of HIV" is not null then 'due to the patient already having been diagnosed with HIV.' 
         else ''
     )
   ) 
@@ -682,13 +651,13 @@ define "Patient is between 13 and 64 years old":
   AgeInYearsAt("Reference Date") >= 13
     and AgeInYearsAt("Reference Date") <= 64
 
-define "Active Diagnosis of HIV During Patient Visit":
-  ( Last((HC.QualifiedConditions(HDE."HIV Diagnosis")) HIVDiagnosis
-      sort by 
-      end of FC.ToInterval(abatement)
-  ) ) HIVDiagnosis
-    with "Patient Encounter" PatientEncounter
-      such that FC.ToPrevalenceInterval ( HIVDiagnosis ) overlaps PatientEncounter.period
+// define "Active Diagnosis of HIV During Patient Visit":
+//   ( Last((HC.QualifiedConditions(HDE."HIV Diagnosis")) HIVDiagnosis
+//       sort by 
+//       end of FC.ToInterval(abatement)
+//   ) ) HIVDiagnosis
+//     with "Patient Encounter" PatientEncounter
+//       such that FC.ToPrevalenceInterval ( HIVDiagnosis ) overlaps PatientEncounter.period
 
 define "HIV Screening Test": // DH: as of last encounter
   // (
@@ -745,9 +714,7 @@ define "Patient has Received Pre Exposure Prophylaxis":
     union HC.QualifiedMedicationDispenses ( HDE."Prep Dispensed Medications" )
     union HC.QualifiedObservations ( HDE."Previous experience with PREP" ) ) PrEP
 
-
 /* Determine Patient's Category (gender, pregnancy, MSM, sexual activity, etc) */
-
 
 define "Patient is Male":
   if Patient.gender = 'male' then true 
@@ -764,6 +731,11 @@ define "Active diagnosis of Tuberculosis":
   HDE."Tuberculosis diagnosis"
 //   exists [Condition] c where c in Cx."TB"
 
+define "Active diagnosis of HIV":
+  HDE."HIV Diagnosis"
+
+//   exists [Condition] c where c in Cx."TB"
+
 // define "anyConditionValue":
 //   [Condition] C return C.code.coding.code.value
 
@@ -778,7 +750,6 @@ define "Active diagnosis of Tuberculosis":
 //         such that FC.ToPrevalenceInterval(Pregnancy) overlaps PatientEncounter.period
 //   )
 
-
 /* Determine Patient's Risk Level (High Risk, Moderate Risk, No Risk, Low Risk) */
 // Predominantly based off elements built from the risk-factors questionnaire
 // RISKS: STIs, Injection Drug Use, Sex partner has HIV, Sex Exchanged for Drugs/Money, More than 1 Partner since previous screening (for themselves or their partners), Drug abuse
@@ -792,24 +763,6 @@ define "Active diagnosis of Tuberculosis":
 
 /* HIGH RISK */
 // High Risk -- Other STIs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 define "Active Diagnosis of HCV During Patient Visit":
   ( ( Last((HC.QualifiedConditions(HDE."Hepatitis C Diagnosis")) HCVDiagnosis
@@ -944,29 +897,6 @@ define "Patient is at High Risk Due to exchanging sex for money or drugs":
 // DH: there's some redundany here. HC.QualifiedObservations limits status = 'preliminary' 'final' 'amended' or 'corrected'
 // but in "Sexual Activity - Number of Partners" it is already limited to 'final', 'amended', 'corrected'      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 define "Patient is at High Risk Due to Multiple Sex Partners since last screening":
   ( ( Last((HC.QualifiedObservations(HDE."HIV Tests") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
         
@@ -994,16 +924,10 @@ define "Patient is at High Risk for HIV":
 // define "x":
 // false or false or null or false or false or false
 
-
 /* MODERATE RISK */
 // Sexually active MSM, Transgender patient sexually active with men, Gay and bisexual men unless documented not sexually active
 
 // Moderate Risk -- Any sexually active MSM
-
-
-
-
-
 
 define "Sexually Active MSM Patient":
   if "Patient is Male" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Men" ) ) MSMObserved
@@ -1015,7 +939,6 @@ define "Sexually Active MSM Patient":
 
 // Moderate Risk -- Transgender patients sexually active with men
 
-
 define "Transgender Patient Sexually Active With Men":
   if "Patient is Transgender" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Men" ) ) MSMObserved
         with "Patient Encounter" PatientEncounter
@@ -1025,7 +948,6 @@ define "Transgender Patient Sexually Active With Men":
     else false
 
 // Moderate Risk -- All gay or bisexual men unless documented not sexually active
-
 
 define "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive":
   "Patient is Male"
@@ -1040,8 +962,6 @@ define "Patient is at Moderate Risk for HIV":
 
 /* No Risk */
 // Not Sexually Active
-
-
 
 define "Patient is Documented Sexually Inactive":
   ( ( Last((HC.QualifiedObservations(HDE."Sexual Activity - Past Year")
@@ -1063,8 +983,6 @@ define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. 
 /* LOW RISK */
 // Not sexually active
 
-
-
 define "Patient is at Low Risk for HIV":
   not "Patient is at High Risk for HIV"  // risky behaviors
     
@@ -1073,8 +991,6 @@ define "Patient is at Low Risk for HIV":
     and not "Patient is at No Risk for HIV"  // i.e. not "Patient is Documented Sexually Inactive"
 
 // DH: Testing testing
-
-
 
 define PatientEncounterPeriodStart:
   start of ( "Patient Encounter".period )
@@ -1088,23 +1004,16 @@ define SeekingTreatmentDate:
 /* Women & Men Workflow */
 // All Women and Men between the ages 13-64 and/or those who are seeking treatment for an STD
 
-
-
 define "Patient is Seeking Treatment for an STD":
   exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment
       with "Patient Encounter" PatientEncounter
         such that FC.ToInterval ( SeekingTreatment.effective ) overlaps PatientEncounter.period
   )
 
-
 /* Pregnant Women Workflow */
 // All Women should be screened at Initial Prenatal Visit
 // All women should be retested in the third trimester if they're high risk
 // NOTE: This definition implementation is naive and does not take into effect multiple pregnancies. Consider use of an EpisodeOfCare resource.
-
-
-
-
 
 define "Patient is at First Prenatal Visit":
   ( ( First((HC.QualifiedEncounters(HDE."Pregnancy Encounters")) PregnancyEncounter
@@ -1129,29 +1038,13 @@ define "Patient is at First Prenatal Visit":
 //   "Patient is at High Risk for HIV"
 //   and "Patient is in Third Trimester of Pregnancy"
 
-
 /* MSM (Men who have sex with men) */
 // At Least Annually for sexually active MSM if HIV status isn't positive and if patient/partner has had more than 1 partner since previous screening
 // For sexually active MSM Tests should occur every 3 months if the patient has experienced prep
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 define "Patient is a sexually active MSM without HIV":
   "Sexually Active MSM Patient"
-    and "Active Diagnosis of HIV During Patient Visit" is null
+    and "Active diagnosis of HIV" is null
 
 define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"
