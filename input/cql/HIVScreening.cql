@@ -136,11 +136,11 @@ define "Meets Inclusion Criteria":
     or "Patient is Seeking Treatment for an STD"
 
 // define "Meets Exclusion Criteria":
-//   "Active diagnosis of HIV?"
+//   "Active diagnosis of HIV"
 
-define "In Population":
-  "Meets Inclusion Criteria"
-    and not "Active diagnosis of HIV?"
+// define "In Population":
+//   "Meets Inclusion Criteria"
+//     and not "Active diagnosis of HIV"
 
 /* OPTIONS:
 
@@ -197,10 +197,13 @@ ORDER:
 
 
 define "Never Tested Condition":
-  if ( "In Population"
-      and not "Patient has had an HIV Screening"
-  ) then true 
-    else false
+  if ( 
+      "Patient is between 13 and 64 years old"
+      and not "Patient has had an HIV Test"
+      and not "Active diagnosis of HIV"
+     ) 
+  then true 
+  else false
 
 define "Never Tested Recommendation": // i.e. recommended because...
   
@@ -223,7 +226,7 @@ define "Never Tested Indicator":
 // MSM
 
 define "MSM Condition":
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
       and ( "Patient is a sexually active MSM who should be Screened Every 3 Months"
           or "Patient is a sexually active MSM who should be Screened Annually"
       )
@@ -361,7 +364,7 @@ define "No state of residence on record and no HIV test done in third trimester"
     and not "There is an HIV test during the third trimester"
 
 define "Pregnant Condition":
-  if ( not "Active diagnosis of HIV?"
+  if ( not "Active diagnosis of HIV"
       and ( "Pregnant but no HIV test during pregnancy"
           or "Resides a high prevalence state and has not had an HIV test in the third trimester"
           or "No state of residence on record and no HIV test done in third trimester"
@@ -420,7 +423,7 @@ define "Pregnant Indicator":
 
 
 define "Seeking STD Treatment Condition":
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
       and "Patient is Seeking Treatment for an STD"
   ) then true 
     else false
@@ -448,7 +451,7 @@ define "Seeking STD Treatment Indicator":
 
 define "Risk Level Condition": // true if the other four Conditions are false
   
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
   // and (
   //   "Never Tested Condition" is false
   //   and "MSM Condition" is false
@@ -527,7 +530,7 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  if ( not "Active diagnosis of HIV?"
+  if ( not "Active diagnosis of HIV"
       and "Active diagnosis of Tuberculosis?"
       and ( not exists HDE."HIV Tests"
           or ( exists HDE."HIV Tests"
@@ -578,8 +581,8 @@ define "HIV Test Indicator":
     else ''
 
 // define "Exclusion Reason":
-//   if "Active diagnosis of HIV?" then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
-//         else if "Active diagnosis of HIV?" then 'due to the patient already having been diagnosed with HIV.' 
+//   if "Active diagnosis of HIV" then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
+//         else if "Active diagnosis of HIV" then 'due to the patient already having been diagnosed with HIV.' 
 //         else ''
 //     )
 //   ) 
@@ -635,7 +638,7 @@ define "HIV Screening Test": // DH: as of last encounter
 
 
 
-define "Patient has had an HIV Screening": //DH: as of last encounter
+define "Patient has had an HIV Test": //DH: as of last encounter
   
   exists ( "HIV Screening Test" )
 
@@ -693,7 +696,7 @@ define "Active diagnosis of Tuberculosis?":
   exists HDE."Tuberculosis diagnosis"
 //   exists [Condition] c where c in Cx."TB"
 
-define "Active diagnosis of HIV?":
+define "Active diagnosis of HIV":
   exists HDE."HIV Diagnosis"
 
 //   exists [Condition] c where c in Cx."TB"
@@ -1006,7 +1009,7 @@ define "Patient is at First Prenatal Visit":
 
 define "Patient is a sexually active MSM without HIV":
   "Sexually Active MSM Patient"
-    and not "Active diagnosis of HIV?"
+    and not "Active diagnosis of HIV"
 
 define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"
