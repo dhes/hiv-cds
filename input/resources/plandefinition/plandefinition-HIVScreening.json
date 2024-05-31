@@ -79,12 +79,12 @@
       "prefix": "Recommend HIV Screening Test",
       "title": "HIV Test Recommendation",
       "description": "Perform an HIV Test.",
-      "textEquivalent": "HIV Testing is due according to CDC HIV screening guidelines. ",
+      "textEquivalent": "HIV Testing is due according to CDC HIV screening guidelines.",
       "condition": [
         {
           "kind": "applicability",
           "expression": {
-            "description": "Determine if Patient has never been tested.",
+            "description": "Determine if patient should have an HIV test according to CDC HIV screening guidelines",
             "language": "text/cql-identifier",
             "expression": "HIV Test Condition"
           }
