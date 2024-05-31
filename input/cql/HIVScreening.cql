@@ -16,7 +16,7 @@ parameter "Reference Date" DateTime  // can use values such as Now() or a date l
 //   // default Now() // for testing with  CQL Testing Framework ExecuteCQL.  set here
 
 parameter "True" default true
-parameter "Routine" default 'routine'
+// parameter "Routine" default 'routine'
 parameter "Asap" default 'asap'
 parameter "Urgent" default 'urgent'
 parameter "Stat" default 'stat'
@@ -205,9 +205,8 @@ define "Never Tested Rationale":
    '\r\n - All patients age 13 to 64 years (inclusive) should be tested for HIV at least once.'
   else ''
 
-// define "Never Tested Indicator":
-//   "Routine"
-
+define "Never Tested Indicator":
+  if "Never Tested Condition" then 'routine' else ''
 
 /* CDC EDGE CASES */
 // MSM
@@ -234,10 +233,8 @@ define "MSM Rationale":
     '\r\n - Men who have sex with men should be tested at least annually if sexually active and the patient or their sex partner(s) have had more than one sex partner since most recent HIV test.'
   else ''
 
-// define "MSM Indicator":
-//   // if "Patient is a sexually active MSM who should be Screened Every 3 Months" then "Routine"
-//   // else "Routine"
-//   "Routine"
+define "MSM Indicator":
+  if "MSM Condition" then 'routine' else ''
 
 
 // PREGNANCY
@@ -259,9 +256,9 @@ define "There is a positive pregnancy test in the last 40 weeks":
   exists(HDE."Positive Pregnancy Observations" PPO 
     where PPO.effective after ("Reference Date" - 40 weeks))
 
-define "HIV test done since pregnancy test":
+define "Pregnant but no HIV test during pregnancy":
   "There is a positive pregnancy test in the last 40 weeks"
-    and ("There is an HIV test after the most recent positive pregnancy test")
+    and not "There is an HIV test after the most recent positive pregnancy test"
 
 define "Estimated Date of Delivery":
   date from Last(HDE."Estimated Date of Delivery").value
@@ -332,7 +329,7 @@ define "No state of residence on record and no HIV test done in third trimester"
 define "Pregnant Condition":
   "Active Diagnosis of HIV During Patient Visit" is null
   and (
-    not "HIV test done since pregnancy test"
+    "Pregnant but no HIV test during pregnancy"
     or "Resides a high prevalence state and has not had an HIV test in the third trimester"
     or "No state of residence on record and no HIV test done in third trimester"
     or "Intravenous drug user and no HIV test done in third trimester"
@@ -343,22 +340,22 @@ define "Pregnant Condition":
   )
 
 define "Pregnant Recommendation":
-  if "Pregnant Condition" and not ("HIV test done since pregnancy test") then
-    '\r\n - She has not been tested during pregnancy.'
+  if "Pregnant Condition" and "Pregnant but no HIV test during pregnancy" then
+    '\r\n - This patient has not been tested for HIV during pregnancy.'
   else if "Pregnant Condition" and "Resides a high prevalence state and has not had an HIV test in the third trimester" then
-    '\r\n - She resides in a high prevalence state and has not been tested in the third trimester.'
+    '\r\n - This patient resides in a high prevalence state and has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "No state of residence on record and no HIV test done in third trimester" then
-    '\r\n - Her state of residence is unknown and she has not been tested in the third trimester.'
+    '\r\n - The state of residence of this patient is unknown and she has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "Intravenous drug user and no HIV test done in third trimester" then
-    '\r\n - She uses intravenous drugs and has not been tested in the third trimester.'
+    '\r\n - This patient uses intravenous drugs and has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then
-    '\r\n - She exchanges sex for money or drugs and has not been tested in the third trimester.'
+    '\r\n - This patient exchanges sex for money or drugs and has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "Patient with multiple partners and no HIV test done in third trimester" then
-    '\r\n - She has multiple partners and has not been tested in the third trimester.'
+    '\r\n - This patient has multiple partners and has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then
-    '\r\n - Her sex partner has HIV or uses intravenous drugs and she has not been tested in the third trimester.'
+    '\r\n - This patient\'s sex partner has HIV or uses intravenous drugs and she has not been tested for HIV in the third trimester.'
   else if "Pregnant Condition" and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then
-    '\r\n - She has a new sex partner since becoming pregnant and not been tested in the third trimester.'
+    '\r\n - This patient has a new sex partner since becoming pregnant and not been tested in the third trimester.'
   else ''
 
 define "Pregnant Rationale":
@@ -369,9 +366,9 @@ define "Pregnant Rationale":
   else if "Pregnant Condition" and "No state of residence on record and no HIV test done in third trimester" then
     '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.'
   else if "Pregnant Condition" and "Intravenous drug user and no HIV test done in third trimester" then
-    '\r\n - All pregnant women who use intravenous drug should have a repeat HIV test in the third trimester.'
+    '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.'
   else if "Pregnant Condition" and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then
-    '\r\n - All pregnant women who exchanges sex for money or drugs should have a repeat HIV test in the third trimester.'
+    '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.'
   else if "Pregnant Condition" and "Patient with multiple partners and no HIV test done in third trimester" then
     '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.'
   else if "Pregnant Condition" and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then
@@ -380,12 +377,8 @@ define "Pregnant Rationale":
     '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.'
   else ''
 
-// define "Pregnant Indicator":
-//   // if "Patient is at First Prenatal Visit" then "Routine"
-//   // else if "Patient is High Risk in Third Trimester of Pregnancy" then "Stat"
-//   // else "Routine"
-//   "Routine"
-
+define "Pregnant Indicator":
+  if "Pregnant Condition" then 'routine' else ''
 
 // SEEKING TREATMENT
 define "Seeking STD Treatment Condition":
@@ -404,8 +397,8 @@ define "Seeking STD Treatment Rationale":
     '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.'
   else ''
 
-// define "Seeking STD Treatment Indicator":
-//   "Routine"
+define "Seeking STD Treatment Indicator":
+  if "Seeking STD Treatment Condition" then 'routin' else ''
 
 
 /* RISK Level Actions */ // DH temporarily take this out
@@ -480,8 +473,8 @@ define "Tuberculosis Rationale":
     '\r\n - All patients who are about to start tuberculosis treatment should first have an HIV Test.'
   else ''
 
-// define "Tuberculosis Indicator":
-//   "Routine"
+define "Tuberculosis Indicator":
+  if "Tuberculosis Condition" then 'routine' else ''
 
 define "HIV Test Condition":
   "Never Tested Condition" or 
@@ -508,7 +501,7 @@ define "HIV Test Rationale":
   "Tuberculosis Rationale"
 
 define "HIV Test Indicator":
-  "Routine"
+  if "HIV Test Condition" then 'routine' else ''
 
 define "Exclusion Reason":
   if "Active Diagnosis of HIV During Patient Visit" is not null then
