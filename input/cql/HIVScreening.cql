@@ -10,8 +10,8 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
-  default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
-  // default Now() 
+  // default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
+  default Now() 
 
 
 // parameter "True" default true
@@ -895,17 +895,16 @@ define "Patient is at High Risk for HIV":
 // Moderate Risk -- Any sexually active MSM
 
 define "Sexually Active MSM Patient":
-  if "Patient is Male" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Men" ) ) MSMObserved
-        with "Patient Encounter" PatientEncounter
-          such that FC.ToInterval ( MSMObserved.effective ) overlaps PatientEncounter.period
-    )
-  ) 
-    else false
+  if
+    "Patient is Male" 
+    and exists HDE."Sexually active with men"
+  then true
+  else false
 
 // Moderate Risk -- Transgender patients sexually active with men
 
 define "Transgender Patient Sexually Active With Men":
-  if "Patient is Transgender" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Men" ) ) MSMObserved
+  if "Patient is Transgender" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexually active with men" ) ) MSMObserved
         with "Patient Encounter" PatientEncounter
           such that FC.ToInterval ( MSMObserved.effective ) overlaps PatientEncounter.period
     )
@@ -931,7 +930,7 @@ define "Patient is at Moderate Risk for HIV":
 define "Patient is Documented Sexually Inactive":
   ( ( Last((HC.QualifiedObservations(HDE."Sexual Activity - Past Year")
         union HC.QualifiedObservations(HDE."Sexual Activity - History")
-        union HC.QualifiedObservations(HDE."Sexual Activity - Men")
+        union HC.QualifiedObservations(HDE."Sexually active with men")
         union HC.QualifiedObservations(HDE."Sexual Activity - Women")) SexualHistory
         where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
         sort by Coalesce(effective, issued)

@@ -10,7 +10,7 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
-// default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
+  // default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
   default Now() 
 
 
@@ -30,12 +30,6 @@ parameter "HIV Higher Prevalence States and Territories" default { 'VI', 'MS', '
 // parameter "MSM" default false
 // parameter "At risk" default false
 
-
-
-
-
-
-
 context Patient
 
 // DH - an organizing principle -- which seems to not be usefule ;()
@@ -47,14 +41,6 @@ context Patient
 //   else if "Risk Level Condition" then 'At risk'
 //   else 'HIV screening test not needed.'
 
-
-
-
-
-
-
-
-
 define "There is an HIV test after the most recent positive pregnancy test":
   exists ( HDE."HIV Tests" )
     and Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
@@ -62,9 +48,6 @@ define "There is an HIV test after the most recent positive pregnancy test":
 // define "There is an HIV test performed after the diagnosis of tuberculosis":
 //   exists(HDE."HIV Tests") and
 //   Last(HDE."HIV Tests").effective > First(HDE."Tuberculosis diagnosis").onset // Even if there is only one "Tuberculosis diagnosis" you still need a First or Last before it
-
-
-
 
 define "Alive":
   case 
@@ -97,19 +80,6 @@ define Active:
 
 // define "Patient is Gay or Bisexual":
   // singleton from (HDE."Sexual Orientation".coding) in Cx."Gay Or Bisexual"
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 define "Patient is Gay or Bisexual":
   exists ( HDE."Sexual Orientation".coding ) O
@@ -165,14 +135,12 @@ define "Meets Inclusion Criteria":
   "Patient is between 13 and 64 years old"
     or "Patient is Seeking Treatment for an STD"
 
-
 // define "Meets Exclusion Criteria":
-//   "Active diagnosis of HIV" is not null
+//   "Active diagnosis of HIV"
 
-
-define "In Population":
-  "Meets Inclusion Criteria"
-    and not "Active diagnosis of HIV" is not null
+// define "In Population":
+//   "Meets Inclusion Criteria"
+//     and not "Active diagnosis of HIV"
 
 /* OPTIONS:
 
@@ -229,10 +197,13 @@ ORDER:
 
 
 define "Never Tested Condition":
-  if ( "In Population"
-      and not "Patient has had an HIV Screening"
-  ) then true 
-    else false
+  if ( 
+      "Patient is between 13 and 64 years old"
+      and not "Patient has had an HIV Test"
+      and not "Active diagnosis of HIV"
+     ) 
+  then true 
+  else false
 
 define "Never Tested Recommendation": // i.e. recommended because...
   
@@ -255,7 +226,7 @@ define "Never Tested Indicator":
 // MSM
 
 define "MSM Condition":
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
       and ( "Patient is a sexually active MSM who should be Screened Every 3 Months"
           or "Patient is a sexually active MSM who should be Screened Annually"
       )
@@ -393,7 +364,7 @@ define "No state of residence on record and no HIV test done in third trimester"
     and not "There is an HIV test during the third trimester"
 
 define "Pregnant Condition":
-  if ( "Active diagnosis of HIV" is null
+  if ( not "Active diagnosis of HIV"
       and ( "Pregnant but no HIV test during pregnancy"
           or "Resides a high prevalence state and has not had an HIV test in the third trimester"
           or "No state of residence on record and no HIV test done in third trimester"
@@ -452,7 +423,7 @@ define "Pregnant Indicator":
 
 
 define "Seeking STD Treatment Condition":
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
       and "Patient is Seeking Treatment for an STD"
   ) then true 
     else false
@@ -480,7 +451,7 @@ define "Seeking STD Treatment Indicator":
 
 define "Risk Level Condition": // true if the other four Conditions are false
   
-  if ( "In Population"
+  if ( not "Active diagnosis of HIV"
   // and (
   //   "Never Tested Condition" is false
   //   and "MSM Condition" is false
@@ -559,8 +530,8 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  if ( not "Active diagnosis of HIV" is not null
-      and exists HDE."Tuberculosis diagnosis"
+  if ( not "Active diagnosis of HIV"
+      and "Active diagnosis of Tuberculosis?"
       and ( not exists HDE."HIV Tests"
           or ( exists HDE."HIV Tests"
               and Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
@@ -609,18 +580,16 @@ define "HIV Test Indicator":
   if "HIV Test Condition" then 'routine' 
     else ''
 
-define "Exclusion Reason":
-  if "Active diagnosis of HIV" is not null then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
-        else if "Active diagnosis of HIV" is not null then 'due to the patient already having been diagnosed with HIV.' 
-        else ''
-    )
-  ) 
-    else ''
+// define "Exclusion Reason":
+//   if "Active diagnosis of HIV" then ( 'Patient was excluded from HIV Screening ' + ( if not "Patient is between 13 and 64 years old" then 'due to not being between the ages of 13 and 64.' 
+//         else if "Active diagnosis of HIV" then 'due to the patient already having been diagnosed with HIV.' 
+//         else ''
+//     )
+//   ) 
+//     else ''
 
 /* HIV Screening Workflow */
 // Patient Visit Occurred
-
-
 
 define "Patient Encounter":
   Last((HC.QualifiedEncounters(HDE."Encounter Type"
@@ -635,10 +604,6 @@ define "Patient Encounter":
 // define "Patient is between 13 and 64 years old":
 //   AgeInYearsAt(end of "Patient Encounter".period) >= 13
 //   and AgeInYearsAt(end of "Patient Encounter".period) <= 64
-
-
-
-
 
 define "Age":
   AgeInYearsAt("Reference Date")
@@ -673,7 +638,7 @@ define "HIV Screening Test": // DH: as of last encounter
 
 
 
-define "Patient has had an HIV Screening": //DH: as of last encounter
+define "Patient has had an HIV Test": //DH: as of last encounter
   
   exists ( "HIV Screening Test" )
 
@@ -727,12 +692,12 @@ define "Patient is Female":
 define "Patient is Transgender":
   HDE."Gender Identity" in Cx."Transgender"
 
-define "Active diagnosis of Tuberculosis":
-  HDE."Tuberculosis diagnosis"
+define "Active diagnosis of Tuberculosis?":
+  exists HDE."Tuberculosis diagnosis"
 //   exists [Condition] c where c in Cx."TB"
 
 define "Active diagnosis of HIV":
-  HDE."HIV Diagnosis"
+  exists HDE."HIV Diagnosis"
 
 //   exists [Condition] c where c in Cx."TB"
 
@@ -1044,7 +1009,7 @@ define "Patient is at First Prenatal Visit":
 
 define "Patient is a sexually active MSM without HIV":
   "Sexually Active MSM Patient"
-    and "Active diagnosis of HIV" is null
+    and not "Active diagnosis of HIV"
 
 define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"

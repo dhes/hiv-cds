@@ -128,7 +128,7 @@ code "Seeking STD Treatment": 'NACHC.H1.DE9' from "Extended Codes CodeSystem" di
 code "Previous experience with PREP": 'NACHC.H1.DE10' from "Extended Codes CodeSystem" display 'Previous experience with PREP'
 code "Sexual Activity - Past Year": 'NACHC.H1.DE11' from "Extended Codes CodeSystem" display 'Sexual Activity - Past Year'
 code "Sexual Activity - History": 'NACHC.H1.DE12' from "Extended Codes CodeSystem" display 'Sexual Activity - History'
-code "Sexual Activity - Men": 'NACHC.H1.DE13' from "Extended Codes CodeSystem" display 'Sexual Activity - Men'
+// code "Sexual Activity - Men": 'NACHC.H1.DE13' from "Extended Codes CodeSystem" display 'Sexual Activity - Men'
 code "Sexual Activity - Women": 'NACHC.H1.DE14' from "Extended Codes CodeSystem" display 'Sexual Activity - Women'
 code "Sexual Activity - Number of Partners": 'NACHC.H1.DE15' from "Extended Codes CodeSystem" display 'Sexual Activity - Number of Partners'
 code "Sexual Activity - New Partner Past 3 Months": 'NACHC.H1.DE16' from "Extended Codes CodeSystem" display 'Sexual Activity - New Partner Past 3 Months'
@@ -162,3 +162,4 @@ code "Intravenous Drug User": '228388006' from "SNOMED-CT" display 'Intravenous 
 code "Exchanges Sex for Drugs or Money": '159798008' from "SNOMED-CT" display 'Exchanges sex for money or drugs (occupation)'
 code "Multiple Sex Partners": '225516002' from "SNOMED-CT" display 'Multiple Sexual Contact (finding)'
 code "New Sex Partner": '771458000' from "SNOMED-CT" display 'New sexual contact (finding)'
+code "Sexually active with men": '472986005' from "SNOMED-CT" display 'Sexually active with men (finding)'
