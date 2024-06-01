@@ -368,8 +368,8 @@ define "Post Exposure Prophylaxis":
   @activity: NACHC.G2 Prep
   @description: List of Medications Provisioned and Supplied for Non-Occupational Pre Exposure Prophylaxis
 */
-define "Prep Dispensed Medications":
-  [MedicationDispense: Cx."Prep Dispensed Medications Codes Grouper"]
+// define "Prep Dispensed Medications":
+//   [MedicationDispense: Cx."Prep Dispensed Medications Codes Grouper"]
 
 /*
   @dataElement: NACHC.G2.DE1 Prep Medication Prescriptions
@@ -448,9 +448,9 @@ define "Patient has used Injection Drugs":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has previously been given PREP?
 */
-define "Previous experience with PREP":
-  [Observation: Cx."Previous experience with PREP"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Previous experience with PREP":
+//   [Observation: Cx."Previous experience with PREP"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*

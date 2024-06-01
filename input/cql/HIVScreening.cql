@@ -227,15 +227,17 @@ define "Never Tested Indicator":
 
 define "MSM Condition":
   if ( not "Active diagnosis of HIV"
-      and ( "Patient is a sexually active MSM who should be Screened Every 3 Months"
-          or "Patient is a sexually active MSM who should be Screened Annually"
+      and (
+        // "Patient is a sexually active MSM who should be Screened Every 3 Months" // NACHS
+        // or "Patient is a sexually active MSM who should be Screened Annually"// NACHS
+        "Sexually Active MSM Patient"  //DH
       )
   ) then true 
     else false
 
 define "MSM Recommendation":
   if "MSM Condition" then ( if "Patient is a sexually active MSM who should be Screened Every 3 Months" then '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.' 
-      else if "Patient is a sexually active MSM who should be Screened Annually" then '\r\n - Annual HIV testing is recommended for patients who are sexually active MSM who have had multiple sex partners.' 
+      // else if "Patient is a sexually active MSM who should be Screened Annually" then '\r\n - Annual HIV testing is recommended for patients who are sexually active MSM who have had multiple sex partners.' 
       else ''
   ) 
     else ''
@@ -675,9 +677,9 @@ define "Over 3 Months has Passed Since Previous HIV Screening":
     return ( duration in months between HIVTest.effective and "Reference Date" >= 3 )
 
 define "Patient has Received Pre Exposure Prophylaxis":
-  exists ( HC.QualifiedMedicationRequests ( HDE."Prep Medication Prescriptions" )
-    union HC.QualifiedMedicationDispenses ( HDE."Prep Dispensed Medications" )
-    union HC.QualifiedObservations ( HDE."Previous experience with PREP" ) ) PrEP
+  exists HDE."Prep Medication Prescriptions"
+    // union HC.QualifiedMedicationDispenses ( HDE."Prep Dispensed Medications" )
+    // union HC.QualifiedObservations ( HDE."Previous experience with PREP" ) ) PrEP
 
 /* Determine Patient's Category (gender, pregnancy, MSM, sexual activity, etc) */
 
@@ -1014,9 +1016,9 @@ define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"
     and "Patient is at High Risk Due to Multiple Sex Partners since last screening"
 
-define "Patient is a sexually active MSM who should be Screened Annually":
-  "Patient is a sexually active MSM with Multiple Sex Partners"
-    and "Over a Year has Passed Since Previous HIV Screening"
+// define "Patient is a sexually active MSM who should be Screened Annually":
+//   "Patient is a sexually active MSM with Multiple Sex Partners"
+//     and "Over a Year has Passed Since Previous HIV Screening"
 
 define "Patient is a sexually active MSM who should be Screened Every 3 Months":
   "Patient is a sexually active MSM without HIV"

@@ -17,9 +17,9 @@
   ],
   "code": {
     "coding": [ {
-      "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-      "code": "NACHC.H1.DE18",
-      "display": "Sexual Activity - Partners Number of Partners"
+      "system": "http://snomed.info/sct",
+      "code": "225516002",
+      "display": "Multiple Sexual Contact (finding)"
     } ]
   },
   "subject": {

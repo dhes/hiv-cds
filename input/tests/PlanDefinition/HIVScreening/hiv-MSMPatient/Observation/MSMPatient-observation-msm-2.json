@@ -17,10 +17,10 @@
   ],
   "code": {
     "coding": [ {
-      "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-      "code": "NACHC.H1.DE13",
-      "display": "Sexual Activity - Men"
-    } ]
+        "system": "http://snomed.info/sct",
+        "code": "472986005",
+        "display": "Sexually active with men (finding)"
+      } ]
   },
   "subject": {
     "reference": "Patient/hiv-MSMPatient"
