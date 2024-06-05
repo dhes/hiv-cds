@@ -1,0 +1,18 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "hiv-msm-prep-rx",
+  "meta": {
+    "profile": [ "http://fhir.org/guides/nachc/hiv-cds/StructureDefinition/pep-medication-prescriptions" ]
+  },
+  "status": "active",
+  "medicationCodeableConcept": {
+    "coding": [ {
+      "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "639888",
+      "display": "emtricitabine 200 MG / tenofovir disoproxil fumarate 300 MG Oral Tablet"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-msm-prep"
+  }
+}

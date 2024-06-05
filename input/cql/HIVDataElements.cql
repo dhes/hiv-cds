@@ -568,8 +568,8 @@ define "Sexual Activity - Male - Kind of Sex - Receptive Anal":
   @activity: NACHC.H1 Risk Factors
   @description: Do you have sex with men?
 */
-define "Sexually active with men":
-  [Observation: Cx."Sexually active with men"] O
+define "Has sex with men":
+  [Observation: Cx."Has sex with men"] O
     where O.status in { 'final', 'amended', 'corrected' }
 
 

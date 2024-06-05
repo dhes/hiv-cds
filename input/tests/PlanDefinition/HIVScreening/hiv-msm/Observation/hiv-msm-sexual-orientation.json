@@ -1,11 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-MSMPatient-observation-sexual-orientation",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|7.0.0-ballot"
-    ]
-  },
+  "id": "hiv-msm-sexual-orientation",
   "status": "final",
   "category": [
     {
@@ -29,7 +24,7 @@
     "text": "Sexual orientation"
   },
   "subject": {
-    "reference": "Patient/hiv-MSMPatient"
+    "reference": "Patient/hiv-msm"
   },
   "effectiveDateTime": "2020-01-11",
   "valueCodeableConcept": {

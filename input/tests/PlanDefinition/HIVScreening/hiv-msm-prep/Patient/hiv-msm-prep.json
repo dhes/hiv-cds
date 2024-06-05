@@ -1,6 +1,6 @@
 {
   "resourceType": "Patient",
-  "id": "hiv-MSMPatient",
+  "id": "hiv-msm-prep",
   "active": true,
   "deceasedBoolean": false,
   "name": [
@@ -12,7 +12,6 @@
   ],
   "gender": "male",
   "birthDate": "1972-06-09",
-  "deceasedBoolean": false,
   "address": [
     {
       "use": "home",

@@ -206,9 +206,7 @@ define "Never Tested Condition":
   else false
 
 define "Never Tested Recommendation": // i.e. recommended because...
-  
   if "Never Tested Condition" then 
-    // '\r\n - CDC recommends that diagnostic HIV testing and opt-out HIV screening be a part of routine clinical care in all health-care settings while also preserving the patients option to decline HIV testing and ensuring a provider-patient relationship conducive to optimal clinical and preventive care.'
   '\r\n - This patient has never been tested for HIV.' 
     else ''
 
@@ -236,16 +234,13 @@ define "MSM Condition":
     else false
 
 define "MSM Recommendation":
-  if "MSM Condition" then ( if "Patient is a sexually active MSM who should be Screened Every 3 Months" then '\r\n - Three Month HIV Screening Recommended for patients who are sexually active MSM who have been prescribed PrEP in the past.' 
-      // else if "Patient is a sexually active MSM who should be Screened Annually" then '\r\n - Annual HIV testing is recommended for patients who are sexually active MSM who have had multiple sex partners.' 
-      else ''
-  ) 
+  if "MSM Condition" then '\r\n - This patient is a man who has sex men and has not been tested for one year.'
     else ''
 
 define "MSM Rationale":
   if "MSM Condition" then 
     // '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
-  '\r\n - Men who have sex with men should be tested at least annually if sexually active and the patient or their sex partner(s) have had more than one sex partner since most recent HIV test.' 
+  '\r\n - Men who have sex with men should be tested at least annually.' 
     else ''
 
 define "MSM Indicator":
@@ -899,14 +894,14 @@ define "Patient is at High Risk for HIV":
 define "Sexually Active MSM Patient":
   if
     "Patient is Male" 
-    and exists HDE."Sexually active with men"
+    and exists HDE."Has sex with men"
   then true
   else false
 
 // Moderate Risk -- Transgender patients sexually active with men
 
 define "Transgender Patient Sexually Active With Men":
-  if "Patient is Transgender" then ( exists ( ( HC.QualifiedObservations ( HDE."Sexually active with men" ) ) MSMObserved
+  if "Patient is Transgender" then ( exists ( ( HC.QualifiedObservations ( HDE."Has sex with men" ) ) MSMObserved
         with "Patient Encounter" PatientEncounter
           such that FC.ToInterval ( MSMObserved.effective ) overlaps PatientEncounter.period
     )
@@ -932,7 +927,7 @@ define "Patient is at Moderate Risk for HIV":
 define "Patient is Documented Sexually Inactive":
   ( ( Last((HC.QualifiedObservations(HDE."Sexual Activity - Past Year")
         union HC.QualifiedObservations(HDE."Sexual Activity - History")
-        union HC.QualifiedObservations(HDE."Sexually active with men")
+        union HC.QualifiedObservations(HDE."Has sex with men")
         union HC.QualifiedObservations(HDE."Sexual Activity - Women")) SexualHistory
         where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
         sort by Coalesce(effective, issued)

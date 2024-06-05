@@ -1,0 +1,21 @@
+{
+  "resourceType": "Patient",
+  "id": "hiv-msm",
+  "active": true,
+  "deceasedBoolean": false,
+  "name": [
+    {
+      "use": "official",
+      "family": "Kotic",
+      "given": ["Joe"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1972-06-09",
+  "address": [
+    {
+      "use": "home",
+      "state": "HI"
+    }
+  ]
+}
