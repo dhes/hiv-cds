@@ -379,7 +379,7 @@ define "Post Exposure Prophylaxis":
 define "Prep Medication Prescriptions":
   [MedicationRequest: Cx."Prep Medication Prescriptions Codes Grouper"] MR
     where MR.status in { 'draft', 'active', 'on-hold', 'completed' }
-      and MR.doNotPerform is not true
+      and MR.doNotPerform is not true  // hopeful 'null' = 'not true'
     //return MR.medication as FHIR.CodeableConcept
 
 

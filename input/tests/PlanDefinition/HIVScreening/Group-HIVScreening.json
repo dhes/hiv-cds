@@ -70,6 +70,11 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-msm-prep",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-third-trimester-no-state-recorded",
       "display": "Absolutely Nobody"
     }
@@ -90,8 +95,18 @@
     }
   }, {
     "entity": {
+      "reference": "Patient/hiv-msm-prep-utd",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
       "reference": "Patient/hiv-third-trimester-hiv-risk-lifestyle",
       "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm",
+      "display": "Joe Kotic"
     }
   }, {
     "entity": {
@@ -102,11 +117,6 @@
     "entity": {
       "reference": "Patient/hiv-third-trimester-low-prevalence-state",
       "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-MSMPatient",
-      "display": "Joe Kotic"
     }
   }, {
     "entity": {
@@ -147,6 +157,11 @@
     "entity": {
       "reference": "Patient/hiv-pregnant-no-test",
       "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm-utd",
+      "display": "Joe Kotic"
     }
   } ]
 }

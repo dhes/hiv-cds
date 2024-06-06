@@ -1,6 +1,6 @@
 {
   "resourceType": "MedicationRequest",
-  "id": "hiv-msm-prep-rx",
+  "id": "hiv-msm-prep-utd-rx",
   "status": "active",
   "medicationCodeableConcept": {
     "coding": [ {
@@ -10,6 +10,6 @@
     } ]
   },
   "subject": {
-    "reference": "Patient/hiv-msm-prep"
+    "reference": "Patient/hiv-msm-prep-utd"
   }
 }

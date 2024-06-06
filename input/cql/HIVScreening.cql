@@ -223,25 +223,39 @@ define "Never Tested Indicator":
 /* CDC EDGE CASES */
 // MSM
 
+define "No HIV Test in the last year":
+  exists ( HDE."HIV Tests" )
+  and date from Last(HDE."HIV Tests").effective on or before ("Reference Date" - 1 year)
+
+define "No HIV Test in the last three months":
+  exists ( HDE."HIV Tests" )
+  and date from Last(HDE."HIV Tests").effective on or before ("Reference Date" - 3 months)
+
 define "MSM Condition":
-  if ( not "Active diagnosis of HIV"
+  if (
+      not "Active diagnosis of HIV"
+      and "Patient is Male" and "Has sex with men"
       and (
-        // "Patient is a sexually active MSM who should be Screened Every 3 Months" // NACHS
-        // or "Patient is a sexually active MSM who should be Screened Annually"// NACHS
-        "Sexually Active MSM Patient"  //DH
-      )
-  ) then true 
-    else false
+           "No HIV Test in the last year"
+           or "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
+          )
+     )
+   then true 
+   else false
 
 define "MSM Recommendation":
-  if "MSM Condition" then '\r\n - This patient is a man who has sex men and has not been tested for one year.'
-    else ''
+  if "MSM Condition" and "No HIV Test in the last year"
+    then '\r\n - This man has sex men and has not been tested for one year.'
+  else if "MSM Condition" and "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
+    then '\r\n - This man has sex men and are on pre-exposure prophylaxis has not been tested for three months.'
+  else ''
 
 define "MSM Rationale":
-  if "MSM Condition" then 
-    // '\r\n - Among young (aged 18--24 years) men who have sex with men (MSM) surveyed during 2004--2005 in five U.S. cities, 14% were infected with HIV; 79% of these HIV-infected MSM were unaware of their infection.'
-  '\r\n - Men who have sex with men should be tested at least annually.' 
-    else ''
+  if "MSM Condition" and "No HIV Test in the last year"
+    then '\r\n - Men who have sex with men should be tested for HIV at least annually.' 
+  else if "MSM Condition" and "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
+    then '\r\n - All men who have sex with men and are on pre-exposure prophylaxis should be tested for HIV every three months.'
+  else ''
 
 define "MSM Indicator":
   if "MSM Condition" then 'routine' 
@@ -263,18 +277,6 @@ define "MSM Indicator":
 //   // Replace this with the actual logic to determine the EDD
 //   DateTime(2025, 3, 8)
 
-
-
-
-
-
-
-
-
-
-
-
-
 define "There is a positive pregnancy test in the last 40 weeks":
   exists ( HDE."Positive Pregnancy Observations" PPO
       where PPO.effective after ( "Reference Date" - 40 weeks )
@@ -293,8 +295,6 @@ define "First Eay of Third Trimester":
 // define IsHigherRiskState:
 //   'HI' in "HIV Higher Prevalence States and Territories"
 
-
-
 define "State of Residence Present in Patient Record":
   Count(Patient.address.state) > 0
 
@@ -303,11 +303,6 @@ define "State of Residence Present in Patient Record":
 //   date from Last(HDE."HIV Tests").effective.value
 // define ThereLastHDEEstimatedDateofDelivery:
 //   date from Last(HDE."Estimated Date of Delivery").value.value
-
-
-
-
-
 
 define "Lives In State with Higher HIV Prevalence":
   if "State of Residence Present in Patient Record"
@@ -326,16 +321,12 @@ define "Resides a high prevalence state and has not had an HIV test in the third
 // define "HIV Risky Lifestyle":
 //   HDE."HIV Risky Lifestyle"
 
-
-
 define "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester":
   exists HDE."HIV Risky Lifestyle"
     and not "There is an HIV test during the third trimester"
 
 // define "Intravenous Drug User":
 //    HDE."Intravenous Drug User"
-
-
 
 define "Intravenous drug user and no HIV test done in third trimester":
   exists HDE."Intravenous Drug User"
@@ -456,13 +447,6 @@ define "Risk Level Condition": // true if the other four Conditions are false
   //   and "Seeking STD Treatment Condition" is false
   //   and "Tuberculosis Condition" is false
   //   // now the actual risk level conditions
-      
-      
-      
-      
-      
-      
-      
       and ( ( "Patient is at High Risk for HIV"
             and "Over 3 Months has Passed Since Previous HIV Screening"
         )
@@ -509,19 +493,7 @@ define "Risk Level Rationale":
 //   Last(HDE."HIV Tests").effective.value
 // define lastHdeTuberculosisDiagnosisOnset:
 //   Last(HDE."Tuberculosis diagnosis").onset.value
-
 // troubleshooting
-
-
-
-
-
-
-
-
-
-
-
 
 define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
@@ -671,7 +643,7 @@ define "Over 3 Months has Passed Since Previous HIV Screening":
     
     return ( duration in months between HIVTest.effective and "Reference Date" >= 3 )
 
-define "Patient has Received Pre Exposure Prophylaxis":
+define "On pre-exposure prophylaxis":
   exists HDE."Prep Medication Prescriptions"
     // union HC.QualifiedMedicationDispenses ( HDE."Prep Dispensed Medications" )
     // union HC.QualifiedObservations ( HDE."Previous experience with PREP" ) ) PrEP
@@ -680,7 +652,7 @@ define "Patient has Received Pre Exposure Prophylaxis":
 
 define "Patient is Male":
   if Patient.gender = 'male' then true 
-    else false
+  else false
 
 define "Patient is Female":
   if Patient.gender = 'female' then true 
@@ -891,10 +863,8 @@ define "Patient is at High Risk for HIV":
 
 // Moderate Risk -- Any sexually active MSM
 
-define "Sexually Active MSM Patient":
-  if
-    "Patient is Male" 
-    and exists HDE."Has sex with men"
+define "Has sex with men":
+  if exists HDE."Has sex with men"
   then true
   else false
 
@@ -916,9 +886,9 @@ define "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive":
     and not "Patient is Documented Sexually Inactive"
 
 define "Patient is at Moderate Risk for HIV":
-  "Sexually Active MSM Patient"
-    or "Transgender Patient Sexually Active With Men"
-    or "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive"
+  "Patient is Male" and "Has sex with men"
+  or "Transgender Patient Sexually Active With Men"
+  or "Male and (Gay or Bisexual) Patient Not Documented Sexually Inactive"
 
 
 /* No Risk */
@@ -1004,8 +974,8 @@ define "Patient is at First Prenatal Visit":
 // For sexually active MSM Tests should occur every 3 months if the patient has experienced prep
 
 define "Patient is a sexually active MSM without HIV":
-  "Sexually Active MSM Patient"
-    and not "Active diagnosis of HIV"
+  "Patient is Male" and "Has sex with men"
+  and not "Active diagnosis of HIV"
 
 define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"
@@ -1017,7 +987,7 @@ define "Patient is a sexually active MSM with Multiple Sex Partners":
 
 define "Patient is a sexually active MSM who should be Screened Every 3 Months":
   "Patient is a sexually active MSM without HIV"
-    and "Patient has Received Pre Exposure Prophylaxis"
+    and "On pre-exposure prophylaxis"
     and "Over 3 Months has Passed Since Previous HIV Screening"
 
 

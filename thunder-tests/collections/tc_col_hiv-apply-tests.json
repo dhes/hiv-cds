@@ -1350,6 +1350,198 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "2fd3bd3d-63cb-4933-b5a5-c8e534632c47",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-msm",
+            "url": "",
+            "method": "POST",
+            "sortNum": 210000,
+            "created": "2024-06-06T03:16:51.561Z",
+            "modified": "2024-06-06T03:23:04.428Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-msm\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);",
+                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "// tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "97094c74-5303-4184-9fbe-55aef07b99bd",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-msm-prep",
+            "url": "",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2024-06-06T03:16:58.051Z",
+            "modified": "2024-06-06T03:24:04.881Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hivmsm-prep\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "tc.test(\"Action element exists\", success);",
+                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "// tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "83121d70-17d3-41a5-a19f-9bf74030c23c",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-msm-prep-utd",
+            "url": "",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2024-06-06T03:17:00.669Z",
+            "modified": "2024-06-06T03:25:00.563Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-msm-prep-utd\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "// tc.test(\"Action element exists\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1d0db3f2-bf5d-4553-a7f5-c88731a4e049",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-msm-utd",
+            "url": "",
+            "method": "POST",
+            "sortNum": 225000,
+            "created": "2024-06-06T03:17:03.472Z",
+            "modified": "2024-06-06T03:26:24.337Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-msm-utd\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// let sußccess = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
+                            "// tc.test(\"Action element exists\", success);",
+                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
+                            "tc.test(\"Action element does not exist\", success);"
+                        ]
+                    }
+                ]
+            }
         }
     ],
     "settings": {
