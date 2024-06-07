@@ -245,9 +245,9 @@ define "MSM Condition":
 
 define "MSM Recommendation":
   if "MSM Condition" and "No HIV Test in the last year"
-    then '\r\n - This man has sex men and has not been tested for one year.'
+    then '\r\n - This man has sex men and has not had an HIV test for one year.'
   else if "MSM Condition" and "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
-    then '\r\n - This man has sex men and are on pre-exposure prophylaxis has not been tested for three months.'
+    then '\r\n - This man has sex men and is on pre-exposure prophylaxis, and has not had an HIV three for three months.'
   else ''
 
 define "MSM Rationale":

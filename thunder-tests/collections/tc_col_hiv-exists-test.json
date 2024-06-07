@@ -153,27 +153,6 @@
             ]
         },
         {
-            "_id": "14ac52d1-12b9-4cb0-9131-8c75a2e714d7",
-            "colId": "835d71fe-6299-4c44-897f-0fd36fb1a8e4",
-            "containerId": "",
-            "name": "hiv-MSMPatient",
-            "url": "hiv-MSMPatient",
-            "method": "GET",
-            "sortNum": 80000,
-            "created": "2024-04-08T16:21:56.725Z",
-            "modified": "2024-04-08T16:25:55.154Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                }
-            ]
-        },
-        {
             "_id": "3584d5a7-a0f2-4446-adb1-844907061ba6",
             "colId": "835d71fe-6299-4c44-897f-0fd36fb1a8e4",
             "containerId": "",
