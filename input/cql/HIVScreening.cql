@@ -385,23 +385,48 @@ define "Pregnant Recommendation":
     else ''
 
 define "Pregnant Rationale":
-  if "Pregnant Condition"
-    and not ( "There is an HIV test after the most recent positive pregnancy test" ) then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
-    else if "Pregnant Condition"
-    and "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "No state of residence on record and no HIV test done in third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
-    else if "Pregnant Condition"
-    and "Intravenous drug user and no HIV test done in third trimester" then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
-    else ''
+  // if "Pregnant Condition"
+  //   and not ( "There is an HIV test after the most recent positive pregnancy test" ) then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
+  //   else if "Pregnant Condition"
+  //   and "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
+  //   else if "Pregnant Condition"
+  //   and "No state of residence on record and no HIV test done in third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
+  //   else if "Pregnant Condition"
+  //   and "Intravenous drug user and no HIV test done in third trimester" then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
+  //   else if "Pregnant Condition"
+  //   and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
+  //   else if "Pregnant Condition"
+  //   and "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
+  //   else if "Pregnant Condition"
+  //   and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
+  //   else if "Pregnant Condition"
+  //   and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
+  //   else ''
+  // if "Pregnant Condition" then 
+  //   if not ( "There is an HIV test after the most recent positive pregnancy test" ) then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
+  //     else if "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
+  //     else if "No state of residence on record and no HIV test done in third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
+  //     else if "Intravenous drug user and no HIV test done in third trimester" then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
+  //     else if "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
+  //     else if "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
+  //     else if "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
+  //     else if "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
+  //     else ''
+  //   else ''
+  if "Pregnant Condition" then 
+    case 
+      when not ( "There is an HIV test after the most recent positive pregnancy test" ) then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
+      when "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
+      when "No state of residence on record and no HIV test done in third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
+      when "Intravenous drug user and no HIV test done in third trimester" then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
+      when "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
+      else ''
+    end
+  else ''
+
 
 define "Pregnant Indicator":
   if "Pregnant Condition" then 'routine' 
