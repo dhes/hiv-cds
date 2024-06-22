@@ -286,13 +286,13 @@ define "Pregnancy Encounters":
   @activity: NACHC.F2 Pregnancy
   @description: Observations identified for Pregnancy
 */
-define "Pregnancy Observations":
+define "Pregnancy Observations": // this one is not used in HIVScreening
   [Observation: Cx."Pregnancy Observations Codes"] O
     where O.status in { 'final', 'amended', 'corrected' }
     //return O.value as FHIR.CodeableConcept
 
 // DH
-define "Positive Pregnancy Observations":
+define "Positive Pregnancy Observations": // this one is used in HIVScreening
   "Pregnancy Observations" PO
     where 
       PO.value ~ Cx."Positive Test Value" 

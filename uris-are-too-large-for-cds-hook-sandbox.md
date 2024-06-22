@@ -26,5 +26,5 @@ Next are uris
 |90428001|d1-de1-codes-grouper|"Gonorrhea Diagnosis Codes Grouper"|true||
 |10.01|f2-de1132|"Pregnancy Conditions Codes"|true||
 |10.01|2.16.840.1.113762.1.4.1235.497|"Pregnancy Conditions Codes"|true||
-|9769006|f1-de16|"Injection Drug Use Diagnosis Codes"|false||
-|10761061000119100|f2-de905|"Pregnancy Observations Codes"|false|170|
+|9769006|f1-de16|"Injection Drug Use Diagnosis Codes"|true||
+|10761061000119100|f2-de905|"Pregnancy Observations Codes"|true|170|

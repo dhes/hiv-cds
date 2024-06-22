@@ -212,7 +212,7 @@
   }, {
     "type": "depends-on",
     "display": "Value set Pregnancy Observations Codes",
-    "resource": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de905"
+    "resource": "http://fhir.org/guides/hopena/hiv-cds/ValueSet/pregnancy-observation-codes"
   }, {
     "type": "depends-on",
     "display": "Value set Gay Or Bisexual",
@@ -934,7 +934,7 @@
     "mustSupport": [ "code", "status" ],
     "codeFilter": [ {
       "path": "code",
-      "valueSet": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de905"
+      "valueSet": "http://fhir.org/guides/hopena/hiv-cds/ValueSet/pregnancy-observation-codes"
     } ]
   }, {
     "type": "Observation",
@@ -942,7 +942,7 @@
     "mustSupport": [ "code", "status", "value", "interpretation" ],
     "codeFilter": [ {
       "path": "code",
-      "valueSet": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de905"
+      "valueSet": "http://fhir.org/guides/hopena/hiv-cds/ValueSet/pregnancy-observation-codes"
     } ]
   }, {
     "type": "Observation",
@@ -1086,7 +1086,7 @@
     "mustSupport": [ "code", "status", "value", "interpretation", "effective" ],
     "codeFilter": [ {
       "path": "code",
-      "valueSet": "http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de905"
+      "valueSet": "http://fhir.org/guides/hopena/hiv-cds/ValueSet/pregnancy-observation-codes"
     } ]
   }, {
     "type": "Observation",

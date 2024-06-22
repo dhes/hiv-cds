@@ -1,0 +1,57 @@
+{
+  "resourceType": "ValueSet",
+  "id": "pregnancy-observation-codes",
+  "url": "http://fhir.org/guides/hopena/hiv-cds/ValueSet/pregnancy-observation-codes",
+  "name": "pregnancy-observation-codes",
+  "title": "pregnancy-observation-codes",
+  "status": "active",
+  "experimental": false,
+  "description": "Codes representing possible values for identifying pregnant persons.",
+  "immutable": true,
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          {
+            "code": "2106-3",
+            "display": "Choriogonadotropin (pregnancy test) [Presence] in Urine"
+          },
+          {
+            "code": "80384-1",
+            "display": "Choriogonadotropin (pregnancy test) [Presence] in Urine by Rapid immunoassay"
+          },
+          {
+            "code": "19080-1",
+            "display": "Choriogonadotropin [Units/volume] in Serum or Plasma"
+          },
+          {
+            "code": "83086-9",
+            "display": "Choriogonadotropin [Units/volume] in Serum or Plasma by Immunoassay"
+          }
+        ]
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "72892002",
+            "display": "Normal pregnancy (finding)"
+          },
+          {
+            "code": "77386006",
+            "display": "Pregnant (finding)"
+          },
+          {
+            "code": "47200007",
+            "display": "High risk pregnancy (finding)"
+          },
+          {
+            "code": "444661007",
+            "display": "High risk pregnancy due to history of preterm labor (finding)"
+          }
+        ]
+      }
+    ]
+  }
+}
