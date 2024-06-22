@@ -352,56 +352,66 @@ define "No state of residence on record and no HIV test done in third trimester"
     and not "There is an HIV test during the third trimester"
 
 define "Pregnant Condition":
-  if ( not "Active diagnosis of HIV"
-      and ( "Pregnant but no HIV test during pregnancy"
-          or "Resides a high prevalence state and has not had an HIV test in the third trimester"
-          or "No state of residence on record and no HIV test done in third trimester"
-          or "Intravenous drug user and no HIV test done in third trimester"
-          or "Patient who exchanges sex for money or drugs and no HIV test done in third trimester"
-          or "Patient with multiple partners and no HIV test done in third trimester"
-          or "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester"
-          or "Patient with a new sex partner during pregnancy and no HIV test done in third trimester"
+  if not "Active diagnosis of HIV"
+    and (
+      "Pregnant but no HIV test during pregnancy"
+      or "Resides a high prevalence state and has not had an HIV test in the third trimester"
+      or "No state of residence on record and no HIV test done in third trimester"
+      or "Intravenous drug user and no HIV test done in third trimester"
+      or "Patient who exchanges sex for money or drugs and no HIV test done in third trimester"
+      or "Patient with multiple partners and no HIV test done in third trimester"
+      or "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester"
+      or "Patient with a new sex partner during pregnancy and no HIV test done in third trimester"
       )
-  ) then true 
-    else false
+  then true 
+  else false
 
 define "Pregnant Recommendation":
-  if "Pregnant Condition"
-    and "Pregnant but no HIV test during pregnancy" then '\r\n - This patient has not been tested for HIV during pregnancy.' 
-    else if "Pregnant Condition"
-    and "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - This patient resides in a high prevalence state and has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "No state of residence on record and no HIV test done in third trimester" then '\r\n - The state of residence of this patient is unknown and she has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Intravenous drug user and no HIV test done in third trimester" then '\r\n - This patient uses intravenous drugs and has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - This patient exchanges sex for money or drugs and has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - This patient has multiple partners and has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - This patient\'s sex partner has HIV or uses intravenous drugs and she has not been tested for HIV in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - This patient has a new sex partner since becoming pregnant and not been tested in the third trimester.' 
-    else ''
+  if "Pregnant Condition" then
+    case
+      when "Pregnant but no HIV test during pregnancy" 
+        then '\r\n - This patient has not been tested for HIV during pregnancy.' 
+      when "Resides a high prevalence state and has not had an HIV test in the third trimester" 
+        then '\r\n - This patient resides in a high prevalence state and has not been tested for HIV in the third trimester.' 
+      when "No state of residence on record and no HIV test done in third trimester" 
+        then '\r\n - The state of residence of this patient is unknown and she has not been tested for HIV in the third trimester.' 
+      when "Intravenous drug user and no HIV test done in third trimester" 
+        then '\r\n - This patient uses intravenous drugs and has not been tested for HIV in the third trimester.' 
+      when "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" 
+        then '\r\n - This patient exchanges sex for money or drugs and has not been tested for HIV in the third trimester.' 
+      when "Patient with multiple partners and no HIV test done in third trimester" 
+        then '\r\n - This patient has multiple partners and has not been tested for HIV in the third trimester.' 
+      when "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" 
+        then '\r\n - This patient\'s sex partner has HIV or uses intravenous drugs and she has not been tested for HIV in the third trimester.' 
+      when "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" 
+        then '\r\n - This patient has a new sex partner since becoming pregnant and not been tested in the third trimester.' 
+      else ''
+    end
+  else ''
 
 define "Pregnant Rationale":
-  if "Pregnant Condition"
-    and not ( "There is an HIV test after the most recent positive pregnancy test" ) then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
-    else if "Pregnant Condition"
-    and "Resides a high prevalence state and has not had an HIV test in the third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "No state of residence on record and no HIV test done in third trimester" then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
-    else if "Pregnant Condition"
-    and "Intravenous drug user and no HIV test done in third trimester" then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with multiple partners and no HIV test done in third trimester" then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
-    else if "Pregnant Condition"
-    and "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
-    else ''
+  if "Pregnant Condition" then 
+    case 
+      when not "There is an HIV test after the most recent positive pregnancy test"
+        then '\r\n - All pregnant women should undergo HIV testing as part of routine prenatal care.' 
+      when "Resides a high prevalence state and has not had an HIV test in the third trimester" 
+        then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester.' 
+      when "No state of residence on record and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women who reside in a high prevalence state should have a repeat HIV test in the third trimester. If no state of residence is recorded, a high prevalence state is assumed.' 
+      when "Intravenous drug user and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women who use intravenous drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient who exchanges sex for money or drugs and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women who exchange sex for money or drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient with multiple partners and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women who have multiple partners should have a repeat HIV test in the third trimester.' 
+      when "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women whose sex partner has HIV or uses intravenous drugs should have a repeat HIV test in the third trimester.' 
+      when "Patient with a new sex partner during pregnancy and no HIV test done in third trimester" 
+        then '\r\n - All pregnant women who have a new sex partner while pregnant should have a repeat HIV test in the third trimester.' 
+      else ''
+    end
+  else ''
+
 
 define "Pregnant Indicator":
   if "Pregnant Condition" then 'routine' 
@@ -765,7 +775,7 @@ define "Patient is at High Risk Due to Injection Drug Use":
   ( ( Last((HC.QualifiedProcedures(HDE."Drug Rehabilitation")
         union HC.QualifiedObservations(HDE."Injection Findings")
         union HC.QualifiedConditions(HDE."Injection Drug Use Diagnosis")
-        union HC.QualifiedMedicationStatements(HDE."Injection Drug Use")
+        // union HC.QualifiedMedicationStatements(HDE."Injection Drug Use")
         union HC.QualifiedObservations(HDE."Patient has used Injection Drugs")) InjectionDrugUse
         return Tuple {
           resource: InjectionDrugUse,
