@@ -141,11 +141,11 @@ define "Hepatitis C Test":
   @activity: NACHC.C1 Syphilis
   @description: Concepts Associated with Syphilis Diagnosis
 */
-define "Syphilis Diagnosis":
-  [Condition: Cx."Syphilis Diagnosis Codes Grouper"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
-    //return C.code
+// define "Syphilis Diagnosis":
+//   [Condition: Cx."Syphilis Diagnosis Codes Grouper"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
+//     //return C.code
 
 
 /*
@@ -164,10 +164,10 @@ define "Syphilis Test":
   @activity: NACHC.D1 Gonorrhea
   @description: Concepts Associated with Gonorrhea Diagnosis
 */
-define "Gonorrhea Diagnosis":
-  [Condition: Cx."Gonorrhea Diagnosis Codes Grouper"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
+// define "Gonorrhea Diagnosis":
+//   [Condition: Cx."Gonorrhea Diagnosis Codes Grouper"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
     //return C.code
 
 

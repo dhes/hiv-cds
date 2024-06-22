@@ -721,28 +721,28 @@ define "Active Diagnosis of HCV During Patient Visit":
           such that FC.ToInterval ( HCVObserved.effective ) overlaps PatientEncounter.period
     )
 
-define "Active Diagnosis of Syphilis During Patient Visit":
-  ( ( Last((HC.QualifiedConditions(HDE."Syphilis Diagnosis")) SyphilisDiagnosis
-        sort by 
-        end of FC.ToInterval(abatement)
-    ) ) SyphilisDiagnosis
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToPrevalenceInterval ( SyphilisDiagnosis ) overlaps PatientEncounter.period
-  ) is not null
-    or exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Syphilis" ) ) SyphilisObserved
-        with "Patient Encounter" PatientEncounter
-          such that FC.ToInterval ( SyphilisObserved.effective ) overlaps PatientEncounter.period
-    )
+// define "Active Diagnosis of Syphilis During Patient Visit":
+//   ( ( Last((HC.QualifiedConditions(HDE."Syphilis Diagnosis")) SyphilisDiagnosis
+//         sort by 
+//         end of FC.ToInterval(abatement)
+//     ) ) SyphilisDiagnosis
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToPrevalenceInterval ( SyphilisDiagnosis ) overlaps PatientEncounter.period
+//   ) is not null
+//     or exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Syphilis" ) ) SyphilisObserved
+//         with "Patient Encounter" PatientEncounter
+//           such that FC.ToInterval ( SyphilisObserved.effective ) overlaps PatientEncounter.period
+//     )
 
 define "Active Diagnosis of Gonorrhea During Patient Visit":
-  ( ( Last((HC.QualifiedConditions(HDE."Gonorrhea Diagnosis")) GonorrheaDiagnosis
-        sort by 
-        end of FC.ToInterval(abatement)
-    ) ) GonorrheaDiagnosis
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToPrevalenceInterval ( GonorrheaDiagnosis ) overlaps PatientEncounter.period
-  ) is not null
-    or exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Gonorrhea" ) ) GonorrheaObserved
+  // ( ( Last((HC.QualifiedConditions(HDE."Gonorrhea Diagnosis")) GonorrheaDiagnosis
+  //       sort by 
+  //       end of FC.ToInterval(abatement)
+  //   ) ) GonorrheaDiagnosis
+  //     with "Patient Encounter" PatientEncounter
+  //       such that FC.ToPrevalenceInterval ( GonorrheaDiagnosis ) overlaps PatientEncounter.period
+  // ) is not null
+    exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Gonorrhea" ) ) GonorrheaObserved
         with "Patient Encounter" PatientEncounter
           such that FC.ToInterval ( GonorrheaObserved.effective ) overlaps PatientEncounter.period
     )
@@ -762,7 +762,7 @@ define "Active Diagnosis of Chlamydia During Patient Visit":
 
 define "Patient is at High Risk Due to a STD":
   "Active Diagnosis of HCV During Patient Visit"
-    or "Active Diagnosis of Syphilis During Patient Visit"
+    // or "Active Diagnosis of Syphilis During Patient Visit"
     or "Active Diagnosis of Gonorrhea During Patient Visit"
     or "Active Diagnosis of Chlamydia During Patient Visit"
 
