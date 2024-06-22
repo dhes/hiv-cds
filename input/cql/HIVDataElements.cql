@@ -229,10 +229,10 @@ define "Drug Rehabilitation":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts Associated with Injection Drug Use Diagnosis
 */
-define "Injection Drug Use Diagnosis":
-  [Condition: Cx."Injection Drug Use Diagnosis Codes"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
+// define "Injection Drug Use Diagnosis":
+//   [Condition: Cx."Injection Drug Use Diagnosis Codes"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
     //return C.code
 
 

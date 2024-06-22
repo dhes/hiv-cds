@@ -20,10 +20,11 @@ The two files have ~180 and ~240 element. Do we need that many conditions and me
 
 Next are uris 
 
-|key code|stub|definition|corrected?|
-|---|---|---|
-|266130003|c1-de1-codes-grouper|"Syphilis Diagnosis Codes Grouper"|true|
-|90428001|d1-de1-codes-grouper|"Gonorrhea Diagnosis Codes Grouper"|true|
-|10.01|f2-de1132|"Pregnancy Conditions Codes"|true|
-|10.01|2.16.840.1.113762.1.4.1235.497|"Pregnancy Conditions Codes"|true|
-|9769006|f1-de16|"Injection Drug Use Diagnosis Codes"|false|
+|key code|stub|definition|corrected?|# codes|
+|---|---|---|---|
+|266130003|c1-de1-codes-grouper|"Syphilis Diagnosis Codes Grouper"|true||
+|90428001|d1-de1-codes-grouper|"Gonorrhea Diagnosis Codes Grouper"|true||
+|10.01|f2-de1132|"Pregnancy Conditions Codes"|true||
+|10.01|2.16.840.1.113762.1.4.1235.497|"Pregnancy Conditions Codes"|true||
+|9769006|f1-de16|"Injection Drug Use Diagnosis Codes"|false||
+|10761061000119100|f2-de905|"Pregnancy Observations Codes"|false|170|

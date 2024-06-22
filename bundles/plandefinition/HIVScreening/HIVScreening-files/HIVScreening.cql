@@ -774,21 +774,22 @@ define "Patient is at High Risk Due to a STD":
 define "Patient is at High Risk Due to Injection Drug Use":
   ( ( Last((HC.QualifiedProcedures(HDE."Drug Rehabilitation")
         union HC.QualifiedObservations(HDE."Injection Findings")
-        union HC.QualifiedConditions(HDE."Injection Drug Use Diagnosis")
+        // union HC.QualifiedConditions(HDE."Injection Drug Use Diagnosis")
         // union HC.QualifiedMedicationStatements(HDE."Injection Drug Use")
         union HC.QualifiedObservations(HDE."Patient has used Injection Drugs")) InjectionDrugUse
         return Tuple {
           resource: InjectionDrugUse,
           IDUTiming: Coalesce(
             end of FC.ToInterval(InjectionDrugUse.performed), 
-            end of FC.ToInterval(InjectionDrugUse.effective), 
-            end of FC.ToPrevalenceInterval(InjectionDrugUse)
+            end of FC.ToInterval(InjectionDrugUse.effective) 
+            // end of FC.ToPrevalenceInterval(InjectionDrugUse)
           )
         }
         sort by IDUTiming
     ).resource ) InjectionDrugUse
       with "Patient Encounter" PatientEncounter
-        such that Coalesce(FC.ToInterval(InjectionDrugUse.performed), FC.ToInterval(InjectionDrugUse.effective), FC.ToPrevalenceInterval(InjectionDrugUse)) overlaps PatientEncounter.period
+        such that Coalesce(FC.ToInterval(InjectionDrugUse.performed), FC.ToInterval(InjectionDrugUse.effective)) overlaps PatientEncounter.period
+        // such that Coalesce(FC.ToInterval(InjectionDrugUse.performed), FC.ToInterval(InjectionDrugUse.effective) overlaps PatientEncounter.period
   ) is not null
 
 //High Risk -- Drug Abuse
@@ -858,7 +859,7 @@ define "Patient is at High Risk Due to Multiple Sex Partners since last screenin
 
 define "Patient is at High Risk for HIV":
   "Patient is at High Risk Due to a STD"
-    or "Patient is at High Risk Due to Injection Drug Use"
+    // or "Patient is at High Risk Due to Injection Drug Use"
     or "Patient is at High Risk Due to Drug Abuse"  //score of 6 through 10 on DAST
     
     or "Patient is at High Risk Due to Sexual Partner having HIV"

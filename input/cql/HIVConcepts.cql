@@ -69,7 +69,7 @@ valueset "Tests for Chlamydia trachomatis Nucleic Acid Codes": 'http://fhir.org/
 valueset "Chlamydia Test Codes Grouper": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-e2-de1-codes-grouper'
 valueset "Drug Rehabilitation Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de2'
 valueset "Injection Findings Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de13'
-valueset "Injection Drug Use Diagnosis Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de16'
+// valueset "Injection Drug Use Diagnosis Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de16'
 // valueset "Injection Drug Use Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f1-de201'
 valueset "Pregnancy Encounters Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de2'
 valueset "Third Trimester Encounters Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-f2-de39'
