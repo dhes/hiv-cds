@@ -775,7 +775,7 @@ define "Patient is at High Risk Due to Injection Drug Use":
   ( ( Last((HC.QualifiedProcedures(HDE."Drug Rehabilitation")
         union HC.QualifiedObservations(HDE."Injection Findings")
         union HC.QualifiedConditions(HDE."Injection Drug Use Diagnosis")
-        union HC.QualifiedMedicationStatements(HDE."Injection Drug Use")
+        // union HC.QualifiedMedicationStatements(HDE."Injection Drug Use")
         union HC.QualifiedObservations(HDE."Patient has used Injection Drugs")) InjectionDrugUse
         return Tuple {
           resource: InjectionDrugUse,

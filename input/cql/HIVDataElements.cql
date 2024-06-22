@@ -221,8 +221,8 @@ define "Drug Rehabilitation":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts related to Injection Drug Use History
 */
-define "Injection Drug Use":
-  [MedicationStatement: Cx."Injection Drug Use Codes"]
+// define "Injection Drug Use":
+//   [MedicationStatement: Cx."Injection Drug Use Codes"]
 
 /*
   @dataElement: NACHC.F1.DE15 Injection Drug Use Diagnosis
