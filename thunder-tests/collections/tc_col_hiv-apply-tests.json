@@ -10,15 +10,23 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test InclusionPatient",
-            "url": "",
-            "method": "POST",
+            "url": "http://localhost:8080/cds-services",
+            "method": "OPTIONS",
             "sortNum": 60000,
             "created": "2024-03-24T20:06:55.518Z",
-            "modified": "2024-05-31T01:46:35.546Z",
+            "modified": "2024-06-24T21:02:43.738Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
+                },
+                {
+                    "name": "Origin",
+                    "value": "https://sandbox.cds-hooks.org/"
+                },
+                {
+                    "name": "Access-Control-Request-Method",
+                    "value": "GET"
                 }
             ],
             "body": {
@@ -1546,7 +1554,7 @@
     ],
     "settings": {
         "options": {
-            "baseUrl": "http://cds.hopena.info:8080/fhir/PlanDefinition/HIVScreening/$apply"
+            "baseUrl": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply"
         }
     }
 }

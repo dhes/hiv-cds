@@ -640,7 +640,7 @@
     ],
     "settings": {
         "options": {
-            "baseUrl": "http://cds.hopena.info:8080/fhir/Patient/"
+            "baseUrl": "http://localhost:8080/fhir/Patient/"
         }
     }
 }
