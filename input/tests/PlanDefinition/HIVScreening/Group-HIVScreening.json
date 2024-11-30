@@ -20,28 +20,13 @@
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-      "display": "Ashley Madelyn"
-    }
-  }, {
-    "entity": {
       "reference": "Patient/hiv-pregnant-timely-test",
       "display": "Absolutely Nobody"
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-ExclusionPatient",
-      "display": "Sally Merryweather"
-    }
-  }, {
-    "entity": {
       "reference": "Patient/hiv-third-trimester-idu",
       "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-InclusionPatient",
-      "display": "Peter James Chalmers"
     }
   }, {
     "entity": {
@@ -57,11 +42,6 @@
     "entity": {
       "reference": "Patient/hiv-just-young-enough",
       "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-HighRiskIDUPatient",
-      "display": "Ashley Madelyn"
     }
   }, {
     "entity": {
@@ -82,11 +62,6 @@
     "entity": {
       "reference": "Patient/hiv-third-trimester-high-prevalence-state",
       "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems",
-      "display": "Ashley Madelyn"
     }
   }, {
     "entity": {
@@ -120,28 +95,13 @@
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-DrugAbuseScreeningPatient",
-      "display": "Ashley Madelyn"
-    }
-  }, {
-    "entity": {
       "reference": "Patient/hiv-tb-old-test",
       "display": "Absolutely Nobody"
     }
   }, {
     "entity": {
-      "reference": "Patient/hiv-HighRiskSTDPatient",
-      "display": "John Jones"
-    }
-  }, {
-    "entity": {
       "reference": "Patient/hiv-too-old",
       "display": "Absolutely Nobody"
-    }
-  }, {
-    "entity": {
-      "reference": "Patient/hiv-HighRiskPregnantPatient",
-      "display": "Beatrix Coraline"
     }
   }, {
     "entity": {
