@@ -21,20 +21,20 @@ context Patient
   @activity: NACHC.A0 Contact & Profile
   @description: The type of patient encounter
 */
-define "Encounter Type":
-  [Encounter: Cx."Encounter Type Codes"] E
-    where E.status = 'finished'
+// define "Encounter Type":
+//   [Encounter: Cx."Encounter Type Codes"] E
+//     where E.status = 'finished'
 
 /*
   @dataElement: NACHC.A1.DE1 HIV Diagnosis
   @activity: NACHC.A1 HIV
   @description: Concepts Associated with HIV Diagnosis
 */
-define "HIV Diagnosis":
-  [Condition: Cx."HIV infection as a condition Codes"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
-    //return C.code
+// define "HIV Diagnosis":
+//   [Condition: Cx."HIV infection as a condition Codes"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
+//     //return C.code
 
 define "Tuberculosis diagnosis":
   [Condition: Cx."Tuberculosis (Disorders) (ICD10CM)"] C
@@ -46,11 +46,11 @@ define "Tuberculosis diagnosis":
   @activity: NACHC.A2 HIV test
   @description: Concepts Associated with HIV Testing
 */
-define "HIV Tests":
-  [Observation: Cx."HIV-1 HIV 2 Ab Ag tests Codes"] O
-  // [Observation: Cx."HIV Tests"] O // This was the original
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "HIV Tests":
+//   [Observation: Cx."HIV-1 HIV 2 Ab Ag tests Codes"] O
+//   // [Observation: Cx."HIV Tests"] O // This was the original
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 define "Estimated Date of Delivery":
   [Observation: Cx."Estimated Date of Delivery"]
@@ -60,11 +60,11 @@ define "Estimated Date of Delivery":
   @activity: NACHC.A2 HIV test
   @description: Concepts Associated with Ordering an HIV Test
 */
-define "HIV Test Ordered":
-  [ServiceRequest: Cx."HIV Test Ordered Codes"] SR
-    where SR.status in { 'draft', 'active', 'on-hold', 'completed' }
-      and SR.doNotPerform is not true
-    //return SR.code
+// define "HIV Test Ordered":
+//   [ServiceRequest: Cx."HIV Test Ordered Codes"] SR
+//     where SR.status in { 'draft', 'active', 'on-hold', 'completed' }
+//       and SR.doNotPerform is not true
+//     //return SR.code
 
 
 /*
@@ -72,11 +72,11 @@ define "HIV Test Ordered":
   @activity: NACHC.B1 HCV
   @description: Concepts Associated with HCV Diagnosis
 */
-define "Hepatitis C Diagnosis":
-  [Condition: Cx."Hepatitis C Diagnosis Codes Grouper"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
-    //return C.code
+// define "Hepatitis C Diagnosis":
+//   [Condition: Cx."Hepatitis C Diagnosis Codes Grouper"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
+//     //return C.code
 
 
 /*
@@ -84,10 +84,10 @@ define "Hepatitis C Diagnosis":
   @activity: NACHC.B2 HCV test
   @description: Concepts Associated with HCV Procedures
 */
-define "Hepatitis C Procedures":
-  [Procedure: Cx."Hepatitis C Procedures Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Hepatitis C Procedures":
+//   [Procedure: Cx."Hepatitis C Procedures Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -95,10 +95,10 @@ define "Hepatitis C Procedures":
   @activity: NACHC.B2 HCV test
   @description: Concepts Associated with HCV Testing
 */
-define "Hepatitis C Test":
-  [Observation: Cx."Hepatitis C Test"] O
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "Hepatitis C Test":
+//   [Observation: Cx."Hepatitis C Test"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 
 /*
@@ -118,10 +118,10 @@ define "Hepatitis C Test":
   @activity: NACHC.C2 Syphilis test
   @description: Concepts Associated with Syphilis Testing
 */
-define "Syphilis Test":
-  [Observation: Cx."Syphilis Test"] O
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "Syphilis Test":
+//   [Observation: Cx."Syphilis Test"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 
 /*
@@ -141,10 +141,10 @@ define "Syphilis Test":
   @activity: NACHC.D2 Gonorrhea test
   @description: Concepts Associated with Gonorrhea Testing
 */
-define "Gonorrhea Test":
-  [Observation: Cx."Gonorrhea Test"] O
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "Gonorrhea Test":
+//   [Observation: Cx."Gonorrhea Test"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 
 /*
@@ -152,11 +152,11 @@ define "Gonorrhea Test":
   @activity: NACHC.E1 Chlamydia
   @description: Concepts Associated with Chlamydia Diagnosis
 */
-define "Chlamydia Diagnosis":
-  [Condition: Cx."Chlamydia Diagnosis Codes Grouper"] C
-    where C.clinicalStatus in FC."Active Condition"
-      and C.verificationStatus ~ FC."confirmed"
-    //return C.code
+// define "Chlamydia Diagnosis":
+//   [Condition: Cx."Chlamydia Diagnosis Codes Grouper"] C
+//     where C.clinicalStatus in FC."Active Condition"
+//       and C.verificationStatus ~ FC."confirmed"
+//     //return C.code
 
 
 /*
@@ -164,10 +164,10 @@ define "Chlamydia Diagnosis":
   @activity: NACHC.E2 Chlamydia test
   @description: Concepts Associated with Chlamydia Testing
 */
-define "Chlamydia Test":
-  [Observation: Cx."Chlamydia Test"] O
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "Chlamydia Test":
+//   [Observation: Cx."Chlamydia Test"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 
 /*
@@ -175,10 +175,10 @@ define "Chlamydia Test":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts related to Injection Drug Use Rehabiliation
 */
-define "Drug Rehabilitation":
-  [Procedure: Cx."Drug Rehabilitation Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Drug Rehabilitation":
+//   [Procedure: Cx."Drug Rehabilitation Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -206,10 +206,10 @@ define "Drug Rehabilitation":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts related to findings or observations related to Injection Drug Usage
 */
-define "Injection Findings":
-  [Observation: Cx."Injection Findings"] O
-    where O.status in { 'final', 'amended', 'corrected' }
-    //return O.value as FHIR.CodeableConcept
+// define "Injection Findings":
+//   [Observation: Cx."Injection Findings"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
+//     //return O.value as FHIR.CodeableConcept
 
 
 /*
@@ -217,10 +217,10 @@ define "Injection Findings":
   @activity: NACHC.F2 Pregnancy
   @description: Procedures identifying Maternal Care for Pregnancy
 */
-define "Maternal Care":
-  [Procedure: Cx."Maternal Care Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Maternal Care":
+//   [Procedure: Cx."Maternal Care Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -240,10 +240,10 @@ define "Pregnancy Conditions":
   @activity: NACHC.F2 Pregnancy
   @description: Encounters in the usage of Pregnancy
 */
-define "Pregnancy Encounters":
-  [Encounter: Cx."Pregnancy Encounters Codes"] E
-    where E.status = 'finished'
-    //return E.type
+// define "Pregnancy Encounters":
+//   [Encounter: Cx."Pregnancy Encounters Codes"] E
+//     where E.status = 'finished'
+//     //return E.type
 
 
 /*
@@ -269,10 +269,10 @@ define "Positive Pregnancy Observations": // this one is used in HIVScreening
   @activity: NACHC.F2 Pregnancy
   @description: Procedures identified for Pregnancy
 */
-define "Pregnancy Procedures":
-  [Procedure: Cx."Pregnancy Procedures Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Pregnancy Procedures":
+//   [Procedure: Cx."Pregnancy Procedures Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -280,10 +280,10 @@ define "Pregnancy Procedures":
   @activity: NACHC.F2 Pregnancy
   @description: Procedures in the usage of the Supervision of Pregnancy
 */
-define "Pregnancy Supervision":
-  [Procedure: Cx."Pregnancy Supervision Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Pregnancy Supervision":
+//   [Procedure: Cx."Pregnancy Supervision Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -291,10 +291,10 @@ define "Pregnancy Supervision":
   @activity: NACHC.F2 Pregnancy
   @description: Third Trimester Encounters in the usage of Pregnancy
 */
-define "Third Trimester Encounters":
-  [Encounter: Cx."Third Trimester Encounters Codes"] E
-    where E.status = 'finished'
-    //return E.type
+// define "Third Trimester Encounters":
+//   [Encounter: Cx."Third Trimester Encounters Codes"] E
+//     where E.status = 'finished'
+//     //return E.type
 
 
 /*
@@ -302,19 +302,19 @@ define "Third Trimester Encounters":
   @activity: NACHC.G1 Pep
   @description: List of Medications Provisioned and Supplied for Non-Occupational Post Exposure Prophylaxis
 */
-define "PEP Dispensed Medications":
-  [MedicationDispense: Cx."PEP Dispensed Medications Codes Grouper"]
+// define "PEP Dispensed Medications":
+//   [MedicationDispense: Cx."PEP Dispensed Medications Codes Grouper"]
 
 /*
   @dataElement: NACHC.G1.DE5 PEP Medication Prescriptions
   @activity: NACHC.G1 Pep
   @description: List of Medication Prescriptions for Non-Occupational Post Exposure Prophylaxis
 */
-define "PEP Medication Prescriptions":
-  [MedicationRequest: Cx."PEP Medication Prescriptions Codes Grouper"] MR
-    where MR.status in { 'draft', 'active', 'on-hold', 'completed' }
-      and MR.doNotPerform is not true
-    //return MR.medication as FHIR.CodeableConcept
+// define "PEP Medication Prescriptions":
+//   [MedicationRequest: Cx."PEP Medication Prescriptions Codes Grouper"] MR
+//     where MR.status in { 'draft', 'active', 'on-hold', 'completed' }
+//       and MR.doNotPerform is not true
+//     //return MR.medication as FHIR.CodeableConcept
 
 
 /*
@@ -322,10 +322,10 @@ define "PEP Medication Prescriptions":
   @activity: NACHC.G1 Pep
   @description: Concepts and Procedures Identifying Post Exposure Prophylaxis
 */
-define "Post Exposure Prophylaxis":
-  [Procedure: Cx."Post Exposure Prophylaxis Codes"] P
-    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-    //return P.code
+// define "Post Exposure Prophylaxis":
+//   [Procedure: Cx."Post Exposure Prophylaxis Codes"] P
+//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+//     //return P.code
 
 
 /*
@@ -353,9 +353,9 @@ define "Prep Medication Prescriptions":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient is currently pregnant?
 */
-define "Patient Currently Pregnant":
-  [Observation: Cx."Patient Currently Pregnant"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient Currently Pregnant":
+//   [Observation: Cx."Patient Currently Pregnant"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -363,9 +363,9 @@ define "Patient Currently Pregnant":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has been diagnosed with Chlamydia?
 */
-define "Patient Diagnosed with Chlamydia":
-  [Observation: Cx."Patient Diagnosed with Chlamydia"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient Diagnosed with Chlamydia":
+//   [Observation: Cx."Patient Diagnosed with Chlamydia"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -373,9 +373,9 @@ define "Patient Diagnosed with Chlamydia":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has been diagnosed with Gonorrhea?
 */
-define "Patient Diagnosed with Gonorrhea":
-  [Observation: Cx."Patient Diagnosed with Gonorrhea"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient Diagnosed with Gonorrhea":
+//   [Observation: Cx."Patient Diagnosed with Gonorrhea"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -383,9 +383,9 @@ define "Patient Diagnosed with Gonorrhea":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has been diagnosed with HCV?
 */
-define "Patient Diagnosed with HCV":
-  [Observation: Cx."Patient Diagnosed with HCV"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient Diagnosed with HCV":
+//   [Observation: Cx."Patient Diagnosed with HCV"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -393,9 +393,9 @@ define "Patient Diagnosed with HCV":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has been diagnosed with Syphilis?
 */
-define "Patient Diagnosed with Syphilis":
-  [Observation: Cx."Patient Diagnosed with Syphilis"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient Diagnosed with Syphilis":
+//   [Observation: Cx."Patient Diagnosed with Syphilis"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -403,9 +403,9 @@ define "Patient Diagnosed with Syphilis":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has been using Injection Drugs?
 */
-define "Patient has used Injection Drugs":
-  [Observation: Cx."Patient has used Injection Drugs"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Patient has used Injection Drugs":
+//   [Observation: Cx."Patient has used Injection Drugs"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -423,9 +423,9 @@ define "Patient has used Injection Drugs":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has previously been diagnosed with HIV?
 */
-define "Previous HIV Diagnosis":
-  [Observation: Cx."Previous HIV Diagnosis"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Previous HIV Diagnosis":
+//   [Observation: Cx."Previous HIV Diagnosis"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -433,9 +433,9 @@ define "Previous HIV Diagnosis":
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient has previously been screened for HIV?
 */
-define "Previous HIV Screening":  // How does this fit in the logic? Where is its `status` attribute?
-  [Observation: Cx."Previous HIV Screening"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Previous HIV Screening":  // How does this fit in the logic? Where is its `status` attribute?
+//   [Observation: Cx."Previous HIV Screening"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -443,9 +443,9 @@ define "Previous HIV Screening":  // How does this fit in the logic? Where is it
   @activity: NACHC.H1 Risk Factors
   @description: Whether the patient is currently seeking evaluation and treatment of an STD?
 */
-define "Seeking STD Treatment":
-  [Observation: Cx."Seeking STD Treatment"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Seeking STD Treatment":
+//   [Observation: Cx."Seeking STD Treatment"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -453,9 +453,9 @@ define "Seeking STD Treatment":
   @activity: NACHC.H1 Risk Factors
   @description: Have you ever been coerced or pressured to have sex?
 */
-define "Sexual Activity - Coercion":
-  [Observation: Cx."Sexual Activity - Coercion"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Coercion":
+//   [Observation: Cx."Sexual Activity - Coercion"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -463,9 +463,9 @@ define "Sexual Activity - Coercion":
   @activity: NACHC.H1 Risk Factors
   @description: Have you or any of your partners used alcohol or drugs when you had sex?
 */
-define "Sexual Activity - Drug or Alcohol Use":
-  [Observation: Cx."Sexual Activity - Drug or Alcohol Use"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Drug or Alcohol Use":
+//   [Observation: Cx."Sexual Activity - Drug or Alcohol Use"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -473,9 +473,9 @@ define "Sexual Activity - Drug or Alcohol Use":
   @activity: NACHC.H1 Risk Factors
   @description: Have you ever exchanged sex for drugs or money?
 */
-define "Sexual Activity - Exchanged for Sex":
-  [Observation: Cx."Sexual Activity - Exchanged for Sex"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Exchanged for Sex":
+//   [Observation: Cx."Sexual Activity - Exchanged for Sex"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -483,9 +483,9 @@ define "Sexual Activity - Exchanged for Sex":
   @activity: NACHC.H1 Risk Factors
   @description: Have you ever been sexually active?
 */
-define "Sexual Activity - History":
-  [Observation: Cx."Sexual Activity - History"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - History":
+//   [Observation: Cx."Sexual Activity - History"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -493,9 +493,9 @@ define "Sexual Activity - History":
   @activity: NACHC.H1 Risk Factors
   @description: In the past 3 months have you had anal sex?
 */
-define "Sexual Activity - Kind of Sex - Anal":
-  [Observation: Cx."Sexual Activity - Kind of Sex - Anal"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Kind of Sex - Anal":
+//   [Observation: Cx."Sexual Activity - Kind of Sex - Anal"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -503,9 +503,9 @@ define "Sexual Activity - Kind of Sex - Anal":
   @activity: NACHC.H1 Risk Factors
   @description: In the past 3 months have you had vaginal sex?
 */
-define "Sexual Activity - Kind of Sex - Vaginal":
-  [Observation: Cx."Sexual Activity - Kind of Sex - Vaginal"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Kind of Sex - Vaginal":
+//   [Observation: Cx."Sexual Activity - Kind of Sex - Vaginal"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -513,9 +513,9 @@ define "Sexual Activity - Kind of Sex - Vaginal":
   @activity: NACHC.H1 Risk Factors
   @description: If Male: In the past 3 months have you had insertive anal sex?
 */
-define "Sexual Activity - Male - Kind of Sex - Insertive Anal":
-  [Observation: Cx."Sexual Activity - Male - Kind of Sex - Insertive Anal"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Male - Kind of Sex - Insertive Anal":
+//   [Observation: Cx."Sexual Activity - Male - Kind of Sex - Insertive Anal"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -523,9 +523,9 @@ define "Sexual Activity - Male - Kind of Sex - Insertive Anal":
   @activity: NACHC.H1 Risk Factors
   @description: If Male: In the past 3 months have you had receptive anal sex?
 */
-define "Sexual Activity - Male - Kind of Sex - Receptive Anal":
-  [Observation: Cx."Sexual Activity - Male - Kind of Sex - Receptive Anal"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Male - Kind of Sex - Receptive Anal":
+//   [Observation: Cx."Sexual Activity - Male - Kind of Sex - Receptive Anal"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -543,9 +543,9 @@ define "Has sex with men":
   @activity: NACHC.H1 Risk Factors
   @description: In the past 3 months, have you had sex with someone you didn’t know or had just met?
 */
-define "Sexual Activity - New Partner Past 3 Months":
-  [Observation: Cx."Sexual Activity - New Partner Past 3 Months"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - New Partner Past 3 Months":
+//   [Observation: Cx."Sexual Activity - New Partner Past 3 Months"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -553,9 +553,9 @@ define "Sexual Activity - New Partner Past 3 Months":
   @activity: NACHC.H1 Risk Factors
   @description: Have you had more than 1 sexual partner since last being tested for HIV?
 */
-define "Sexual Activity - Number of Partners":
-  [Observation: Cx."Sexual Activity - Number of Partners"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Number of Partners":
+//   [Observation: Cx."Sexual Activity - Number of Partners"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -563,9 +563,9 @@ define "Sexual Activity - Number of Partners":
   @activity: NACHC.H1 Risk Factors
   @description: Do you know whether your partner has other sexual partners?
 */
-define "Sexual Activity - Partners History":
-  [Observation: Cx."Sexual Activity - Partners History"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Partners History":
+//   [Observation: Cx."Sexual Activity - Partners History"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -573,9 +573,9 @@ define "Sexual Activity - Partners History":
   @activity: NACHC.H1 Risk Factors
   @description: Do you know whether your partner has HIV?
 */
-define "Sexual Activity - Partners HIV History":
-  [Observation: Cx."Sexual Activity - Partners HIV History"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Partners HIV History":
+//   [Observation: Cx."Sexual Activity - Partners HIV History"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -583,9 +583,9 @@ define "Sexual Activity - Partners HIV History":
   @activity: NACHC.H1 Risk Factors
   @description: Do you know whether your partner has had more than 1 sexual partner since their last HIV test?
 */
-define "Sexual Activity - Partners Number of Partners":
-  [Observation: Cx."Sexual Activity - Partners Number of Partners"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Partners Number of Partners":
+//   [Observation: Cx."Sexual Activity - Partners Number of Partners"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -593,9 +593,9 @@ define "Sexual Activity - Partners Number of Partners":
   @activity: NACHC.H1 Risk Factors
   @description: Have you been sexually active in the past year?
 */
-define "Sexual Activity - Past Year":
-  [Observation: Cx."Sexual Activity - Past Year"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Past Year":
+//   [Observation: Cx."Sexual Activity - Past Year"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*
@@ -603,9 +603,9 @@ define "Sexual Activity - Past Year":
   @activity: NACHC.H1 Risk Factors
   @description: Do you have sex with women?
 */
-define "Sexual Activity - Women":
-  [Observation: Cx."Sexual Activity - Women"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+// define "Sexual Activity - Women":
+//   [Observation: Cx."Sexual Activity - Women"] O
+//     where O.status in { 'final', 'amended', 'corrected' }
 
 
 /*

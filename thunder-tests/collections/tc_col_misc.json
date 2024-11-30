@@ -1,0 +1,39 @@
+{
+    "_id": "50b39425-a19f-4516-adf1-eca0a3175a66",
+    "colName": "misc",
+    "created": "2024-11-30T04:04:08.097Z",
+    "sortNum": 30000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "924b15fd-ec8d-473e-870d-a317f201adf2",
+            "colId": "50b39425-a19f-4516-adf1-eca0a3175a66",
+            "containerId": "",
+            "name": "update everything",
+            "url": "",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-11-30T04:05:45.788Z",
+            "modified": "2024-11-30T04:06:10.986Z",
+            "headers": []
+        }
+    ],
+    "settings": {
+        "headers": [
+            {
+                "name": "Content-Type",
+                "value": "application/fhir+json"
+            }
+        ],
+        "auth": {
+            "type": "basic",
+            "basic": {
+                "username": "aequus",
+                "password": "AngryCuff2("
+            }
+        },
+        "options": {
+            "baseUrl": "https://cds.hopena.info:8443/fhir/"
+        }
+    }
+}
