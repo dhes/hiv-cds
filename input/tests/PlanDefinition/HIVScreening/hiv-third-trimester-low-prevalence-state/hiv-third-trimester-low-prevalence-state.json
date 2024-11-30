@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-low-prevalence-state",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "third-trimester-low-prevalence-state"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

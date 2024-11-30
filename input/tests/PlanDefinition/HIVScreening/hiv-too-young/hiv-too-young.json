@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-too-young",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "too-young"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

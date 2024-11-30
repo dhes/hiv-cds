@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-multiple-partners",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "third-trimester-multiple-partners"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

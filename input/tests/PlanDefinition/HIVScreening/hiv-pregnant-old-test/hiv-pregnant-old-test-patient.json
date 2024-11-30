@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-pregnant-old-test",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "pregnant-old-test"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

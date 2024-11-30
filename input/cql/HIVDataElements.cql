@@ -5,7 +5,6 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include FHIRCommon called FC
 
-include NACHCCommon called NC
 include HIVCommon called AC
 include HIVConcepts called Cx
 
@@ -16,12 +15,6 @@ context Patient
   @activity: NACHC.A0 Contact & Profile
   @description: Concepts Associated with Gender Identity Elements
 */
-define "Gender Identity":
-  NC.MostRecent(
-    [Observation: Cx."Gender Identity"] O
-      where O.status in { 'final', 'amended', 'corrected' }
-  ).value as FHIR.CodeableConcept
-
 
 /*
   @dataElement: NACHC.A0.DE1 Encounter Type
@@ -31,34 +24,6 @@ define "Gender Identity":
 define "Encounter Type":
   [Encounter: Cx."Encounter Type Codes"] E
     where E.status = 'finished'
-
-
-/*
-  @dataElement: NACHC.A0.DE48 Sexual Orientation
-  @activity: NACHC.A0 Contact & Profile
-  @description: Concepts Associated with Sexual Orientation Elements
-*/
-define "Sexual Orientation":
-  NC.MostRecent(
-    [Observation: Cx."Sexual Orientation"] O
-      where O.status in { 'final', 'amended', 'corrected' }
-  ).value as FHIR.CodeableConcept
-
-// // expose this for troubleshooting
-// define "Sexual Orientation Code":
-//   "Sexual Orientation".coding.code.value
-
-// expose this for troubleshooting
-// define "Gay Or Bisexual List":
-//   Cx."Gay Or Bisexual"
-
-// expose this for troubleshooting
-// define "Code Test Two":
-// "Sexual Orientation" is FHIR.CodeableConcept
-
-// expose this for testing
-// define "CodeTest":
-// Cx."Gay Or Bisexual"[0] is FHIR.CodeableConcept
 
 /*
   @dataElement: NACHC.A1.DE1 HIV Diagnosis

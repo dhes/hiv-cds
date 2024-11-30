@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-tb-not-tested",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "tb-not-tested"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

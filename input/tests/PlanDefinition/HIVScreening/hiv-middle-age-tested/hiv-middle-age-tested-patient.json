@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-middle-age-tested",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "middle-age-tested"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

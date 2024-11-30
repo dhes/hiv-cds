@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-pregnant-no-test",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "pregnant-no-test"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

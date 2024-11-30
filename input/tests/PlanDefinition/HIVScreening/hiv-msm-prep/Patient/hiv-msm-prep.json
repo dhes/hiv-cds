@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-msm-prep",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "msm-prep"
+    }
+  ],
   "active": true,
   "deceasedBoolean": false,
   "name": [

@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-idu",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "third-trimester-idu"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

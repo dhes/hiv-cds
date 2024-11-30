@@ -1,6 +1,12 @@
 {
 	"resourceType": "Patient",
 	"id": "hiv-pregnant-timely-test",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "pregnant-timely-test"
+    }
+  ],
 	"name": [
 		{
 			"given": [

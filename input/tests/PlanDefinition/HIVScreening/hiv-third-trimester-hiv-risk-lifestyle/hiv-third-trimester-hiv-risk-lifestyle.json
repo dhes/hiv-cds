@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-hiv-risk-lifestyle",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "third-trimester-hiv-risk-lifestyle"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

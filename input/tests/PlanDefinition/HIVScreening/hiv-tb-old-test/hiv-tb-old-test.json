@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-tb-old-test",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "tb-old-test"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

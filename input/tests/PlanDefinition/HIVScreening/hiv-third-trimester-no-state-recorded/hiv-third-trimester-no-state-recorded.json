@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-no-state-recorded",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "too-third-trimester-no-state-recorded"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

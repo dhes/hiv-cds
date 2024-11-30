@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-just-old-enough",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "just-old-enough"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],

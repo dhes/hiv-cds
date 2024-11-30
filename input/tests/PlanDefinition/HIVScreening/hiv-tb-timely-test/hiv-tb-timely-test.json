@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-tb-timely-test",
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "tb-timely-test"
+    }
+  ],
   "name": [
     {
       "given": ["Absolutely"],
