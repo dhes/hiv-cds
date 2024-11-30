@@ -1,0 +1,23 @@
+{
+  "resourceType": "Communication",
+  "id": "hiv-third-trimester-new-sexual-contact-communication",
+  "subject": {
+    "reference": "Patient/hiv-third-trimester-no-state-recorded"
+  },
+  "status": "completed",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/communication-category",
+          "code": "alert"
+        }
+      ]
+    }
+  ],
+  "note": [
+    {
+      "text": "pending."
+    }
+  ]
+}

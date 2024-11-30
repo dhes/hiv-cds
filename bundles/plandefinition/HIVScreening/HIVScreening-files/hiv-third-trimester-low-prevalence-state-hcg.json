@@ -1,0 +1,38 @@
+{
+  "resourceType": "Observation",
+  "id": "hiv-third-trimester-low-prevalence-state-hcg",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "2106-3",
+        "display": "Choriogonadotropin (pregnancy test) [Presence] in Urine"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/hiv-third-trimester-low-prevalence-state"
+  },
+  "effectiveDateTime": "2023-08-20T07:34:56-10:00",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "10828004",
+        "display": "Positive"
+      }
+    ]
+  },
+  "interpretation": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "POS",
+          "display": "Positive"
+        }
+      ]
+    }
+  ]
+}
