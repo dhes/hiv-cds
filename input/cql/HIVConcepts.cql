@@ -21,7 +21,7 @@ codesystem "Observation Interpretation": 'http://terminology.hl7.org/CodeSystem/
 // valueset "Sexual Orientation Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a0-de49'
 // valueset "Gender Identity Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a0-de56'
 // valueset "HIV infection as a condition Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a1-de2'
-// valueset "HIV-1 HIV 2 Ab Ag tests Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a2-de2'
+valueset "HIV-1 HIV 2 Ab Ag tests Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a2-de2'
 // valueset "HIV Viral Load Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a2-de173'
 // valueset "HIV Test Codes Grouper": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a2-de1-codes-grouper'
 // valueset "HIV Test Ordered Codes": 'http://fhir.org/guides/nachc/hiv-cds/ValueSet/nachc-a2-de217'

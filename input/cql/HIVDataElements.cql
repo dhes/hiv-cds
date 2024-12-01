@@ -46,11 +46,11 @@ define "Tuberculosis diagnosis":
   @activity: NACHC.A2 HIV test
   @description: Concepts Associated with HIV Testing
 */
-// define "HIV Tests":
-//   [Observation: Cx."HIV-1 HIV 2 Ab Ag tests Codes"] O
-//   // [Observation: Cx."HIV Tests"] O // This was the original
-//     where O.status in { 'final', 'amended', 'corrected' }
-//     //return O.value as FHIR.CodeableConcept
+define "HIV Tests":
+  [Observation: Cx."HIV-1 HIV 2 Ab Ag tests Codes"] O
+  // [Observation: Cx."HIV Tests"] O // This was the original
+    where O.status in { 'final', 'amended', 'corrected' }
+    //return O.value as FHIR.CodeableConcept
 
 define "Estimated Date of Delivery":
   [Observation: Cx."Estimated Date of Delivery"]

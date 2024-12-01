@@ -480,8 +480,8 @@ define PatientEncounterPeriodStart:
 define PatientEncounterPeriodEnd:
   end of ( "Patient Encounter".period )
 
-define SeekingTreatmentDate:
-  ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ).effective.value
+// define SeekingTreatmentDate:
+//   ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ).effective.value
 
 define "Patient is Seeking Treatment for an STD":
   exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment

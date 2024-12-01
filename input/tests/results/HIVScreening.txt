@@ -1,0 +1,67 @@
+CQL: /Users/danheslinga/hiv-cds/input/cql
+Terminology: /Users/danheslinga/hiv-cds/input/vocabulary/valueset
+Test cases:
+hiv-just-old-enough - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-just-old-enough
+hiv-just-young-enough - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-just-young-enough
+hiv-middle-age-tested - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-middle-age-tested
+hiv-msm - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-msm
+hiv-msm-prep - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-msm-prep
+hiv-msm-prep-utd - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-msm-prep-utd
+hiv-msm-utd - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-msm-utd
+hiv-pregnant-no-test - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-pregnant-no-test
+hiv-pregnant-old-test - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-pregnant-old-test
+hiv-pregnant-timely-test - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-pregnant-timely-test
+hiv-tb-not-tested - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-tb-not-tested
+hiv-tb-old-test - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-tb-old-test
+hiv-tb-timely-test - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-tb-timely-test
+hiv-third-trimester-high-prevalence-state - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-high-prevalence-state
+hiv-third-trimester-hiv-risk-lifestyle - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-hiv-risk-lifestyle
+hiv-third-trimester-idu - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-idu
+hiv-third-trimester-low-prevalence-state - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-low-prevalence-state
+hiv-third-trimester-money-for-sex - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-money-for-sex
+hiv-third-trimester-multiple-partners - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-multiple-partners
+hiv-third-trimester-new-sexual-contact - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-new-sexual-contact
+hiv-third-trimester-no-state-recorded - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-third-trimester-no-state-recorded
+hiv-too-old - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-too-old
+hiv-too-young - /Users/danheslinga/hiv-cds/input/tests/PlanDefinition/HIVScreening/hiv-too-young
+
+
+Evaluation logs:
+113392466 [pool-2-thread-1] INFO  o.o.c.f.u.r.ig.IgConventions Auto-detected repository configuration: IGConventions [typeLayout=FLAT, categoryLayout=FLAT, filenameMode=ID_ONLY] 
+113392467 [pool-2-thread-1] INFO  o.o.c.f.u.r.ig.IgConventions Auto-detected repository configuration: IGConventions [typeLayout=FLAT, categoryLayout=FLAT, filenameMode=ID_ONLY] 
+org.opencds.cqf.cql.engine.exception.CqlException: library HIVScreening loaded, but had errors: Could not resolve identifier HIV Tests in library HIVDataElements., Could not resolve identifier Seeking STD Treatment in library HIVDataElements., Could not resolve identifier Encounter Type in library HIVDataElements., Could not validate reference to expression Patient is Seeking Treatment for an STD because its definition contains errors., Could not resolve identifier HIV Tests in library HIVDataElements., Could not validate reference to expression HIV Screening Test because its definition contains errors., Could not validate reference to expression Patient has had an HIV Test because its definition contains errors., Could not resolve identifier HIV Diagnosis in library HIVDataElements., Could not validate reference to expression Never Tested Condition because its definition contains errors., Could not validate reference to expression Never Tested Condition because its definition contains errors., Could not validate reference to expression Never Tested Condition because its definition contains errors., Could not resolve identifier HIV Tests in library HIVDataElements., Could not resolve identifier HIV Tests in library HIVDataElements., Could not validate reference to expression Active diagnosis of HIV because its definition contains errors., Could not validate reference to expression MSM Condition because its definition contains errors., Could not validate reference to expression MSM Condition because its definition contains errors., Could not validate reference to expression MSM Condition because its definition contains errors., Could not validate reference to expression There is an HIV test after the most recent positive pregnancy test because its definition contains errors., Could not resolve identifier HIV Tests in library HIVDataElements., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression There is an HIV test during the third trimester because its definition contains errors., Could not validate reference to expression Active diagnosis of HIV because its definition contains errors., Could not validate reference to expression Pregnant Condition because its definition contains errors., Could not validate reference to expression Pregnant Condition because its definition contains errors., Could not validate reference to expression Pregnant Condition because its definition contains errors., Could not validate reference to expression Active diagnosis of HIV because its definition contains errors., Could not validate reference to expression Seeking STD Treatment Condition because its definition contains errors., Could not validate reference to expression HIV Screening Test because its definition contains errors., Could not validate reference to expression Previous HIV Screening Test because its definition contains errors., Could not validate reference to expression Seeking STD Treatment Condition because its definition contains errors., Could not validate reference to expression Seeking STD Treatment Condition because its definition contains errors., Could not resolve identifier HIV Tests in library HIVDataElements., Could not validate reference to expression Active diagnosis of HIV because its definition contains errors., Could not validate reference to expression Tuberculosis Condition because its definition contains errors., Could not validate reference to expression Tuberculosis Condition because its definition contains errors., Could not validate reference to expression Tuberculosis Condition because its definition contains errors., Could not validate reference to expression Never Tested Condition because its definition contains errors., An alias identifier [Tuberculosis Condition] is hiding another identifier of the same name., Could not validate reference to expression Never Tested Recommendation because its definition contains errors., Could not validate reference to expression Never Tested Rationale because its definition contains errors., Could not validate reference to expression HIV Test Condition because its definition contains errors., Could not validate reference to expression Previous HIV Screening Test because its definition contains errors., Could not validate reference to expression Previous HIV Screening Test because its definition contains errors., Could not resolve identifier Hepatitis C Diagnosis in library HIVDataElements., Could not resolve identifier Patient Diagnosed with Gonorrhea in library HIVDataElements., Could not resolve identifier Chlamydia Diagnosis in library HIVDataElements., Could not validate reference to expression Active Diagnosis of HCV During Patient Visit because its definition contains errors., Could not resolve identifier Drug Rehabilitation in library HIVDataElements., Could not resolve identifier Sexual Activity - Partners HIV History in library HIVDataElements., Could not resolve identifier Sexual Activity - Exchanged for Sex in library HIVDataElements., Could not resolve identifier HIV Tests in library HIVDataElements., Could not validate reference to expression Patient is at High Risk Due to a STD because its definition contains errors., Could not resolve identifier Sexual Activity - Past Year in library HIVDataElements., Could not validate reference to expression Patient is Documented Sexually Inactive because its definition contains errors., Could not validate reference to expression Patient is at High Risk for HIV because its definition contains errors., Could not validate reference to expression Patient Encounter because its definition contains errors., Could not validate reference to expression Patient Encounter because its definition contains errors., Could not resolve identifier Seeking STD Treatment in library HIVDataElements., Could not resolve identifier Pregnancy Encounters in library HIVDataElements., Could not validate reference to expression Active diagnosis of HIV because its definition contains errors., Could not validate reference to expression Patient is a sexually active MSM without HIV because its definition contains errors., Could not validate reference to expression Patient is a sexually active MSM without HIV because its definition contains errors.
+	at org.opencds.cqf.cql.engine.execution.CqlEngine.loadAndValidate(CqlEngine.java:287)
+	at org.opencds.cqf.cql.engine.execution.CqlEngine.evaluate(CqlEngine.java:203)
+	at org.opencds.cqf.cql.engine.execution.CqlEngine.evaluate(CqlEngine.java:189)
+	at org.opencds.cqf.cql.engine.execution.CqlEngine.evaluate(CqlEngine.java:169)
+	at org.opencds.cqf.cql.ls.server.command.CqlCommand.call(CqlCommand.java:227)
+	at org.opencds.cqf.cql.ls.server.command.CqlCommand.call(CqlCommand.java:44)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at org.opencds.cqf.cql.ls.server.command.DebugCqlCommandContribution.executeCql(DebugCqlCommandContribution.java:46)
+	at org.opencds.cqf.cql.ls.server.command.DebugCqlCommandContribution.executeCommand(DebugCqlCommandContribution.java:75)
+	at org.opencds.cqf.cql.ls.server.service.CqlWorkspaceService.executeCommandFromContributions(CqlWorkspaceService.java:171)
+	at org.opencds.cqf.cql.ls.server.service.CqlWorkspaceService.executeCommand(CqlWorkspaceService.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:120)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:272)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+elapsed: 0.151 seconds

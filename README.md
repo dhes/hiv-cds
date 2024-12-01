@@ -601,3 +601,12 @@ With luck you will get a CarePlan.
 2024-03-28
 
 Note that having an STD (a condition) makes you high ris HIV but Seeking Treatment for STD is a separate entry pathway to getting tested because it puts you in population regardless of age. 
+
+2024-11-29
+
+Some time later...
+
+Trying to purge all the NACHC codes. There are some NACHC value sets you need to keep because the contain non-nachc codes. Like these:
+
+- valueset-nachc-a2-de2.json	nachc-a2-de2	loinc codes
+- remove the entire Seeking Treatment Condition (and all dependencies and precursor)
