@@ -313,7 +313,7 @@ define "Patient is between 13 and 64 years old":
 
 define "HIV Screening Test": // DH: as of last encounter
   HC.QualifiedObservations ( HDE."HIV Tests" )
-    union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
+    // union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
   // ) HIVScreening
   //   with "Patient Encounter" PatientEncounter
   //     such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period

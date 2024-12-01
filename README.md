@@ -610,3 +610,5 @@ Trying to purge all the NACHC codes. There are some NACHC value sets you need to
 
 - valueset-nachc-a2-de2.json	nachc-a2-de2	loinc codes
 - remove the entire Seeking Treatment Condition (and all dependencies and precursor)
+- valueset-nnachc-a1-de2	snomed and icd10 codes
+- nachc-b1-de1-codes-grouper

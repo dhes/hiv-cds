@@ -30,10 +30,10 @@ context Patient
   @activity: NACHC.A1 HIV
   @description: Concepts Associated with HIV Diagnosis
 */
-// define "HIV Diagnosis":
-//   [Condition: Cx."HIV infection as a condition Codes"] C
-//     where C.clinicalStatus in FC."Active Condition"
-//       and C.verificationStatus ~ FC."confirmed"
+define "HIV Diagnosis":
+  [Condition: Cx."HIV infection as a condition Codes"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
 //     //return C.code
 
 define "Tuberculosis diagnosis":
@@ -72,10 +72,10 @@ define "Estimated Date of Delivery":
   @activity: NACHC.B1 HCV
   @description: Concepts Associated with HCV Diagnosis
 */
-// define "Hepatitis C Diagnosis":
-//   [Condition: Cx."Hepatitis C Diagnosis Codes Grouper"] C
-//     where C.clinicalStatus in FC."Active Condition"
-//       and C.verificationStatus ~ FC."confirmed"
+define "Hepatitis C Diagnosis":
+  [Condition: Cx."Hepatitis C Diagnosis Codes Grouper"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
 //     //return C.code
 
 
