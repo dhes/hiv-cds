@@ -38,7 +38,7 @@ define "Patient Name":
 
 define "Meets Inclusion Criteria":
   "Patient is between 13 and 64 years old"
-    or "Patient is Seeking Treatment for an STD"
+    // or "Patient is Seeking Treatment for an STD"
 
 define "Never Tested Condition":
   if ( 
@@ -226,25 +226,25 @@ define "Pregnant Indicator":
   if "Pregnant Condition" then 'routine' 
     else ''
 
-define "Seeking STD Treatment Condition":
-  if ( not "Active diagnosis of HIV"
-      and "Patient is Seeking Treatment for an STD"
-  ) then true 
-    else false
+// define "Seeking STD Treatment Condition":
+//   if ( not "Active diagnosis of HIV"
+//       and "Patient is Seeking Treatment for an STD"
+//   ) then true 
+//     else false
 
-define "Seeking STD Treatment Recommendation":
-  if "Seeking STD Treatment Condition" then ( if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.' 
-      else ''
-  )
-    else ''
+// define "Seeking STD Treatment Recommendation":
+//   if "Seeking STD Treatment Condition" then ( if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.' 
+//       else ''
+//   )
+//     else ''
 
-define "Seeking STD Treatment Rationale":
-  if "Seeking STD Treatment Condition" then '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.' 
-    else ''
+// define "Seeking STD Treatment Rationale":
+//   if "Seeking STD Treatment Condition" then '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.' 
+//     else ''
 
-define "Seeking STD Treatment Indicator":
-  if "Seeking STD Treatment Condition" then 'routin' 
-    else ''
+// define "Seeking STD Treatment Indicator":
+//   if "Seeking STD Treatment Condition" then 'routin' 
+//     else ''
 
 define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
@@ -277,7 +277,7 @@ define "HIV Test Condition":
   if ( "Never Tested Condition"
       or "MSM Condition"
       or "Pregnant Condition"
-      or "Seeking STD Treatment Condition"
+      // or "Seeking STD Treatment Condition"
       // or "Risk Level Condition"
       "Tuberculosis Condition"
   ) then true 
@@ -483,11 +483,11 @@ define PatientEncounterPeriodEnd:
 // define SeekingTreatmentDate:
 //   ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ).effective.value
 
-define "Patient is Seeking Treatment for an STD":
-  exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToInterval ( SeekingTreatment.effective ) overlaps PatientEncounter.period
-  )
+// define "Patient is Seeking Treatment for an STD":
+//   exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToInterval ( SeekingTreatment.effective ) overlaps PatientEncounter.period
+//   )
 
 define "Patient is at First Prenatal Visit":
   ( ( First((HC.QualifiedEncounters(HDE."Pregnancy Encounters")) PregnancyEncounter
