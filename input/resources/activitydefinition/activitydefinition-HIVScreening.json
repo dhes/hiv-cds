@@ -44,9 +44,9 @@
     "kind": "ServiceRequest",
     "code": {
         "coding": [{
-                "system": "http://fhir.org/guides/nachc/hiv-cds/CodeSystem/hiv-custom",
-                "code": "NACHC.A2.DE218",
-                "display": "Human immunodeficiency virus antigen test (procedure)"
+                "system": "http://loinc.org",
+                "code": "56888-1",
+                "display": "HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay"
             },
             {
                 "system": "http://snomed.info/sct",

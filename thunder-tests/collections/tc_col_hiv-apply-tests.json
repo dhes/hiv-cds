@@ -10,11 +10,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test InclusionPatient",
-            "url": "http://localhost:8080/cds-services",
-            "method": "OPTIONS",
+            "url": "PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
             "sortNum": 60000,
             "created": "2024-03-24T20:06:55.518Z",
-            "modified": "2024-06-24T21:02:43.738Z",
+            "modified": "2024-12-02T19:04:58.331Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -66,18 +66,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-ExclusionPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 60468.8,
             "created": "2024-03-24T20:06:55.519Z",
-            "modified": "2024-04-08T17:02:27.889Z",
+            "modified": "2024-12-02T19:06:00.479Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-ExclusionPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -115,11 +114,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-MSMPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 65000,
             "created": "2024-03-24T20:06:55.520Z",
-            "modified": "2024-05-31T01:33:15.330Z",
+            "modified": "2024-12-02T19:06:19.650Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -169,18 +168,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskSTDPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 62500,
             "created": "2024-03-24T20:06:55.521Z",
-            "modified": "2024-04-08T17:06:06.779Z",
+            "modified": "2024-12-02T19:06:16.514Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskSTDPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -222,11 +220,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskPregnantPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 61250,
             "created": "2024-03-24T20:06:55.522Z",
-            "modified": "2024-05-31T01:34:55.635Z",
+            "modified": "2024-12-02T19:06:12.062Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -270,11 +268,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-HighRiskIDUPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 60625,
             "created": "2024-03-24T20:06:55.523Z",
-            "modified": "2024-05-31T01:35:37.043Z",
+            "modified": "2024-12-02T19:06:08.668Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -318,11 +316,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseScreeningPatient",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 60312.5,
             "created": "2024-03-24T20:06:55.524Z",
-            "modified": "2024-05-31T01:36:36.436Z",
+            "modified": "2024-12-02T19:05:57.429Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -366,18 +364,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 60156.3,
             "created": "2024-03-24T20:06:55.525Z",
-            "modified": "2024-04-08T16:59:28.774Z",
+            "modified": "2024-12-02T19:05:54.082Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -415,18 +412,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-DrugAbuseQuestionsPatientBothCodesystems",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 60078.2,
             "created": "2024-03-24T20:06:55.526Z",
-            "modified": "2024-04-08T16:58:54.455Z",
+            "modified": "2024-12-02T19:05:50.977Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -464,18 +460,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-too-young",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 75000,
             "created": "2024-04-06T17:22:47.249Z",
-            "modified": "2024-04-08T17:04:05.104Z",
+            "modified": "2024-12-02T19:06:22.891Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-too-young\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -513,11 +508,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-just-old-enough",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 85000,
             "created": "2024-04-06T17:23:16.883Z",
-            "modified": "2024-05-31T01:31:20.634Z",
+            "modified": "2024-12-02T19:06:30.288Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -561,11 +556,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-pregnant-old-test",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-04-06T21:07:03.766Z",
-            "modified": "2024-05-31T01:29:42.713Z",
+            "modified": "2024-12-02T19:06:39.603Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -607,18 +602,17 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-too-old",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-06T21:07:28.373Z",
-            "modified": "2024-04-08T17:04:13.484Z",
+            "modified": "2024-12-02T19:06:27.157Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/fhir+json"
                 }
             ],
-            "params": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-too-old\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
@@ -654,11 +648,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-middle-age-tested",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-04-12T17:32:06.289Z",
-            "modified": "2024-04-19T14:12:20.613Z",
+            "modified": "2024-12-02T19:06:36.782Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -700,11 +694,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-just-young-enough",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 87500,
             "created": "2024-04-19T14:09:40.175Z",
-            "modified": "2024-05-31T01:30:28.828Z",
+            "modified": "2024-12-02T19:06:34.033Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -748,11 +742,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-pregnant-no-test",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 105000,
             "created": "2024-04-19T14:39:57.355Z",
-            "modified": "2024-05-31T01:29:13.300Z",
+            "modified": "2024-12-02T19:06:42.742Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -794,11 +788,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-pregnant-timely-test",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 115000,
             "created": "2024-04-26T16:46:52.602Z",
-            "modified": "2024-04-26T16:51:37.491Z",
+            "modified": "2024-12-02T19:06:46.588Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -840,11 +834,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-tb-not-tested",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 125000,
             "created": "2024-04-30T06:04:27.187Z",
-            "modified": "2024-05-31T01:28:23.306Z",
+            "modified": "2024-12-02T19:06:49.671Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -932,11 +926,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-tb-timely-test",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 145000,
             "created": "2024-05-03T14:19:31.189Z",
-            "modified": "2024-05-17T19:01:14.103Z",
+            "modified": "2024-12-02T19:06:57.045Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -980,11 +974,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-high-prevalencs-state",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 155000,
             "created": "2024-05-25T21:56:30.011Z",
-            "modified": "2024-05-31T01:25:45.545Z",
+            "modified": "2024-12-02T19:06:59.927Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1028,11 +1022,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-no-state-recorded",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 165000,
             "created": "2024-05-26T23:14:34.442Z",
-            "modified": "2024-05-31T01:22:14.431Z",
+            "modified": "2024-12-02T19:07:06.724Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1076,11 +1070,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-hiv-risk-lifestyle",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 160000,
             "created": "2024-05-30T01:58:59.251Z",
-            "modified": "2024-05-31T01:23:04.753Z",
+            "modified": "2024-12-02T19:07:03.106Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1124,11 +1118,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-idu",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 170000,
             "created": "2024-05-30T01:59:49.211Z",
-            "modified": "2024-05-31T01:21:22.228Z",
+            "modified": "2024-12-02T19:07:09.595Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1172,11 +1166,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-low-prevalence-state",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 180000,
             "created": "2024-05-30T02:00:21.341Z",
-            "modified": "2024-05-30T02:00:40.199Z",
+            "modified": "2024-12-02T19:07:12.897Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1220,11 +1214,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-multiple-partners",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 190000,
             "created": "2024-05-30T02:01:14.348Z",
-            "modified": "2024-05-31T01:18:29.537Z",
+            "modified": "2024-12-02T19:07:18.914Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1268,11 +1262,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-new-sexual-contact",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 200000,
             "created": "2024-05-30T02:02:03.352Z",
-            "modified": "2024-05-31T01:15:32.389Z",
+            "modified": "2024-12-02T19:07:21.698Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1316,11 +1310,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-third-trimester-money-for-sex",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 185000,
             "created": "2024-05-30T02:03:08.129Z",
-            "modified": "2024-05-31T01:47:10.780Z",
+            "modified": "2024-12-02T19:07:15.864Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1364,11 +1358,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-msm",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 210000,
             "created": "2024-06-06T03:16:51.561Z",
-            "modified": "2024-06-06T03:23:04.428Z",
+            "modified": "2024-12-02T19:07:25.411Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1412,11 +1406,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-msm-prep",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 220000,
             "created": "2024-06-06T03:16:58.051Z",
-            "modified": "2024-06-07T00:09:42.622Z",
+            "modified": "2024-12-02T19:07:28.132Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1460,11 +1454,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-msm-prep-utd",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 230000,
             "created": "2024-06-06T03:17:00.669Z",
-            "modified": "2024-06-06T03:25:00.563Z",
+            "modified": "2024-12-02T19:07:34.157Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1508,11 +1502,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "hiv-msm-utd",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 225000,
             "created": "2024-06-06T03:17:03.472Z",
-            "modified": "2024-06-06T03:26:24.337Z",
+            "modified": "2024-12-02T19:07:30.979Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1553,8 +1547,21 @@
         }
     ],
     "settings": {
+        "headers": [
+            {
+                "name": "Content-Type",
+                "value": "application/fhir+json"
+            }
+        ],
+        "auth": {
+            "type": "basic",
+            "basic": {
+                "username": "aequus",
+                "password": "AngryCuff2("
+            }
+        },
         "options": {
-            "baseUrl": "http://localhost:8080/fhir/PlanDefinition/HIVScreening/$apply"
+            "baseUrl": "https://cds.hopena.info:8443/fhir/"
         }
     }
 }

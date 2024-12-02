@@ -639,8 +639,21 @@
         }
     ],
     "settings": {
+        "headers": [
+            {
+                "name": "Content-Type",
+                "value": "application/fhir+json"
+            }
+        ],
+        "auth": {
+            "type": "basic",
+            "basic": {
+                "username": "aequus",
+                "password": "AngryCuff2("
+            }
+        },
         "options": {
-            "baseUrl": "http://localhost:8080/fhir/Patient/"
+            "baseUrl": "https://cds.hopena.info:8443/fhir/"
         }
     }
 }
