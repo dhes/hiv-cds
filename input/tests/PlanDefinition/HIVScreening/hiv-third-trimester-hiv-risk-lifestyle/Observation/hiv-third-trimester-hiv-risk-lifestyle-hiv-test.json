@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-hiv-risk-lifestyle-hiv-test",
+  "id": "hiv-third-trimester-hiv-risk-lifestyle-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-third-trimester-hiv-risk-lifestyle"

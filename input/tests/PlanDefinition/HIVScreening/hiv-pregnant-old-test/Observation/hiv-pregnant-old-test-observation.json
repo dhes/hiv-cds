@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-pregnant-old-test-observation",
+  "id": "hiv-pregnant-old-test-hcg",
   "status": "final",
   "code": {
     "coding": [

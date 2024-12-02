@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-middle-age-tested-hiv-test",
+  "id": "hiv-middle-age-tested-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-middle-age-tested"

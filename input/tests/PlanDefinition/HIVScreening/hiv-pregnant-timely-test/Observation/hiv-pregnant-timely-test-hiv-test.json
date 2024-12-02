@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-pregnant-timely-test-hiv-test",
+  "id": "hiv-pregnant-timely-test-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-pregnant-timely-test"

@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-msm-prep-hiv-test",
+  "id": "hiv-msm-prep-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-msm-prep"

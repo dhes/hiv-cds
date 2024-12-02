@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-tb-old-test-hiv-test",
+  "id": "hiv-tb-old-test-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-tb-old-test"

@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-tb-timely-test-hiv-test",
+  "id": "hiv-tb-timely-test-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-tb-timely-test"

@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-pregnant-timely-test-observation",
+  "id": "hiv-pregnant-timely-test-hcg",
   "status": "final",
   "code": {
     "coding": [

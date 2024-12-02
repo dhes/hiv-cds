@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-idu-hiv-test",
+  "id": "hiv-third-trimester-idu-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-third-trimester-idu"

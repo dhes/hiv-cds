@@ -1,8 +1,8 @@
 {
   "resourceType": "Communication",
-  "id": "hiv-third-trimester-money-for-sex-communication",
+  "id": "hiv-third-trimester-money-for-sex-comm",
   "subject": {
-    "reference": "Patient/hiv-third-trimester-no-state-recorded"
+    "reference": "Patient/hiv-third-trimester-money-for-sex"
   },
   "status": "completed",
   "category": [

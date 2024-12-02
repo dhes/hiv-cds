@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-msm-utd-hiv-test",
+  "id": "hiv-msm-utd-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-msm-utd"

@@ -2,7 +2,7 @@
   "resourceType": "Communication",
   "id": "hiv-third-trimester-multiple-partners-communication",
   "subject": {
-    "reference": "Patient/hiv-third-trimester-no-state-recorded"
+    "reference": "Patient/hiv-third-trimester-multiple-partners"
   },
   "status": "completed",
   "category": [

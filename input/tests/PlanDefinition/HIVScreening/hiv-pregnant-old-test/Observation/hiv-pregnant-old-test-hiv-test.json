@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-pregnant-old-test-hiv-test",
+  "id": "hiv-pregnant-old-test-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-pregnant-old-test"

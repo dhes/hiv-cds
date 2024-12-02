@@ -1,6 +1,6 @@
 {
   "resourceType": "Communication",
-  "id": "hiv-third-trimester-idu-communication",
+  "id": "hiv-third-trimester-idu-comm",
   "subject": {
     "reference": "Patient/hiv-third-trimester-no-state-recorded"
   },
