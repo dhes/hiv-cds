@@ -129,11 +129,11 @@ define "Hepatitis C Diagnosis":
   @activity: NACHC.D1 Gonorrhea
   @description: Concepts Associated with Gonorrhea Diagnosis
 */
-// define "Gonorrhea Diagnosis":
-//   [Condition: Cx."Gonorrhea Diagnosis Codes Grouper"] C
-//     where C.clinicalStatus in FC."Active Condition"
-//       and C.verificationStatus ~ FC."confirmed"
-    //return C.code
+define "Gonorrhea Diagnosis":
+  [Condition: Cx."Gonorrhea Diagnosis Codes Grouper"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
+    return C.code
 
 
 /*
@@ -152,10 +152,10 @@ define "Hepatitis C Diagnosis":
   @activity: NACHC.E1 Chlamydia
   @description: Concepts Associated with Chlamydia Diagnosis
 */
-// define "Chlamydia Diagnosis":
-//   [Condition: Cx."Chlamydia Diagnosis Codes Grouper"] C
-//     where C.clinicalStatus in FC."Active Condition"
-//       and C.verificationStatus ~ FC."confirmed"
+define "Chlamydia Diagnosis":
+  [Condition: Cx."Chlamydia Diagnosis Codes Grouper"] C
+    where C.clinicalStatus in FC."Active Condition"
+      and C.verificationStatus ~ FC."confirmed"
 //     //return C.code
 
 
@@ -175,10 +175,10 @@ define "Hepatitis C Diagnosis":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts related to Injection Drug Use Rehabiliation
 */
-// define "Drug Rehabilitation":
-//   [Procedure: Cx."Drug Rehabilitation Codes"] P
-//     where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
-//     //return P.code
+define "Drug Rehabilitation":
+  [Procedure: Cx."Drug Rehabilitation Codes"] P
+    where P.status in { 'preparation', 'in-progress', 'on-hold', 'completed' }
+    //return P.code
 
 
 /*
@@ -186,8 +186,8 @@ define "Hepatitis C Diagnosis":
   @activity: NACHC.F1 Injection Drug Use
   @description: Concepts related to Injection Drug Use History
 */
-// define "Injection Drug Use":
-//   [MedicationStatement: Cx."Injection Drug Use Codes"]
+define "Injection Drug Use":
+  [MedicationStatement: Cx."Injection Drug Use Codes"]
 
 /*
   @dataElement: NACHC.F1.DE15 Injection Drug Use Diagnosis
@@ -207,7 +207,7 @@ define "Hepatitis C Diagnosis":
   @description: Concepts related to findings or observations related to Injection Drug Usage
 */
 // define "Injection Findings":
-//   [Observation: Cx."Injection Findings"] O
+//   [Observation: Cx."Injection Findings"] O // this is a NACHC code
 //     where O.status in { 'final', 'amended', 'corrected' }
 //     //return O.value as FHIR.CodeableConcept
 
@@ -240,9 +240,9 @@ define "Pregnancy Conditions":
   @activity: NACHC.F2 Pregnancy
   @description: Encounters in the usage of Pregnancy
 */
-// define "Pregnancy Encounters":
-//   [Encounter: Cx."Pregnancy Encounters Codes"] E
-//     where E.status = 'finished'
+define "Pregnancy Encounters":
+  [Encounter: Cx."Pregnancy Encounters Codes"] E
+    where E.status = 'finished'
 //     //return E.type
 
 

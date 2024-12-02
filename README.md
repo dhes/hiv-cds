@@ -612,3 +612,7 @@ Trying to purge all the NACHC codes. There are some NACHC value sets you need to
 - remove the entire Seeking Treatment Condition (and all dependencies and precursor)
 - valueset-nnachc-a1-de2	snomed and icd10 codes
 - nachc-b1-de1-codes-grouper
+- nachc-e1-de1-codes-grouper	Chlamydia Diagnosis Codes Grouper
+- valueset-nachc-f1-de2	drug rehab diagnosis
+- valueset-nachc-f2-de2	pregnancy encounter codes
+- valueset-nachc-d1-de1-codes-grouper
