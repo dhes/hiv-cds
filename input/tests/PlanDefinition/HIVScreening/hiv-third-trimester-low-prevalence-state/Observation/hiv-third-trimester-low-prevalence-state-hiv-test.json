@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "hiv-third-trimester-low-prevalence-state-hiv-test",
+  "id": "hiv-third-trimester-low-prevalence-state-test",
   "status": "final",
   "subject": {
     "reference": "Patient/hiv-third-trimester-low-prevalence-state"
