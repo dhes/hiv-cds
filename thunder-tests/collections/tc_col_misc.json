@@ -14,8 +14,14 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-11-30T04:05:45.788Z",
-            "modified": "2024-11-30T04:06:10.986Z",
-            "headers": []
+            "modified": "2024-12-02T19:34:47.701Z",
+            "headers": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "../bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
+            }
         }
     ],
     "settings": {
