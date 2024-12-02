@@ -1,0 +1,127 @@
+{
+  "resourceType": "Group",
+  "id": "HIVScreening",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/artifact-testArtifact",
+    "valueCanonical": "http://ecqi.healthit.gov/ecqms/Measure/HIVScreening"
+  } ],
+  "active": true,
+  "type": "person",
+  "actual": true,
+  "member": [ {
+    "entity": {
+      "reference": "Patient/hiv-middle-age-tested",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-money-for-sex",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-pregnant-timely-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-idu",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-just-old-enough",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-pregnant-old-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-just-young-enough",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-tb-not-tested",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm-prep",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-no-state-recorded",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-high-prevalence-state",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-too-young",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm-prep-utd",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-hiv-risk-lifestyle",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm",
+      "display": "Joe Kotic"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-multiple-partners",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-low-prevalence-state",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-tb-old-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-too-old",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-tb-timely-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-third-trimester-new-sexual-contact",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-pregnant-no-test",
+      "display": "Absolutely Nobody"
+    }
+  }, {
+    "entity": {
+      "reference": "Patient/hiv-msm-utd",
+      "display": "Joe Kotic"
+    }
+  } ]
+}
