@@ -38,7 +38,7 @@ define "Patient Name":
 
 define "Meets Inclusion Criteria":
   "Patient is between 13 and 64 years old"
-    or "Patient is Seeking Treatment for an STD"
+    // or "Patient is Seeking Treatment for an STD"
 
 define "Never Tested Condition":
   if ( 
@@ -226,25 +226,25 @@ define "Pregnant Indicator":
   if "Pregnant Condition" then 'routine' 
     else ''
 
-define "Seeking STD Treatment Condition":
-  if ( not "Active diagnosis of HIV"
-      and "Patient is Seeking Treatment for an STD"
-  ) then true 
-    else false
+// define "Seeking STD Treatment Condition":
+//   if ( not "Active diagnosis of HIV"
+//       and "Patient is Seeking Treatment for an STD"
+//   ) then true 
+//     else false
 
-define "Seeking STD Treatment Recommendation":
-  if "Seeking STD Treatment Condition" then ( if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.' 
-      else ''
-  )
-    else ''
+// define "Seeking STD Treatment Recommendation":
+//   if "Seeking STD Treatment Condition" then ( if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.' 
+//       else ''
+//   )
+//     else ''
 
-define "Seeking STD Treatment Rationale":
-  if "Seeking STD Treatment Condition" then '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.' 
-    else ''
+// define "Seeking STD Treatment Rationale":
+//   if "Seeking STD Treatment Condition" then '\r\n - All patients seeking treatment for STDs - including all patients attending an STD clinic -- should be tested for HIV at each visit for a new complaint.' 
+//     else ''
 
-define "Seeking STD Treatment Indicator":
-  if "Seeking STD Treatment Condition" then 'routin' 
-    else ''
+// define "Seeking STD Treatment Indicator":
+//   if "Seeking STD Treatment Condition" then 'routin' 
+//     else ''
 
 define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
@@ -277,7 +277,7 @@ define "HIV Test Condition":
   if ( "Never Tested Condition"
       or "MSM Condition"
       or "Pregnant Condition"
-      or "Seeking STD Treatment Condition"
+      // or "Seeking STD Treatment Condition"
       // or "Risk Level Condition"
       "Tuberculosis Condition"
   ) then true 
@@ -285,24 +285,22 @@ define "HIV Test Condition":
 
 define "HIV Test Recommendation": // 'Recommend HIV Test'
   
-  "Never Tested Recommendation" + "MSM Recommendation" + "Pregnant Recommendation" + "Seeking STD Treatment Recommendation" +
-  "Tuberculosis Recommendation"
+  "Never Tested Recommendation" + "MSM Recommendation" + "Pregnant Recommendation" + "Tuberculosis Recommendation"
 
 define "HIV Test Rationale":
-  "Never Tested Rationale" + "MSM Rationale" + "Pregnant Rationale" + "Seeking STD Treatment Rationale" +
-  "Tuberculosis Rationale"
+  "Never Tested Rationale" + "MSM Rationale" + "Pregnant Rationale" +  "Tuberculosis Rationale"
 
 define "HIV Test Indicator":
   if "HIV Test Condition" then 'routine' 
     else ''
 
-define "Patient Encounter":
-  Last((HC.QualifiedEncounters(HDE."Encounter Type"
-      union HDE."Pregnancy Encounters"
-      union HDE."Third Trimester Encounters")) PatientEncounter
-      sort by 
-      end of period
-  )
+// define "Patient Encounter":
+//   Last((HC.QualifiedEncounters(HDE."Encounter Type"
+//       union HDE."Pregnancy Encounters"
+//       union HDE."Third Trimester Encounters")) PatientEncounter
+//       sort by 
+//       end of period
+//   )
 
 define "Age":
   AgeInYearsAt("Reference Date")
@@ -313,7 +311,7 @@ define "Patient is between 13 and 64 years old":
 
 define "HIV Screening Test": // DH: as of last encounter
   HC.QualifiedObservations ( HDE."HIV Tests" )
-    union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
+    // union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
   // ) HIVScreening
   //   with "Patient Encounter" PatientEncounter
   //     such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
@@ -361,92 +359,78 @@ define "Active diagnosis of Tuberculosis?":
 define "Active diagnosis of HIV":
   exists HDE."HIV Diagnosis"
 
-define "Active Diagnosis of HCV During Patient Visit":
-  ( ( Last((HC.QualifiedConditions(HDE."Hepatitis C Diagnosis")) HCVDiagnosis
+define "Active Diagnosis of HCV During Patient Visit":  // ignoring visits...
+   Last((HC.QualifiedConditions(HDE."Hepatitis C Diagnosis")) HCVDiagnosis
         sort by 
         end of FC.ToInterval(abatement)
-    ) ) HCVDiagnosis
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToPrevalenceInterval ( HCVDiagnosis ) overlaps PatientEncounter.period
-  ) is not null
-    or exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with HCV" ) ) HCVObserved
-        with "Patient Encounter" PatientEncounter
-          such that FC.ToInterval ( HCVObserved.effective ) overlaps PatientEncounter.period
-    )
+	)
+			is not null
 
+// need a different code set or value set for this
 define "Active Diagnosis of Gonorrhea During Patient Visit":
-    exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Gonorrhea" ) ) GonorrheaObserved
-        with "Patient Encounter" PatientEncounter
-          such that FC.ToInterval ( GonorrheaObserved.effective ) overlaps PatientEncounter.period
-    )
+    exists ( HDE."Gonorrhea Diagnosis" )   // need different code - this is NACHC
 
-define "Active Diagnosis of Chlamydia During Patient Visit":
-  ( ( Last((HC.QualifiedConditions(HDE."Chlamydia Diagnosis")) ChlamydiaDiagnosis
+define "Active Diagnosis of Chlamydia During Patient Visit": // ignoring visits...
+   Last((HC.QualifiedConditions(HDE."Chlamydia Diagnosis")) ChlamydiaDiagnosis
         sort by 
-        end of FC.ToInterval(abatement)
-    ) ) ChlamydiaDiagnosis
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToPrevalenceInterval ( ChlamydiaDiagnosis ) overlaps PatientEncounter.period
-  ) is not null
-    or exists ( ( HC.QualifiedObservations ( HDE."Patient Diagnosed with Chlamydia" ) ) ChlamydiaObserved
-        with "Patient Encounter" PatientEncounter
-          such that FC.ToInterval ( ChlamydiaObserved.effective ) overlaps PatientEncounter.period
-    )
+        end of FC.ToInterval(abatement)) is not null
 
-define "Patient is at High Risk Due to a STD":
-  "Active Diagnosis of HCV During Patient Visit"
-    or "Active Diagnosis of Gonorrhea During Patient Visit"
-    or "Active Diagnosis of Chlamydia During Patient Visit"
+
+// define "Patient is at High Risk Due to a STD":
+//   "Active Diagnosis of HCV During Patient Visit"
+//     or "Active Diagnosis of Gonorrhea During Patient Visit"
+//     or "Active Diagnosis of Chlamydia During Patient Visit"
 
 define "Patient is at High Risk Due to Injection Drug Use":
-  ( ( Last((HC.QualifiedProcedures(HDE."Drug Rehabilitation")
-        union HC.QualifiedObservations(HDE."Injection Findings")
-        union HC.QualifiedObservations(HDE."Patient has used Injection Drugs")) InjectionDrugUse
-        return Tuple {
-          resource: InjectionDrugUse,
-          IDUTiming: Coalesce(
-            end of FC.ToInterval(InjectionDrugUse.performed), 
-            end of FC.ToInterval(InjectionDrugUse.effective) 
-          )
-        }
-        sort by IDUTiming
-    ).resource ) InjectionDrugUse
-      with "Patient Encounter" PatientEncounter
-        such that Coalesce(FC.ToInterval(InjectionDrugUse.performed), FC.ToInterval(InjectionDrugUse.effective)) overlaps PatientEncounter.period
-  ) is not null
+  exists (HC.QualifiedProcedures(HDE."Drug Rehabilitation")) or 
+	exists (HDE."Injection Drug Use")
+  //       // union HC.QualifiedObservations(HDE."Injection Findings") // DH: This is an NACHC code
+  //       // union HC.QualifiedObservations(HDE."Patient has used Injection Drugs")) InjectionDrugUse // DH: This is an NACHC code
+  //       return Tuple {
+  //         resource: InjectionDrugUse,
+  //         IDUTiming: Coalesce(
+  //           end of FC.ToInterval(InjectionDrugUse.performed), 
+  //           end of FC.ToInterval(InjectionDrugUse.effective) 
+  //         )
+  //       }
+  //       sort by IDUTiming
+  //   ).resource ) InjectionDrugUse
+  //     with "Patient Encounter" PatientEncounter
+  //       such that Coalesce(FC.ToInterval(InjectionDrugUse.performed), FC.ToInterval(InjectionDrugUse.effective)) overlaps PatientEncounter.period
+  // ) is not null
 
-define "Patient is at High Risk Due to Sexual Partner having HIV":
-  exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Partners HIV History" ) ) HIVPartnerHistory
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToInterval ( HIVPartnerHistory.effective ) overlaps PatientEncounter.period
-  )
+// define "Patient is at High Risk Due to Sexual Partner having HIV":
+//   exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Partners HIV History" ) ) HIVPartnerHistory // DH: This is an NACHC code
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToInterval ( HIVPartnerHistory.effective ) overlaps PatientEncounter.period
+//   )
 
-define "Patient is at High Risk Due to exchanging sex for money or drugs":
-  exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Exchanged for Sex" ) ) SexExchanged
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToInterval ( SexExchanged.effective ) overlaps PatientEncounter.period
-  )
+// define "Patient is at High Risk Due to exchanging sex for money or drugs":
+//   exists ( ( HC.QualifiedObservations ( HDE."Sexual Activity - Exchanged for Sex" ) ) SexExchanged // DH: This is an NACHC code
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToInterval ( SexExchanged.effective ) overlaps PatientEncounter.period
+//   )
 
-define "Patient is at High Risk Due to Multiple Sex Partners since last screening":
-  ( ( Last((HC.QualifiedObservations(HDE."HIV Tests") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
+// define "Patient is at High Risk Due to Multiple Sex Partners since last screening":
+//   ( ( Last((HC.QualifiedObservations(HDE."HIV Tests") //QualifiedObservations: status = 'preliminary' 'final' 'amended' or 'corrected'
         
-        union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
-      ) HIVScreening
-        sort by 
-        end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that diffenent than just 
+//         union HC.QualifiedObservations(HDE."Previous HIV Screening") // How does this fit in the logic? Where is its `status` attribute?
+//       ) HIVScreening
+//         sort by 
+//         end of FC.ToInterval(effective) //DH: The result of will be a 'unit interval'. How is that different than just 
     
-    ) ) HIVScreening
-      with ( HC.QualifiedObservations ( HDE."Sexual Activity - Number of Partners" ) // DH: Number of Partners seems to equate to Multiple Partners
+//     ) ) HIVScreening
+//       with ( HC.QualifiedObservations ( HDE."Sexual Activity - Number of Partners" ) // DH: Number of Partners seems to equate to Multiple Partners
         
-        union HC.QualifiedObservations ( HDE."Sexual Activity - Partners Number of Partners" ) ) NumberOfPartners
-        such that FC.ToInterval ( HIVScreening.effective ) before FC.ToInterval ( NumberOfPartners.effective )
-  ) is not null
+//         union HC.QualifiedObservations ( HDE."Sexual Activity - Partners Number of Partners" ) ) NumberOfPartners
+//         such that FC.ToInterval ( HIVScreening.effective ) before FC.ToInterval ( NumberOfPartners.effective )
+//   ) is not null
 
-define "Patient is at High Risk for HIV":
-  "Patient is at High Risk Due to a STD"
-    or "Patient is at High Risk Due to Sexual Partner having HIV"
-    or "Patient is at High Risk Due to exchanging sex for money or drugs"
-    or "Patient is at High Risk Due to Multiple Sex Partners since last screening"
+// define "Patient is at High Risk for HIV":
+  // "Patient is at High Risk Due to a STD"
+    // or "Patient is at High Risk Due to Sexual Partner having HIV"
+    // or "Patient is at High Risk Due to exchanging sex for money or drugs"
+    // or "Patient is at High Risk Due to Multiple Sex Partners since last screening"
 
 define "Has sex with men":
   if exists HDE."Has sex with men"
@@ -454,49 +438,42 @@ define "Has sex with men":
   else false
 
 define "Patient is Documented Sexually Inactive":
-  ( ( Last((HC.QualifiedObservations(HDE."Sexual Activity - Past Year")
-        union HC.QualifiedObservations(HDE."Sexual Activity - History")
-        union HC.QualifiedObservations(HDE."Has sex with men")
-        union HC.QualifiedObservations(HDE."Sexual Activity - Women")) SexualHistory
-        where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
-        sort by Coalesce(effective, issued)
-    ) ) SexualHistory
-      with "Patient Encounter" Encounter
-        such that Coalesce(FC.ToInterval(SexualHistory.effective), FC.ToInterval(SexualHistory.issued)) during Encounter.period
-  ) is not null
+  // ( ( Last((HC.QualifiedObservations(HDE."Sexual Activity - Past Year")
+        // union HC.QualifiedObservations(HDE."Sexual Activity - History")
+        HC.QualifiedObservations(HDE."Has sex with men")
+        // union HC.QualifiedObservations(HDE."Sexual Activity - Women")) SexualHistory
+        // where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
+        // sort by Coalesce(effective, issued)
 
 define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. I'm just sayin'. 
   "Patient is Documented Sexually Inactive" 
 
 
 define "Patient is at Low Risk for HIV":
-  not "Patient is at High Risk for HIV"  // risky behaviors
+  // not "Patient is at High Risk for HIV"  // risky behaviors
     // and not "Patient is at Moderate Risk for HIV" // genetic males sexually active with genetic males
-    and not "Patient is at No Risk for HIV"  // i.e. not "Patient is Documented Sexually Inactive"
+    not exists("Patient is at No Risk for HIV")  // i.e. not "Patient is Documented Sexually Inactive"
 
-define PatientEncounterPeriodStart:
-  start of ( "Patient Encounter".period )
+// define PatientEncounterPeriodStart:
+//   start of ( "Patient Encounter".period )
 
-define PatientEncounterPeriodEnd:
-  end of ( "Patient Encounter".period )
+// define PatientEncounterPeriodEnd:
+//   end of ( "Patient Encounter".period )
 
-define SeekingTreatmentDate:
-  ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ).effective.value
+// define SeekingTreatmentDate:
+//   ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ).effective.value
 
-define "Patient is Seeking Treatment for an STD":
-  exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment
-      with "Patient Encounter" PatientEncounter
-        such that FC.ToInterval ( SeekingTreatment.effective ) overlaps PatientEncounter.period
-  )
+// define "Patient is Seeking Treatment for an STD":
+//   exists ( ( HC.QualifiedObservations ( HDE."Seeking STD Treatment" ) ) SeekingTreatment
+//       with "Patient Encounter" PatientEncounter
+//         such that FC.ToInterval ( SeekingTreatment.effective ) overlaps PatientEncounter.period
+//   )
 
 define "Patient is at First Prenatal Visit":
-  ( ( First((HC.QualifiedEncounters(HDE."Pregnancy Encounters")) PregnancyEncounter
+  ( First((HC.QualifiedEncounters(HDE."Pregnancy Encounters")) PregnancyEncounter
         sort by 
         end of period
     ) ) PregnancyEncounter
-      with "Patient Encounter" PatientEncounter
-        such that PregnancyEncounter.id = PatientEncounter.id
-  ) is not null
 
 define "Patient is a sexually active MSM without HIV":
   "Patient is Male" and "Has sex with men"
@@ -504,7 +481,7 @@ define "Patient is a sexually active MSM without HIV":
 
 define "Patient is a sexually active MSM with Multiple Sex Partners":
   "Patient is a sexually active MSM without HIV"
-    and "Patient is at High Risk Due to Multiple Sex Partners since last screening"
+    // and "Patient is at High Risk Due to Multiple Sex Partners since last screening"
 
 define "Patient is a sexually active MSM who should be Screened Every 3 Months":
   "Patient is a sexually active MSM without HIV"
