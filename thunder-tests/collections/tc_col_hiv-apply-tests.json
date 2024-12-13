@@ -6,456 +6,6 @@
     "folders": [],
     "requests": [
         {
-            "_id": "bd64a55a-a161-47d1-83ca-abb10cfb894a",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test InclusionPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60000,
-            "created": "2024-03-24T20:06:55.518Z",
-            "modified": "2024-12-02T19:04:58.331Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                },
-                {
-                    "name": "Origin",
-                    "value": "https://sandbox.cds-hooks.org/"
-                },
-                {
-                    "name": "Access-Control-Request-Method",
-                    "value": "GET"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-InclusionPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "54fc4b91-9ca1-4046-9ada-9e14bc2b3701",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-ExclusionPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60468.8,
-            "created": "2024-03-24T20:06:55.519Z",
-            "modified": "2024-12-02T19:06:00.479Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-ExclusionPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "// tc.test(\"Action Element is null\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "6736991c-167a-4d79-82ee-9d422c846ddf",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-MSMPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 65000,
-            "created": "2024-03-24T20:06:55.520Z",
-            "modified": "2024-12-02T19:06:19.650Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-MSMPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "contains",
-                    "value": "sexually active MSM"
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "5623d7b8-8600-417f-b0f8-34db6ab24e20",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-HighRiskSTDPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 62500,
-            "created": "2024-03-24T20:06:55.521Z",
-            "modified": "2024-12-02T19:06:16.514Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskSTDPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "contains",
-                    "value": "seeking treatment for an STD"
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "c5a788d8-c68a-4967-bc45-c69c7fad79cb",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-HighRiskPregnantPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 61250,
-            "created": "2024-03-24T20:06:55.522Z",
-            "modified": "2024-12-02T19:06:12.062Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskPregnantPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "78e72daa-62db-4ad7-931d-f138bf2996b4",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-HighRiskIDUPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60625,
-            "created": "2024-03-24T20:06:55.523Z",
-            "modified": "2024-12-02T19:06:08.668Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-HighRiskIDUPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "631d95aa-f030-4b91-b386-7e82febb7b36",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-DrugAbuseScreeningPatient",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60312.5,
-            "created": "2024-03-24T20:06:55.524Z",
-            "modified": "2024-12-02T19:05:57.429Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseScreeningPatient\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "66ac76d1-aceb-4125-87b0-7319a292cdf6",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-DrugAbuseQuestionsPatientNACHCCodeOnly",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60156.3,
-            "created": "2024-03-24T20:06:55.525Z",
-            "modified": "2024-12-02T19:05:54.082Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientNACHCCodeOnly\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "// tc.test(\"Action Element is null\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "38520d70-99b4-442a-a9fc-faf5120dbd39",
-            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
-            "containerId": "",
-            "name": "test hiv-DrugAbuseQuestionsPatientBothCodesystems",
-            "url": "PlanDefinition/HIVScreening/$apply",
-            "method": "POST",
-            "sortNum": 60078.2,
-            "created": "2024-03-24T20:06:55.526Z",
-            "modified": "2024-12-02T19:05:50.977Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/fhir+json"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-DrugAbuseQuestionsPatientBothCodesystems\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference Date\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
-                }
-            ],
-            "postReq": {
-                "inlineScripts": [
-                    {
-                        "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "// tc.test(\"Action Element is null\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
-                        ]
-                    }
-                ]
-            }
-        },
-        {
             "_id": "70ee0354-2045-466d-9129-3410c73e2825",
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
@@ -464,7 +14,7 @@
             "method": "POST",
             "sortNum": 75000,
             "created": "2024-04-06T17:22:47.249Z",
-            "modified": "2024-12-02T19:06:22.891Z",
+            "modified": "2024-12-02T22:07:38.116Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -482,22 +32,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action == null;",
-                            "// tc.test(\"Action Element is null\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -560,7 +110,7 @@
             "method": "POST",
             "sortNum": 95000,
             "created": "2024-04-06T21:07:03.766Z",
-            "modified": "2024-12-02T19:06:39.603Z",
+            "modified": "2024-12-02T22:03:21.215Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -578,20 +128,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "   tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -606,7 +158,7 @@
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-06T21:07:28.373Z",
-            "modified": "2024-12-02T19:06:27.157Z",
+            "modified": "2024-12-02T22:07:46.780Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -624,20 +176,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -652,7 +206,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-04-12T17:32:06.289Z",
-            "modified": "2024-12-02T19:06:36.782Z",
+            "modified": "2024-12-02T22:08:11.240Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -670,20 +224,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -698,7 +254,7 @@
             "method": "POST",
             "sortNum": 87500,
             "created": "2024-04-19T14:09:40.175Z",
-            "modified": "2024-12-02T19:06:34.033Z",
+            "modified": "2024-12-02T22:02:55.934Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -716,22 +272,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -746,7 +302,7 @@
             "method": "POST",
             "sortNum": 105000,
             "created": "2024-04-19T14:39:57.355Z",
-            "modified": "2024-12-02T19:06:42.742Z",
+            "modified": "2024-12-02T22:03:32.388Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -764,20 +320,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "   tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -792,7 +350,7 @@
             "method": "POST",
             "sortNum": 115000,
             "created": "2024-04-26T16:46:52.602Z",
-            "modified": "2024-12-02T19:06:46.588Z",
+            "modified": "2024-12-02T22:08:32.641Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -810,20 +368,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -838,7 +398,7 @@
             "method": "POST",
             "sortNum": 125000,
             "created": "2024-04-30T06:04:27.187Z",
-            "modified": "2024-12-02T19:06:49.671Z",
+            "modified": "2024-12-02T22:03:42.885Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -868,8 +428,16 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "  let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "   tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -884,7 +452,7 @@
             "method": "POST",
             "sortNum": 135000,
             "created": "2024-05-03T14:19:27.835Z",
-            "modified": "2024-05-31T01:28:05.104Z",
+            "modified": "2024-12-02T22:03:58.126Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -902,20 +470,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -930,7 +500,7 @@
             "method": "POST",
             "sortNum": 145000,
             "created": "2024-05-03T14:19:31.189Z",
-            "modified": "2024-12-02T19:06:57.045Z",
+            "modified": "2024-12-02T22:08:51.812Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -948,22 +518,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "// tc.test(\"Action element exists\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -978,7 +548,7 @@
             "method": "POST",
             "sortNum": 155000,
             "created": "2024-05-25T21:56:30.011Z",
-            "modified": "2024-12-02T19:06:59.927Z",
+            "modified": "2024-12-02T22:04:19.456Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -996,22 +566,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1026,7 +596,7 @@
             "method": "POST",
             "sortNum": 165000,
             "created": "2024-05-26T23:14:34.442Z",
-            "modified": "2024-12-02T19:07:06.724Z",
+            "modified": "2024-12-02T22:04:47.331Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1044,22 +614,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1074,7 +644,7 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2024-05-30T01:58:59.251Z",
-            "modified": "2024-12-02T19:07:03.106Z",
+            "modified": "2024-12-02T22:04:30.620Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1092,22 +662,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1170,7 +740,7 @@
             "method": "POST",
             "sortNum": 180000,
             "created": "2024-05-30T02:00:21.341Z",
-            "modified": "2024-12-02T19:07:12.897Z",
+            "modified": "2024-12-02T22:09:33.285Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1188,22 +758,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "// tc.test(\"Action element exists\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -1218,7 +788,7 @@
             "method": "POST",
             "sortNum": 190000,
             "created": "2024-05-30T02:01:14.348Z",
-            "modified": "2024-12-02T19:07:18.914Z",
+            "modified": "2024-12-02T22:05:39.201Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1236,22 +806,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1266,7 +836,7 @@
             "method": "POST",
             "sortNum": 200000,
             "created": "2024-05-30T02:02:03.352Z",
-            "modified": "2024-12-02T19:07:21.698Z",
+            "modified": "2024-12-02T22:05:52.663Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1284,22 +854,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1314,7 +884,7 @@
             "method": "POST",
             "sortNum": 185000,
             "created": "2024-05-30T02:03:08.129Z",
-            "modified": "2024-12-02T19:07:15.864Z",
+            "modified": "2024-12-02T22:05:29.722Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1332,22 +902,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1362,7 +932,7 @@
             "method": "POST",
             "sortNum": 210000,
             "created": "2024-06-06T03:16:51.561Z",
-            "modified": "2024-12-02T19:07:25.411Z",
+            "modified": "2024-12-02T22:06:01.797Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1380,22 +950,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1410,7 +980,7 @@
             "method": "POST",
             "sortNum": 220000,
             "created": "2024-06-06T03:16:58.051Z",
-            "modified": "2024-12-02T19:07:28.132Z",
+            "modified": "2024-12-02T22:06:19.908Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1428,22 +998,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -1458,7 +1028,7 @@
             "method": "POST",
             "sortNum": 230000,
             "created": "2024-06-06T03:17:00.669Z",
-            "modified": "2024-12-02T19:07:34.157Z",
+            "modified": "2024-12-02T22:10:06.172Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1476,22 +1046,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "// tc.test(\"Action element exists\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -1506,7 +1076,7 @@
             "method": "POST",
             "sortNum": 225000,
             "created": "2024-06-06T03:17:03.472Z",
-            "modified": "2024-12-02T19:07:30.979Z",
+            "modified": "2024-12-02T22:09:55.059Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -1524,22 +1094,22 @@
                     "custom": "",
                     "action": "equal",
                     "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "isjson",
-                    "value": ""
                 }
             ],
             "postReq": {
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let sußccess = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "// tc.test(\"Action element exists\", success);",
-                            "let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome and no RequestGroup.action\", success);"
                         ]
                     }
                 ]
@@ -1551,17 +1121,14 @@
             {
                 "name": "Content-Type",
                 "value": "application/fhir+json"
+            },
+            {
+                "name": "Authorization",
+                "value": "Basic {{HAPI_FHIR_AUTH}}"
             }
         ],
-        "auth": {
-            "type": "basic",
-            "basic": {
-                "username": "aequus",
-                "password": "AngryCuff2("
-            }
-        },
         "options": {
-            "baseUrl": "https://cds.hopena.info:8443/fhir/"
+            "baseUrl": "{{FHIR_SERVER_URL}}"
         }
     }
 }

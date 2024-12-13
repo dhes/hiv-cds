@@ -24,3 +24,6 @@ Thumbs.db
 *.bak
 /input-cache/*.jar
 /input/datadictionary/.~lock.NACHC-DD.xlsx#
+
+# secrets
+.env

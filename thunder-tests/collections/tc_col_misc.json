@@ -22,6 +22,36 @@
                 "form": [],
                 "binary": "../bundles/plandefinition/HIVScreening/HIVScreening-bundle.json"
             }
+        },
+        {
+            "_id": "233fc230-4c84-4fc7-b7e0-7202c884f41b",
+            "colId": "50b39425-a19f-4516-adf1-eca0a3175a66",
+            "containerId": "",
+            "name": "look for ActivityDefinition",
+            "url": "ActivityDefinition",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-12-02T21:44:07.539Z",
+            "modified": "2024-12-02T21:47:01.297Z",
+            "headers": []
+        },
+        {
+            "_id": "021779da-2e0d-47ca-9aef-231eca158f1d",
+            "colId": "50b39425-a19f-4516-adf1-eca0a3175a66",
+            "containerId": "",
+            "name": "PUT ActivityDefinition",
+            "url": "ActivityDefinition/activitydefinition-HIVScreening",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-12-02T21:49:43.468Z",
+            "modified": "2024-12-02T21:51:48.843Z",
+            "headers": [],
+            "body": {
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "../input/resources/activitydefinition/activitydefinition-HIVScreening.json"
+            }
         }
     ],
     "settings": {
@@ -29,17 +59,14 @@
             {
                 "name": "Content-Type",
                 "value": "application/fhir+json"
+            },
+            {
+                "name": "Authorization",
+                "value": "Basic {{HAPI_FHIR_AUTH}}"
             }
         ],
-        "auth": {
-            "type": "basic",
-            "basic": {
-                "username": "aequus",
-                "password": "AngryCuff2("
-            }
-        },
         "options": {
-            "baseUrl": "https://cds.hopena.info:8443/fhir/"
+            "baseUrl": "{{FHIR_SERVER_URL}}"
         }
     }
 }
