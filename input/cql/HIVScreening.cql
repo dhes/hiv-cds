@@ -8,13 +8,16 @@ include HIVCommon called HC
 include HIVConcepts called Cx
 include HIVDataElements called HDE
 
-parameter "Reference Date" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
+parameter "Reference dateTime" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
   // default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
-  default Now() 
+  default Today() 
 
 parameter "HIV Higher Prevalence States and Territories" default { 'VI', 'MS', 'NV', 'TX', 'FL', 'LA', 'GA', 'DC' }
 
 context Patient
+
+define ReferenceDate:
+  date from "Reference dateTime"
 
 define "There is an HIV test after the most recent positive pregnancy test":
   exists ( HDE."HIV Tests" )
@@ -65,11 +68,11 @@ define "Never Tested Indicator":
 
 define "No HIV Test in the last year":
   exists ( HDE."HIV Tests" )
-  and date from Last(HDE."HIV Tests").effective on or before ("Reference Date" - 1 year)
+  and date from Last(HDE."HIV Tests").effective on or before (ReferenceDate - 1 year)
 
 define "No HIV Test in the last three months":
   exists ( HDE."HIV Tests" )
-  and date from Last(HDE."HIV Tests").effective on or before ("Reference Date" - 3 months)
+  and date from Last(HDE."HIV Tests").effective on or before (ReferenceDate - 3 months)
 
 define "MSM Condition":
   if (
@@ -103,7 +106,7 @@ define "MSM Indicator":
 
 define "There is a positive pregnancy test in the last 40 weeks":
   exists ( HDE."Positive Pregnancy Observations" PPO
-      where PPO.effective after ( "Reference Date" - 40 weeks )
+      where PPO.effective after ( ReferenceDate - 40 weeks )
   )
 
 define "Pregnant but no HIV test during pregnancy":
@@ -303,11 +306,11 @@ define "HIV Test Indicator":
 //   )
 
 define "Age":
-  AgeInYearsAt("Reference Date")
+  AgeInYearsAt(ReferenceDate)
 
 define "Patient is between 13 and 64 years old":
-  AgeInYearsAt("Reference Date") >= 13
-    and AgeInYearsAt("Reference Date") <= 64
+  AgeInYearsAt(ReferenceDate) >= 13
+    and AgeInYearsAt(ReferenceDate) <= 64
 
 define "HIV Screening Test": // DH: as of last encounter
   HC.QualifiedObservations ( HDE."HIV Tests" )
@@ -329,15 +332,15 @@ define "Previous HIV Screening Test": // DH: originally meaning `previous to mos
 
 define "Days Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return duration in days between HIVTest.effective and "Reference Date"
+    return duration in days between HIVTest.effective and ReferenceDate
 
 define "Over a Year has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return ( duration in years between HIVTest.effective and "Reference Date" >= 1 )
+    return ( duration in years between HIVTest.effective and ReferenceDate >= 1 )
 
 define "Over 3 Months has Passed Since Previous HIV Screening":
   "Previous HIV Screening Test" HIVTest
-    return ( duration in months between HIVTest.effective and "Reference Date" >= 3 )
+    return ( duration in months between HIVTest.effective and ReferenceDate >= 3 )
 
 define "On pre-exposure prophylaxis":
   exists HDE."Prep Medication Prescriptions"
