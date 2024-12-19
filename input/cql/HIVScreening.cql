@@ -9,7 +9,7 @@ include HIVConcepts called Cx
 include HIVDataElements called HDE
 
 parameter "Reference dateTime" DateTime  // can use values such as Now() or a date like @2024-01-01T00:00:00-10:00
-  // default @2024-01-01T00:00:00-10:00 // for testing within ExecuteCQL
+  // default @2024-01-01 // for testing within ExecuteCQL
   default Today() 
 
 parameter "HIV Higher Prevalence States and Territories" default { 'VI', 'MS', 'NV', 'TX', 'FL', 'LA', 'GA', 'DC' }
@@ -282,13 +282,15 @@ define "HIV Test Condition":
       or "Pregnant Condition"
       // or "Seeking STD Treatment Condition"
       // or "Risk Level Condition"
-      "Tuberculosis Condition"
+      or "Tuberculosis Condition"
   ) then true 
     else false
 
 define "HIV Test Recommendation": // 'Recommend HIV Test'
+  if "HIV Test Condition" then 'Recommend HIV Testing'
+		else ''
   
-  "Never Tested Recommendation" + "MSM Recommendation" + "Pregnant Recommendation" + "Tuberculosis Recommendation"
+  // "Never Tested Recommendation" + "MSM Recommendation" + "Pregnant Recommendation" + "Tuberculosis Recommendation"
 
 define "HIV Test Rationale":
   "Never Tested Rationale" + "MSM Rationale" + "Pregnant Rationale" +  "Tuberculosis Rationale"
@@ -305,8 +307,8 @@ define "HIV Test Indicator":
 //       end of period
 //   )
 
-define "Age":
-  AgeInYearsAt(ReferenceDate)
+// define "Age":
+//   AgeInYearsAt(ReferenceDate)
 
 define "Patient is between 13 and 64 years old":
   AgeInYearsAt(ReferenceDate) >= 13

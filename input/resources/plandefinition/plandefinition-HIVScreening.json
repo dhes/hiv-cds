@@ -4,7 +4,7 @@
   "name": "CDC HIVScreening",
   "title": "HIV screening",
   "description": "Intended to represent CDC screening guidelines including from general population population and specific at-risk populations",
-  "status": "draft",
+  "status": "active",
   "date": "2023-12-14T07:23:00-10:00",
   "experimental": true,
   "url": "http://fhir.org/guides/hopena/hiv-cds/PlanDefinition/HIVScreening",
