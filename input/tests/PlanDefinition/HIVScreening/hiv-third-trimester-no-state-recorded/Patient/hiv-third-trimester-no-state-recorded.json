@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-third-trimester-no-state-recorded",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "Person with EDD 2024-03-07 meaning third trimester begins 2023-12-04, with no state of residence on record therefore presumed to reside in a high-risk state, and most recent HIV test done before third trimester => Due"
+    }
+  ],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

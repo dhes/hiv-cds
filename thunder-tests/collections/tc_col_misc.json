@@ -64,6 +64,18 @@
             "created": "2024-12-19T02:01:50.451Z",
             "modified": "2024-12-19T02:01:57.228Z",
             "headers": []
+        },
+        {
+            "_id": "7e7b39b8-78d2-40e4-a2c7-afa4ac53715f",
+            "colId": "50b39425-a19f-4516-adf1-eca0a3175a66",
+            "containerId": "",
+            "name": "check for patient-comment extension",
+            "url": "StructureDefinition",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-12-19T21:04:47.230Z",
+            "modified": "2024-12-19T21:05:32.183Z",
+            "headers": []
         }
     ],
     "settings": {

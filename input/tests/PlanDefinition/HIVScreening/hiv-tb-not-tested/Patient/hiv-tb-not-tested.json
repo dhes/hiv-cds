@@ -1,6 +1,11 @@
 {
   "resourceType": "Patient",
   "id": "hiv-tb-not-tested",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "Person with TB never tested => Due"
+    }],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

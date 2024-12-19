@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-too-young",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "13 years old minus 1 day never tested => not Due"
+    }
+  ],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

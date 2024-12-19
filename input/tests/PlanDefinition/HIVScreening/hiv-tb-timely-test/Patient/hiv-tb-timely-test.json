@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-tb-timely-test",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "Person with TB tested since TB diagnosis => Not Due"
+    }
+  ],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

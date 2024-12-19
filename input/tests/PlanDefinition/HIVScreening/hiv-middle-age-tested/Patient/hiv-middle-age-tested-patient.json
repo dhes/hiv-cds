@@ -1,6 +1,12 @@
 {
   "resourceType": "Patient",
   "id": "hiv-middle-age-tested",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "In the middle of the age range and tested => Not Due"
+    }
+  ],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

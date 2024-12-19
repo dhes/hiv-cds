@@ -1,6 +1,11 @@
 {
   "resourceType": "Patient",
   "id": "hiv-msm-prep-utd",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "51 year old msm takeing PREP tested within one month => Not Due"
+    }],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

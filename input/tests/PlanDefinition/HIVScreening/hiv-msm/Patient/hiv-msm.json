@@ -1,6 +1,11 @@
 {
   "resourceType": "Patient",
   "id": "hiv-msm",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "51 year old MSM last tested more than one year ago => Due"
+    }],
   "identifier": [
     {
       "system": "http://example.org/hiv-screening",

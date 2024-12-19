@@ -1,13 +1,19 @@
 {
   "resourceType": "Patient",
   "id": "hiv-just-young-enough",
-	"identifier": [
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "65 years old minus one day and never tested => Due"
+    }
+  ],
+  "identifier": [
     {
       "system": "http://example.org/hiv-screening",
       "value": "just-young-enough"
     }
   ],
-"name": [
+  "name": [
     {
       "given": ["Absolutely"],
       "family": "Nobody"
