@@ -1,0 +1,26 @@
+{
+  "resourceType": "Patient",
+  "id": "bcs-male-no-state",
+  "identifier": [
+    {
+      "system": "http://example.org/colon-cancer-screening",
+      "value": "base"
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://example.org/fhir/StructureDefinition/patient-annotation",
+      "valueString": "male with no state which previously evaluated as needs action"
+    }
+  ],
+  "name": [
+    {
+      "family": "Nobody",
+      "given": ["Absolutely"]
+    }
+  ],
+  "birthDate": "1964-01-01",
+  "gender": "male",
+  "active": true,
+  "deceasedBoolean": false
+}

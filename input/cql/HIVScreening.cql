@@ -39,7 +39,7 @@ define Active:
 define "Patient Name":
   First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
 
-define "Meets Inclusion Criteria":
+define "Meets Age Criteria":
   "Patient is between 13 and 64 years old"
     // or "Patient is Seeking Treatment for an STD"
 
@@ -47,7 +47,7 @@ define "Never Tested Condition":
   if ( 
       "Patient is between 13 and 64 years old"
       and not "Patient has had an HIV Test"
-      and not "Active diagnosis of HIV"
+      // and not "Active diagnosis of HIV"
      ) 
   then true 
   else false
@@ -76,8 +76,8 @@ define "No HIV Test in the last three months":
 
 define "MSM Condition":
   if (
-      not "Active diagnosis of HIV"
-      and "Patient is Male" and "Has sex with men"
+      // not "Active diagnosis of HIV"
+      "Patient is Male" and "Has sex with men"
       and (
            "No HIV Test in the last year"
            or "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
@@ -104,20 +104,32 @@ define "MSM Indicator":
   if "MSM Condition" then 'routine' 
     else ''
 
-define "There is a positive pregnancy test in the last 40 weeks":
+define "Pregnant by test":
   exists ( HDE."Positive Pregnancy Observations" PPO
       where PPO.effective after ( ReferenceDate - 40 weeks )
   )
 
-define "Pregnant but no HIV test during pregnancy":
-  "There is a positive pregnancy test in the last 40 weeks"
+define "Pregnant by test but no HIV test during pregnancy":
+  "Pregnant by test"
     and not "There is an HIV test after the most recent positive pregnancy test"
 
 define "Estimated Date of Delivery":
   date from Last(HDE."Estimated Date of Delivery").value
 
-define "First Eay of Third Trimester":
-  "Estimated Date of Delivery" - 13 weeks
+define "First Day of Third Trimester":
+  "Estimated Date of Delivery" - 12 weeks
+
+define "Pregnant by EDC":
+  exists ( HDE."Estimated Date of Delivery" )
+  and "Estimated Date of Delivery" > ReferenceDate
+
+define "There is an HIV test during the third trimester":
+  exists ( HDE."HIV Tests" )
+  and Last(HDE."HIV Tests").effective > "First Day of Third Trimester"
+
+define "Pregnant by EDC but no HIV test during the third trimester":
+  "Pregnant by EDC"
+    and not "There is an HIV test during the third trimester"
 
 define "State of Residence Present in Patient Record":
   Count(Patient.address.state) > 0
@@ -127,46 +139,46 @@ define "Lives In State with Higher HIV Prevalence":
     and First(Patient.address.state.value) in "HIV Higher Prevalence States and Territories" then true 
     else false
 
-define "There is an HIV test during the third trimester":
-  exists ( HDE."Estimated Date of Delivery" )
-    and exists ( HDE."HIV Tests" )
-    and date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
+// define "Pregnant by ECD and had HIV test during the third trimester":
+//   exists ( HDE."Estimated Date of Delivery" )
+//     and exists ( HDE."HIV Tests" )
+//     and date from Last(HDE."HIV Tests").effective on or after date from Last(HDE."Estimated Date of Delivery").value
 
 define "Resides a high prevalence state and has not had an HIV test in the third trimester":
   "Lives In State with Higher HIV Prevalence"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Sex partner has HIV or uses intravenous drugs and no HIV test done in third trimester":
   exists HDE."HIV Risky Lifestyle"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Intravenous drug user and no HIV test done in third trimester":
   exists HDE."Intravenous Drug User"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Patient who exchanges sex for money or drugs and no HIV test done in third trimester":
   exists HDE."Exchanges Sex for Drugs or Money"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Multiple Sex Partners":
   HDE."Multiple Sex Partners"
 
 define "Patient with multiple partners and no HIV test done in third trimester":
   exists HDE."Multiple Sex Partners"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Patient with a new sex partner during pregnancy and no HIV test done in third trimester":
   exists HDE."New Sex Partner"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "No state of residence on record and no HIV test done in third trimester":
   not "State of Residence Present in Patient Record"
-    and not "There is an HIV test during the third trimester"
+    and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Pregnant Condition":
-  if not "Active diagnosis of HIV"
-    and (
-      "Pregnant but no HIV test during pregnancy"
+  // if not "Active diagnosis of HIV"
+    if (
+      "Pregnant by test but no HIV test during pregnancy"
       or "Resides a high prevalence state and has not had an HIV test in the third trimester"
       or "No state of residence on record and no HIV test done in third trimester"
       or "Intravenous drug user and no HIV test done in third trimester"
@@ -181,7 +193,7 @@ define "Pregnant Condition":
 define "Pregnant Recommendation":
   if "Pregnant Condition" then
     case
-      when "Pregnant but no HIV test during pregnancy" 
+      when "Pregnant by test but no HIV test during pregnancy" 
         then '\r\n - This patient has not been tested for HIV during pregnancy.' 
       when "Resides a high prevalence state and has not had an HIV test in the third trimester" 
         then '\r\n - This patient resides in a high prevalence state and has not been tested for HIV in the third trimester.' 
@@ -253,8 +265,8 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  if ( not "Active diagnosis of HIV"
-      and "Active diagnosis of Tuberculosis?"
+  if ( // not "Active diagnosis of HIV"
+      "Active diagnosis of Tuberculosis?"
       and ( not exists HDE."HIV Tests"
           or ( exists HDE."HIV Tests"
               and Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
@@ -277,14 +289,16 @@ define "Tuberculosis Indicator":
     else ''
 
 define "HIV Test Condition":
-  if ( "Never Tested Condition"
-      or "MSM Condition"
-      or "Pregnant Condition"
-      // or "Seeking STD Treatment Condition"
-      // or "Risk Level Condition"
-      or "Tuberculosis Condition"
-  ) then true 
-    else false
+  if not "Active diagnosis of HIV"
+    and ( "Never Tested Condition"
+          or "MSM Condition"
+          or "Pregnant Condition"
+          // or "Seeking STD Treatment Condition"
+          // or "Risk Level Condition"
+          or "Tuberculosis Condition"
+        ) 
+  then true 
+  else false
 
 define "HIV Test Recommendation": // 'Recommend HIV Test'
   if "HIV Test Condition" then 'Recommend HIV Testing'
@@ -450,14 +464,14 @@ define "Patient is Documented Sexually Inactive":
         // where Coalesce(Lower(SexualHistory.value as string) in { 'no' }, SexualHistory.value as boolean = false)
         // sort by Coalesce(effective, issued)
 
-define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. I'm just sayin'. 
-  "Patient is Documented Sexually Inactive" 
+// define "Patient is at No Risk for HIV": // Of course nobody is ever at No Risk. I'm just sayin'. 
+//   "Patient is Documented Sexually Inactive" 
 
 
-define "Patient is at Low Risk for HIV":
+// define "Patient is at Low Risk for HIV":
   // not "Patient is at High Risk for HIV"  // risky behaviors
     // and not "Patient is at Moderate Risk for HIV" // genetic males sexually active with genetic males
-    not exists("Patient is at No Risk for HIV")  // i.e. not "Patient is Documented Sexually Inactive"
+    // not exists("Patient is at No Risk for HIV")  // i.e. not "Patient is Documented Sexually Inactive"
 
 // define PatientEncounterPeriodStart:
 //   start of ( "Patient Encounter".period )

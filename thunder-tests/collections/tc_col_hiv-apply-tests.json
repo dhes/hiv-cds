@@ -62,7 +62,7 @@
             "method": "POST",
             "sortNum": 85000,
             "created": "2024-04-06T17:23:16.883Z",
-            "modified": "2024-12-02T19:06:30.288Z",
+            "modified": "2024-12-19T23:00:11.661Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -92,10 +92,16 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "// let success = tc.response.json.contained && tc.response.json.contained[0] && tc.response.json.contained[0].action !== null;",
-                            "// tc.test(\"Action Element is not null\", success);",
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
@@ -448,11 +454,11 @@
             "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
             "containerId": "",
             "name": "test hiv-tb-old-test",
-            "url": "",
+            "url": "PlanDefinition/HIVScreening/$apply",
             "method": "POST",
             "sortNum": 135000,
             "created": "2024-05-03T14:19:27.835Z",
-            "modified": "2024-12-02T22:03:58.126Z",
+            "modified": "2024-12-19T23:09:46.126Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -692,7 +698,7 @@
             "method": "POST",
             "sortNum": 170000,
             "created": "2024-05-30T01:59:49.211Z",
-            "modified": "2024-12-02T19:07:09.595Z",
+            "modified": "2024-12-19T23:03:13.316Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -722,10 +728,16 @@
                 "inlineScripts": [
                     {
                         "script": [
-                            "let success = 'action' in (tc.response.json.contained && tc.response.json.contained[0] || {});",
-                            "tc.test(\"Action element exists\", success);",
-                            "// let success = !('action' in (tc.response.json.contained && tc.response.json.contained[0] || {}));",
-                            "// tc.test(\"Action element does not exist\", success);"
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "                               tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "let requestGroupWithAction = tc.response.json.contained &&",
+                            "                             tc.response.json.contained.find(item => ",
+                            "                                 item.resourceType === \"RequestGroup\" && item.action);",
+                            "",
+                            "let success = !containsOperationOutcome && !!requestGroupWithAction;",
+                            "",
+                            "tc.test(\"No OperationOutcome. RequestGroup.action is present\", success);"
                         ]
                     }
                 ]
