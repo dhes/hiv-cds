@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const generateTestCases = () => {
   const variables = {
@@ -9,7 +10,39 @@ const generateTestCases = () => {
     address: [null, "HI", "VI"],
   };
 
-  const referenceDate = "2024-01-01";
+  const referenceDate = new Date("2024-01-01");
+  const lowerAgeLimit = 13;
+  const upperAgeLimit = 64;
+
+  const calculateBirthDate = (age) => {
+    const copyDate = (date) => new Date(date.getTime());
+
+    if (age === "too-young") {
+      const birthDate = copyDate(referenceDate);
+      birthDate.setFullYear(referenceDate.getFullYear() - lowerAgeLimit);
+      birthDate.setDate(birthDate.getDate() + 1);
+      return birthDate.toISOString().split("T")[0];
+    }
+
+    if (age === "just-old-enough") {
+      const birthDate = copyDate(referenceDate);
+      birthDate.setFullYear(referenceDate.getFullYear() - lowerAgeLimit);
+      return birthDate.toISOString().split("T")[0];
+    }
+
+    if (age === "just-young-enough") {
+      const birthDate = copyDate(referenceDate);
+      birthDate.setFullYear(referenceDate.getFullYear() - upperAgeLimit - 1);
+      birthDate.setDate(birthDate.getDate() - 1);
+      return birthDate.toISOString().split("T")[0];
+    }
+
+    if (age === "too-old") {
+      const birthDate = copyDate(referenceDate);
+      birthDate.setFullYear(referenceDate.getFullYear() - upperAgeLimit - 1);
+      return birthDate.toISOString().split("T")[0];
+    }
+  };
 
   const isActionRequired = (deceased, active, age) => {
     if (deceased || !active || age === "too-young" || age === "too-old") {
@@ -24,9 +57,9 @@ const generateTestCases = () => {
     return `${deceasedPart}-${active ? "t" : "f"}-${gender[0]}-${age}-${addressPart}`;
   };
 
-  const generateDescription = (age, gender, address) => {
+  const generateDescription = (age, deceased, active, gender, address) => {
     const state = address === "HI" ? "HI" : address === "VI" ? "VI" : "nowhere";
-    return `${age} ${gender} from ${state}`;
+    return `${age} ${deceased === null ? "living" : deceased === true ? "deceased" : deceased === false ? "living" : "deceased"} ${active ? "active" : "inactive"} ${gender} from ${state}`;
   };
 
   const testCases = [];
@@ -37,14 +70,9 @@ const generateTestCases = () => {
         variables.age.forEach((age) => {
           variables.address.forEach((address) => {
             const id = generateId(deceased, active, gender, age, address);
-            const description = generateDescription(age, gender, address);
+            const description = generateDescription(age, deceased, active, gender, address);
             const requiresAction = isActionRequired(deceased, active, age);
-            const birthDate = (() => {
-              if (age === "too-young") return "2010-01-02";
-              if (age === "just-old-enough") return "2010-01-01";
-              if (age === "just-young-enough") return "1959-01-01";
-              if (age === "too-old") return "1958-12-31";
-            })();
+            const birthDate = calculateBirthDate(age);
 
             const deceasedElement = (() => {
               if (deceased === true) return { deceasedBoolean: true };
@@ -92,7 +120,7 @@ const generateTestCases = () => {
               }),
             };
 
-            testCases.push(resource);
+            testCases.push({ id, resource });
           });
         });
       });
@@ -102,8 +130,23 @@ const generateTestCases = () => {
   return testCases;
 };
 
-// Generate test cases and save to a file
-const testCases = generateTestCases();
-fs.writeFileSync("hiv_test_cases.json", JSON.stringify(testCases, null, 2));
+const saveTestCases = (testCases) => {
+  testCases.forEach(({ id, resource }) => {
+    const dirPath = path.join(
+      "input",
+      "test",
+      "PlanDefinition",
+      "HIVScreening",
+      `hiv-${id}`,
+      "Patient"
+    );
+    fs.mkdirSync(dirPath, { recursive: true });
+    const filePath = path.join(dirPath, `hiv${id}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(resource, null, 2));
+  });
+  console.log(`Saved ${testCases.length} test cases to individual directories.`);
+};
 
-console.log("HIV test cases generated and saved to hiv_test_cases.json");
+// Generate test cases and save them
+const testCases = generateTestCases();
+saveTestCases(testCases);
