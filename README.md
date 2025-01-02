@@ -617,4 +617,96 @@ Trying to purge all the NACHC codes. There are some NACHC value sets you need to
 - valueset-nachc-f2-de2	pregnancy encounter codes
 - valueset-nachc-d1-de1-codes-grouper
 
-## Edge Cases
+## Composing test cases for all permuation in the case of Never Tested Condition
+
+|LOINC|display|short|
+|---|---|---|
+|56888-1|HIV 1+2 Ab+HIV1 p24 Ag [Presence] in Serum or Plasma by Immunoassay|Fourth-generation IgM and IgG antibody to HIV-1 and HIV-2|
+
+## Question for ChatGPT
+
+We need to create a collection of test cases for an HIV screening CQL algorithm. We have these variables. All medical record information is stored as FHIR 4.01 resources. 
+
+- deceased: four-values logic (boolean true, boolean false, dateTime value, null) representing the Patient.deceased[x]. We do not require Patient to have the deceased[x] element. In those cases deceased[x] is assumed to equal deceasedBoolean=false. 
+- active: boolean Patient.active
+- gender: boolean Patient.gender
+- age: four values too-young, just-old-enough, just-young-enough, too-old
+  - too-young: lower limit age minus one day relative to the reference date
+  - just-old-enough: lower limit age to the day relative to the reference date
+  - just-young-enough: upper limit age to the day relative to the reference date
+  - too-old: upper limit age plus one day relative to the reference date
+- address: null, high-risk-state, low-risk-state
+  - null: no address is present
+  - high-risk-state: state = "VI"
+  - low-risk-state: state = "HI"
+- test: indicating that a test has been done
+- action: a boolean representing whether action is needed (in the case, ordering an HIV test). This is the essential output of the algorithm. We set this flag to the expected value by hand in a custom Patient.extension. 
+
+The guideline is 'All patients age 13-64 inclusive should have and HIV test'. The reference date will be 2024-01-01. Since the number of possible variable values are 4x2x2x4 there should be 32 test cases. 
+
+Here are the boilerplate resources:
+
+{
+  "resourceType": "Patient",
+  "id": hiv-{id},
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": {description}
+    },    {
+      "url": "http://cds.hopena.info/StructureDefinition/patient-requires-action",
+      "valueString": {requiresAction}
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": {id}
+    }
+  ],
+  "name": [
+    {
+      "given": ["Absolutely"],
+      "family": "Nobody"
+    }
+  ],
+  "birthDate": {birthDate},
+  "gender": {gender},
+  "active": {active},
+  "deceased[x]": {deceased} //absent, true, false, date
+  "address": {address}
+}
+
+...where {address} may be absent, 
+  [
+    {
+      "use": "home",
+      "state": "HI"
+    }
+  ] or
+  [
+    {
+      "use": "home",
+      "state": "VI"
+    }
+  ],
+{decease[x]} may be absent, 
+  true,
+  false or
+  {date} where date is in the form "YYYY-MM_DD" and equals reference Date - 1 year i.e. 2023-01-01
+
+{id} is assigned by you according to this algorithm
+{deceased t or f}-{active t or f}-{gender m or f}-{age [too-young, etc]}-{address HI or VI}
+For example the id for a living active male patient who is too-young and from HI would be
+f-t-m-too-young-HI
+
+The value of {description} is $`{age} {gender} from {state}`
+
+The value of requiresAction is determined by 
+- if deceased or inactive or too-young or too-old then false; else true 
+(gender and state have no effect)
+
+Please generate a Javascript routine that generates all possible permutations of the given variables. 
+
+Please make this revision: when deceased[x] is boolean the element should be "deceasedBoolean": true or ""deceasedBoolean": false. When deceased[x] is a date it should be "deceasedDateTime": "2023-01-01". 
+
