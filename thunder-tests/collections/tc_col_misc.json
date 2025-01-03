@@ -76,6 +76,18 @@
             "created": "2024-12-19T21:04:47.230Z",
             "modified": "2024-12-19T21:05:32.183Z",
             "headers": []
+        },
+        {
+            "_id": "1ff1464d-acbd-48ab-bf5e-fb9b198d0d2c",
+            "colId": "50b39425-a19f-4516-adf1-eca0a3175a66",
+            "containerId": "",
+            "name": "find or delete a patient",
+            "url": "Patient/hiv-d-f-f-just-old-enough-HI-pos",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2025-01-03T22:54:04.389Z",
+            "modified": "2025-01-03T22:54:45.773Z",
+            "headers": []
         }
     ],
     "settings": {

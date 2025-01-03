@@ -19,11 +19,13 @@ context Patient
 define ReferenceDate:
   date from "Reference dateTime"
 
-define "There is an HIV test after the most recent positive pregnancy test":
-  exists ( HDE."HIV Tests" )
-    and Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
+define PatientRequiresActionTestFlag:
+  ( singleton from ( Patient.extension E
+        where E.url = 'http://cds.hopena.info/StructureDefinition/patient-requires-action'
+    )
+  ).value.value
 
-define "Alive":
+define Alive:
   case     
     when Patient.deceased = false then true  
     else false end
@@ -31,10 +33,6 @@ define "Alive":
 define Active:
   if Patient.active = true then true 
     else false
-
-// define "Patient is Gay or Bisexual":
-//   exists ( HDE."Sexual Orientation".coding ) O
-//     where ( O in Cx."Gay Or Bisexual" )
 
 define "Patient Name":
   First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
@@ -74,6 +72,10 @@ define "No HIV Test in the last three months":
   exists ( HDE."HIV Tests" )
   and date from Last(HDE."HIV Tests").effective on or before (ReferenceDate - 3 months)
 
+// define "Patient is Gay or Bisexual":
+//   exists ( HDE."Sexual Orientation".coding ) O
+//     where ( O in Cx."Gay Or Bisexual" )
+
 define "MSM Condition":
   if (
       // not "Active diagnosis of HIV"
@@ -108,6 +110,10 @@ define "Pregnant by test":
   exists ( HDE."Positive Pregnancy Observations" PPO
       where PPO.effective after ( ReferenceDate - 40 weeks )
   )
+
+define "There is an HIV test after the most recent positive pregnancy test":
+  exists ( HDE."HIV Tests" )
+    and Last(HDE."HIV Tests").effective > Last(HDE."Positive Pregnancy Observations").effective
 
 define "Pregnant by test but no HIV test during pregnancy":
   "Pregnant by test"

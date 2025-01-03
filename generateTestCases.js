@@ -58,11 +58,11 @@ const generateTestCases = () => {
     return `${deceasedPart}-${active ? "t" : "f"}-${gender[0]}-${age}-${addressPart}-${isPositive ? "pos" : "neg"}`;
   };
 
-  const generateDescription = (age, deceased, active, gender, address) => {
+  const generateDescription = (age, deceased, active, gender, address, isPositive) => {
     const state = address === "HI" ? "HI" : address === "VI" ? "VI" : "nowhere";
     return `${age} ${deceased === null || deceased === false ? "living" : "deceased"} ${
       active ? "active" : "inactive"
-    } ${gender} from ${state}`;
+    } ${gender} from ${state} ${isPositive ? "HIV positive" : "HIV negative"}`;
   };
 
   const generateConditionResource = (patientId) => ({

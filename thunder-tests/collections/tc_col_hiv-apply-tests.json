@@ -1126,6 +1126,80 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "0922d9b9-0c48-4643-a783-ee9d98427714",
+            "colId": "3c9da8d6-61ec-4eb4-94c4-59fd50fada9f",
+            "containerId": "",
+            "name": "hiv-d-f-f-just-old-enough-HI-pos",
+            "url": "PlanDefinition/HIVScreening/$apply",
+            "method": "POST",
+            "sortNum": 240000,
+            "created": "2025-01-03T03:38:09.242Z",
+            "modified": "2025-01-03T03:39:28.906Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/fhir+json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"resourceType\": \"Parameters\",\n  \"parameter\": [\n    {\n      \"name\": \"subject\",\n      \"valueString\": \"Patient/hiv-d-f-f-just-old-enough-HI-pos\"\n    },\n    {\n      \"name\": \"parameters\",\n      \"resource\": {\n        \"resourceType\": \"Parameters\",\n        \"parameter\": [\n          {\n            \"name\": \"Reference dateTime\",\n            \"valueDateTime\": \"2024-01-01\"\n          }\n        ]\n      }\n    }\n  ]\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "// First find the RequestGroup and extract the needs-action flag",
+                            "let requestGroup = tc.response.json.contained?.find(item => ",
+                            "    item.resourceType === \"RequestGroup\");",
+                            "",
+                            "let needsAction = requestGroup?.action?.find(act => ",
+                            "    act.title === \"set-needs-action\")?.description === \"true\";",
+                            "",
+                            "// Check for OperationOutcome errors",
+                            "let containsOperationOutcome = tc.response.json.contained &&",
+                            "    tc.response.json.contained.some(item => item.resourceType === \"OperationOutcome\");",
+                            "",
+                            "// Look for any action besides the flag-setting action",
+                            "let hasSecondAction = requestGroup?.action?.some(act => ",
+                            "    act.title !== \"set-needs-action\");",
+                            "",
+                            "// Determine success based on all conditions",
+                            "let success;",
+                            "let testMessage;",
+                            "",
+                            "if (containsOperationOutcome) {",
+                            "    success = false;",
+                            "    testMessage = \"Failed: OperationOutcome error present\";",
+                            "} else {",
+                            "    // No OperationOutcome error, now check action logic",
+                            "    if (needsAction) {",
+                            "        success = hasSecondAction;",
+                            "        testMessage = \"No OperationOutcome. Action required and \" + ",
+                            "            (success ? \"correctly present\" : \"incorrectly missing\");",
+                            "    } else {",
+                            "        success = !hasSecondAction;",
+                            "        testMessage = \"No OperationOutcome. No action required and \" + ",
+                            "            (success ? \"correctly absent\" : \"incorrectly present\");",
+                            "    }",
+                            "}",
+                            "",
+                            "tc.test(testMessage, success);"
+                        ]
+                    }
+                ]
+            }
         }
     ],
     "settings": {

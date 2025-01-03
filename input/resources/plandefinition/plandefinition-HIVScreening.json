@@ -140,6 +140,33 @@
           "description": "Will not order HIV testing"
         }
       ]
+    },
+    {
+      "title": "set-needs-action",
+      "dynamicValue": [
+        {
+          "path": "action.description",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "PatientRequiresActionTestFlag"
+          }
+        }
+      ],
+      "trigger": [
+        {
+          "name": "patient-view",
+          "type": "named-event"
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-expression",
+            "expression": true
+          }
+        }
+      ]
     }
   ]
 }
