@@ -44,7 +44,8 @@ const generateTestCases = () => {
     }
   };
 
-  const isActionRequired = (deceased, active, age) => {
+  const isActionRequired = (deceased, active, age, isPositive) => {
+    if (isPositive) return false; // Patients with HIV don't require screening
     if (deceased || !active || age === "too-young" || age === "too-old") {
       return false;
     }
@@ -123,7 +124,7 @@ const generateTestCases = () => {
             // Negative case
             const negId = generateId(deceased, active, gender, age, address, false);
             const negDescription = generateDescription(age, deceased, active, gender, address);
-            const negRequiresAction = isActionRequired(deceased, active, age);
+            const negRequiresAction = isActionRequired(deceased, active, age, false);
             const negBirthDate = calculateBirthDate(age);
 
             testCases.push({
@@ -178,7 +179,7 @@ const generateTestCases = () => {
             // Positive case
             const posId = generateId(deceased, active, gender, age, address, true);
             const posDescription = generateDescription(age, deceased, active, gender, address);
-            const posRequiresAction = isActionRequired(deceased, active, age);
+            const posRequiresAction = isActionRequired(deceased, active, age, true);
             const posBirthDate = calculateBirthDate(age);
 
             testCases.push({
