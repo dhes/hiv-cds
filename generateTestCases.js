@@ -51,16 +51,67 @@ const generateTestCases = () => {
     return true;
   };
 
-  const generateId = (deceased, active, gender, age, address) => {
+  const generateId = (deceased, active, gender, age, address, isPositive) => {
     const deceasedPart = deceased === null ? "f" : deceased === true ? "t" : deceased === false ? "f" : "d";
     const addressPart = address === null ? "none" : address;
-    return `${deceasedPart}-${active ? "t" : "f"}-${gender[0]}-${age}-${addressPart}`;
+    return `${deceasedPart}-${active ? "t" : "f"}-${gender[0]}-${age}-${addressPart}-${isPositive ? "pos" : "neg"}`;
   };
 
   const generateDescription = (age, deceased, active, gender, address) => {
     const state = address === "HI" ? "HI" : address === "VI" ? "VI" : "nowhere";
-    return `${age} ${deceased === null ? "living" : deceased === true ? "deceased" : deceased === false ? "living" : "deceased"} ${active ? "active" : "inactive"} ${gender} from ${state}`;
+    return `${age} ${deceased === null || deceased === false ? "living" : "deceased"} ${
+      active ? "active" : "inactive"
+    } ${gender} from ${state}`;
   };
+
+  const generateConditionResource = (patientId) => ({
+    resourceType: "Condition",
+    id: `hiv-${patientId}-cond`,
+    clinicalStatus: {
+      coding: [
+        {
+          system: "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          code: "active",
+          display: "Active",
+        },
+      ],
+    },
+    verificationStatus: {
+      coding: [
+        {
+          system: "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          code: "confirmed",
+          display: "Confirmed",
+        },
+      ],
+    },
+    category: [
+      {
+        coding: [
+          {
+            system: "http://terminology.hl7.org/CodeSystem/condition-category",
+            code: "problem-list-item",
+            display: "Problem List Item",
+          },
+        ],
+      },
+    ],
+    code: {
+      coding: [
+        {
+          system: "http://hl7.org/fhir/sid/icd-10-cm",
+          code: "Z21",
+          display: "Asymptomatic human immunodeficiency virus [HIV] infection status",
+        },
+      ],
+      text: "Asymptomatic HIV infection",
+    },
+    subject: {
+      reference: `Patient/hiv-${patientId}`,
+    },
+    onsetDateTime: "2023-01-01",
+    recordedDate: "2023-01-15",
+  });
 
   const testCases = [];
 
@@ -69,58 +120,116 @@ const generateTestCases = () => {
       variables.gender.forEach((gender) => {
         variables.age.forEach((age) => {
           variables.address.forEach((address) => {
-            const id = generateId(deceased, active, gender, age, address);
-            const description = generateDescription(age, deceased, active, gender, address);
-            const requiresAction = isActionRequired(deceased, active, age);
-            const birthDate = calculateBirthDate(age);
+            // Negative case
+            const negId = generateId(deceased, active, gender, age, address, false);
+            const negDescription = generateDescription(age, deceased, active, gender, address);
+            const negRequiresAction = isActionRequired(deceased, active, age);
+            const negBirthDate = calculateBirthDate(age);
 
-            const deceasedElement = (() => {
-              if (deceased === true) return { deceasedBoolean: true };
-              if (deceased === false) return { deceasedBoolean: false };
-              if (typeof deceased === "string") return { deceasedDateTime: deceased };
-              return {};
-            })();
-
-            const resource = {
-              resourceType: "Patient",
-              id: `hiv-${id}`,
-              extension: [
-                {
-                  url: "http://hl7.org/fhir/StructureDefinition/patient-comment",
-                  valueString: description,
-                },
-                {
-                  url: "http://cds.hopena.info/StructureDefinition/patient-requires-action",
-                  valueString: requiresAction.toString(),
-                },
-              ],
-              identifier: [
-                {
-                  system: "http://example.org/hiv-screening",
-                  value: id,
-                },
-              ],
-              name: [
-                {
-                  given: ["Absolutely"],
-                  family: "Nobody",
-                },
-              ],
-              birthDate: birthDate,
-              gender: gender,
-              active: active,
-              ...deceasedElement,
-              ...(address && {
-                address: [
+            testCases.push({
+              id: negId,
+              isPositive: false,
+              patient: {
+                resourceType: "Patient",
+                id: `hiv-${negId}`,
+                extension: [
                   {
-                    use: "home",
-                    state: address,
+                    url: "http://hl7.org/fhir/StructureDefinition/patient-comment",
+                    valueString: negDescription,
+                  },
+                  {
+                    url: "http://cds.hopena.info/StructureDefinition/patient-requires-action",
+                    valueString: negRequiresAction.toString(),
                   },
                 ],
-              }),
-            };
+                identifier: [
+                  {
+                    system: "http://example.org/hiv-screening",
+                    value: negId,
+                  },
+                ],
+                name: [
+                  {
+                    given: ["Absolutely"],
+                    family: "Nobody",
+                  },
+                ],
+                birthDate: negBirthDate,
+                gender: gender,
+                active: active,
+                ...(deceased === true
+                  ? { deceasedBoolean: true }
+                  : deceased === false
+                  ? { deceasedBoolean: false }
+                  : deceased
+                  ? { deceasedDateTime: deceased }
+                  : {}),
+                ...(address && {
+                  address: [
+                    {
+                      use: "home",
+                      state: address,
+                    },
+                  ],
+                }),
+              },
+            });
 
-            testCases.push({ id, resource });
+            // Positive case
+            const posId = generateId(deceased, active, gender, age, address, true);
+            const posDescription = generateDescription(age, deceased, active, gender, address);
+            const posRequiresAction = isActionRequired(deceased, active, age);
+            const posBirthDate = calculateBirthDate(age);
+
+            testCases.push({
+              id: posId,
+              isPositive: true,
+              patient: {
+                resourceType: "Patient",
+                id: `hiv-${posId}`,
+                extension: [
+                  {
+                    url: "http://hl7.org/fhir/StructureDefinition/patient-comment",
+                    valueString: posDescription,
+                  },
+                  {
+                    url: "http://cds.hopena.info/StructureDefinition/patient-requires-action",
+                    valueString: posRequiresAction.toString(),
+                  },
+                ],
+                identifier: [
+                  {
+                    system: "http://example.org/hiv-screening",
+                    value: posId,
+                  },
+                ],
+                name: [
+                  {
+                    given: ["Absolutely"],
+                    family: "Nobody",
+                  },
+                ],
+                birthDate: posBirthDate,
+                gender: gender,
+                active: active,
+                ...(deceased === true
+                  ? { deceasedBoolean: true }
+                  : deceased === false
+                  ? { deceasedBoolean: false }
+                  : deceased
+                  ? { deceasedDateTime: deceased }
+                  : {}),
+                ...(address && {
+                  address: [
+                    {
+                      use: "home",
+                      state: address,
+                    },
+                  ],
+                }),
+              },
+              condition: generateConditionResource(posId),
+            });
           });
         });
       });
@@ -131,8 +240,8 @@ const generateTestCases = () => {
 };
 
 const saveTestCases = (testCases) => {
-  testCases.forEach(({ id, resource }) => {
-    const dirPath = path.join(
+  testCases.forEach(({ id, isPositive, patient, condition }) => {
+    const patientDir = path.join(
       "input",
       "test",
       "PlanDefinition",
@@ -140,13 +249,29 @@ const saveTestCases = (testCases) => {
       `hiv-${id}`,
       "Patient"
     );
-    fs.mkdirSync(dirPath, { recursive: true });
-    const filePath = path.join(dirPath, `hiv${id}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(resource, null, 2));
+    fs.mkdirSync(patientDir, { recursive: true });
+    fs.writeFileSync(path.join(patientDir, `hiv-${id}.json`), JSON.stringify(patient, null, 2));
+
+    if (isPositive) {
+      const conditionDir = path.join(
+        "input",
+        "test",
+        "PlanDefinition",
+        "HIVScreening",
+        `hiv-${id}`,
+        "Condition"
+      );
+      fs.mkdirSync(conditionDir, { recursive: true });
+      fs.writeFileSync(
+        path.join(conditionDir, `hiv-${id}-cond.json`),
+        JSON.stringify(condition, null, 2)
+      );
+    }
   });
+
   console.log(`Saved ${testCases.length} test cases to individual directories.`);
 };
 
-// Generate test cases and save them
+// Generate and save test cases
 const testCases = generateTestCases();
 saveTestCases(testCases);
