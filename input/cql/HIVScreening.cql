@@ -28,9 +28,10 @@ define PatientRequiresActionTestFlag:
 // presence of Patient.deceased is not enforced in the model
 // we assume that if the Patient.deceased is absent then the patient is alive
 // the cases are:
-//   null (assumes alive)
 //   true (deceased)
 //   false (alive)
+//   is dateTime (deceased)
+//   null (assumes alive)
 define Alive:
   case
     when Patient.deceased = false 
@@ -39,7 +40,7 @@ define Alive:
       then false
     when Patient.deceased is dateTime
       then false
-  else false
+  else true
   end
 
 // presence of Patient.active is enforced in the model
