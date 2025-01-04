@@ -100,7 +100,7 @@ const generateTestCases = () => {
     code: {
       coding: [
         {
-          system: "http://hl7.org/fhir/sid/icd-10-cm",
+          system: "http://hl7.org/fhir/sid/icd-10",
           code: "Z21",
           display: "Asymptomatic human immunodeficiency virus [HIV] infection status",
         },

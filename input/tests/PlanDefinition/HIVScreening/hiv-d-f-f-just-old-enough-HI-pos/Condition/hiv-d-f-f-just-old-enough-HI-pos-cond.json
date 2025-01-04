@@ -1,0 +1,48 @@
+{
+  "resourceType": "Condition",
+  "id": "hiv-d-f-f-just-old-enough-HI-pos-cond",
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active",
+        "display": "Active"
+      }
+    ]
+  },
+  "verificationStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+        "code": "confirmed",
+        "display": "Confirmed"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "problem-list-item",
+          "display": "Problem List Item"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/sid/icd-10",
+        "code": "Z21",
+        "display": "Asymptomatic human immunodeficiency virus [HIV] infection status"
+      }
+    ],
+    "text": "Asymptomatic HIV infection"
+  },
+  "subject": {
+    "reference": "Patient/hiv-d-f-f-just-old-enough-HI-pos"
+  },
+  "onsetDateTime": "2023-01-01",
+  "recordedDate": "2023-01-15"
+}

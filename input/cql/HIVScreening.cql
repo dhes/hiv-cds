@@ -25,28 +25,49 @@ define PatientRequiresActionTestFlag:
     )
   ).value.value
 
+// presence of Patient.deceased is not enforced in the model
+// we assume that if the Patient.deceased is absent then the patient is alive
+// the cases are:
+//   null (assumes alive)
+//   true (deceased)
+//   false (alive)
 define Alive:
-  case     
-    when Patient.deceased = false then true  
-    else false end
+  case
+    when Patient.deceased = false 
+      then true
+    when Patient.deceased = true
+      then false
+    when Patient.deceased is dateTime
+      then false
+  else false
+  end
 
+// presence of Patient.active is enforced in the model
+// in other words implementations are required to make patients expressly active
+// we assume that if the Patient.active is absent then the patient is not active
 define Active:
-  if Patient.active = true then true 
-    else false
+  case
+    when Patient.active = false 
+      then false
+    when Patient.active = true
+      then true
+    else false 
+  end
 
-define "Patient Name":
-  First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
+// define "Patient Name":
+//   First(First(Patient.name).given.value) + ' ' + First(Patient.name).family.value
 
-define "Meets Age Criteria":
-  "Patient is between 13 and 64 years old"
-    // or "Patient is Seeking Treatment for an STD"
+define "Active diagnosis of HIV": // to be removed soon... 
+  exists HDE."HIV Diagnosis"
+
+define "HIV free":
+    not exists HDE."HIV Diagnosis"
 
 define "Never Tested Condition":
-  if ( 
-      "Patient is between 13 and 64 years old"
-      and not "Patient has had an HIV Test"
-      // and not "Active diagnosis of HIV"
-     ) 
+  if ( Active and Alive and "HIV free"
+      and "13 Through 64 Years Old"
+      and "No HIV Test" // need to narrow this to tests done on or after 13th birthday
+     )
   then true 
   else false
 
@@ -77,9 +98,9 @@ define "No HIV Test in the last three months":
 //     where ( O in Cx."Gay Or Bisexual" )
 
 define "MSM Condition":
-  if (
-      // not "Active diagnosis of HIV"
-      "Patient is Male" and "Has sex with men"
+  if ( Active and Alive and "HIV free"
+      and "Patient is Male" 
+      and "Has sex with men"
       and (
            "No HIV Test in the last year"
            or "On pre-exposure prophylaxis" and "No HIV Test in the last three months"
@@ -182,8 +203,8 @@ define "No state of residence on record and no HIV test done in third trimester"
     and "Pregnant by EDC but no HIV test during the third trimester"
 
 define "Pregnant Condition":
-  // if not "Active diagnosis of HIV"
-    if (
+  if (Active and Alive and "HIV free")
+    and (
       "Pregnant by test but no HIV test during pregnancy"
       or "Resides a high prevalence state and has not had an HIV test in the third trimester"
       or "No state of residence on record and no HIV test done in third trimester"
@@ -248,10 +269,10 @@ define "Pregnant Indicator":
     else ''
 
 // define "Seeking STD Treatment Condition":
-//   if ( not "Active diagnosis of HIV"
-//       and "Patient is Seeking Treatment for an STD"
-//   ) then true 
-//     else false
+// if (Active and Alive and "HIV free") 
+//     and "Patient is Seeking Treatment for an STD"
+// then true 
+// else false
 
 // define "Seeking STD Treatment Recommendation":
 //   if "Seeking STD Treatment Condition" then ( if "Over 3 Months has Passed Since Previous HIV Screening" then '\r\n - Patient is seeking treatment for an STD and more than three months have passed.' 
@@ -271,11 +292,11 @@ define HivTestOnOrBeforeTbDiagnosis:
   Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
 
 define "Tuberculosis Condition":
-  if ( // not "Active diagnosis of HIV"
-      "Active diagnosis of Tuberculosis?"
-      and ( not exists HDE."HIV Tests"
-          or ( exists HDE."HIV Tests"
-              and Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
+  if ( Active and Alive and "HIV free"
+       and "Active diagnosis of Tuberculosis?"
+       and ( not exists HDE."HIV Tests"
+       or ( exists HDE."HIV Tests"
+            and Last(HDE."HIV Tests").effective on or before Last(HDE."Tuberculosis diagnosis").onset
           )
       )
   ) then true 
@@ -295,14 +316,13 @@ define "Tuberculosis Indicator":
     else ''
 
 define "HIV Test Condition":
-  if not "Active diagnosis of HIV"
-    and ( "Never Tested Condition"
-          or "MSM Condition"
-          or "Pregnant Condition"
-          // or "Seeking STD Treatment Condition"
-          // or "Risk Level Condition"
-          or "Tuberculosis Condition"
-        ) 
+  if ( "Never Tested Condition"
+       or "MSM Condition"
+       or "Pregnant Condition"
+       // or "Seeking STD Treatment Condition"
+       // or "Risk Level Condition"
+       or "Tuberculosis Condition"
+      ) 
   then true 
   else false
 
@@ -330,23 +350,22 @@ define "HIV Test Indicator":
 // define "Age":
 //   AgeInYearsAt(ReferenceDate)
 
-define "Patient is between 13 and 64 years old":
+define "13 Through 64 Years Old":
   AgeInYearsAt(ReferenceDate) >= 13
     and AgeInYearsAt(ReferenceDate) <= 64
 
-define "HIV Screening Test": // DH: as of last encounter
-  HC.QualifiedObservations ( HDE."HIV Tests" )
-    // union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
-  // ) HIVScreening
-  //   with "Patient Encounter" PatientEncounter
-  //     such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
+// define "HIV Screening Test": // DH: as of last encounter
+//   HC.QualifiedObservations ( HDE."HIV Tests" )
+//     // union HC.QualifiedObservations ( HDE."Previous HIV Screening" ) // How does this fit in the logic? Where is its `status` attribute?
+//   // ) HIVScreening
+//   //   with "Patient Encounter" PatientEncounter
+//   //     such that FC.ToInterval(HIVScreening.effective) before PatientEncounter.period
 
-define "Patient has had an HIV Test": //DH: as of last encounter
-  
-  exists ( "HIV Screening Test" )
+define "No HIV Test":
+  not exists ( HDE."HIV Tests" )
 
 define "Previous HIV Screening Test": // DH: originally meaning `previous to most recent encouter`. Now; `previous to Reference Date
-  ( Last("HIV Screening Test" HIVTest
+  ( Last(HDE."HIV Tests" HIVTest
       sort by effective
   ) ) MostRecentHIVTest
 
@@ -371,18 +390,15 @@ define "Patient is Male":
   if Patient.gender = 'male' then true 
   else false
 
-define "Patient is Female":
-  if Patient.gender = 'female' then true 
-    else false
+// define "Patient is Female": // not an independent variable
+//   if Patient.gender = 'female' then true 
+//     else false
 
 // define "Patient is Transgender":
 //   HDE."Gender Identity" in Cx."Transgender"
 
 define "Active diagnosis of Tuberculosis?":
   exists HDE."Tuberculosis diagnosis"
-
-define "Active diagnosis of HIV":
-  exists HDE."HIV Diagnosis"
 
 define "Active Diagnosis of HCV During Patient Visit":  // ignoring visits...
    Last((HC.QualifiedConditions(HDE."Hepatitis C Diagnosis")) HCVDiagnosis

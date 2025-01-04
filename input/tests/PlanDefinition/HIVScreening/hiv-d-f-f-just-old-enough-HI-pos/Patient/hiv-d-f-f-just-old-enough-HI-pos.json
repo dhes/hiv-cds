@@ -1,0 +1,38 @@
+{
+  "resourceType": "Patient",
+  "id": "hiv-d-f-f-just-old-enough-HI-pos",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-comment",
+      "valueString": "just-old-enough deceased inactive female from HI HIV negative"
+    },
+    {
+      "url": "http://cds.hopena.info/StructureDefinition/patient-requires-action",
+      "valueString": "false"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://example.org/hiv-screening",
+      "value": "d-f-f-just-old-enough-HI-pos"
+    }
+  ],
+  "name": [
+    {
+      "given": [
+        "Absolutely"
+      ],
+      "family": "Nobody"
+    }
+  ],
+  "birthDate": "2011-01-01",
+  "gender": "female",
+  "active": false,
+  "deceasedDateTime": "2023-01-01",
+  "address": [
+    {
+      "use": "home",
+      "state": "HI"
+    }
+  ]
+}
